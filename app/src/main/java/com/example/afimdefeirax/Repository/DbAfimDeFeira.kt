@@ -16,12 +16,12 @@ abstract class DbAfimDeFeira: RoomDatabase() {
 
     private lateinit var DBINSTANCE: DbAfimDeFeira
     fun getDatabase(context: Context):DbAfimDeFeira{
-
         if(!::DBINSTANCE.isInitialized){
-
+            synchronized(DbAfimDeFeira::class){
             DBINSTANCE= Room.databaseBuilder(context,DbAfimDeFeira::class.java,"DbAfimDeFeira")
                 .allowMainThreadQueries()
                 .build()
+            }
         }
         return DBINSTANCE
     }
