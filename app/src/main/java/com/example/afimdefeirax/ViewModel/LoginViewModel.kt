@@ -1,14 +1,9 @@
 package com.example.afimdefeirax.ViewModel
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
-import android.util.Log.DEBUG
+import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.viewbinding.BuildConfig.DEBUG
 import com.example.afimdefeirax.Model.LoginModel
 import com.example.afimdefeirax.Repository.LoginRepository
 
@@ -25,10 +20,7 @@ class LoginViewModel (application: Application):AndroidViewModel(application) {
             this.nome = nome
             this.senha = senha
         }
-        if (id==0){
-            mSaveLogin.value= mLoginRepository.save(modelousuario)
-        }else{
-            mSaveLogin.value=mLoginRepository.update(modelousuario)
-        }
+        mSaveLogin.value= mLoginRepository.save(modelousuario)
     }
+
 }
