@@ -15,7 +15,4 @@ class LoginRepository(context: Context) {
         return base.save(usuario)>0
     }
 
-    fun update (id:LoginModel):Boolean{
-        return base.update(id)>0
-    }
 }
