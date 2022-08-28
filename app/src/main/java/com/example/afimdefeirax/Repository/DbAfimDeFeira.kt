@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.afimdefeirax.DAO.ILoginDAO
 import com.example.afimdefeirax.Model.LoginModel
 
@@ -25,6 +27,12 @@ abstract class DbAfimDeFeira: RoomDatabase() {
         }
         return DBINSTANCE
     }
+
+        private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("DELETE FROM Login")
+            }
+        }
 
 }
 
