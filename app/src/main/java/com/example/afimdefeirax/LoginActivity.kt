@@ -1,6 +1,7 @@
 package com.example.afimdefeirax
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.afimdefeirax.View.MainActivity
 import com.example.afimdefeirax.ViewModel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -20,6 +22,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         viewmodel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        idUsuario=viewmodel.getId().toInt()
+
+        verifyAcess()
 
     }
 
@@ -48,12 +53,22 @@ class LoginActivity : AppCompatActivity() {
         viewmodel.mSaveLogin.observe(this, Observer {
 
             if(it){
-                Toast.makeText(applicationContext, "Sucesso", Toast.LENGTH_LONG).show()
+               startActivity( Intent(this,MainActivity::class.java))
             }else {
                 Toast.makeText(applicationContext, "Falha", Toast.LENGTH_LONG).show()
             }
         })
 
+        finish()
     }
+
+   private fun verifyAcess(){
+
+    if (idUsuario<0){
+
+        startActivity( Intent(this,MainActivity::class.java))
+   }
+
+}
 
 }

@@ -28,4 +28,10 @@ class LoginViewModel (application: Application):AndroidViewModel(application) {
         msharedlogin.storeString("senha",senha)
     }
 
+   fun getId() :String{
+
+     return  msharedlogin.getString("id")
+
+   }
+
 }
