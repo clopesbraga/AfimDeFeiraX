@@ -15,7 +15,7 @@ import com.example.afimdefeirax.ViewModel.LoginViewModel
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewmodel: LoginViewModel
-    private var idUsuario :Int = 0
+    var idUsuario=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
     fun onClick(v: View) {
 
         val id = v.id
-
+        idUsuario = id
         if (id == R.id.btn_salvar) {
 
             val usuario = findViewById<EditText>(R.id.edt_email)
@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
 
    private fun verifyAcess(){
 
-    if (idUsuario<0){
+    if (idUsuario>0){
 
         startActivity( Intent(this,MainActivity::class.java))
    }
