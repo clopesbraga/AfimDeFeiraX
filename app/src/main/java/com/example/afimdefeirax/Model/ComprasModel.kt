@@ -25,6 +25,6 @@ class ComprasModel {
     var imagem: Int=0
 
     @ColumnInfo(name="data")
-    var String=""
+    var data: String=""
 
 }
