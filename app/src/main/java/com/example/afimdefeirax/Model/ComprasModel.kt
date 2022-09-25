@@ -3,7 +3,6 @@ package com.example.afimdefeirax.Model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.intellij.lang.annotations.JdkConstants
 import java.util.*
 
 @Entity(tableName = "Compras")
@@ -26,6 +25,6 @@ class ComprasModel {
     var imagem: Int=0
 
     @ColumnInfo(name="data")
-    lateinit var data: Date
+    var String=""
 
 }

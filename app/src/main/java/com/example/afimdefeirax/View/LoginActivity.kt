@@ -1,4 +1,4 @@
-package com.example.afimdefeirax
+package com.example.afimdefeirax.View
 
 
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.afimdefeirax.View.MainActivity
+import com.example.afimdefeirax.R
 import com.example.afimdefeirax.ViewModel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
