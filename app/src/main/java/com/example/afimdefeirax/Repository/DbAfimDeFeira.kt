@@ -6,34 +6,41 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.afimdefeirax.DAO.IComprasDAO
 import com.example.afimdefeirax.DAO.ILoginDAO
+import com.example.afimdefeirax.Model.ComprasModel
 import com.example.afimdefeirax.Model.LoginModel
 
-@Database(entities = arrayOf((LoginModel::class)), version = 1)
-abstract class DbAfimDeFeira: RoomDatabase() {
+@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class)), version = 2)
 
-     abstract fun loginDAO(): ILoginDAO
+abstract class DbAfimDeFeira : RoomDatabase() {
 
-    companion object{
+    abstract fun loginDAO(): ILoginDAO
+    abstract fun comprasDAO(): IComprasDAO
 
-    private lateinit var DBINSTANCE: DbAfimDeFeira
-    fun getDatabase(context: Context):DbAfimDeFeira{
-        if(!::DBINSTANCE.isInitialized){
-            synchronized(DbAfimDeFeira::class){
-            DBINSTANCE= Room.databaseBuilder(context,DbAfimDeFeira::class.java,"DbAfimDeFeira")
-                .allowMainThreadQueries()
-                .build()
+    companion object {
+
+        private lateinit var DBINSTANCE: DbAfimDeFeira
+        fun getDatabase(context: Context): DbAfimDeFeira {
+            if (!::DBINSTANCE.isInitialized) {
+                synchronized(DbAfimDeFeira::class) {
+                    DBINSTANCE =
+                        Room.databaseBuilder(context, DbAfimDeFeira::class.java, "DbAfimDeFeira")
+                            .addMigrations(MIGRATION_1_2)
+                            .allowMainThreadQueries()
+                            .build()
+                }
             }
+            return DBINSTANCE
         }
-        return DBINSTANCE
-    }
 
         private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("DELETE FROM Login")
+
             }
         }
 
-}
+    }
 
 }

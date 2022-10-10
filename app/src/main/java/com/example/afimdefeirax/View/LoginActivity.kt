@@ -1,4 +1,4 @@
-package com.example.afimdefeirax
+package com.example.afimdefeirax.View
 
 
 import android.content.Intent
@@ -9,21 +9,19 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.afimdefeirax.View.MainActivity
+import com.example.afimdefeirax.R
 import com.example.afimdefeirax.ViewModel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewmodel: LoginViewModel
-    var idUsuario=0
+    private var idUsuario=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         viewmodel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        idUsuario=viewmodel.getId().toInt()
-
         verifyAcess()
 
     }
@@ -31,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
     fun onClick(v: View) {
 
         val id = v.id
-        idUsuario = id
+        idUsuario = id.toString()
         if (id == R.id.btn_salvar) {
 
             val usuario = findViewById<EditText>(R.id.edt_email)
@@ -39,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
             val senha = findViewById<EditText>(R.id.edt_senha)
 
             viewmodel.login(
-                idUsuario,
+                idUsuario.toInt(),
                 usuario.text.toString(),
                 nome.text.toString(),
                 senha.text.toString()
@@ -58,17 +56,14 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Falha", Toast.LENGTH_LONG).show()
             }
         })
-
         finish()
     }
 
    private fun verifyAcess(){
 
-    if (idUsuario>0){
-
-        startActivity( Intent(this,MainActivity::class.java))
+        if (!idUsuario.isNullOrEmpty()){
+            startActivity( Intent(this,MainActivity::class.java))
+        }
    }
-
-}
 
 }
