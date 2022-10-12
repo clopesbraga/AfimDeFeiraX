@@ -7,10 +7,12 @@
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.17076502732240437" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22644927536231885" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.26268115942028986" />
         <entry key="app/src/main/res/layout/fragment_compras.xml" value="0.10260416666666666" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.10260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.67" />
       </map>
     </option>
