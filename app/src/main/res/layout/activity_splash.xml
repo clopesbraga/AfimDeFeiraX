@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".View.SplashActivity">
 
+    <ImageView
+        android:id="@+id/img_logo_background"
+        android:layout_width="281dp"
+        android:layout_height="246dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_empresa_logo_background" />
 </androidx.constraintlayout.widget.ConstraintLayout>
