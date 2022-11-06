@@ -4,20 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.HomeFragment">
+    tools:context=".View.SplashActivity">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="409dp"
-        android:layout_height="583dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@mipmap/ic_logo_app_foreground"
-        android:textAlignment="center"
-        android:textSize="20sp"
+    <ImageView
+        android:id="@+id/img_logo_background"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_empresa_logo_background" />
 </androidx.constraintlayout.widget.ConstraintLayout>
