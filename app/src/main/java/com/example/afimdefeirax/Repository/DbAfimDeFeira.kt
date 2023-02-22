@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.afimdefeirax.DAO.IComprasDAO
+import com.example.afimdefeirax.DAO.IListaDAO
 import com.example.afimdefeirax.DAO.ILoginDAO
 import com.example.afimdefeirax.Model.ComprasModel
 import com.example.afimdefeirax.Model.LoginModel
@@ -17,6 +18,8 @@ abstract class DbAfimDeFeira : RoomDatabase() {
 
     abstract fun loginDAO(): ILoginDAO
     abstract fun comprasDAO(): IComprasDAO
+    abstract fun ListaDAO(): IListaDAO
+
 
     companion object {
 
