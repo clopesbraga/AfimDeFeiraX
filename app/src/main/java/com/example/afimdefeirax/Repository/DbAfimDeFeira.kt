@@ -10,9 +10,10 @@ import com.example.afimdefeirax.DAO.IComprasDAO
 import com.example.afimdefeirax.DAO.IListaDAO
 import com.example.afimdefeirax.DAO.ILoginDAO
 import com.example.afimdefeirax.Model.ComprasModel
+import com.example.afimdefeirax.Model.ListaModel
 import com.example.afimdefeirax.Model.LoginModel
 
-@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class)), version = 2)
+@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class),(ListaModel::class)), version = 3)
 
 abstract class DbAfimDeFeira : RoomDatabase() {
 
