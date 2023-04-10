@@ -8,6 +8,7 @@ class LoginRepository(context: Context) {
     private val base = DbAfimDeFeira.getDatabase(context).loginDAO()
 
     fun get (id:Int):LoginModel{
+
         return base.get(id)
     }
 
