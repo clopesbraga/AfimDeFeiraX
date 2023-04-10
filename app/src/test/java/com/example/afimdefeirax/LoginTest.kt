@@ -1,7 +1,6 @@
 package com.example.afimdefeirax
 
 import android.app.Activity
-import android.app.Application
 import android.os.Build
 import com.example.afimdefeirax.Model.LoginModel
 import com.example.afimdefeirax.Repository.LoginRepository
@@ -9,7 +8,6 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.android.controller.ActivityController
@@ -24,12 +22,11 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 class LoginTest {
 
-
-
     lateinit var mloginviewmodeltest: LoginRepository
     lateinit var activity:Activity
     lateinit var activityController:ActivityController<Activity>
     lateinit var modelousuariotest:LoginModel
+    lateinit var modelousalvobanco:LoginModel
 
 
 
@@ -41,11 +38,13 @@ class LoginTest {
 
         modelousuariotest = LoginModel().apply {
             this.id = 1
-            this.usuario="usuario"
-            this.nome = "nome"
-            this.senha = "senha"
+            this.usuario="teste"
+            this.nome = "testnome"
+            this.senha = "testsenha"
 
         }
+
+        mloginviewmodeltest = LoginRepository(activity.applicationContext)
 
     }
 
@@ -61,15 +60,18 @@ class LoginTest {
     @Test
     fun Quando_realizar_gravacao(){
 
-        mloginviewmodeltest = LoginRepository(activity.applicationContext)
-        assertTrue(mloginviewmodeltest.save(modelousuariotest))
+        assertEquals(mloginviewmodeltest.save(modelousuariotest),true)
 
     }
 
     @Test
     fun Entao_devo_ter_feito_login_com_sucesso(){
 
-
+        modelousalvobanco = mloginviewmodeltest.get(modelousuariotest.id)
+        assertEquals(modelousalvobanco.id,modelousuariotest.id)
+        assertEquals(modelousalvobanco.nome,modelousuariotest.nome)
+        assertEquals(modelousalvobanco.usuario,modelousuariotest.usuario)
+        assertEquals(modelousalvobanco.senha,modelousuariotest.senha)
 
     }
 
