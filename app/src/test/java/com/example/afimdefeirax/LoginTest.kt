@@ -50,22 +50,31 @@ class LoginTest {
 
     @Test
     @Config(sdk=[Build.VERSION_CODES.LOLLIPOP])
-    fun Dado_verificacao_dos_dados() {
+    fun Fluxo_normal_do_login(){
+
+        Dado_verificacao_dos_dados()
+        Quando_realizar_gravacao()
+        Entao_devo_ter_feito_login_com_sucesso()
+
+    }
+
+
+    private fun Dado_verificacao_dos_dados() {
         assertNotNull(modelousuariotest.id)
         assertNotNull(modelousuariotest.usuario)
         assertNotNull(modelousuariotest.nome)
         assertNotNull(modelousuariotest.senha)
     }
 
-    @Test
-    fun Quando_realizar_gravacao(){
+
+    private fun Quando_realizar_gravacao(){
 
         assertEquals(mloginviewmodeltest.save(modelousuariotest),true)
 
     }
 
-    @Test
-    fun Entao_devo_ter_feito_login_com_sucesso(){
+
+    private fun Entao_devo_ter_feito_login_com_sucesso(){
 
         modelousalvobanco = mloginviewmodeltest.get(modelousuariotest.id)
         assertEquals(modelousalvobanco.id,modelousuariotest.id)
