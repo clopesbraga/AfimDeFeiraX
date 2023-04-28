@@ -1,13 +1,15 @@
 package com.example.afimdefeirax.View
 
-import androidx.lifecycle.ViewModelProvider
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.afimdefeirax.R
 import com.example.afimdefeirax.ViewModel.ComprasViewModel
+
+import com.example.afimdefeirax.databinding.FragmentComprasBinding
+
 
 class ComprasFragment : Fragment() {
 
@@ -15,19 +17,25 @@ class ComprasFragment : Fragment() {
         fun newInstance() = ComprasFragment()
     }
 
-    private lateinit var viewModel: ComprasViewModel
+    private lateinit var comprasViewModel: ComprasViewModel
+    private var _binding: FragmentComprasBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_compras, container, false)
+    ): View {
+
+        _binding = FragmentComprasBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ComprasViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
