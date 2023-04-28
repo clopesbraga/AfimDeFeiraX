@@ -1,6 +1,7 @@
 package com.example.afimdefeirax.ViewModel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.afimdefeirax.Model.ComprasModel
@@ -20,4 +21,5 @@ class ComprasViewModel (application: Application): ViewModel() {
         }
         mSaveCompra.value = mComprasRepository.save(modelocompra)
     }
+
 }
