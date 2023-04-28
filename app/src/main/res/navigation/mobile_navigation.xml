@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_map_feiras">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.afimdefeirax.View.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_map_feiras"
+        android:name="com.example.afimdefeirax.View.MapFeirasFragment"
+        android:label="@string/menu_feiras"
+        tools:layout="@layout/fragment_map_feiras" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.afimdefeirax.View.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_compras"
+        android:name="com.example.afimdefeirax.View.ComprasFragment"
+        android:label="@string/menu_compras"
+        tools:layout="@layout/fragment_compras" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.afimdefeirax.View.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:id="@+id/nav_historico"
+        android:name="com.example.afimdefeirax.View.HistoricoFragment"
+        android:label="@string/menu_historico"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

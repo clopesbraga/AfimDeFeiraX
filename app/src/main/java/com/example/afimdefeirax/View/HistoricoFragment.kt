@@ -1,33 +1,24 @@
 package com.example.afimdefeirax.View
 
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.afimdefeirax.ViewModel.ComprasViewModel
+import androidx.fragment.app.Fragment
+import com.example.afimdefeirax.databinding.FragmentHistoricoBinding
 
-import com.example.afimdefeirax.databinding.FragmentComprasBinding
 
+class HistoricoFragment : Fragment() {
 
-class ComprasFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ComprasFragment()
-    }
-
-    private lateinit var comprasViewModel: ComprasViewModel
-    private var _binding: FragmentComprasBinding? = null
+    private var _binding: FragmentHistoricoBinding? = null
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentComprasBinding.inflate(inflater, container, false)
+        _binding = FragmentHistoricoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -37,5 +28,4 @@ class ComprasFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
