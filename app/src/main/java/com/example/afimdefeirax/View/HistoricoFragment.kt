@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.afimdefeirax.ViewModel.SlideshowViewModel
-import com.example.afimdefeirax.databinding.FragmentSlideshowBinding
+import com.example.afimdefeirax.databinding.FragmentHistoricoBinding
+
 
 class HistoricoFragment : Fragment() {
 
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentHistoricoBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +18,7 @@ class HistoricoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentHistoricoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
