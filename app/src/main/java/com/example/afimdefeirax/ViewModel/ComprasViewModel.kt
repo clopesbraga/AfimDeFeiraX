@@ -22,4 +22,12 @@ class ComprasViewModel (application: Application): ViewModel() {
         mSaveCompra.value = mComprasRepository.save(modelocompra)
     }
 
+    fun listaProdutos(){
+
+
+    }
+    private fun observe(){
+
+    }
+
 }

@@ -20,6 +20,15 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+    <string-array name="produtos">
+        <item>VERDURAS</item>
+        <item>FRUTAS</item>
+        <item>LEGUMES</item>
+        <item>CARNES</item>
+        <item>SALGADOS</item>
+        <item>UTENSILIOS</item>
+    </string-array>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
