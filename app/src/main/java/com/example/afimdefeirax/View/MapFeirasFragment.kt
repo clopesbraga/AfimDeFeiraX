@@ -33,6 +33,7 @@ class MapFeirasFragment : Fragment() {
         mapFeirasViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
         return root
     }
 

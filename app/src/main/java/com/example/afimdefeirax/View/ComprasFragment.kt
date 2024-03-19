@@ -42,24 +42,24 @@ class ComprasFragment : Fragment(){
         _binding = FragmentComprasBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        _viewModel=ViewModelProvider(this).get(ComprasViewModel::class.java)
+//        _viewModel=ViewModelProvider(this).get(ComprasViewModel::class.java)
 
-        _spinnerprodutos = binding.spinVerduras
+//        _spinnerprodutos = binding.spinVerduras
+//
+//        _produtos_adapter = ArrayAdapter.createFromResource(
+//            root.context,
+//            R.array.produtos,
+//            androidx.transition.R.layout.support_simple_spinner_dropdown_item
+//        )
+//        _spinnerprodutos.setAdapter(_produtos_adapter)
 
-        _produtos_adapter = ArrayAdapter.createFromResource(
-            root.context,
-            R.array.produtos,
-            androidx.transition.R.layout.support_simple_spinner_dropdown_item
-        )
-        _spinnerprodutos.setAdapter(_produtos_adapter)
-
-        adapterview.onItemClick(){
-
-            when(_spinnerprodutos.selectedItemPosition){
-
-            }
-
-        }
+//        adapterview.onItemClick(){
+//
+//            when(_spinnerprodutos.selectedItemPosition){
+//
+//            }
+//
+//        }
 
         return root
     }
