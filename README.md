@@ -1,4 +1,4 @@
-![GitHub tag checks state](https://img.shields.io/github/checks-status/clopesbraga/[AfimDeFeiraX]/master)  | ![GitHub language count](https://img.shields.io/github/languages/count/clopesbraga/AfimDeFeiraX) |  ![GitHub repo size](https://img.shields.io/github/repo-size/clopesbraga/AfimDeFeiraX) |  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/clopesbraga/AfimDeFeiraX/master)
+![GitHub tag checks state](https://img.shields.io/github/checks-status/clopesbraga/AfimDeFeiraX/master)  | ![GitHub language count](https://img.shields.io/github/languages/count/clopesbraga/AfimDeFeiraX) |  ![GitHub repo size](https://img.shields.io/github/repo-size/clopesbraga/AfimDeFeiraX) |  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/clopesbraga/AfimDeFeiraX/master)
 
 
 ![logo_play_store2](https://github.com/clopesbraga/AfimDeFeiraX/assets/58059669/516c1d3c-8174-496d-8fcb-870a27685ee1)
@@ -34,11 +34,6 @@
 |--- |--- |--- |
 | | | |
 | | ![Screenshot_20191008-160703](https://github.com/clopesbraga/AfimDeFeiraX/assets/58059669/157ca558-34c4-472b-8a53-e9dc6485b2b4) | ![WhatsApp Image 2019-10-30 at 21 25 49](https://github.com/clopesbraga/AfimDeFeiraX/assets/58059669/7808ac6c-95bb-4f18-b348-e2af0f457508) | row 2 column 3 |
-
-
-
-
-
 
 ## Status do Projeto
 🚧  Projeto   Em construção...  🚧
