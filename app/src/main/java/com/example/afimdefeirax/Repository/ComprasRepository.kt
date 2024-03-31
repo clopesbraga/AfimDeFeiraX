@@ -2,7 +2,7 @@ package com.example.afimdefeirax.Repository
 
 import android.content.Context
 import com.example.afimdefeirax.Model.ComprasModel
-import com.example.afimdefeirax.Model.LoginModel
+import com.example.afimdefeirax.Repository.Database.DbAfimDeFeira
 
 class ComprasRepository(context: Context) {
 
