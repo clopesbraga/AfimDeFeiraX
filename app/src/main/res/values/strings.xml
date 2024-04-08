@@ -38,6 +38,9 @@
         <item>UTENSILIOS</item>
     </string-array>
 
+    //MENSAGENS DE ERRO
+    <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
