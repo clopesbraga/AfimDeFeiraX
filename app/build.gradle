@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -37,6 +39,7 @@ android {
     }
     namespace 'com.example.afimdefeirax'
 
+
 }
 
 dependencies {
@@ -55,7 +58,20 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.5.0'
     implementation 'androidx.annotation:annotation:1.5.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt 'androidx.room:room-compiler:2.5.0'
+    kapt 'androidx.room:room-compiler:2.6.1'
+
+    // Koin for Android
+    implementation ("io.insert-koin:koin-android:3.4.0")
+
+    //MAPS
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-database-ktx")
+
 
     //Unit Test
     testImplementation 'junit:junit:4.13.2'

@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="api_maps_key">AIzaSyCkbRX4AHre6MnmSXCH8wV838HGQnYGm88</string>
+
     <string name="app_name">AfimdeFeiraX</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -34,6 +37,9 @@
         <item>SALGADOS</item>
         <item>UTENSILIOS</item>
     </string-array>
+
+    //MENSAGENS DE ERRO
+    <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

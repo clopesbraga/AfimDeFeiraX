@@ -1,4 +1,4 @@
-package com.example.afimdefeirax.Repository
+package com.example.afimdefeirax.Repository.Database
 
 import android.content.Context
 import androidx.room.Database
@@ -26,7 +26,7 @@ abstract class DbAfimDeFeira : RoomDatabase() {
 
         private lateinit var DBINSTANCE: DbAfimDeFeira
         fun getDatabase(context: Context): DbAfimDeFeira {
-            if (!::DBINSTANCE.isInitialized) {
+            if (!Companion::DBINSTANCE.isInitialized) {
                 synchronized(DbAfimDeFeira::class) {
                     DBINSTANCE =
                         Room.databaseBuilder(context, DbAfimDeFeira::class.java, "DbAfimDeFeira")
