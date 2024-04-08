@@ -11,14 +11,16 @@ import com.example.afimdefeirax.databinding.FragmentMapFeirasBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import org.koin.android.ext.android.inject
 
 
-class MapFeirasFragment : Fragment(),OnMapReadyCallback {
+class MapFeirasFragment : Fragment(), OnMapReadyCallback {
 
     private var _binding: FragmentMapFeirasBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : MapaFeirasViewModel by inject()
+    private val viewModel: MapaFeirasViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,10 +29,8 @@ class MapFeirasFragment : Fragment(),OnMapReadyCallback {
     ): View {
 
         _binding = FragmentMapFeirasBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,8 +46,11 @@ class MapFeirasFragment : Fragment(),OnMapReadyCallback {
         _binding = null
     }
 
-    override fun onMapReady(map: GoogleMap) = map.let {
-        viewModel.showMyLocalization(it)
-        viewModel.showFeirasLocalization(it)
+    override fun onMapReady(map: GoogleMap): Unit = map.let {
+
+        viewModel.showMyLocalization(it, binding.root.context)
+        viewModel.showFeirasLocalization(it,binding.root.context)
+
     }
+
 }
