@@ -18,7 +18,7 @@ class DeviceCurrentTime {
             Calendar.WEDNESDAY -> diasemana = "QUA"
             Calendar.THURSDAY -> diasemana = "QUI"
             Calendar.FRIDAY -> diasemana = "SEX"
-            Calendar.SATURDAY -> diasemana = "SAT"
+            Calendar.SATURDAY -> diasemana = "SAB"
             Calendar.SUNDAY -> diasemana = "DOM"
         }
 
