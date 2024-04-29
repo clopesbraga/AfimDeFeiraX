@@ -38,6 +38,822 @@
         <item>UTENSILIOS</item>
     </string-array>
 
+    //CIDADES
+    <string-array name="cidades">
+        <item>SAO PAULO</item>
+        <item>GUARULHOS</item>
+        <item>SUZANO</item>
+        <item>OSASCO</item>
+        <item>MAUA</item>
+        <item>SANTO ANDRE</item>
+        <item>SAO BERNADO</item>
+        <item>SAO CAETANO</item>
+    </string-array>
+
+    <string-array name="sp_bairros">
+
+        <item>	ACLIMACAO	</item>
+        <item>	AGUA BRANCA	</item>
+        <item>	AGUA FRIA	</item>
+        <item>	AGUA FUNDA	</item>
+        <item>	AGUA RASA	</item>
+        <item>	ALTO DA LAPA	</item>
+        <item>	ALTO DA MOOCA	</item>
+        <item>	ALTO DO IPIRANGA	</item>
+        <item>	AMERICANOPOLIS	</item>
+        <item>	ARICANDUVA	</item>
+        <item>	ARTUR ALVIM	</item>
+        <item>	BARRA FUNDA	</item>
+        <item>	BARREIRA GRANDE	</item>
+        <item>	BARUEL	</item>
+        <item>	BELA VISTA	</item>
+        <item>	BELEM	</item>
+        <item>	BELENZINHO	</item>
+        <item>	BOM RETIRO	</item>
+        <item>	BOSQUE DA SAUDE	</item>
+        <item>	BRAS	</item>
+        <item>	BRESSER	</item>
+        <item>	BROOKLIN PAULISTA	</item>
+        <item>	BURGO PAULISTA	</item>
+        <item>	BUTANTA	</item>
+        <item>	CACHOEIRINHA	</item>
+        <item>	CAMBUCI	</item>
+        <item>	CAMPO BELO	</item>
+        <item>	CAMPO LIMPO	</item>
+        <item>	CANGAIBA	</item>
+        <item>	CANINDE	</item>
+        <item>	CAPAO REDONDO	</item>
+        <item>	CAPELA DO SOCORRO	</item>
+        <item>	CARANDIRU	</item>
+        <item>	CASA VERDE	</item>
+        <item>	CASA VERDE ALTA	</item>
+        <item>	CAXINGUI	</item>
+        <item>	CDHU CAMARGO VELHO	</item>
+        <item>	CENTRO	</item>
+        <item>	CERQUEIRA CESAR	</item>
+        <item>	CHACARA BELENZINHO	</item>
+        <item>	CHACARA INGLESA	</item>
+        <item>	CHACARA SANTO ANTONIO	</item>
+        <item>	CHACARA TRES MENINAS	</item>
+        <item>	CHORA MENINO	</item>
+        <item>	CIDADE  AE CARVALHO	</item>
+        <item>	CIDADE  IPAVA	</item>
+        <item>	CIDADE ADEMAR	</item>
+        <item>	CIDADE D ABRIL	</item>
+        <item>	CIDADE DUTRA	</item>
+        <item>	CIDADE LIDER	</item>
+        <item>	CIDADE MONCOES	</item>
+        <item>	CIDADE NOVA S MIGUEL	</item>
+        <item>	CIDADE PATRIARCA	</item>
+        <item>	CIDADE PEDRO JOSE NUNES	</item>
+        <item>	CIDADE SAO MATEUS	</item>
+        <item>	CIDADE TIRADENTES	</item>
+        <item>	CIDADE TIRADENTES COHAB	</item>
+        <item>	CIDADE VARGAS	</item>
+        <item>	COCAIA	</item>
+        <item>	COHAB II	</item>
+        <item>	CONGONHAS	</item>
+        <item>	CONJUNTO HAB FAZENDA DO CARMO	</item>
+        <item>	CONSOLACAO	</item>
+        <item>	CRUZ DAS ALMAS	</item>
+        <item>	EDUCANDARIO COHAB	</item>
+        <item>	ENGENHEIRO GOULART	</item>
+        <item>	ERMELINO MATARAZZO	</item>
+        <item>	ESTADIO DO MORUMBI	</item>
+        <item>	FAZENDA JUTA	</item>
+        <item>	FREGUESIA DO O	</item>
+        <item>	GRAJAU	</item>
+        <item>	GUAIANAZES	</item>
+        <item>	GUAIANAZES COHAB	</item>
+        <item>	HELIOPOLIS	</item>
+        <item>	IBIRAPUERA	</item>
+        <item>	IMIRIM	</item>
+        <item>	INDIANOPOLIS	</item>
+        <item>	IPIRANGA	</item>
+        <item>	ITAIM BIBI	</item>
+        <item>	ITAIM PAULISANTA	</item>
+        <item>	ITAQUERA	</item>
+        <item>	ITAQUERA COHAB I	</item>
+        <item>	ITAQUERA COHAB II	</item>
+        <item>	JABAQUARA	</item>
+        <item>	JACANA	</item>
+        <item>	JAGUARE	</item>
+        <item>	JARDIM AEROPORTO	</item>
+        <item>	JARDIM ALMEIDA PRADO	</item>
+        <item>	JARDIM AMERICA	</item>
+        <item>	JARDIM ANA MARIA	</item>
+        <item>	JARDIM ANGELA	</item>
+        <item>	JARDIM ANTONIA	</item>
+        <item>	JARDIM ARICANDUVA	</item>
+        <item>	JARDIM ARIZI	</item>
+        <item>	JARDIM ARPOADOR	</item>
+        <item>	JARDIM AUGUSTO	</item>
+        <item>	JARDIM BOA ESPERANCA	</item>
+        <item>	JARDIM BOA VISANTA	</item>
+        <item>	JARDIM BONFIGLIOLI	</item>
+        <item>	JARDIM BRASIL	</item>
+        <item>	JARDIM BRASILIA	</item>
+        <item>	JARDIM BRASILIA	</item>
+        <item>	JARDIM BRITANIA	</item>
+        <item>	JARDIM CAMARGO	</item>
+        <item>	JARDIM CAMARGO NOVO	</item>
+        <item>	JARDIM CAMARGO VELHO	</item>
+        <item>	JARDIM CAMPOS	</item>
+        <item>	JARDIM CASA PINTADA	</item>
+        <item>	JARDIM CATANDUVA	</item>
+        <item>	JARDIM CELESTE	</item>
+        <item>	JARDIM CELIA	</item>
+        <item>	JARDIM CIDADEALIA	</item>
+        <item>	JARDIM CITY JARAGUA	</item>
+        <item>	JARDIM CLIMAX	</item>
+        <item>	JARDIM COIMBRA	</item>
+        <item>	JARDIM COLONIAL	</item>
+        <item>	JARDIM COLORADO	</item>
+        <item>	JARDIM CONSORCIO	</item>
+        <item>	JARDIM D ABRIL	</item>
+        <item>	JARDIM DA FELICIDADEADE	</item>
+        <item>	JARDIM DA GLORIA	</item>
+        <item>	JARDIM DA SAUDE	</item>
+        <item>	JARDIM DANFER	</item>
+        <item>	JARDIM DAS BANDEIRAS	</item>
+        <item>	JARDIM DAS CAMELIAS	</item>
+        <item>	JARDIM DAS LARANJEIRAS	</item>
+        <item>	JARDIM DAS OLIVEIRAS	</item>
+        <item>	JARDIM DAS ROSAS	</item>
+        <item>	JARDIM DO RECANTO	</item>
+        <item>	JARDIM DO RUSSO	</item>
+        <item>	JARDIM DOS ALAMOS	</item>
+        <item>	JARDIM DOS IPES	</item>
+        <item>	JARDIM ELBA	</item>
+        <item>	JARDIM ELIANE	</item>
+        <item>	JARDIM ELISEO	</item>
+        <item>	JARDIM ESTER	</item>
+        <item>	JARDIM FONTALIS	</item>
+        <item>	JARDIM GIANETTI	</item>
+        <item>	JARDIM GRIMALDI	</item>
+        <item>	JARDIM GUAIRACA	</item>
+        <item>	JARDIM GUARANI	</item>
+        <item>	JARDIM GUARAU	</item>
+        <item>	JARDIM HELENA	</item>
+        <item>	JARDIM HELIAN	</item>
+        <item>	JARDIM IBIRAPUERA	</item>
+        <item>	JARDIM IGUATEMI	</item>
+        <item>	JARDIM IGUATEMI	</item>
+        <item>	JARDIM IMBE	</item>
+        <item>	JARDIM IMBUIAS	</item>
+        <item>	JARDIM INDEPENDENCIA	</item>
+        <item>	JARDIM IPANEMA	</item>
+        <item>	JARDIM IPE	</item>
+        <item>	JARDIM IRACEMA	</item>
+        <item>	JARDIM IRENE	</item>
+        <item>	JARDIM ITAPEMIRIM	</item>
+        <item>	JARDIM ITAPEMIRIM	</item>
+        <item>	JARDIM IVA	</item>
+        <item>	JARDIM JANGADEIRO	</item>
+        <item>	JARDIM JAPAO	</item>
+        <item>	JARDIM JARAGUA	</item>
+        <item>	JARDIM JOAMAR	</item>
+        <item>	JARDIM JOAO XXIII	</item>
+        <item>	JARDIM JOSE MARIA	</item>
+        <item>	JARDIM JURUBATUBA	</item>
+        <item>	JARDIM LEAR	</item>
+        <item>	JARDIM LISBOA	</item>
+        <item>	JARDIM MACEDONIA	</item>
+        <item>	JARDIM MAGGI	</item>
+        <item>	JARDIM MAIA	</item>
+        <item>	JARDIM MARAJOARA	</item>
+        <item>	JARDIM MARIA BORBA	</item>
+        <item>	JARDIM MARIA ESTELA	</item>
+        <item>	JARDIM MARIA ESTELA	</item>
+        <item>	JARDIM MARIA SAMPAIO	</item>
+        <item>	JARDIM MARILU	</item>
+        <item>	JARDIM MARINGA	</item>
+        <item>	JARDIM MARISA	</item>
+        <item>	JARDIM MILIUNAS	</item>
+        <item>	JARDIM MIRIAM	</item>
+        <item>	JARDIM MONJOLO	</item>
+        <item>	JARDIM NAZARE	</item>
+        <item>	JARDIM NELIA	</item>
+        <item>	JARDIM NITEROI	</item>
+        <item>	JARDIM NOEMIA	</item>
+        <item>	JARDIM NORDESTE	</item>
+        <item>	JARDIM NOSSA SENHORA DO CARMO	</item>
+        <item>	JARDIM NOVA CURUCA	</item>
+        <item>	JARDIM NOVA SAPOPEMBA	</item>
+        <item>	JARDIM NOVE DE JULHO	</item>
+        <item>	JARDIM NOVO HORIZONTE	</item>
+        <item>	JARDIM OLINDA	</item>
+        <item>	JARDIM PARAGUASSU	</item>
+        <item>	JARDIM PATENTE	</item>
+        <item>	JARDIM PAULISANTA	</item>
+        <item>	JARDIM PAULISANTANA	</item>
+        <item>	JARDIM PERI ALTO	</item>
+        <item>	JARDIM PIRATININGA	</item>
+        <item>	JARDIM PIRITUBA	</item>
+        <item>	JARDIM PLANALTO	</item>
+        <item>	JARDIM POPULAR	</item>
+        <item>	JARDIM PRESIDENTE	</item>
+        <item>	JARDIM PRIMAVERA	</item>
+        <item>	JARDIM PRINCESA	</item>
+        <item>	JARDIM PRUDENCIA	</item>
+        <item>	JARDIM RANIERI	</item>
+        <item>	JARDIM RAPOSO TAVARES	</item>
+        <item>	JARDIM REGINA	</item>
+        <item>	JARDIM RINCAO	</item>
+        <item>	JARDIM ROBRU	</item>
+        <item>	JARDIM ROMANO	</item>
+        <item>	JARDIM ROSANA	</item>
+        <item>	JARDIM ROSELI	</item>
+        <item>	JARDIM SANTA ADELIA	</item>
+        <item>	JARDIM SANTA ADELIA	</item>
+        <item>	JARDIM SANTA BARBARA	</item>
+        <item>	JARDIM SANTA CRUZ	</item>
+        <item>	JARDIM SANTA FRANCISCA	</item>
+        <item>	JARDIM SANTA GERTRUDES	</item>
+        <item>	JARDIM SANTA HELENA	</item>
+        <item>	JARDIM SANTA MONICA	</item>
+        <item>	JARDIM SANTA TEREZINHA	</item>
+        <item>	JARDIM SANTANA	</item>
+        <item>	JARDIM SANTO ANDRE	</item>
+        <item>	JARDIM SANTO ANDRE	</item>
+        <item>	JARDIM SAO BENTO	</item>
+        <item>	JARDIM SAO BERNARDO	</item>
+        <item>	JARDIM SAO CARLOS	</item>
+        <item>	JARDIM SAO FRANCISCO	</item>
+        <item>	JARDIM SAO JORGE	</item>
+        <item>	JARDIM SAO JOSE	</item>
+        <item>	JARDIM SAO LUIZ	</item>
+        <item>	JARDIM SAO LUIZ	</item>
+        <item>	JARDIM SAO MARTINHO	</item>
+        <item>	JARDIM SAO PAULO	</item>
+        <item>	JARDIM SAO PAULO	</item>
+        <item>	JARDIM SAO VICENTE	</item>
+        <item>	JARDIM SAPOPEMBA	</item>
+        <item>	JARDIM SATELITE	</item>
+        <item>	JARDIM SOARES	</item>
+        <item>	JARDIM TIALHA	</item>
+        <item>	JARDIM TIETE	</item>
+        <item>	JARDIM TREMEMBE	</item>
+        <item>	JARDIM TRES CORACOES	</item>
+        <item>	JARDIM TRIANA	</item>
+        <item>	JARDIM TROPICAL	</item>
+        <item>	JARDIM UBIRAJARA	</item>
+        <item>	JARDIM UMARIZAL	</item>
+        <item>	JARDIM UMUARAMA	</item>
+        <item>	JARDIM VARGINHA	</item>
+        <item>	JARDIM VAZ DE LIMA	</item>
+        <item>	JARDIM VERA CRUZ	</item>
+        <item>	JARDIM VERA LUCIA	</item>
+        <item>	JARDIM VERGUEIRO	</item>
+        <item>	JARDIM VERONIA	</item>
+        <item>	JARDIM VILA CARRAO	</item>
+        <item>	JARDIM VILA FORMOSA	</item>
+        <item>	JARDIM VILA MARIANA	</item>
+        <item>	JARDIM VILA NOVA CARRAO	</item>
+        <item>	JARDIM VILAS BOAS	</item>
+        <item>	JARDIM VISANTA ALEGRE	</item>
+        <item>	JARDIM VITORIA	</item>
+        <item>	JARDINS	</item>
+        <item>	JOSE BONIFACIO	</item>
+        <item>	LAJEADO	</item>
+        <item>	LAPA	</item>
+        <item>	LAPA DE BAIXO	</item>
+        <item>	LAUZANE PAULISANTA	</item>
+        <item>	LIBERDADE	</item>
+        <item>	LIMAO	</item>
+        <item>	LIMOEIRO	</item>
+        <item>	MANDAQUI	</item>
+        <item>	MEDEIROS	</item>
+        <item>	MOEMA	</item>
+        <item>	MOINHO VELHO	</item>
+        <item>	MOOCA	</item>
+        <item>	MORUMBI	</item>
+        <item>	NOSSA SENHORA DO O	</item>
+        <item>	PACAEMBU	</item>
+        <item>	PALMAS DO TREMEMBE	</item>
+        <item>	PARADA DE TAIPAS	</item>
+        <item>	PARADA XV NOVEMBRO	</item>
+        <item>	PARAISÓPOLIS	</item>
+        <item>	PARELHEIROS	</item>
+        <item>	PARI	</item>
+        <item>	PARQUE AMERICA	</item>
+        <item>	PARQUE ARTUR ALVIM	</item>
+        <item>	PARQUE BELEM	</item>
+        <item>	PARQUE BRASIL	</item>
+        <item>	PARQUE BRISTOL	</item>
+        <item>	PARQUE BRISTOL	</item>
+        <item>	PARQUE COCAIA	</item>
+        <item>	PARQUE CRUZEIRO DO SUL	</item>
+        <item>	PARQUE DA MOOCA	</item>
+        <item>	PARQUE DO CARMO	</item>
+        <item>	PARQUE FERNANDA	</item>
+        <item>	PARQUE FERNANDA	</item>
+        <item>	PARQUE FIG GRANDE	</item>
+        <item>	PARQUE GRAJAU	</item>
+        <item>	PARQUE GUARANI	</item>
+        <item>	PARQUE GUARANI	</item>
+        <item>	PARQUE JABAQUARA	</item>
+        <item>	PARQUE MARIA LUIZA	</item>
+        <item>	PARQUE NACOES UNIDAS	</item>
+        <item>	PARQUE NOVO MUNDO	</item>
+        <item>	PARQUE NOVO SANTO AMARO	</item>
+        <item>	PARQUE PAN AMERICANO	</item>
+        <item>	PARQUE PAULISANTANO	</item>
+        <item>	PARQUE PERUCHE	</item>
+        <item>	PARQUE REGINA	</item>
+        <item>	PARQUE RESIDENCIAL	</item>
+        <item>	PARQUE SANTA MADALENA	</item>
+        <item>	PARQUE SANTA RITA	</item>
+        <item>	PARQUE SANTO ANTONIO	</item>
+        <item>	PARQUE SAO DOMINGUES	</item>
+        <item>	PARQUE SAO LUCAS	</item>
+        <item>	PARQUE SAO PAULO	</item>
+        <item>	PARQUE SAO RAFAEL	</item>
+        <item>	PARQUE SAVOY CITY	</item>
+        <item>	PARQUE SOUZA ARANHA	</item>
+        <item>	PARQUE TIETE	</item>
+        <item>	PARQUE VITORIA	</item>
+        <item>	PEDREIRA	</item>
+        <item>	PENHA	</item>
+        <item>	PERDIZES	</item>
+        <item>	PERUS	</item>
+        <item>	PINHEIROS	</item>
+        <item>	PIQUERI	</item>
+        <item>	PIRAPORINHA	</item>
+        <item>	PIRAQUARA	</item>
+        <item>	PIRITUBA	</item>
+        <item>	PLANALTO PAULISANTA	</item>
+        <item>	PONTE PEQUENA	</item>
+        <item>	PONTE RAZA	</item>
+        <item>	QUARTA PARADA	</item>
+        <item>	REAL PARQUE MORUMBI	</item>
+        <item>	RECANTO DOS HUMILDES	</item>
+        <item>	RIO PEQUENO	</item>
+        <item>	RODRIGUES ALVES	</item>
+        <item>	SACOMA	</item>
+        <item>	SANTA CATARINA	</item>
+        <item>	SANTA CECILIA	</item>
+        <item>	SANTA CRUZ	</item>
+        <item>	SANTA EDWIGES	</item>
+        <item>	SANTA EFIGENIA	</item>
+        <item>	SANTA ETELVINA	</item>
+        <item>	SANTA ETELVINA COHAB	</item>
+        <item>	SANTA INES	</item>
+        <item>	SANTA TEREZINHA	</item>
+        <item>	SANTANA	</item>
+        <item>	SANTO AMARO	</item>
+        <item>	SANTO AMARO	</item>
+        <item>	SAO FRANCISCO	</item>
+        <item>	SAO JOAO CLIMACO	</item>
+        <item>	SAO JUDAS	</item>
+        <item>	SAO LUIS	</item>
+        <item>	SAO MATEUS	</item>
+        <item>	SAO MIGUEL	</item>
+        <item>	SAPOPEMBA	</item>
+        <item>	SAUDE	</item>
+        <item>	SOCORRO	</item>
+        <item>	SUMARE	</item>
+        <item>	SUMAREZINHO	</item>
+        <item>	TATUAPE	</item>
+        <item>	TIRADENTES COHAB	</item>
+        <item>	TREMEMBE	</item>
+        <item>	TRES MARIA	</item>
+        <item>	TUCURUVI	</item>
+        <item>	VARZEA DE BAIXO	</item>
+        <item>	VELEIROS	</item>
+        <item>	VILA ALBERTINA	</item>
+        <item>	VILA ALPINA	</item>
+        <item>	VILA ANA CLARA	</item>
+        <item>	VILA ANASANTACIO	</item>
+        <item>	VILA ANDRADE	</item>
+        <item>	VILA ANTONIETA	</item>
+        <item>	VILA ANTONIETA	</item>
+        <item>	VILA ARAPUA	</item>
+        <item>	VILA ARICANDUVA	</item>
+        <item>	VILA ARRIETE	</item>
+        <item>	VILA AURORA	</item>
+        <item>	VILA AURORA	</item>
+        <item>	VILA BANCARIA	</item>
+        <item>	VILA BARBOSA	</item>
+        <item>	VILA BEATRIZ	</item>
+        <item>	VILA BELA	</item>
+        <item>	VILA BELA VISTA	</item>
+        <item>	VILA BONILHA	</item>
+        <item>	VILA BORGES	</item>
+        <item>	VILA BRASIL	</item>
+        <item>	VILA BRASILANDIA	</item>
+        <item>	VILA BUENOS AIRES	</item>
+        <item>	VILA CAIUBA	</item>
+        <item>	VILA CALIFORNIA	</item>
+        <item>	VILA CAMPANELA	</item>
+        <item>	VILA CAMPESTRE	</item>
+        <item>	VILA CANERO	</item>
+        <item>	VILA CARIOCA	</item>
+        <item>	VILA CARMOSINA	</item>
+        <item>	VILA CARMOSINA	</item>
+        <item>	VILA CAROLINA	</item>
+        <item>	VILA CARRAO	</item>
+        <item>	VILA CELESTE	</item>
+        <item>	VILA CISPER	</item>
+        <item>	VILA CLEMENTINO	</item>
+        <item>	VILA CONDE DO PINHAL	</item>
+        <item>	VILA CONSANTANCIA	</item>
+        <item>	VILA CONTINENTAL	</item>
+        <item>	VILA CRISANTALIA	</item>
+        <item>	VILA CRUZEIRO	</item>
+        <item>	VILA CURUCA NOVA	</item>
+        <item>	VILA CURUCA VELHA	</item>
+        <item>	VILA DA SAUDE	</item>
+        <item>	VILA DALILA	</item>
+        <item>	VILA DALVA	</item>
+        <item>	VILA DAS BELEZAS	</item>
+        <item>	VILA DAS MERCES	</item>
+        <item>	VILA DIVA	</item>
+        <item>	VILA DIVINA PASTORA	</item>
+        <item>	VILA EDE	</item>
+        <item>	VILA ELISA	</item>
+        <item>	VILA EMA	</item>
+        <item>	VILA ESPERANCA	</item>
+        <item>	VILA FACCHINI	</item>
+        <item>	VILA FANTON	</item>
+        <item>	VILA FONTON	</item>
+        <item>	VILA FORMOSA	</item>
+        <item>	VILA FRIBURGO	</item>
+        <item>	VILA GOMES	</item>
+        <item>	VILA GOMES CARDIM	</item>
+        <item>	VILA GONCALVES	</item>
+        <item>	VILA GUARANI	</item>
+        <item>	VILA GUILHERME	</item>
+        <item>	VILA GUILHERMINA	</item>
+        <item>	VILA GUMERCINDO	</item>
+        <item>	VILA GUSANTAVO	</item>
+        <item>	VILA GUSANTAVO	</item>
+        <item>	VILA HAMBURGUESA	</item>
+        <item>	VILA HELENA	</item>
+        <item>	VILA IDA	</item>
+        <item>	VILA INDEPENDENCIA	</item>
+        <item>	VILA INDIANA	</item>
+        <item>	VILA INVERNADA	</item>
+        <item>	VILA IPOJUCA	</item>
+        <item>	VILA ISA	</item>
+        <item>	VILA ITAIM	</item>
+        <item>	VILA IV CENTENARIO	</item>
+        <item>	VILA JACUI	</item>
+        <item>	VILA JAGUARA	</item>
+        <item>	VILA JARAGUA	</item>
+        <item>	VILA JOANISA	</item>
+        <item>	VILA LEOPOLDINA	</item>
+        <item>	VILA LESTE	</item>
+        <item>	VILA MADALENA	</item>
+        <item>	VILA MALVINA	</item>
+        <item>	VILA MANCHESTER	</item>
+        <item>	VILA MANGALOT	</item>
+        <item>	VILA MARIA	</item>
+        <item>	VILA MARIA	</item>
+        <item>	VILA MARIA BAIXA	</item>
+        <item>	VILA MARIA LUIZA	</item>
+        <item>	VILA MARIANA	</item>
+        <item>	VILA MARIANA	</item>
+        <item>	VILA MARIETA	</item>
+        <item>	VILA MASTROCOLA	</item>
+        <item>	VILA MATILDE	</item>
+        <item>	VILA MAZZEI	</item>
+        <item>	VILA MEDEIROS	</item>
+        <item>	VILA MIRANTE	</item>
+        <item>	VILA MIRIAN	</item>
+        <item>	VILA MISSIONARIA	</item>
+        <item>	VILA MONTE SANTO	</item>
+        <item>	VILA MONUMENTO	</item>
+        <item>	VILA MORAES	</item>
+        <item>	VILA MUTINGA	</item>
+        <item>	VILA NAIR	</item>
+        <item>	VILA NATAL	</item>
+        <item>	VILA NHOCUNE	</item>
+        <item>	VILA NIGRI	</item>
+        <item>	VILA NILO	</item>
+        <item>	VILA NORMA	</item>
+        <item>	VILA NOVA CACHOEIRINHA	</item>
+        <item>	VILA NOVA CONCEICAO	</item>
+        <item>	VILA NOVA CURACA	</item>
+        <item>	VILA NOVA ESPERANCA	</item>
+        <item>	VILA NOVA GALVAO	</item>
+        <item>	VILA NOVA GRANADA	</item>
+        <item>	VILA NOVA MAZZEI	</item>
+        <item>	VILA NOVA YORK	</item>
+        <item>	VILA OLIMPIA	</item>
+        <item>	VILA OLIVIERI	</item>
+        <item>	VILA ORATORIO	</item>
+        <item>	VILA PALMEIRAS	</item>
+        <item>	VILA PAULICEIA	</item>
+        <item>	VILA PAULISANTANIA	</item>
+        <item>	VILA PAULO SILAS	</item>
+        <item>	VILA PERUS	</item>
+        <item>	VILA PIAUI	</item>
+        <item>	VILA POMPEIA	</item>
+        <item>	VILA PONTE RASA	</item>
+        <item>	VILA PRELL	</item>
+        <item>	VILA PRINCESA ISABEL	</item>
+        <item>	VILA PRINCESA ISABEL	</item>
+        <item>	VILA PROGRESSO	</item>
+        <item>	VILA PRUDENTE	</item>
+        <item>	VILA RAMOS	</item>
+        <item>	VILA RE	</item>
+        <item>	VILA REGENTE FEIJO	</item>
+        <item>	VILA REGINA	</item>
+        <item>	VILA REMO	</item>
+        <item>	VILA REUNIDAS	</item>
+        <item>	VILA RICA	</item>
+        <item>	VILA RIO BRANCO	</item>
+        <item>	VILA ROMANA	</item>
+        <item>	VILA RUI BARBOSA	</item>
+        <item>	VILA RUI BARBOSA	</item>
+        <item>	VILA SABRINA	</item>
+        <item>	VILA SANTA CATARINA	</item>
+        <item>	VILA SANTA EULALIA	</item>
+        <item>	VILA SANTA IZABEL	</item>
+        <item>	VILA SANTA LUCIA	</item>
+        <item>	VILA SANTA MARIA	</item>
+        <item>	VILA SANTA TEREZINHA	</item>
+        <item>	VILA SANTANA	</item>
+        <item>	VILA SAO CARLOS	</item>
+        <item>	VILA SAO GERALDO	</item>
+        <item>	VILA SAO JOSE	</item>
+        <item>	VILA SAO PEDRO	</item>
+        <item>	VILA SAO SILVESTRE	</item>
+        <item>	VILA SILVIA	</item>
+        <item>	VILA SILVIA	</item>
+        <item>	VILA SINHA	</item>
+        <item>	VILA SIQUEIRA	</item>
+        <item>	VILA SOFIA	</item>
+        <item>	VILA SONIA	</item>
+        <item>	VILA SUICA	</item>
+        <item>	VILA TALARICO	</item>
+        <item>	VILA TIRADENTES	</item>
+        <item>	VILA TOLSTOI	</item>
+        <item>	VILA UNIAO	</item>
+        <item>	VILA VARGEM GRANDE	</item>
+        <item>	VILA VERA	</item>
+        <item>	VILA VERDE	</item>
+        <item>	VILA VIDAL	</item>
+        <item>	VILA YOLANDA II	</item>
+        <item>	VILA ZATT	</item>
+        <item>	VILA ZELINA	</item>
+        <item>	VILA ZILDA	</item>
+
+    </string-array>
+    <!--bairros de Guarulhos-->
+    <string-array name="guaru_bairros">
+
+    <item>BOM CLIMA	</item>
+    <item>CECAP	</item>
+    <item>CENTRO	</item>
+    <item> CENTRO	</item>
+    <item> CIDADE SOINCO </item>
+    <item> CONJUNTO HAROLDO VELOSO	</item>
+    <item> CONJUNTO MARCOS FREIRE	</item>
+    <item> CUMBICA	</item>
+    <item> GOPOÚVA	</item>
+    <item> INOCOOP	</item>
+    <item> ITAPEGICA	</item>
+    <item> JARDIM  TRANQUILIDADE	</item>
+    <item> JARDIM ADRIANA	</item>
+    <item> JARDIM ALMEIDA PRADO	</item>
+    <item> JARDIM ANGÉLICA	</item>
+    <item> JARDIM ARACÍLIA	</item>
+    <item> JARDIM CUMBICA	</item>
+    <item> JARDIM JOVAIA	</item>
+    <item> JARDIM MONTE CARMELO	</item>
+    <item> JARDIM MOREIRA	</item>
+    <item> JARDIM MUNHOZ	</item>
+    <item> JARDIM PALMIRA	</item>
+    <item> JARDIM PRESIDENTE DUTRA	</item>
+    <item>	JARDIM ROSA DE FRANÇA	</item>
+    <item>	JARDIM SANTA CECÍLIA	</item>
+    <item>	JARDIM SANTA EMÍLIA	</item>
+    <item>	JARDIM SÃO DOMINGOS	</item>
+    <item>	JARDIM SÃO JOÃO	</item>
+    <item>	PARQUE ALVORADA	</item>
+    <item>	PARQUE CECAP I	</item>
+    <item>	PARQUE JUREMA	</item>
+    <item>	PARQUE SÃO LUIZ	</item>
+    <item>	PARQUE UIRAPURU	</item>
+    <item>	PICANÇO</item>
+    <item>	PIMENTAS	</item>
+    <item>	PONTE GRANDE	</item>
+    <item>	TABOÃO	</item>
+    <item>	VILA CARMELA	</item>
+    <item>	VILA FÁTIMA 	</item>
+    <item>	VILA GALVÃO	</item>
+    <item>	VILA SOROCABANA	</item>
+    <item>	VILA MOREIRA	</item>
+
+    </string-array>
+
+    <string-array name="suza_bairros">
+
+        <item> 	JARDIM DONA BENTA	</item>
+        <item> 	CENTRO	</item>
+        <item> 	JARDIM CASA BRANCA	</item>
+        <item> 	JARDIM COLORADO	</item>
+        <item> 	JARDIM CRUZEIRO DO SUL	</item>
+        <item> 	JARDIM IMPERADOR	</item>
+        <item> 	JARDIM MONTE CRISTO	</item>
+        <item> 	JARDIM NATAL	</item>
+        <item> 	JARDIM NOVO COLORADO	</item>
+        <item> 	JARDIM REVISTA	</item>
+        <item> 	JARDIM SÃO JOSÉ	</item>
+        <item> 	MIGUEL BADRA ALTO	</item>
+        <item> 	PALMEIRAS	</item>
+        <item> 	PARQUE MARIA HELENA	</item>
+        <item> 	PRACA JOAO PESSOA	</item>
+        <item> 	RAFFO	</item>
+        <item> 	VILA AMORIM	</item>
+        <item> 	VILA FIGUEIRA	</item>
+        <item> 	VILA HELENA	</item>
+
+    </string-array>
+    <!--bairros de Santo André-->
+    <string-array name="andre_bairros">
+
+        <item>	AVENIDA BRASIL	</item>
+        <item>	AVENIDA FIRESTONE	</item>
+        <item>	AVENIDA HIGIENÓPOLIS	</item>
+        <item>	AVENIDA PEDRO AMÉRICO	</item>
+        <item>	AVENIDA QUEIROZ FILHO	</item>
+        <item>	AVENIDA UTINGA	</item>
+        <item>	RUA AFRÂNIO PEIXOTO	</item>
+        <item>	RUA ALEXANDRETA	</item>
+        <item>	RUA DAS FIGUEIRAS	</item>
+        <item>	RUA DO AROUCHE	</item>
+        <item>	RUA DUQUE DE CAXIAS	</item>
+        <item>	RUA LUXEMBURGO	</item>
+        <item>	RUA MAMEDE ROCHA	</item>
+        <item>	RUA OSWALDO CRUZ	</item>
+        <item>	RUA PADRE MANOEL DE PAIVA	</item>
+        <item>	RUA ROLÂNDIA	</item>
+
+
+    </string-array>
+    <!--bairros de São Caetano-->
+    <string-array name="caetano_bairros">
+
+        <item>	 BARCELONA	</item>
+        <item>	 BOA VISTA	</item>
+        <item>	 CENTRO	</item>
+        <item>	 CERÂMICA	</item>
+        <item>	 MAUÁ	</item>
+        <item>	 NOVA GERTI</item>
+        <item>	 OLÍMPICO	</item>
+        <item>	 OSWALDO CRUZ	</item>
+        <item>	 PROSPERIDADE	</item>
+        <item>	 SANTA MARIA	</item>
+        <item>	 SÃO JOSÉ	</item>
+        <item>	 FUNDAÇÃO	</item>
+        <item>	 SANTA PAULA	</item>
+
+
+    </string-array>
+    <!--bairros de São Bernado-->
+    <string-array name="bernado_bairros">
+
+        <item>	BAETA NEVES	</item>
+        <item>	BAIRRO ASSUNÇÃO	</item>
+        <item>	BAIRRO DEMARCHI	</item>
+        <item>	CENTRO	</item>
+        <item>	JARDIM BEATRIZ	</item>
+        <item>	JARDIM BORBOREMA	</item>
+        <item>	JARDIM DA REPRESA	</item>
+        <item>	JARDIM DAS ORQUÍDEAS	</item>
+        <item>	JARDIM DO LAGO	</item>
+        <item>	JARDIM HOLLYWOOD	</item>
+        <item>	JARDIM IPÊ	</item>
+        <item>	JARDIM IRAJÁ	</item>
+        <item>	JARDIM LAURA	</item>
+        <item>	JARDIM LAVÍNIA	</item>
+        <item>	JARDIM NAZERETH	</item>
+        <item>	JARDIM PEDREIRA	</item>
+        <item>	JARDIM SANTO INÁCIO	</item>
+        <item>	JARDIM SÃO SILVÉRIO	</item>
+        <item>	JARDIM SILVINA	</item>
+        <item>	JARDIM TRÊS MARIAS	</item>
+        <item>	JARDIM TRIESTE	</item>
+        <item>	JARDIM VERA CRUZ	</item>
+        <item>	JARDIM. THELMA	</item>
+        <item>	JORDANÓPOLIS	</item>
+        <item>	NOVA PETRÓPOLIS	</item>
+        <item>	PARQUE SÃO DIOGO	</item>
+        <item>	PARQUE SELECTA	</item>
+        <item>	PAULICÉIA	</item>
+        <item>	RIACHO GRANDE	</item>
+        <item>	RUDGE RAMOS	</item>
+        <item>	SHOPPING METRÓPOLE	</item>
+        <item>	TABOÃO	</item>
+        <item>	TERRA NOVA II	</item>
+        <item>	VILA ALVES DIAS	</item>
+        <item>	VILA ALVINÓPOLIS	</item>
+        <item>	VILA BAETA NEVES	</item>
+        <item>	VILA DO SOL	</item>
+        <item>	VILA EUCLIDES	</item>
+        <item>	VILA FERRAZÓPOLIS	</item>
+        <item>	VILA GONÇALVES	</item>
+        <item>	VILA MARLENE	</item>
+        <item>	VILA MUSSOLINI	</item>
+        <item>	VILA PAULICÉIA	</item>
+        <item>	VILA PLANALTO	</item>
+        <item>	VILA ROSA	</item>
+        <item>	VILA VIVALDI	</item>
+        <item>	VILAS UNIDAS	</item>
+
+    </string-array>
+    <!--bairros de Osasco-->
+    <string-array name="osasco_bairros">
+
+        <item>	1 DE MAIO	</item>
+        <item>	CAPELINHA	</item>
+        <item>	CENTRO	</item>
+        <item>	CIDADE DAS FLORES	</item>
+        <item>	CIDADE DAS FLORES	</item>
+        <item>	CONJ METALÚRGICOS	</item>
+        <item>	HELENA MARIA	</item>
+        <item>	I.A.P.I.	</item>
+        <item>	JAGUARIBE	</item>
+        <item>	JARDIM BARONESA	</item>
+        <item>	JARDIM BARONESA	</item>
+        <item>	JARDIM BELA VISTA	</item>
+        <item>	JARDIM BELA VISTA	</item>
+        <item>	JARDIM BONANÇA	</item>
+        <item>	JARDIM CALIFÓRNIA	</item>
+        <item>	JARDIM CONCEIÇÃO	</item>
+        <item>	JARDIM D ABRIL	</item>
+        <item>	JARDIM D ÁVILA	</item>
+        <item>	JARDIM DAS FLORES	</item>
+        <item>	JARDIM DAS FLORES	</item>
+        <item>	JARDIM IMPERIAL	</item>
+        <item>	JARDIM MUNHOZ JR	</item>
+        <item>	JARDIM MUTINGA	</item>
+        <item>	JARDIM NOVO OSASCO	</item>
+        <item>	JARDIM PADROEIRA	</item>
+        <item>	JARDIM PADROEIRA II	</item>
+        <item>	JARDIM PIRATININGA	</item>
+        <item>	JARDIM ROBERTO	</item>
+        <item>	JARDIM ROCHDALE	</item>
+        <item>	JARDIM ROCHDALE	</item>
+        <item>	JARDIM SANTA MARIA	</item>
+        <item>	JARDIM SANTO ANTÔNIO	</item>
+        <item>	JARDIM SAO VICTOR	</item>
+        <item>	JARDIM VELOSO	</item>
+        <item>	JARDIM VELOSO	</item>
+        <item>	JARDIM MUNHOZ JR	</item>
+        <item>	KM 18	</item>
+        <item>	OLARIA DO NINO	</item>
+        <item>	PORTAL D OESTE I	</item>
+        <item>	PRESIDENTE ALTINO	</item>
+        <item>	QUITAÚNA	</item>
+        <item>	RECANTO DAS ROSAS	</item>
+        <item>	VILA ANALICE	</item>
+        <item>	VILA AYROSA	</item>
+        <item>	VILA DOS REMÉDIOS	</item>
+        <item>	VILA ISABEL	</item>
+        <item>	VILA MENCK	</item>
+        <item>	VILA QUITAÚNA	</item>
+        <item>	VILA SÃO JOSÉ	</item>
+        <item>	VILA YARA	</item>
+        <item>	VILA YOLANDA	</item>
+
+    </string-array>
+    <!--bairros de Maua-->
+    <string-array name="maua_bairros">
+
+        <item>	CENTRO	</item>
+        <item>	D.SONIA MARIA	</item>
+        <item>	FEITAL	</item>
+        <item>	JARDIM ALTO BOA VISTA	</item>
+        <item>	JARDIM ANCHIETA	</item>
+        <item>	JARDIM BOM RECANTO	</item>
+        <item>	JARDIM CAMILA	</item>
+        <item>	JARDIM ESPERANÇA	</item>
+        <item>	JARDIM ITAPARK	</item>
+        <item>	JARDIM ITAPEVA	</item>
+        <item>	JARDIM MARINGA	</item>
+        <item>	JARDIM MAUÁ	</item>
+        <item>	JARDIM MIRANDA ÁVIZ	</item>
+        <item>	JARDIM NOVA MAUÁ	</item>
+        <item>	JARDIM ORATÓRIO	</item>
+        <item>	JARDIM ORATÓRIO	</item>
+        <item>	JARDIM SANTA LÍDIA	</item>
+        <item>	JARDIM SÃO SEBASTIÃO	</item>
+        <item>	JARDIM SILVIA MARIA	</item>
+        <item>	JARDIM ZAÍRA	</item>
+        <item>	PARQUE DAS AMÉRICAS	</item>
+        <item>	PARQUE SAO VICENTE	</item>
+        <item>	SANTA ROSA	</item>
+        <item>	VILA GUARANI	</item>
+        <item>	VILA MAGINI	</item>
+        <item>	VILA MERCEDES	</item>
+        <item>	VILA VITÓRIA	</item>
+
+    </string-array>
+
     //MENSAGENS DE ERRO
     <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
 
