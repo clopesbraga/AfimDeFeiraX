@@ -19,8 +19,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.afimdefeirax.Model.FeirasModel
 import com.example.afimdefeirax.R
-import com.example.afimdefeirax.Utils.Camera
 import com.example.afimdefeirax.Utils.DeviceCurrentTime
+import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.databinding.FragmentMapFeirasBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -46,9 +46,8 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentMapFeirasBinding? = null
     private val binding get() = _binding!!
 
-    //    private val viewModel: MapaFeirasViewModel by inject()
     private val diasemana = DeviceCurrentTime()
-    private val camera = Camera()
+    private val camera = FocusCamera()
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var userlocalization: LatLng
@@ -57,11 +56,7 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
         Firebase.database.reference.child("Pesquisa").child("Feiras")
     }
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentMapFeirasBinding.inflate(inflater, container, false)
@@ -79,143 +74,16 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onMapReady(map: GoogleMap): Unit = map.let {
 
         showMyLocalizationIn(map)
         showFeirasLocalizationIn(map)
+        actionFloatButtons(map)
+    }
 
-        binding.fabSearch.setOnClickListener {
-
-            lateinit var bairrosadapter: ArrayAdapter<*>
-            val inflater = requireActivity().layoutInflater
-            val mensagem = AlertDialog.Builder(
-                activity
-            )
-
-            val janelacidadesview =
-                inflater.inflate(R.layout.layout_list_cities_ditricts, null) as ViewGroup
-
-            val spinnerselecaodacidade = janelacidadesview.findViewById<Spinner>(R.id.spinnercidade)
-            val spinnerselecaodobairro = janelacidadesview.findViewById<Spinner>(R.id.spinnerbairro)
-
-
-            val cidadesadapter = ArrayAdapter.createFromResource(
-                janelacidadesview.context,
-                R.array.cidades,
-                android.R.layout.simple_spinner_dropdown_item
-            )
-
-            spinnerselecaodacidade.adapter=cidadesadapter
-
-            val escolha = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View,
-                    position: Int,
-                    id: Long
-                ) {
-
-                    when (spinnerselecaodacidade.selectedItemPosition) {
-                        0 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.sp_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        1 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.guaru_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        2 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.suza_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        3 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.osasco_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        4 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.maua_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        5 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.andre_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        6 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.bernado_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        7 -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.caetano_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-
-                        else -> {
-                            bairrosadapter = ArrayAdapter.createFromResource(
-                                view.context,
-                                R.array.sp_bairros,
-                                android.R.layout.simple_spinner_dropdown_item
-                            )
-                        }
-                    }
-
-                    spinnerselecaodobairro.adapter = bairrosadapter
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // Implementação opcional caso deseje fazer algo quando nada for selecionado
-                }
-
-            }
-
-            spinnerselecaodacidade.onItemSelectedListener = escolha
-
-            localizationSpinner(
-                mensagem,
-                janelacidadesview,
-                spinnerselecaodacidade,
-                spinnerselecaodobairro,
-                map
-            )
-
-
-        }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun showMyLocalizationIn(map: GoogleMap) {
@@ -229,17 +97,9 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
 
                     if (it != null) {
 
-                        val latitude = it.latitude
-                        val longitude = it.longitude
-                        userlocalization = LatLng(latitude, longitude)
-
+                        userlocalization = LatLng(it.latitude, it.longitude)
                         camera.focusCamera(userlocalization, map)
                         map.addMarker(MarkerOptions().position(userlocalization).title("Marker"))
-                    }
-
-                    binding.fabLocalization.setOnClickListener {
-
-                        camera.focusCamera(userlocalization, map)
                     }
 
                 }
@@ -292,6 +152,26 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
         database.addListenerForSingleValueEvent(referenceListener)
     }
 
+    private fun localizationSpinner(
+        mensagem: AlertDialog.Builder,
+        janelacidadesview: ViewGroup,
+        spinnerselecaodacidade: Spinner,
+        spinnerselecaodobairro: Spinner,
+        map: GoogleMap
+    ) {
+        mensagem.setTitle("Teste")
+        mensagem.setView(janelacidadesview)
+        mensagem.setPositiveButton(
+            "OK"
+        ) { _, _ ->
+            geoLocalization(
+                spinnerselecaodacidade.getSelectedItem().toString(),
+                spinnerselecaodobairro.getSelectedItem().toString(),
+                map)
+        }
+        mensagem.setNegativeButton("Voltar") { dialog, which -> }
+        mensagem.show()
+    }
     private fun geoLocalization(cidade: String, bairro: String, map: GoogleMap) {
 
         val local = "$cidade,$bairro"
@@ -308,28 +188,92 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
             CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
         )
     }
+    private fun actionFloatButtons(map : GoogleMap){
 
-    private fun localizationSpinner(
-        mensagem: AlertDialog.Builder,
-        janelacidadesview: ViewGroup,
-        spinnerselecaodacidade: Spinner,
-        spinnerselecaodobairro: Spinner,
-        map: GoogleMap
-    ) {
-        mensagem.setTitle("Teste")
-        mensagem.setView(janelacidadesview)
-        mensagem.setPositiveButton(
-            "OK"
-        ) { _, _ ->
+        binding.fabSearch.setOnClickListener {
 
-            val spinnercidade = spinnerselecaodacidade.getSelectedItem().toString()
-            val spinnerbairro = spinnerselecaodobairro.getSelectedItem().toString()
+            lateinit var bairrosadapter: ArrayAdapter<*>
+            val inflater = requireActivity().layoutInflater
+            val mensagem = AlertDialog.Builder(
+                activity
+            )
 
-            geoLocalization(spinnercidade, spinnerbairro, map)
+            val janelacidadesview =
+                inflater.inflate(R.layout.layout_list_cities_ditricts, null) as ViewGroup
+
+            val spinnerselecaodacidade = janelacidadesview.findViewById<Spinner>(R.id.spinnercidade)
+            val spinnerselecaodobairro = janelacidadesview.findViewById<Spinner>(R.id.spinnerbairro)
+
+
+            val cidadesadapter = ArrayAdapter.createFromResource(
+                janelacidadesview.context,
+                R.array.cidades,
+                android.R.layout.simple_spinner_dropdown_item
+            )
+
+            spinnerselecaodacidade.adapter=cidadesadapter
+
+            val  districtsarray = arrayOf(
+
+                R.array.sp_bairros,
+                R.array.guaru_bairros,
+                R.array.suza_bairros,
+                R.array.osasco_bairros,
+                R.array.maua_bairros,
+                R.array.andre_bairros,
+                R.array.bernado_bairros,
+                R.array.caetano_bairros
+            )
+
+            val escolha = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    val cityselection = parent.getItemAtPosition(position) as String
+                    val citieslist = when (cityselection) {
+                        "Guarulhos" -> 1
+                        "Suzano" -> 2
+                        "Osasco" -> 3
+                        "Mauá" -> 4
+                        "Santo André" -> 5
+                        "São Bernardo do Campo" -> 6
+                        "São Caetano do Sul" -> 7
+                        else -> 0
+                    }
+                    bairrosadapter = ArrayAdapter.createFromResource(
+                        view.context,
+                        districtsarray[citieslist],
+                        android.R.layout.simple_spinner_dropdown_item
+                    )
+
+                    spinnerselecaodobairro.adapter = bairrosadapter
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // Implementação opcional caso deseje fazer algo quando nada for selecionado
+                }
+
+            }
+
+            spinnerselecaodacidade.onItemSelectedListener = escolha
+
+            localizationSpinner(
+                mensagem,
+                janelacidadesview,
+                spinnerselecaodacidade,
+                spinnerselecaodobairro,
+                map
+            )
+
 
         }
-        mensagem.setNegativeButton("Voltar") { dialog, which -> }
-        mensagem.show()
-    }
+        binding.fabLocalization.setOnClickListener {
 
+            camera.focusCamera(userlocalization, map)
+        }
+
+    }
 }
