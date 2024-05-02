@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +16,11 @@ import android.widget.Spinner
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.afimdefeirax.Model.FeirasModel
 import com.example.afimdefeirax.R
-import com.example.afimdefeirax.Utils.DeviceCurrentTime
+import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
 import com.example.afimdefeirax.Utils.FocusCamera
+import com.example.afimdefeirax.Utils.LocationImpl
 import com.example.afimdefeirax.databinding.FragmentMapFeirasBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -31,12 +28,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import org.koin.android.ext.android.inject
 import java.io.IOException
 import java.util.Objects
 
@@ -45,16 +37,11 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
 
     private var _binding: FragmentMapFeirasBinding? = null
     private val binding get() = _binding!!
-
-    private val diasemana = DeviceCurrentTime()
+    private lateinit var userLocation: LatLng
     private val camera = FocusCamera()
+    private val feirasRepository : FeirasRepositoryImpl by inject()
+    private val locationProvider : LocationImpl by inject()
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var userlocalization: LatLng
-
-    private var database: DatabaseReference = let {
-        Firebase.database.reference.child("Pesquisa").child("Feiras")
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -69,8 +56,6 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(binding.root.context)
 
     }
 
@@ -93,19 +78,15 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED -> {
 
-                fusedLocationClient.lastLocation.addOnSuccessListener {
+                locationProvider.getLastLocation { location ->
+                    location?.let {
 
-                    if (it != null) {
-
-                        userlocalization = LatLng(it.latitude, it.longitude)
-                        camera.focusCamera(userlocalization, map)
-                        map.addMarker(MarkerOptions().position(userlocalization).title("Marker"))
+                        userLocation = LatLng(it.latitude, it.longitude)
+                        camera.focusCamera(userLocation, map)
+                        map.addMarker(MarkerOptions().position(userLocation).title("Marker"))
                     }
-
                 }
-
             }
-
             else -> ActivityCompat.requestPermissions(
                 binding.root.context as Activity,
                 arrayOf(
@@ -116,40 +97,20 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
             )
         }
     }
-
     private fun showFeirasLocalizationIn(map: GoogleMap) {
-        val referenceListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                for (feirasnapshot in snapshot.children) {
-
-                    val feiras = feirasnapshot.getValue(FeirasModel::class.java)
-                    feiras?.let {
-                        if (diasemana.trazSemana()==it.dia.trim()) {
-
-                            val latLng = LatLng(it.Latitude.toDouble(), it.Longitude.toDouble())
-                            map.addMarker(
-                                MarkerOptions()
-                                    .position(latLng)
-                                    .title("FEIRA ${it.Feira}")
-                                    .snippet(it.bairro)
-                                    .contentDescription(it.endereco)
-                                    .icon(
-                                        BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc)
-                                    )
-                            )
-                        }
-                    }
-
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("FIREBASE", "Failed to read", error.toException())
+        feirasRepository.getFeirasLocations { feiras ->
+            feiras.forEach { feira ->
+                val latLng = LatLng(feira.Latitude.toDouble(), feira.Longitude.toDouble())
+                map.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .title(feira.Feira)
+                        .snippet(feira.bairro)
+                        .contentDescription(feira.endereco)
+                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
+                )
             }
         }
-
-        database.addListenerForSingleValueEvent(referenceListener)
     }
 
     private fun localizationSpinner(
@@ -272,7 +233,7 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
         }
         binding.fabLocalization.setOnClickListener {
 
-            camera.focusCamera(userlocalization, map)
+            camera.focusCamera(userLocation, map)
         }
 
     }
