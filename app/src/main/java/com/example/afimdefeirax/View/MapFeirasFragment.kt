@@ -38,7 +38,8 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentMapFeirasBinding? = null
     private val binding get() = _binding!!
     private lateinit var userLocation: LatLng
-    private val camera = FocusCamera()
+
+    private val camera : FocusCamera by inject()
     private val feirasRepository : FeirasRepositoryImpl by inject()
     private val locationProvider : LocationImpl by inject()
 
