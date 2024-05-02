@@ -1,8 +1,6 @@
 package com.example.afimdefeirax.Modules
 
-import android.app.Application
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
-import com.example.afimdefeirax.Utils.DeviceCurrentTime
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.LocationImpl
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
