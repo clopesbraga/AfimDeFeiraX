@@ -13,7 +13,7 @@ val appModule = module{
 
      viewModel{ MapaFeirasViewModel() }
      single{FeirasRepositoryImpl()}
-     single{LocationImpl(get(),get())}
+     single{LocationImpl(get())}
      single {FocusCamera()}
      single<FusedLocationProviderClient> {
         FusedLocationProviderClient(androidApplication())

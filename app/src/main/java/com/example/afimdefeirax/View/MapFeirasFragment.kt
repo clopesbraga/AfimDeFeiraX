@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
 import com.example.afimdefeirax.Utils.FocusCamera
+import com.example.afimdefeirax.Utils.ILocation
 import com.example.afimdefeirax.Utils.LocationImpl
 import com.example.afimdefeirax.databinding.FragmentMapFeirasBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -84,7 +85,7 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
 
                         userLocation = LatLng(it.latitude, it.longitude)
                         camera.focusCamera(userLocation, map)
-                        map.addMarker(MarkerOptions().position(userLocation).title("Marker"))
+                        map.addMarker(MarkerOptions().position(userLocation).title("Usuario"))
                     }
                 }
             }
@@ -106,8 +107,7 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
                     MarkerOptions()
                         .position(latLng)
                         .title(feira.Feira)
-                        .snippet(feira.bairro)
-                        .contentDescription(feira.endereco)
+                        .snippet("${feira.endereco},${feira.bairro}")
                         .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
                 )
             }
@@ -238,4 +238,5 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
         }
 
     }
+
 }
