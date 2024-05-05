@@ -78,6 +78,9 @@ dependencies {
     testImplementation "org.assertj:assertj-core:2.0.0"
     testImplementation "androidx.arch.core:core-testing:2.2.0"
     testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation "org.mockito:mockito-core:5.8.0"
+    testImplementation "io.mockk:mockk:1.12.0"
+
 
     //Instrumented Test
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -87,6 +90,8 @@ dependencies {
 
    //Desconsiderando stdlib-jdk7:1.8.0 e stdlib-jdk8:1.8.0
     dependencies {
+
+        implementation 'androidx.test.ext:junit-ktx:1.1.5'
         constraints {
             implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
                 because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
