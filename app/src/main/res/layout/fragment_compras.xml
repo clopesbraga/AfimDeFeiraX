@@ -165,7 +165,6 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="8dp"
-                            android:contentDescription="TODO"
                             app:srcCompat="@mipmap/ic_abacaxi" />
 
                         <TextView
