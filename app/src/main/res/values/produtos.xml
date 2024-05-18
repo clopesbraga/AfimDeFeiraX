@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Lista de Frutas-->
+    <string name="strUnidade">Unidades de Frutas</string>
+    <string name="strCategoriaFrutas">Frutas</string>
+    <string name="strFruta1">Ameixa</string>
+    <string name="strFruta2">Banana</string>
+    <string name="strFruta3">Caju</string>
+    <string name="strFruta4">Damasco</string>
+    <string name="strFruta5">Abacaxi</string>
+    <string name="strFruta6">Figo</string>
+    <string name="strFruta7">Goiaba</string>
+    <string name="strFruta8">Uva</string>
+    <string name="strFruta9">Manga</string>
+    <string name="strFruta10">Jaca</string>
+    <string name="strFruta11">Kiwi</string>
+    <string name="strFruta12">Laranja</string>
+    <string name="strFruta13">Melancia</string>
+    <string name="strFruta14">Maçã</string>
+    <string name="strFruta15">Limao</string>
+
+    <!-- Lista de VERDURAS-->
+    <string name="strUnVerduras">Unidades de Verduras</string>
+    <string name="strCategoriaVerduras">Verduras</string>
+    <string name="strVerdura1">Acelga</string>
+    <string name="strVerdura2">Brocolis</string>
+    <string name="strVerdura3">Coentro</string>
+    <string name="strVerdura4">Couve</string>
+    <string name="strVerdura5">Espinafre</string>
+    <string name="strVerdura6">Broto</string>
+    <string name="strVerdura7">Hortelã</string>
+    <string name="strVerdura8">Manjericão</string>
+    <string name="strVerdura9">Rucula</string>
+    <string name="strVerdura10">Salsa</string>
+    <string name="strVerdura11">Agrião</string>
+    <string name="strVerdura12">Chicoria</string>
+    <string name="strVerdura13">Alface</string>
+    <string name="strVerdura14">Aspargo</string>
+    <string name="strVerdura15">Couve-Flor</string>
+
+    <!-- Tela Lista de LEGUMES-->
+    <string name="strUnLegumes">Unidades de Legumes</string>
+    <string name="strCategoriaLegumes">Legumes</string>
+    <string name="strLegumes1">Abobora</string>
+    <string name="strLegumes2">Abobrinha</string>
+    <string name="strLegumes3">Berinjela</string>
+    <string name="strLegumes4">Batata</string>
+    <string name="strLegumes5">Batata-doce</string>
+    <string name="strLegumes6">Cenoura</string>
+    <string name="strLegumes7">Chuchu</string>
+    <string name="strLegumes8">Inhame</string>
+    <string name="strLegumes9">Jiló</string>
+    <string name="strLegumes10">Pepino</string>
+    <string name="strLegumes11">Pimentão</string>
+    <string name="strLegumes12">Mandioca</string>
+    <string name="strLegumes13">Mandioquinha</string>
+    <string name="strLegumes14">Milho</string>
+    <string name="strLegumes15">Tomate</string>
+
+
+    <!-- Tela Lista de TEMPEROS-->
+    <string name="strUnTemperos">Unidades de Temperos</string>
+    <string name="strCategoriaTemperos">Temperos</string>
+    <string name="strTemperos1">Alho</string>
+    <string name="strTemperos2">AÇafrão</string>
+    <string name="strTemperos3">Alecrim</string>
+    <string name="strTemperos4">Canela</string>
+    <string name="strTemperos5">Cebola</string>
+    <string name="strTemperos6">Cebolinha</string>
+    <string name="strTemperos7">Colorau</string>
+    <string name="strTemperos8">Louro</string>
+    <string name="strTemperos9">Manjericão</string>
+    <string name="strTemperos10">Noz-moscada</string>
+    <string name="strTemperos11">Oregano</string>
+    <string name="strTemperos12">Páprica</string>
+    <string name="strTemperos13">Pimemnta-do-reino</string>
+    <string name="strTemperos14">Salsinha</string>
+    <string name="strTemperos15">Tomilho</string>
+
+
+
+    <!-- Tela Lista de Carnes-->
+    <string name="strUnCarnes">Unidades de Carnes</string>
+    <string name="strCategoriaCarnes">Carnes</string>
+    <string name="strCarne1">Acém</string>
+    <string name="strCarne2">Braço</string>
+    <string name="strCarne3">Contra-File</string>
+    <string name="strCarne4">Picanha</string>
+    <string name="strCarne5">Fraldinha</string>
+    <string name="strCarne6">Maminha</string>
+    <string name="strCarne7">Patinho</string>
+    <string name="strCarne8">Largarto</string>
+    <string name="strCarne9">Cupim</string>
+    <string name="strCarne10">Coxão</string>
+    <string name="strCarne11">Musculo</string>
+    <string name="strCarne12">Dianteiro</string>
+    <string name="strCarne13">Alcatra</string>
+    <string name="strCarne14">Linguiça</string>
+    <string name="strCarne15">Ponta Agulha</string>
+
+
+    <!-- Tela Lista de  Pasteis-->
+    <string name="strUnPasteis">Unidades de Pasteis</string>
+    <string name="strCategoriaPastel">Pasteis</string>
+    <string name="strPastel1">Pastel</string>
+    <string name="strPastel2">Pastelzinho</string>
+    <string name="strPastel3">Caldo Cana</string>
+    <string name="strPastel4">Kibe</string>
+    <string name="strPastel5">Espeto</string>
+    <string name="strPastel6">Coxinha</string>
+    <string name="strPastel7">Refrigerante</string>
+    <string name="strPastel8">Palmito</string>
+    <string name="strPastel9">Camarão</string>
+    <string name="strPastel10">4queijos</string>
+    <string name="strPastel11">Calabresa-Queijo</string>
+    <string name="strPastel12">Carne-Queijo</string>
+    <string name="strPastel13">Pastel doce</string>
+    <string name="strPastel14">Especial Carne</string>
+    <string name="strPastel15">Especial Queijo</string>
+
+
+    <!-- Tela Lista de  Peixes-->
+    <string name="strKGPeixes">Kilos de Peixes</string>
+    <string name="strCategoriaPeixes">Peixes</string>
+    <string name="strPeixe1">Sardinha</string>
+    <string name="strPeixe2">Pescada</string>
+    <string name="strPeixe3">Pescada B</string>
+    <string name="strPeixe4">Camarão</string>
+    <string name="strPeixe5">Dourado</string>
+    <string name="strPeixe6">Tilapia</string>
+    <string name="strPeixe7">Porquinho</string>
+    <string name="strPeixe8">Cavalinha</string>
+    <string name="strPeixe9">Dourado</string>
+    <string name="strPeixe10">Truta</string>
+    <string name="strPeixe11">Caranguejo</string>
+    <string name="strPeixe12">Lula</string>
+    <string name="strPeixe13">Salmão</string>
+    <string name="strPeixe14">Merlusa</string>
+    <string name="strPeixe15">Namorado</string>
+
+
+    <!-- Tela Lista de Utensilios-->
+    <string name="strUnUtensiciloss">Unidades de Utensilios</string>
+    <string name="strCategoriaUtensilios">Utensilios</string>
+    <string name="strUten1">Panela</string>
+    <string name="strUten2">Vassoura</string>
+    <string name="strUten3">Carrinho de Feira</string>
+    <string name="strUten4">Brinquedo</string>
+    <string name="strUten5">Roda Carrinho</string>
+    <string name="strUten6">Boca de fogão</string>
+    <string name="strUten7">Esponja</string>
+    <string name="strUten8">Pano Prato</string>
+    <string name="strUten9">Sacola</string>
+    <string name="strUten10">Utensilio</string>
+    <string name="strUten11">Utensilio</string>
+    <string name="strUten12">Utensilio</string>
+    <string name="strUten13">Utensilio</string>
+    <string name="strUten14">Utensilio</string>
+    <string name="strUten15">Utensilio</string>
+
+
+</resources>
