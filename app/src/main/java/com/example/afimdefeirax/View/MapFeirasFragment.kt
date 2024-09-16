@@ -58,28 +58,6 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
         _binding = null
     }
 
-    private fun localizationSpinner(
-        mensagem: AlertDialog.Builder,
-        janelacidadesview: ViewGroup,
-        spinnerselecaodacidade: Spinner,
-        spinnerselecaodobairro: Spinner,
-        map: GoogleMap
-    ) {
-        mensagem.setTitle("Teste")
-        mensagem.setView(janelacidadesview)
-        mensagem.setPositiveButton(
-            "OK"
-        ) { _, _ ->
-            viewModel.geoLocalization(
-                spinnerselecaodacidade.getSelectedItem().toString(),
-                spinnerselecaodobairro.getSelectedItem().toString(),
-                map
-            )
-        }
-        mensagem.setNegativeButton("Voltar") { dialog, which -> }
-        mensagem.show()
-    }
-
     private fun actionFloatButtons(map: GoogleMap) {
 
         searchFeirasButton(map)
@@ -171,6 +149,28 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
             )
 
         }
+    }
+
+    private fun localizationSpinner(
+        mensagem: AlertDialog.Builder,
+        janelacidadesview: ViewGroup,
+        spinnerselecaodacidade: Spinner,
+        spinnerselecaodobairro: Spinner,
+        map: GoogleMap
+    ) {
+        mensagem.setTitle("Teste")
+        mensagem.setView(janelacidadesview)
+        mensagem.setPositiveButton(
+            "OK"
+        ) { _, _ ->
+            viewModel.geoLocalization(
+                spinnerselecaodacidade.getSelectedItem().toString(),
+                spinnerselecaodobairro.getSelectedItem().toString(),
+                map
+            )
+        }
+        mensagem.setNegativeButton("Voltar") { dialog, which -> }
+        mensagem.show()
     }
 
 }
