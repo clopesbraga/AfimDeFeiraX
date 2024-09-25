@@ -9,9 +9,27 @@
 
 
     <androidx.compose.ui.platform.ComposeView
-        android:id="@+id/compose_view"
+        android:id="@+id/compose_view_compras"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </androidx.compose.ui.platform.ComposeView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_compras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="418dp"
+        android:layout_marginBottom="16dp"
+        android:src="@android:drawable/ic_dialog_email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/compose_view_compras"
+        app:layout_constraintVertical_bias="0.84000003" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
