@@ -1,7 +1,6 @@
 package com.example.afimdefeirax.View
 
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -132,9 +131,9 @@ fun ListProdutos() {
                                     modifier = Modifier
                                         .padding(8.dp)
                                         .size(100.dp)
-                                        .clickable(enabled=focusedStates[items]) {
+                                        .clickable(enabled = focusedStates[items]) {
 
-                                                focusedStates[items] = false
+                                            focusedStates[items] = false
 
 
                                         }

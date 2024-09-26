@@ -23,13 +23,13 @@
         android:layout_margin="16dp"
         android:layout_marginTop="418dp"
         android:layout_marginBottom="16dp"
-        android:src="@android:drawable/ic_dialog_email"
+        android:src="?attr/actionModePasteDrawable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/compose_view_compras"
-        app:layout_constraintVertical_bias="0.84000003" />
+        app:layout_constraintVertical_bias="0.77" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
