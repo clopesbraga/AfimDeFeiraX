@@ -126,6 +126,8 @@ dependencies {
    //Desconsiderando stdlib-jdk7:1.8.0 e stdlib-jdk8:1.8.0
     dependencies {
 
+
+        implementation 'androidx.activity:activity:1.9.2'
         implementation 'androidx.test.ext:junit-ktx:1.1.5'
         constraints {
             implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
