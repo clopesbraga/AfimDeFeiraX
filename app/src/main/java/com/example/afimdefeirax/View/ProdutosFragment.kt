@@ -1,6 +1,7 @@
 package com.example.afimdefeirax.View
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,11 +29,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -46,13 +44,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import com.example.afimdefeirax.Model.produtosList
+import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.example.afimdefeirax.databinding.FragmentComprasBinding
+import org.koin.android.ext.android.inject
 
 
 class ProdutosFragment : Fragment() {
 
     private var _binding: FragmentComprasBinding? = null
     val binding get() = _binding!!
+
+    private val viewModel: ProdutosViewModel by inject ()
 
 
     override fun onCreateView(
@@ -68,21 +70,27 @@ class ProdutosFragment : Fragment() {
 
             Column {
 
-                ListProdutos()
+                ListProdutos(viewModel)
                 binding.fabCompras
 
             }
         }
 
+        binding.fabCompras.setOnClickListener {
+            val intent = Intent(requireContext(), ProdutoListActivity::class.java)
+            startActivity(intent)
+        }
+
         return binding.root
     }
+
 
 }
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListProdutos() {
+fun ListProdutos(viewModel: ProdutosViewModel) {
 
     Scaffold(
         topBar = {
@@ -133,6 +141,9 @@ fun ListProdutos() {
                                         .size(100.dp)
                                         .clickable(enabled = focusedStates[items]) {
 
+                                            viewModel.takeProduts(
+                                                produtosList[produtos][items]
+                                                .imageResId,produtosList[produtos][items].name)
                                             focusedStates[items] = false
 
 
