@@ -1,7 +1,11 @@
 package com.example.afimdefeirax.View
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -50,6 +54,8 @@ class ProdutoListActivity : AppCompatActivity() {
         binding = ActivityProdutoListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Lista de Compras"
 
         binding.composeViewProdutoList.setContent {
 
@@ -58,6 +64,15 @@ class ProdutoListActivity : AppCompatActivity() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     @Composable
     fun ListProdutos(viewModel: ProdutosViewModel) {
@@ -69,80 +84,87 @@ class ProdutoListActivity : AppCompatActivity() {
                 *List(viewModel.loadProducts().size) { true }.toTypedArray()
         ) }
 
-
         var selecionadoBotao by remember { mutableStateOf(false) }
 
         val loadedItems = viewModel.loadProducts()
+
+
         LazyColumn {
             items(loadedItems) { item ->
-                if (visibleStates[loadedItems.indexOf(item)]){
 
-                    Card(modifier = Modifier.padding(16.dp)) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxSize(),
-                            horizontalArrangement = Arrangement.Start
-                        ) {
-                            Image(
-                                painter = painterResource(id = item.imageName),
-                                contentDescription = null,
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier
-                                    .padding(16.dp)
-                                    .size(100.dp)
-                                    .clip(CircleShape)
 
-                            )
-                            Column(
+                    AnimatedVisibility(
+                        visible = visibleStates[loadedItems.indexOf(item)],
+                        exit = fadeOut(animationSpec = tween(durationMillis = 500))
+                    ) {
+
+                        Card(modifier = Modifier.padding(16.dp)) {
+                            Row(
                                 modifier = Modifier
-                                    .padding(8.dp),
-                                horizontalAlignment = Alignment.Start,
-                                verticalArrangement = Arrangement.Center
+                                    .fillMaxSize(),
+                                horizontalArrangement = Arrangement.Start
                             ) {
-                                Text(text = item.itemName)
-                                Row(
-                                    horizontalArrangement = Arrangement.Center,
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    SeletorComponent(
-                                        onValueChange = { novoValor ->
-                                            selectedNumber = novoValor
-                                            resposta.value = novoValor.toString()
-                                        }
-                                    )
-                                    Spacer(modifier = Modifier.size(8.dp))
-                                    Row(horizontalArrangement = Arrangement.End) {
-                                        Column {
-                                            ButtonSeletorComponent(selecionadoBotao, "UN")
-                                            ButtonSeletorComponent(selecionadoBotao, "KG")
-                                        }
-                                    }
-                                }
+                                Image(
+                                    painter = painterResource(id = item.imageName),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier
+                                        .padding(16.dp)
+                                        .size(100.dp)
+                                        .clip(CircleShape)
 
+                                )
                                 Column(
                                     modifier = Modifier
-                                        .fillMaxSize(),
-                                    horizontalAlignment = Alignment.Start
+                                        .padding(8.dp),
+                                    horizontalAlignment = Alignment.Start,
+                                    verticalArrangement = Arrangement.Center
                                 ) {
-                                    Button(
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = Color(0xFF009688)
-                                        ),
-                                        shape = RoundedCornerShape(8.dp),
-                                        onClick = {
-                                            visibleStates[loadedItems.indexOf(item)] = false
-                                        }
+                                    Text(text = item.itemName)
+                                    Row(
+                                        horizontalArrangement = Arrangement.Center,
+                                        verticalAlignment = Alignment.CenterVertically
                                     ) {
-                                        Text("Comprar")
+                                        SeletorComponent(
+                                            onValueChange = { novoValor ->
+                                                selectedNumber = novoValor
+                                                resposta.value = novoValor.toString()
+                                            }
+                                        )
+                                        Spacer(modifier = Modifier.size(8.dp))
+                                        Row(horizontalArrangement = Arrangement.End) {
+                                            Column {
+                                                ButtonSeletorComponent(selecionadoBotao, "UN")
+                                                ButtonSeletorComponent(selecionadoBotao, "KG")
+                                            }
+                                        }
                                     }
+
+                                    Column(
+                                        modifier = Modifier
+                                            .fillMaxSize(),
+                                        horizontalAlignment = Alignment.Start
+                                    ) {
+                                        Button(
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = Color(0xFF009688)
+                                            ),
+                                            shape = RoundedCornerShape(8.dp),
+                                            onClick = {
+                                                visibleStates[loadedItems.indexOf(item)] = false
+                                            }
+                                        ) {
+                                            Text("Comprar")
+                                        }
+                                    }
+
+
                                 }
 
-
                             }
-
                         }
                     }
-                }
+
 
             }
         }
