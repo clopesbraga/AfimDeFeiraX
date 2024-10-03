@@ -13,7 +13,6 @@
     //MENU DE OPCOES
     <string name="menu_feiras">Feiras</string>
     <string name="menu_produtos">Produtos</string>
-    <string name="menu_compras">Compras</string>
     <string name="menu_historico">Histórico</string>
 
 
