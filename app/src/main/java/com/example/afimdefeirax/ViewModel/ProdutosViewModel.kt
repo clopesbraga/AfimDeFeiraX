@@ -15,9 +15,7 @@ class ProdutosViewModel(application: Application) : ViewModel() {
 
     fun takeProduts(productimage: Int, productname: String) {
 
-
         listprodutos.add(Produtos(productimage, productname))
-
         saveProducts(listprodutos)
     }
 
@@ -26,7 +24,12 @@ class ProdutosViewModel(application: Application) : ViewModel() {
     }
 
     fun loadProducts(): List<Produtos> {
-      return  produtosshared.loadItems(application.applicationContext)
+        return produtosshared.loadItems(application.applicationContext)
     }
+
+    fun removeProduct(productItem: Produtos) {
+        produtosshared.removeItem(application.applicationContext, productItem)
+    }
+
 
 }

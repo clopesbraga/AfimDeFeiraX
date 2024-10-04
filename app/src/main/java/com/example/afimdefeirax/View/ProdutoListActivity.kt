@@ -151,6 +151,8 @@ class ProdutoListActivity : AppCompatActivity() {
                                             ),
                                             shape = RoundedCornerShape(8.dp),
                                             onClick = {
+
+                                                viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
                                                 visibleStates[loadedItems.indexOf(item)] = false
                                             }
                                         ) {

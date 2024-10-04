@@ -25,6 +25,13 @@ class ListProdutosShared(context: Context):ISharedListProdutos {
         val json = sharedProdutosList.getString("Produtos", null)
         val gson = Gson()
         val type = object : TypeToken<List<Produtos>>() {}.type
-        return gson.fromJson(json, type) ?: emptyList()    }
+        return gson.fromJson(json, type) ?: emptyList()
+    }
+
+    override fun removeItem(context: Context, itemToRemove: Produtos) {
+        val items = loadItems(context).toMutableList()
+        items.remove(itemToRemove)
+        saveItems(context, items)
+    }
 
 }

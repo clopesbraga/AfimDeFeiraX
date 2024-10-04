@@ -54,7 +54,7 @@ class ProdutosFragment : Fragment() {
     private var _binding: FragmentComprasBinding? = null
     val binding get() = _binding!!
 
-    private val viewModel: ProdutosViewModel by inject ()
+    private val viewModel: ProdutosViewModel by inject()
 
 
     override fun onCreateView(
@@ -119,7 +119,9 @@ fun ListProdutos(viewModel: ProdutosViewModel) {
         ) {
             items(produtosList.size) { produtos ->
                 var focusedStates = remember {
-                    mutableStateListOf(*List(produtosList[produtos].size) { true }.toTypedArray())
+                    mutableStateListOf(*List(produtosList[produtos].size) {
+                        true
+                    }.toTypedArray())
                 }
                 Column {
                     Text(
@@ -142,8 +144,9 @@ fun ListProdutos(viewModel: ProdutosViewModel) {
                                         .clickable(enabled = focusedStates[items]) {
 
                                             viewModel.takeProduts(
-                                                produtosList[produtos][items]
-                                                .imageResId,produtosList[produtos][items].name)
+                                                produtosList[produtos][items].imageResId,
+                                                produtosList[produtos][items].name
+                                            )
                                             focusedStates[items] = false
 
 
