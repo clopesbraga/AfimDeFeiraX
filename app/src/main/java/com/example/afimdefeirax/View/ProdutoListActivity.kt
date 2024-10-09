@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -70,6 +71,7 @@ class ProdutoListActivity : AppCompatActivity() {
                 onBackPressed()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -82,9 +84,10 @@ class ProdutoListActivity : AppCompatActivity() {
         val visibleStates = remember {
             mutableStateListOf<Boolean>(
                 *List(viewModel.loadProducts().size) { true }.toTypedArray()
-        ) }
+            )
+        }
 
-        var selecionadoBotao by remember { mutableStateOf(false) }
+
 
         val loadedItems = viewModel.loadProducts()
 
@@ -92,85 +95,149 @@ class ProdutoListActivity : AppCompatActivity() {
         LazyColumn {
             items(loadedItems) { item ->
 
+                var selecionadoBotaoKG by remember { mutableStateOf(false) }
+                var selecionadoBotaoLT by remember { mutableStateOf(false) }
+                var selecionadoBotaoPC by remember { mutableStateOf(false) }
+                var selecionadoBotaoUN by remember { mutableStateOf(false) }
+                AnimatedVisibility(
+                    visible = visibleStates[loadedItems.indexOf(item)],
+                    exit = fadeOut(animationSpec = tween(durationMillis = 500))
+                ) {
 
-                    AnimatedVisibility(
-                        visible = visibleStates[loadedItems.indexOf(item)],
-                        exit = fadeOut(animationSpec = tween(durationMillis = 500))
-                    ) {
-
-                        Card(modifier = Modifier.padding(16.dp)) {
-                            Row(
+                    Card(modifier = Modifier.padding(16.dp)) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            Image(
+                                painter = painterResource(id = item.imageName),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
                                 modifier = Modifier
-                                    .fillMaxSize(),
-                                horizontalArrangement = Arrangement.Start
+                                    .padding(16.dp)
+                                    .size(100.dp)
+                                    .clip(CircleShape)
+
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .padding(8.dp),
+                                horizontalAlignment = Alignment.Start,
+                                verticalArrangement = Arrangement.Center
                             ) {
-                                Image(
-                                    painter = painterResource(id = item.imageName),
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier
-                                        .padding(16.dp)
-                                        .size(100.dp)
-                                        .clip(CircleShape)
-
-                                )
-                                Column(
-                                    modifier = Modifier
-                                        .padding(8.dp),
-                                    horizontalAlignment = Alignment.Start,
-                                    verticalArrangement = Arrangement.Center
+                                Text(text = item.itemName)
+                                Row(
+                                    horizontalArrangement = Arrangement.Center,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Text(text = item.itemName)
-                                    Row(
-                                        horizontalArrangement = Arrangement.Center,
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        SeletorComponent(
-                                            onValueChange = { novoValor ->
-                                                selectedNumber = novoValor
-                                                resposta.value = novoValor.toString()
+                                    SeletorComponent(
+                                        onValueChange = { novoValor ->
+                                            selectedNumber = novoValor
+                                            resposta.value = novoValor.toString()
+                                        }
+                                    )
+                                    Spacer(modifier = Modifier.size(8.dp))
+                                    Row(horizontalArrangement = Arrangement.End) {
+                                        Column {
+
+                                            OutlinedButton(
+                                                shape = RoundedCornerShape(8.dp),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = if (selecionadoBotaoKG) Color.Green else Color.Transparent
+                                                ),
+                                                onClick = {
+                                                    selecionadoBotaoKG = !selecionadoBotaoKG
+                                                    selecionadoBotaoLT = false
+                                                    selecionadoBotaoPC = false
+                                                    selecionadoBotaoUN = false
+                                                }
+                                            ) {
+                                                Text("KG", color = Color.Black)
                                             }
-                                        )
-                                        Spacer(modifier = Modifier.size(8.dp))
-                                        Row(horizontalArrangement = Arrangement.End) {
-                                            Column {
-                                                ButtonSeletorComponent(selecionadoBotao, "UN")
-                                                ButtonSeletorComponent(selecionadoBotao, "KG")
+
+                                            OutlinedButton(
+                                                shape = RoundedCornerShape(8.dp),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = if (selecionadoBotaoLT) Color.Green else Color.Transparent
+                                                ),
+                                                onClick = {
+                                                    selecionadoBotaoLT = !selecionadoBotaoLT
+                                                    selecionadoBotaoKG = false
+                                                    selecionadoBotaoPC = false
+                                                    selecionadoBotaoUN = false
+                                                }
+                                            ) {
+                                                Text("LT", color = Color.Black)
                                             }
                                         }
-                                    }
 
-                                    Column(
-                                        modifier = Modifier
-                                            .fillMaxSize(),
-                                        horizontalAlignment = Alignment.Start
-                                    ) {
-                                        Button(
-                                            colors = ButtonDefaults.buttonColors(
-                                                containerColor = Color(0xFF009688)
-                                            ),
-                                            shape = RoundedCornerShape(8.dp),
-                                            onClick = {
+                                        Column {
 
-                                                viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
-                                                visibleStates[loadedItems.indexOf(item)] = false
+                                            OutlinedButton(
+                                                shape = RoundedCornerShape(8.dp),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = if (selecionadoBotaoPC) Color.Green else Color.Transparent
+                                                ),
+                                                onClick = {
+                                                    selecionadoBotaoPC = !selecionadoBotaoPC
+                                                    selecionadoBotaoLT = false
+                                                    selecionadoBotaoKG = false
+                                                    selecionadoBotaoUN = false
+                                                }
+                                            ) {
+                                                Text("PC", color = Color.Black)
                                             }
-                                        ) {
-                                            Text("Comprar")
+
+                                            OutlinedButton(
+                                                shape = RoundedCornerShape(8.dp),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = if (selecionadoBotaoUN) Color.Green else Color.Transparent
+                                                ),
+                                                onClick = {
+                                                    selecionadoBotaoUN = !selecionadoBotaoUN
+                                                    selecionadoBotaoKG = false
+                                                    selecionadoBotaoPC = false
+                                                    selecionadoBotaoLT = false
+                                                }
+                                            ) {
+                                                Text("UN", color = Color.Black)
+                                            }
+
                                         }
+
                                     }
-
-
                                 }
+                            }
 
+                        }
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Button(
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFF009688)
+                                ),
+                                shape = RoundedCornerShape(8.dp),
+                                onClick = {
+
+                                    viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
+                                    visibleStates[loadedItems.indexOf(item)] = false
+                                }
+                            ) {
+                                Text("Comprar")
                             }
                         }
+
                     }
-
-
+                }
             }
+
+
         }
     }
-
-
 }
+
