@@ -36,7 +36,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.afimdefeirax.View.Components.ButtonSeletorComponent
 import com.example.afimdefeirax.View.Components.SeletorComponent
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.example.afimdefeirax.databinding.ActivityProdutoListBinding
