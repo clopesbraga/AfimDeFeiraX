@@ -125,7 +125,7 @@ fun ListProdutos(viewModel: ProdutosViewModel) {
                 }
                 Column {
                     Text(
-                        text = produtosList[produtos][0].name,
+                        text = produtosList[produtos][0].categoria,
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,

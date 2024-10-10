@@ -9,7 +9,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -22,27 +21,38 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.coerceAtLeast
+import androidx.compose.ui.unit.coerceAtMost
+import com.example.afimdefeirax.View.Components.preco.PRECO_INICIAL
+import com.example.afimdefeirax.View.Components.preco.PRECO_MAXIMO
+import com.example.afimdefeirax.View.Components.preco.PRECO_MINIMO
 import com.example.afimdefeirax.View.Components.quantidade.INICIAL
 import com.example.afimdefeirax.View.Components.quantidade.MAX
 import com.example.afimdefeirax.View.Components.quantidade.MIN
 
 
 object quantidade {
-    const val INICIAL=5
+    const val INICIAL = 5
     const val MIN = 1
     const val MAX = 100
 }
 
+object preco {
+    const val PRECO_INICIAL = 0
+    const val PRECO_MINIMO = 0
+    const val PRECO_MAXIMO = 10000
+}
 
 
 @Composable
-fun SeletorComponent(onValueChange: (Int) -> Unit){
+fun SeletorPesoComponent(onValueChange: (Int) -> Unit) {
     var currentValue by remember { mutableStateOf(INICIAL) }
 
     Row(
@@ -54,7 +64,7 @@ fun SeletorComponent(onValueChange: (Int) -> Unit){
             .background(Color.Transparent, RoundedCornerShape(16.dp))
             .padding(2.dp)
 
-    ){
+    ) {
         IconButton(onClick = { currentValue = (currentValue - 1).coerceAtLeast(MIN) }) {
             Icon(imageVector = Icons.Filled.Remove, contentDescription = "diminui")
         }
@@ -77,21 +87,31 @@ fun SeletorComponent(onValueChange: (Int) -> Unit){
 }
 
 @Composable
-fun ButtonSeletorComponent(
-    selecionadoBotao: Boolean,
-    buttonText: String = ""
-){
-    var button by remember { mutableStateOf(selecionadoBotao) }
+fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
+    var currentValue by remember { mutableIntStateOf(PRECO_INICIAL) }
 
-    OutlinedButton(
-        shape = RoundedCornerShape(8.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = if (button) Color.Green else Color.Transparent
-        ),
-        onClick = {
-                button = !button
-        }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .border(2.dp, Color.Black, RoundedCornerShape(16.dp))
+            .background(Color.Transparent, RoundedCornerShape(16.dp))
+            .padding(2.dp)
     ) {
-        Text(buttonText, color = Color.Black)
+        IconButton(onClick = { currentValue = (currentValue - 25).coerceAtLeast(PRECO_MINIMO) }) {
+            Icon(imageVector = Icons.Filled.Remove, contentDescription = "diminui")
+        }
+
+        Text(
+            text = "R$ %.2f".format(currentValue / 100.0),
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier.align(alignment = Alignment.CenterVertically)
+        )
+
+        IconButton(onClick = { currentValue = (currentValue + 25).coerceAtMost(PRECO_MAXIMO) }) {
+            Icon(imageVector = Icons.Filled.Add, contentDescription = "aumenta")
+        }
     }
+
+    onValueChange(currentValue)
 }

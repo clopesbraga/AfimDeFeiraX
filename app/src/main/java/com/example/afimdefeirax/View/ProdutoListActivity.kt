@@ -36,7 +36,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.afimdefeirax.View.Components.SeletorComponent
+import com.example.afimdefeirax.View.Components.SeletorPesoComponent
+import com.example.afimdefeirax.View.Components.SeletorPrecoComponent
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.example.afimdefeirax.databinding.ActivityProdutoListBinding
 import org.koin.android.ext.android.inject
@@ -130,7 +131,7 @@ class ProdutoListActivity : AppCompatActivity() {
                                     horizontalArrangement = Arrangement.Center,
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    SeletorComponent(
+                                    SeletorPesoComponent(
                                         onValueChange = { novoValor ->
                                             selectedNumber = novoValor
                                             resposta.value = novoValor.toString()
@@ -214,20 +215,32 @@ class ProdutoListActivity : AppCompatActivity() {
                         Column(
                             modifier = Modifier
                                 .fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.Start
                         ) {
-                            Button(
-                                colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(0xFF009688)
-                                ),
-                                shape = RoundedCornerShape(8.dp),
-                                onClick = {
+                            Row{
 
-                                    viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
-                                    visibleStates[loadedItems.indexOf(item)] = false
+                                Button(
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = Color(0xFF009688)
+                                    ),
+                                    shape = RoundedCornerShape(8.dp),
+                                    onClick = {
+
+                                        viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
+                                        visibleStates[loadedItems.indexOf(item)] = false
+                                    }
+                                ) {
+                                    Text("Comprar")
                                 }
-                            ) {
-                                Text("Comprar")
+
+                                Spacer(modifier = Modifier.size(32.dp))
+                                SeletorPrecoComponent(
+                                    onValueChange = { novoValor ->
+                                        selectedNumber = novoValor
+                                        resposta.value = novoValor.toString()
+                                    }
+                                )
+
                             }
                         }
 
