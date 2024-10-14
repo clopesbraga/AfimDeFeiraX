@@ -1,4 +1,4 @@
-![GitHub tag checks state](https://img.shields.io/github/checks-status/clopesbraga/AfimDeFeiraX/master)  | ![GitHub language count](https://img.shields.io/github/languages/count/clopesbraga/AfimDeFeiraX) |  ![GitHub repo size](https://img.shields.io/github/repo-size/clopesbraga/AfimDeFeiraX) |  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/clopesbraga/AfimDeFeiraX/master)
+![GitHub tag checks state](https://img.shields.io/github/checks-status/clopesbraga/AfimDeFeiraX/master)  | ![GitHub language count](https://img.shields.io/github/languages/count/clopesbraga/AfimDeFeiraX) |  ![GitHub repo size](https://img.shields.io/github/repo-size/clopesbraga/AfimDeFeiraX) |  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/clopesbraga/AfimDeFeiraX/develop)
 
 
 ![logo_play_store2](https://github.com/clopesbraga/AfimDeFeiraX/assets/58059669/516c1d3c-8174-496d-8fcb-870a27685ee1)
