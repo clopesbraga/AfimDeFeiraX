@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             changeImageSplash()
             finish()
-        }, 2500)
+        }, 1000)
     }
 
     private fun changeImageSplash() {

@@ -13,7 +13,6 @@
     //MENU DE OPCOES
     <string name="menu_feiras">Feiras</string>
     <string name="menu_produtos">Produtos</string>
-    <string name="menu_compras">Compras</string>
     <string name="menu_historico">Histórico</string>
 
 
@@ -604,48 +603,48 @@
     <!--bairros de Guarulhos-->
     <string-array name="guaru_bairros">
 
-    <item>BOM CLIMA	</item>
-    <item>CECAP	</item>
-    <item>CENTRO	</item>
-    <item> CENTRO	</item>
-    <item> CIDADE SOINCO </item>
-    <item> CONJUNTO HAROLDO VELOSO	</item>
-    <item> CONJUNTO MARCOS FREIRE	</item>
-    <item> CUMBICA	</item>
-    <item> GOPOÚVA	</item>
-    <item> INOCOOP	</item>
-    <item> ITAPEGICA	</item>
-    <item> JARDIM  TRANQUILIDADE	</item>
-    <item> JARDIM ADRIANA	</item>
-    <item> JARDIM ALMEIDA PRADO	</item>
-    <item> JARDIM ANGÉLICA	</item>
-    <item> JARDIM ARACÍLIA	</item>
-    <item> JARDIM CUMBICA	</item>
-    <item> JARDIM JOVAIA	</item>
-    <item> JARDIM MONTE CARMELO	</item>
-    <item> JARDIM MOREIRA	</item>
-    <item> JARDIM MUNHOZ	</item>
-    <item> JARDIM PALMIRA	</item>
-    <item> JARDIM PRESIDENTE DUTRA	</item>
-    <item>	JARDIM ROSA DE FRANÇA	</item>
-    <item>	JARDIM SANTA CECÍLIA	</item>
-    <item>	JARDIM SANTA EMÍLIA	</item>
-    <item>	JARDIM SÃO DOMINGOS	</item>
-    <item>	JARDIM SÃO JOÃO	</item>
-    <item>	PARQUE ALVORADA	</item>
-    <item>	PARQUE CECAP I	</item>
-    <item>	PARQUE JUREMA	</item>
-    <item>	PARQUE SÃO LUIZ	</item>
-    <item>	PARQUE UIRAPURU	</item>
-    <item>	PICANÇO</item>
-    <item>	PIMENTAS	</item>
-    <item>	PONTE GRANDE	</item>
-    <item>	TABOÃO	</item>
-    <item>	VILA CARMELA	</item>
-    <item>	VILA FÁTIMA 	</item>
-    <item>	VILA GALVÃO	</item>
-    <item>	VILA SOROCABANA	</item>
-    <item>	VILA MOREIRA	</item>
+        <item>BOM CLIMA	</item>
+        <item>CECAP	</item>
+        <item>CENTRO	</item>
+        <item> CENTRO	</item>
+        <item> CIDADE SOINCO </item>
+        <item> CONJUNTO HAROLDO VELOSO	</item>
+        <item> CONJUNTO MARCOS FREIRE	</item>
+        <item> CUMBICA	</item>
+        <item> GOPOÚVA	</item>
+        <item> INOCOOP	</item>
+        <item> ITAPEGICA	</item>
+        <item> JARDIM  TRANQUILIDADE	</item>
+        <item> JARDIM ADRIANA	</item>
+        <item> JARDIM ALMEIDA PRADO	</item>
+        <item> JARDIM ANGÉLICA	</item>
+        <item> JARDIM ARACÍLIA	</item>
+        <item> JARDIM CUMBICA	</item>
+        <item> JARDIM JOVAIA	</item>
+        <item> JARDIM MONTE CARMELO	</item>
+        <item> JARDIM MOREIRA	</item>
+        <item> JARDIM MUNHOZ	</item>
+        <item> JARDIM PALMIRA	</item>
+        <item> JARDIM PRESIDENTE DUTRA	</item>
+        <item>	JARDIM ROSA DE FRANÇA	</item>
+        <item>	JARDIM SANTA CECÍLIA	</item>
+        <item>	JARDIM SANTA EMÍLIA	</item>
+        <item>	JARDIM SÃO DOMINGOS	</item>
+        <item>	JARDIM SÃO JOÃO	</item>
+        <item>	PARQUE ALVORADA	</item>
+        <item>	PARQUE CECAP I	</item>
+        <item>	PARQUE JUREMA	</item>
+        <item>	PARQUE SÃO LUIZ	</item>
+        <item>	PARQUE UIRAPURU	</item>
+        <item>	PICANÇO</item>
+        <item>	PIMENTAS	</item>
+        <item>	PONTE GRANDE	</item>
+        <item>	TABOÃO	</item>
+        <item>	VILA CARMELA	</item>
+        <item>	VILA FÁTIMA 	</item>
+        <item>	VILA GALVÃO	</item>
+        <item>	VILA SOROCABANA	</item>
+        <item>	VILA MOREIRA	</item>
 
     </string-array>
 

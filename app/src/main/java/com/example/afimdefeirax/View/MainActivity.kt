@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_mapfeiras, R.id.navigation_compras, R.id.navigation_historico
+                R.id.navigation_mapfeiras, R.id.navigation_produtos, R.id.navigation_historico
             )
         )
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         toolbar = binding.toolbar
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.navigation_compras) {
+            if (destination.id == R.id.navigation_produtos) {
 
                 toolbar.inflateMenu(R.menu.menu_item)
 
