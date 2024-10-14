@@ -31,5 +31,4 @@ class ProdutosViewModel(application: Application) : ViewModel() {
         produtosshared.removeItem(application.applicationContext, productItem)
     }
 
-
 }
