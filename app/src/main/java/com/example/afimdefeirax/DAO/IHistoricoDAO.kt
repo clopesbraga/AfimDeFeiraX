@@ -7,16 +7,16 @@ import androidx.room.Update
 import com.example.afimdefeirax.Model.HistoricoModel
 import com.example.afimdefeirax.Model.ListaModel
 
-
 @Dao
-interface IListaDAO {
+interface IHistoricoDAO {
 
-    @Insert
-    fun save(lista:ListaModel):Long
+        @Insert
+        fun save(historico: HistoricoModel):Long
 
-    @Update
-    fun update(id: ListaModel):Int
+        @Update
+        fun update(id: HistoricoModel):Int
 
-    @Query(value="Select * from Lista where id =:id")
-    fun get(id:Int): ListaModel
+        @Query(value="Select * from Historico where id =:id")
+        fun get(id:Int): HistoricoModel
+
 }
