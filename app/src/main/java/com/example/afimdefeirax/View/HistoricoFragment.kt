@@ -21,8 +21,20 @@ class HistoricoFragment : Fragment() {
         _binding = FragmentHistoricoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.composeViewHistorico.setContent {
+
+
+
+        }
+
         return root
     }
+
+
+
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
