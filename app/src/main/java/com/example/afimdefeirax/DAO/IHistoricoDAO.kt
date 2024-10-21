@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.afimdefeirax.Model.HistoricoModel
-import com.example.afimdefeirax.Model.ListaModel
 
 @Dao
 interface IHistoricoDAO {

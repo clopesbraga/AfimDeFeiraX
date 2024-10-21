@@ -38,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.afimdefeirax.View.Components.SeletorPesoComponent
 import com.example.afimdefeirax.View.Components.SeletorPrecoComponent
+import com.example.afimdefeirax.ViewModel.HistoricoViewModel
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.example.afimdefeirax.databinding.ActivityProdutoListBinding
 import org.koin.android.ext.android.inject
@@ -48,6 +49,7 @@ class ProdutoListActivity : AppCompatActivity() {
 
 
     private val viewModel: ProdutosViewModel by inject()
+    private val viewModelHistorico : HistoricoViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +79,7 @@ class ProdutoListActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun ListProdutos(viewModel: ProdutosViewModel) {
+    fun ListProdutos(viewModel: ProdutosViewModel,viewModelHistorico: HistoricoViewModel) {
 
         var selectedNumber by remember { mutableStateOf(1) }
         val resposta = remember { mutableStateOf("") }
@@ -226,6 +228,10 @@ class ProdutoListActivity : AppCompatActivity() {
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
 
+                                        viewModelHistorico.save(
+                                            resposta.value,
+                                            item.imageName
+                                        )
                                         viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
                                         visibleStates[loadedItems.indexOf(item)] = false
                                     }
