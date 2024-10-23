@@ -23,3 +23,8 @@ class HistoricoModel {
     @ColumnInfo(name="imagem")
     var imagem: Int=0
 }
+
+data class Historico(
+    val preco: String,
+    val imagem: Int
+)
