@@ -1,6 +1,7 @@
 package com.example.afimdefeirax.Modules
 
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
+import com.example.afimdefeirax.SharedPreferences.HistoricoShared
 import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.LocationImpl
@@ -22,6 +23,7 @@ val appModule = module{
      single {LocationImpl(get())}
      single {FocusCamera()}
      single { ListProdutosShared(androidContext()) }
+     single { HistoricoShared(androidContext()) }
  }
 
 
