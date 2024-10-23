@@ -49,7 +49,7 @@ class ProdutoListActivity : AppCompatActivity() {
 
 
     private val viewModel: ProdutosViewModel by inject()
-    private val viewModelHistorico : HistoricoViewModel by inject()
+//    private val viewModelHistorico : HistoricoViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +79,7 @@ class ProdutoListActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun ListProdutos(viewModel: ProdutosViewModel,viewModelHistorico: HistoricoViewModel) {
+    fun ListProdutos(viewModel: ProdutosViewModel) {
 
         var selectedNumber by remember { mutableStateOf(1) }
         val resposta = remember { mutableStateOf("") }
@@ -228,7 +228,7 @@ class ProdutoListActivity : AppCompatActivity() {
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
 
-                                        viewModelHistorico.save(
+                                        viewModel.saveInHistorico(
                                             resposta.value,
                                             item.imageName
                                         )
