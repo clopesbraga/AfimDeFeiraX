@@ -18,4 +18,7 @@ interface IHistoricoDAO {
         @Query(value="Select * from Historico where id =:id")
         fun get(id:Int): HistoricoModel
 
+        @Query(value="Select * from Historico")
+        fun getAll(): List<HistoricoModel>
+
 }

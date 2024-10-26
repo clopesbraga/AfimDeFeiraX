@@ -18,5 +18,8 @@ class HistoricoRepository(context: Context) {
     fun update (historico: HistoricoModel):Boolean{
         return base.update(historico)>0
     }
+    fun getAll(): List<HistoricoModel> {
+        return base.getAll()
+    }
 
 }

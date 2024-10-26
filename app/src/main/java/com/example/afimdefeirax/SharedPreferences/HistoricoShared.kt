@@ -22,7 +22,7 @@ class HistoricoShared( context: Context): ISharedHistorico {
     override fun loadItems(context: Context): List<Historico> {
         val json = sharedHistorico.getString("Historico", null)
         val gson = Gson()
-        val type = object : TypeToken<List<Produtos>>() {}.type
+        val type = object : TypeToken<List<Historico>>() {}.type
         return gson.fromJson(json, type) ?: emptyList()
     }
 

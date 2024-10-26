@@ -229,6 +229,7 @@ class ProdutoListActivity : AppCompatActivity() {
                                     onClick = {
 
                                         viewModel.saveInHistorico(
+                                            item.itemName,
                                             resposta.value,
                                             item.imageName
                                         )

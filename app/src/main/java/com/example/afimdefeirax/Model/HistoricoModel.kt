@@ -11,6 +11,9 @@ class HistoricoModel {
     @ColumnInfo(name="id")
     var id:Int=0
 
+    @ColumnInfo(name="nome")
+    var nome: String=""
+
     @ColumnInfo(name="preco1")
     var preco1: String=""
 
@@ -25,6 +28,7 @@ class HistoricoModel {
 }
 
 data class Historico(
+    val nome: String,
     val preco: String,
     val imagem: Int
 )

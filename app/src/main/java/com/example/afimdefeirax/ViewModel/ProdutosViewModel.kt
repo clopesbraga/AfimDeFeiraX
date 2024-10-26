@@ -27,8 +27,8 @@ class ProdutosViewModel(application: Application) : ViewModel() {
         produtosshared.saveItems(application.applicationContext, productItem)
     }
 
-     fun saveInHistorico(preco: String, imagem: Int) {
-         historico.add(Historico(preco,imagem))
+     fun saveInHistorico(nome: String, preco: String, imagem: Int) {
+         historico.add(Historico(nome,preco,imagem))
         historicoshared.saveItems(application.applicationContext,historico)
     }
 
