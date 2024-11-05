@@ -1,9 +1,11 @@
 package com.example.afimdefeirax.View
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,10 +34,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
+import com.example.afimdefeirax.View.Components.ColunaDinamica
 import com.example.afimdefeirax.ViewModel.HistoricoViewModel
 import com.example.afimdefeirax.databinding.FragmentHistoricoBinding
 import org.koin.android.ext.android.inject
@@ -72,6 +74,7 @@ class HistoricoFragment : Fragment() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListHistorico(viewModel: HistoricoViewModel) {
@@ -94,7 +97,7 @@ fun ListHistorico(viewModel: HistoricoViewModel) {
                 },
             )
         }
-    ){innerpading ->
+    ) { innerpading ->
 
         LazyColumn(
             modifier = Modifier
@@ -106,10 +109,10 @@ fun ListHistorico(viewModel: HistoricoViewModel) {
 
             items(loadedhistorico) { item ->
 
-                Card (modifier = Modifier.padding(8.dp)){
+                Card(modifier = Modifier.padding(8.dp)) {
                     Row(
                         modifier = Modifier
-                            .padding(16.dp)
+                            .padding(2.dp)
                     )
                     {
 
@@ -118,24 +121,31 @@ fun ListHistorico(viewModel: HistoricoViewModel) {
                             contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .padding(18.dp)
-                                .size(100.dp)
+                                .padding(2.dp)
+                                .size(80.dp)
                                 .clip(CircleShape)
                         )
-                        Column (
+                        Column(
                             horizontalAlignment = Alignment.Start,
                             verticalArrangement = Arrangement.Center,
                             modifier = Modifier
-                                .padding(16.dp)
+                                .padding(2.dp)
                                 .fillMaxWidth()
-                        ){
-                            Text(text = item.nome, color = Color.Black, fontStyle = FontStyle.Italic, fontSize =20.sp)
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text("R$ ${item.preco1}")
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text("R$ ${item.preco2}")
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text("R$ ${item.preco3}")
+                        ) {
+                            Text(
+                                text = item.nome,
+                                color = Color.Black,
+                                fontStyle = FontStyle.Italic,
+                                fontSize = 25.sp
+                            )
+                            Row {
+                                ColunaDinamica(
+                                    preco1 = item.preco1.toDouble(),
+                                    preco2 = item.preco2.toDouble(),
+                                    preco3 = item.preco3.toDouble()
+                                )
+
+                            }
                         }
 
                     }
