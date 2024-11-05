@@ -107,6 +107,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.5.0"))
     implementation("com.google.firebase:firebase-database-ktx")
 
+    //Graficos
+    implementation ("io.github.ehsannarmani:compose-charts:0.0.14")
+
 
     //Unit Test
     testImplementation 'junit:junit:4.13.2'
