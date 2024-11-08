@@ -13,10 +13,10 @@ interface IHistoricoDAO {
         fun save(historico: HistoricoModel):Long
 
         @Update
-        fun update(id: HistoricoModel):Int
+        fun update(imagem: List<HistoricoModel>):Int
 
-        @Query(value="Select * from Historico where id =:id")
-        fun get(id:Int): HistoricoModel
+        @Query(value="Select * from Historico where imagem =:imagem")
+        fun get(imagem:Int): HistoricoModel
 
         @Query(value="Select * from Historico")
         fun getAll(): List<HistoricoModel>

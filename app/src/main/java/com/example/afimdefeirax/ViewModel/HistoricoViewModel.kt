@@ -15,38 +15,47 @@ class HistoricoViewModel(application: Application) : AndroidViewModel(applicatio
 
 
     fun loadHistorico(): List<HistoricoModel> {
-
+//
 //        val item =historicoShared.loadItems(getApplication())
-//        if (item.isNotEmpty()) {
-//            save(item)
-//        }
+//
+//        if (item.isNotEmpty()) save(item) else update(item)
 
         return  msavehistorico.getAll()
-
     }
 
-    fun save(item: List<Historico>) {
+    fun saveHistorico() {
+        val item =historicoShared.loadItems(getApplication())
+        save(item)
+    }
+
+    private fun save(item: List<Historico>) {
 
         val modelohistorico = HistoricoModel().apply {
 
             item.forEach { item->
-
                 this.nome = item.nome
                 this.imagem = item.imagem
-                if (this.preco1.isEmpty().or(this.preco1 < item.preco)) {
-                    this.preco1 = item.preco
-                }
-                if (this.preco2.isEmpty().or(this.preco2 < preco1)) {
-                    this.preco2 = preco1
-                }
-                if (this.preco3.isEmpty().or(this.preco3 < preco2)) {
-                    this.preco3 = preco2
-                }
+                this.preco1 = item.preco
             }
         }
         msavehistorico.save(modelohistorico)
 
     }
 
+    private fun update(historicoItems: List<Historico>) {
+        val historicoModels = historicoItems.map { item ->
+            HistoricoModel().apply {
+                nome = item.nome
+                imagem = item.imagem
+                preco3 = preco2
+                preco2 = preco1
+                preco1 = item.preco
+            }
+        }
+        msavehistorico.update(historicoModels)
+
+
+
+    }
 
 }

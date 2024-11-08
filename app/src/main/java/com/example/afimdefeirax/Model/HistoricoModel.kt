@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Historico")
 class HistoricoModel {
 
-    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     var id:Int=0
 
@@ -23,6 +22,7 @@ class HistoricoModel {
     @ColumnInfo(name="preco3")
     var preco3: String=""
 
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name="imagem")
     var imagem: Int=0
 }

@@ -38,7 +38,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.afimdefeirax.View.Components.SeletorPesoComponent
 import com.example.afimdefeirax.View.Components.SeletorPrecoComponent
-import com.example.afimdefeirax.ViewModel.HistoricoViewModel
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.example.afimdefeirax.databinding.ActivityProdutoListBinding
 import org.koin.android.ext.android.inject
@@ -228,7 +227,7 @@ class ProdutoListActivity : AppCompatActivity() {
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
 
-                                        viewModel.saveInHistorico(
+                                        viewModel.requestOfHistorico(
                                             item.itemName,
                                             resposta.value,
                                             item.imageName
