@@ -74,7 +74,6 @@ class HistoricoFragment : Fragment() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListHistorico(viewModel: HistoricoViewModel) {
@@ -105,6 +104,7 @@ fun ListHistorico(viewModel: HistoricoViewModel) {
                 .padding(innerpading)
                 .fillMaxSize()
         ) {
+
 
 
             items(loadedhistorico) { item ->
@@ -139,11 +139,13 @@ fun ListHistorico(viewModel: HistoricoViewModel) {
                                 fontSize = 25.sp
                             )
                             Row {
-                                ColunaDinamica(
-                                    preco1 = item.preco1.toDouble(),
-                                    preco2 = 0.00,
-                                    preco3 = 0.00
-                                )
+                                if (item.preco2 != null && item.preco3 != null) {
+                                    ColunaDinamica(
+                                        preco1 = item.preco1.toDouble(),
+                                        preco2 = item.preco2!!.toDouble(),
+                                        preco3 = item.preco3!!.toDouble()
+                                    )
+                                }
 
                             }
                         }

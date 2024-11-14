@@ -10,21 +10,29 @@ import org.koin.java.KoinJavaComponent.inject
 
 class HistoricoViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val msavehistorico:  HistoricoRepository by inject(HistoricoRepository::class.java)
+    private val msavehistorico: HistoricoRepository by inject(HistoricoRepository::class.java)
     private val historicoShared: HistoricoShared by inject(HistoricoShared::class.java)
 
 
     fun loadHistorico(): List<HistoricoModel> {
-//
-//        val item =historicoShared.loadItems(getApplication())
-//
-//        if (item.isNotEmpty()) save(item) else update(item)
+        val item = historicoShared.loadItems(getApplication())
 
-        return  msavehistorico.getAll()
+        item.forEach { historicoItem ->
+            val existingHistorico =
+                msavehistorico.getAll().find { it.imagem == historicoItem.imagem }
+
+            if (existingHistorico != null) {
+                update(listOf(historicoItem))
+            } else {
+                save(listOf(historicoItem))
+            }
+        }
+
+        return msavehistorico.getAll()
     }
 
     fun saveHistorico() {
-        val item =historicoShared.loadItems(getApplication())
+        val item = historicoShared.loadItems(getApplication())
         save(item)
     }
 
@@ -32,9 +40,12 @@ class HistoricoViewModel(application: Application) : AndroidViewModel(applicatio
 
         val modelohistorico = HistoricoModel().apply {
 
-            item.forEach { item->
+
+            item.forEach { item ->
                 this.nome = item.nome
                 this.imagem = item.imagem
+                this.preco3 = preco2
+                this.preco2 = preco1
                 this.preco1 = item.preco
             }
         }
@@ -45,15 +56,16 @@ class HistoricoViewModel(application: Application) : AndroidViewModel(applicatio
     private fun update(historicoItems: List<Historico>) {
         val historicoModels = historicoItems.map { item ->
             HistoricoModel().apply {
+                val copy =msavehistorico.getAll().find { it.imagem == item.imagem }?.preco1
+                val copy2 =msavehistorico.getAll().find { it.imagem == item.imagem }?.preco2
                 nome = item.nome
                 imagem = item.imagem
-                preco3 = preco2
-                preco2 = preco1
+                preco3 = copy2
+                preco2 = copy
                 preco1 = item.preco
             }
         }
         msavehistorico.update(historicoModels)
-
 
 
     }

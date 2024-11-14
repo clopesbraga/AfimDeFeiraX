@@ -14,13 +14,13 @@ class HistoricoModel {
     var nome: String=""
 
     @ColumnInfo(name="preco1")
-    var preco1: String=""
+    var preco1: String="0.00"
 
     @ColumnInfo(name="preco2")
-    var preco2: String=""
+    var preco2: String?="0.00"
 
     @ColumnInfo(name="preco3")
-    var preco3: String=""
+    var preco3: String?="0.00"
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name="imagem")

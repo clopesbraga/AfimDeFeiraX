@@ -1,5 +1,6 @@
 package com.example.afimdefeirax.View
 
+import android.icu.text.NumberFormat
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -226,7 +227,6 @@ class ProdutoListActivity : AppCompatActivity() {
                                     ),
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
-
                                         viewModel.requestOfHistorico(
                                             item.itemName,
                                             resposta.value,

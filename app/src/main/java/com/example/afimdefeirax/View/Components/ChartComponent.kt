@@ -1,8 +1,5 @@
 package com.example.afimdefeirax.View.Components
 
-import android.icu.text.NumberFormat
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.padding
@@ -14,7 +11,6 @@ import ir.ehsannarmani.compose_charts.RowChart
 import ir.ehsannarmani.compose_charts.models.BarProperties
 import ir.ehsannarmani.compose_charts.models.Bars
 
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun ColunaDinamica(preco1: Double, preco2: Double, preco3: Double) {
 
