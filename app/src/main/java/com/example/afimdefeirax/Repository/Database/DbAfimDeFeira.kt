@@ -15,7 +15,7 @@ import com.example.afimdefeirax.Model.HistoricoModel
 import com.example.afimdefeirax.Model.ListaModel
 import com.example.afimdefeirax.Model.LoginModel
 
-@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class),(ListaModel::class),(HistoricoModel::class)), version = 6)
+@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class),(ListaModel::class),(HistoricoModel::class)), version = 7)
 
 abstract class DbAfimDeFeira : RoomDatabase() {
 
@@ -41,7 +41,7 @@ abstract class DbAfimDeFeira : RoomDatabase() {
             return DBINSTANCE
         }
 
-        private val MIGRATION_3_4: Migration = object : Migration(5, 6) {
+        private val MIGRATION_3_4: Migration = object : Migration(6, 7) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("DELETE FROM Login")
                 db.execSQL("DELETE FROM Compras")
