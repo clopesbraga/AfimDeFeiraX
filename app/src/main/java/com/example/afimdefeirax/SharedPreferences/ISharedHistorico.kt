@@ -11,4 +11,6 @@ interface ISharedHistorico {
 
     fun updateItem(context: Context, itemToUpdate: Historico)
 
+    fun clearItems(context: Context)
+
 }

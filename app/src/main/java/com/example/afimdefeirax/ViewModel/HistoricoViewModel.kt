@@ -29,6 +29,7 @@ class HistoricoViewModel(application: Application) : AndroidViewModel(applicatio
         }
 
         return msavehistorico.getAll()
+
     }
 
     fun saveHistorico() {
@@ -50,6 +51,7 @@ class HistoricoViewModel(application: Application) : AndroidViewModel(applicatio
             }
         }
         msavehistorico.save(modelohistorico)
+        historicoShared.clearItems(getApplication())
 
     }
 
@@ -66,6 +68,7 @@ class HistoricoViewModel(application: Application) : AndroidViewModel(applicatio
             }
         }
         msavehistorico.update(historicoModels)
+        historicoShared.clearItems(getApplication())
 
 
     }
