@@ -36,5 +36,11 @@ class HistoricoShared( context: Context): ISharedHistorico {
 
     }
 
+    override fun clearItems(context: Context) {
+        val editor = sharedHistorico.edit()
+        editor.clear()
+        editor.apply()
+    }
+
 
 }
