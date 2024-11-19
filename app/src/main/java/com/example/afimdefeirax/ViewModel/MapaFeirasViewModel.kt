@@ -3,6 +3,7 @@ package com.example.afimdefeirax.ViewModel
 import android.Manifest
 import android.app.Activity
 import android.app.Application
+import android.content.ContextWrapper
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -54,14 +55,26 @@ class MapaFeirasViewModel(application: Application) : ViewModel() {
                         }
                     }
                 }
-                else -> ActivityCompat.requestPermissions(
-                    application.applicationContext as Activity,
-                    arrayOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                    ),
-                    200
-                )
+
+                else -> {
+                    // Obter o contexto da Activity
+                    val activityContext = when (application) {
+                        is Activity -> application
+                        is ContextWrapper -> application.baseContext as? Activity
+                        else -> null
+                    }
+
+                    activityContext?.let {
+                        ActivityCompat.requestPermissions(
+                            it,
+                            arrayOf(
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION
+                            ),
+                            200
+                        )
+                    }
+                }
             }
         }
     }

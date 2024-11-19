@@ -4,4 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.HistoricoFragment"/>
+    tools:context=".View.HistoricoFragment">
+
+
+    <androidx.compose.ui.platform.ComposeView
+    android:id="@+id/compose_view_historico"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent">
+
+</androidx.compose.ui.platform.ComposeView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.afimdefeirax.Model.ComprasModel
+import com.example.afimdefeirax.Model.HistoricoModel
 import com.example.afimdefeirax.Model.ListaModel
 
 

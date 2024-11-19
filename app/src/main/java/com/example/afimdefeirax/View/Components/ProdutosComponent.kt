@@ -1,6 +1,7 @@
 package com.example.afimdefeirax.View.Components
 
 
+import android.icu.text.NumberFormat
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -103,7 +104,7 @@ fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
         }
 
         Text(
-            text = "R$ %.2f".format(currentValue / 100.0),
+            text = "R$ %.2f".format(currentValue / 100.0).replace('.', ','),
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.align(alignment = Alignment.CenterVertically)
         )
@@ -112,6 +113,5 @@ fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
             Icon(imageVector = Icons.Filled.Add, contentDescription = "aumenta")
         }
     }
-
     onValueChange(currentValue)
 }
