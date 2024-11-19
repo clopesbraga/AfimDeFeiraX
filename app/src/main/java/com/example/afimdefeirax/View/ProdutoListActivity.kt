@@ -1,6 +1,5 @@
 package com.example.afimdefeirax.View
 
-import android.icu.text.NumberFormat
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -82,9 +81,14 @@ class ProdutoListActivity : AppCompatActivity() {
     fun ListProdutos(viewModel: ProdutosViewModel) {
 
         var selectedNumber by remember { mutableStateOf(1) }
-        val resposta = remember { mutableStateOf("") }
+
+        var respostaPreco = remember {
+            mutableStateListOf(*List(viewModel.loadProducts().size) { "" }.toTypedArray()) }
+
+
+        var respostaPeso by  remember { mutableStateOf("") }
         val visibleStates = remember {
-            mutableStateListOf<Boolean>(
+            mutableStateListOf(
                 *List(viewModel.loadProducts().size) { true }.toTypedArray()
             )
         }
@@ -95,8 +99,9 @@ class ProdutoListActivity : AppCompatActivity() {
 
 
         LazyColumn {
-            items(loadedItems) { item ->
+            items(loadedItems){item ->
 
+                var currentResposta by remember { mutableStateOf("") }
                 var selecionadoBotaoKG by remember { mutableStateOf(false) }
                 var selecionadoBotaoLT by remember { mutableStateOf(false) }
                 var selecionadoBotaoPC by remember { mutableStateOf(false) }
@@ -136,7 +141,7 @@ class ProdutoListActivity : AppCompatActivity() {
                                     SeletorPesoComponent(
                                         onValueChange = { novoValor ->
                                             selectedNumber = novoValor
-                                            resposta.value = novoValor.toString()
+                                            respostaPeso = novoValor.toString()
                                         }
                                     )
                                     Spacer(modifier = Modifier.size(8.dp))
@@ -227,13 +232,15 @@ class ProdutoListActivity : AppCompatActivity() {
                                     ),
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
+                                        respostaPreco[loadedItems.indexOf(item)]=currentResposta
                                         viewModel.requestOfHistorico(
                                             item.itemName,
-                                            resposta.value,
+                                            currentResposta,
                                             item.imageName
                                         )
                                         viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
                                         visibleStates[loadedItems.indexOf(item)] = false
+
                                     }
                                 ) {
                                     Text("Comprar")
@@ -243,7 +250,8 @@ class ProdutoListActivity : AppCompatActivity() {
                                 SeletorPrecoComponent(
                                     onValueChange = { novoValor ->
                                         selectedNumber = novoValor
-                                        resposta.value = novoValor.toString()
+                                        currentResposta = novoValor.toString()
+                                        respostaPreco[loadedItems.indexOf(item)] = novoValor.toString()
                                     }
                                 )
 

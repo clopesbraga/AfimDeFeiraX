@@ -141,7 +141,7 @@ fun ListHistorico(viewModel: HistoricoViewModel) {
                             Row {
                                 if (item.preco2 != null && item.preco3 != null) {
                                     ColunaDinamica(
-                                        preco1 = item.preco1.toDouble(),
+                                        preco1 = item.preco1!!.toDouble(),
                                         preco2 = item.preco2!!.toDouble(),
                                         preco3 = item.preco3!!.toDouble()
                                     )

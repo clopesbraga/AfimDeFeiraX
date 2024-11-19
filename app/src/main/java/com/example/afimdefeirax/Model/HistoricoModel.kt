@@ -14,7 +14,7 @@ class HistoricoModel {
     var nome: String=""
 
     @ColumnInfo(name="preco1")
-    var preco1: String="0.00"
+    var preco1: String?="0.00"
 
     @ColumnInfo(name="preco2")
     var preco2: String?="0.00"
