@@ -2,24 +2,40 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    android:id="@+id/mobile_navigation2"
+    app:startDestination="@+id/navigation_mapfeiras">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.afimdefeirax.View.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_mapfeiras"
+        android:name="com.example.afimdefeirax.View.MapFeirasFragment"
+        android:label="@string/menu_feiras"
+        tools:layout="@layout/fragment_map_feiras" >
+        <action
+            android:id="@+id/action_navigation_mapfeiras_to_navigation_compras"
+            app:destination="@id/navigation_produtos" />
+        <action
+            android:id="@+id/action_navigation_mapfeiras_to_navigation_historico"
+            app:destination="@id/navigation_historico" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.afimdefeirax.View.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/navigation_produtos"
+        android:name="com.example.afimdefeirax.View.ProdutosFragment"
+        android:label="@string/menu_produtos"
+        tools:layout="@layout/fragment_produtos" >
+        <action
+            android:id="@+id/action_navigation_compras_to_produtoListActivity2"
+            app:destination="@id/produtoListActivity2" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.afimdefeirax.View.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/navigation_historico"
+        android:name="com.example.afimdefeirax.View.HistoricoFragment"
+        android:label="@string/menu_historico"
+        tools:layout="@layout/fragment_historico" />
+    <activity
+        android:id="@+id/produtoListActivity2"
+        android:name="com.example.afimdefeirax.View.ProdutoListActivity"
+        android:label="activity_produto_list"
+        tools:layout="@layout/activity_produto_list" />
 </navigation>
