@@ -19,7 +19,18 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name = "Theme.AfimdeFeiraXTheme" parent = "Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_logo5</item>
+        <item name="postSplashScreenTheme">@style/Theme.AfimdeFeiraX</item>
+
+    </style>
+
+
     <style name="Theme.AfimdeFeiraX.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.AfimdeFeiraX.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

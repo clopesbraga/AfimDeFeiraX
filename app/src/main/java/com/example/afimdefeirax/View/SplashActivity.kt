@@ -1,34 +1,35 @@
 package com.example.afimdefeirax.View
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import com.example.afimdefeirax.databinding.ActivitySplashBinding
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.afimdefeirax.SharedPreferences.LoginShared
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySplashBinding
+    companion object {
+        private const val ID ="id"
+    }
+
+    private lateinit var mSharedLogin: LoginShared
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivitySplashBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        inicializeMainActivity()
+        installSplashScreen()
+        mSharedLogin = LoginShared(application.applicationContext)
+        verifyAcess()
     }
 
-    private fun inicializeMainActivity() {
-        Handler().postDelayed({
-            changeImageSplash()
-            finish()
-        }, 1000)
-    }
-
-    private fun changeImageSplash() {
-
-        startActivity(Intent(this, SplashActivity2::class.java))
+    private fun verifyAcess() {
+        if (!mSharedLogin.getString(ID).isNullOrEmpty()) {
+            startActivity(Intent(this, MainActivity::class.java))
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
 
 }
