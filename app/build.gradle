@@ -111,6 +111,10 @@ dependencies {
     implementation ("io.github.ehsannarmani:compose-charts:0.0.14")
 
 
+    //SPLASH
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+
     //Unit Test
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.assertj:assertj-core:2.0.0"
