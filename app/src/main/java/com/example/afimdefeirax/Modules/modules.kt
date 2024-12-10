@@ -7,6 +7,7 @@ import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.LocationImpl
 import com.example.afimdefeirax.ViewModel.HistoricoViewModel
+import com.example.afimdefeirax.ViewModel.LoginViewModel
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.google.android.gms.location.LocationServices
@@ -16,9 +17,7 @@ import org.koin.dsl.module
 
 val appModule = module{
 
-     viewModel{ MapaFeirasViewModel(get()) }
-     viewModel{ ProdutosViewModel(get()) }
-     viewModel{ HistoricoViewModel(get()) }
+
      single{FeirasRepositoryImpl()}
      single{ HistoricoRepository(androidContext()) }
      single {LocationServices.getFusedLocationProviderClient(androidContext()) }
@@ -27,5 +26,12 @@ val appModule = module{
      single { ListProdutosShared(androidContext()) }
      single { HistoricoShared(androidContext()) }
  }
+
+val viewModelModule = module {
+     viewModel{ MapaFeirasViewModel(get()) }
+     viewModel{ ProdutosViewModel(get()) }
+     viewModel{ HistoricoViewModel(get()) }
+     viewModel{ LoginViewModel(get()) }
+}
 
 
