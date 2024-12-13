@@ -1,13 +1,7 @@
-package com.example.afimdefeirax.View
+package com.example.afimdefeirax.View.Screens
 
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +16,7 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,42 +26,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.example.afimdefeirax.ViewModel.LoginViewModel
-import com.example.afimdefeirax.databinding.ActivityLoginBinding
+import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import org.koin.java.KoinJavaComponent.inject
 import androidx.compose.ui.text.input.PasswordVisualTransformation as PasswordVisualTransformation1
 
 
-class LoginActivity : AppCompatActivity() {
-
-    private val viewmodel: LoginViewModel by inject(LoginViewModel::class.java)
-    private var idUsuario = ""
-    private lateinit var binding: ActivityLoginBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-
-
-        binding.composeViewLogin.setContent {
-
-            LoginScreen(binding.root.context)
-        }
-
-        setContentView(binding.root)
-    }
-
-}
-
 @Composable
-fun LoginScreen(context: Context) {
+fun LoginScreen(navController: NavHostController, showBottomBar: MutableState<Boolean>) {
+    showBottomBar.value = false
+
     val auth = Firebase.auth
     var username by remember { mutableStateOf(auth.currentUser?.email ?: "") }
     var password by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -105,7 +79,7 @@ fun LoginScreen(context: Context) {
         }
         Spacer(modifier = Modifier.height(16.dp))
 
-        Box { SaveLoginButton(username, password, auth,context) }
+        Box { SaveLoginButton(navController,username, password, auth) }
     }
 
 }
@@ -113,11 +87,10 @@ fun LoginScreen(context: Context) {
 @Composable
 fun SaveLoginButton(
 
+    navController: NavHostController,
     username: String,
     password: String,
     auth: FirebaseAuth,
-    context :Context
-
     ) {
     OutlinedButton(onClick = {
 
@@ -126,8 +99,7 @@ fun SaveLoginButton(
             auth.createUserWithEmailAndPassword(username, password)
                 .addOnCompleteListener { logintTask ->
                     if (logintTask.isSuccessful) {
-                        val intent = Intent(context, MainActivity::class.java)
-                        context.startActivity(intent)
+                        navController.navigate("map")
                     } else {
                         Log.d("CREATE_ERROR", "USER NOT SAVED -> ${logintTask.exception}")
                     }
@@ -136,8 +108,7 @@ fun SaveLoginButton(
             auth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener { loginTask ->
                     if (loginTask.isSuccessful) {
-                        val intent = Intent(context, MainActivity::class.java)
-                        context.startActivity(intent)
+                        navController.navigate("map")
                     } else {
                         Log.d("LOGIN_ERROR", "LOGIN ERROR -> ${loginTask.exception}")
                     }

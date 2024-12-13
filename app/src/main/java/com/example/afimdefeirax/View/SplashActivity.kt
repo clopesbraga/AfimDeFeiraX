@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
         if (!mSharedLogin.getString(ID).isNullOrEmpty()) {
             startActivity(Intent(this, MainActivity::class.java))
         } else {
-            startActivity(Intent(this, LoginActivity::class.java))
+//            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 
