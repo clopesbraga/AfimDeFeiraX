@@ -102,6 +102,8 @@ dependencies {
 
     // Koin for Android
     implementation ("io.insert-koin:koin-android:3.5.0")
+    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
+
 
     //MAPS
     implementation 'com.google.android.gms:play-services-location:21.3.0'
