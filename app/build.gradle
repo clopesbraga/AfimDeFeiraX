@@ -42,7 +42,7 @@ android {
     namespace 'com.example.afimdefeirax'
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.13"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
