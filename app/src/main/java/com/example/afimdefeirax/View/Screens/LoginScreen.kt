@@ -134,10 +134,12 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit
                 ),
                 border = ButtonDefaults.outlinedButtonBorder(),
                 enabled= !state.isLoading, onClick = {
-                if(viewModel.login()) navController.navigate("map") },
+                if(viewModel.login())
+                    navController.navigate("map") },
             ) {
                 if (state.isLoading) {
                     CircularProgressIndicator()
+                    navController.navigate("map")
                 } else {
                     firebase.logEvent(Monitoring.Login.LOGIN_BUTTON_CLICKED,null)
                     Text(stringResource(R.string.confirm_login))

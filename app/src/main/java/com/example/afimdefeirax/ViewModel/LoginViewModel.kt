@@ -2,11 +2,9 @@ package com.example.afimdefeirax.ViewModel
 
 import android.app.Application
 import android.util.Log
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.Model.LoginModel
-import com.example.afimdefeirax.Repository.LoginRepository
 import com.example.afimdefeirax.SharedPreferences.LoginShared
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.ViewModel.State.LoginUiState
