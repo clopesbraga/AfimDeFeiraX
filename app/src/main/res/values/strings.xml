@@ -27,6 +27,13 @@
     <string name="login_failed">"Login failed"</string>
 
 
+    //TELA LOGIN
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_password">Inclua uma senha</string>
+    <string name="input_user">Inclua seu e-mail</string>
+    <string name="confirm_login">Logar/Cadastrar</string>
+
+
     //PRODUTOS
     <string-array name="produtos">
         <item>VERDURAS</item>
@@ -857,6 +864,5 @@
     <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
 
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
