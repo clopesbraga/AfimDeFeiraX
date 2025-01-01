@@ -8,8 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.Model.LoginModel
 import com.example.afimdefeirax.Repository.LoginRepository
 import com.example.afimdefeirax.SharedPreferences.LoginShared
+import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.ViewModel.State.LoginUiState
 import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +24,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
 
     private val auth = Firebase.auth
+    private val firebase: FirebaseAnalytics = Firebase.analytics
     private val _state = MutableStateFlow(LoginUiState())
     val state = _state.asStateFlow()
 
@@ -28,9 +32,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
 
     init {
-        _state.update { currentState ->
+        _state.update { currrentState ->
 
-            currentState.copy(
+            currrentState.copy(
                 username = auth.currentUser?.email ?: "",
                 auth = auth
             )
@@ -69,6 +73,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         ).await()
                         _state.update { it.copy(isLoading = false, isSuccess = true) }
                         response = true
+                        firebase.logEvent(Monitoring.Login.LOGIN_SUCCESS,null)
                     } else {
 
                         val create = auth.createUserWithEmailAndPassword(
@@ -77,17 +82,19 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         ).await()
                         localSave()
                         response = true
+                        firebase.logEvent(Monitoring.Login.LOGIN_SUCCESS,null)
                     }
 
                 } catch (e: Exception) {
 
                     _state.update { it.copy(isLoading = false, error = e.message) }
-                    Log.e("LOGIN_ERROR", "LOGIN FAILED: ${e.message}")
+                    firebase.logEvent(Monitoring.Login.LOGIN_ERROR,null)
+                    Log.e(Monitoring.Login.LOGIN_ERROR+": ", "${e.message}")
 
                 }
             } else {
-                Log.e("LOGIN_ERROR", "LOGIN FAILED: username is empty")
-            }
+                firebase.logEvent(Monitoring.Login.LOGIN_FAILED,null)
+                Log.d(Monitoring.Login.LOGIN_FAILED, "username is empty")            }
         }
 
         return response
@@ -99,7 +106,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         val modelousuario = LoginModel().apply {
             this.id = id
             this.usuario = _state.value.username
-            this.senha = _state.value.password
         }
         msharedlogin.storeString("id", modelousuario.id.toString())
         msharedlogin.storeString("usuario", modelousuario.usuario)
