@@ -13,13 +13,6 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-
-@RunWith(RobolectricTestRunner::class)
 class LoginTest {
 
 
@@ -33,7 +26,6 @@ class LoginTest {
     }
 
     @Test
-    @Config(sdk=[Build.VERSION_CODES.LOLLIPOP])
     fun Fluxo_normal_do_login(){
 
         Dado_verificacao_dos_dados()
