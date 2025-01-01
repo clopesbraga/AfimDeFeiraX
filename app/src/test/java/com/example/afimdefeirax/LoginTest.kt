@@ -1,17 +1,10 @@
 package com.example.afimdefeirax
 
-import android.app.Activity
-import android.os.Build
-import com.example.afimdefeirax.Model.LoginModel
-import com.example.afimdefeirax.Repository.LoginRepository
+
 import org.junit.Test
-import org.junit.Assert.*
+
 import org.junit.Before
-import org.junit.runner.RunWith
-import org.robolectric.Robolectric
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.android.controller.ActivityController
-import org.robolectric.annotation.Config
+
 
 class LoginTest {
 
