@@ -1,37 +1,29 @@
 package com.example.afimdefeirax
 
 
-import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.afimdefeirax.SharedPreferences.ILoginShared
 import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.ViewModel.LoginViewModel
-import com.example.afimdefeirax.ViewModel.State.LoginUiState
 import com.google.android.gms.tasks.Task
-import com.google.common.truth.Truth
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
-import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.any
-import org.mockito.ArgumentMatchers.anyString
+
 import org.mockito.Mock
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
@@ -89,12 +81,56 @@ class LoginTest {
     }
 
     @Test
-    fun Given_receive_user_and_password_Then_update_state() = testScope.runTest {
+    fun `When process login with existing user Then return login success`() = runTest {
 
         val userName = "user@example.com"
         val password = "password123"
 
+        // Given
+        `when`(mockLoginShared.getString("usuario")).thenReturn(userName)
+        `when`(mockAuthService.signInWithEmailAndPassword(userName,password)).thenReturn(true)
+
+
+        viewModel.onUsernameChange(userName)
+        viewModel.onPasswordChange(password)
+
+
+        // When
+        val result = viewModel.login()
+
+
+        // Then
+        assertThat(result).isTrue()
+        val state = viewModel.state.value
+        assertThat(state.isSuccess).isTrue()
+        assertThat(state.error).isNull()
+
     }
+
+
+    @Test
+    fun `When process login with new user Then save user and return login success`() = runTest {
+
+        val newUsername = "newuser@example.com"
+        val password = "password123"
+
+        // Given
+        `when`(mockAuthService.getCurrentUserEmail()).thenReturn(null)
+        `when`(mockAuthService.createUserWithEmailAndPassword(newUsername,password)).thenReturn(true)
+
+        viewModel.onUsernameChange(newUsername)
+        viewModel.onPasswordChange(password)
+
+        // When
+        viewModel.login()
+
+        // Then
+        val state = viewModel.state.value
+        assertThat(state.isSuccess).isTrue()
+        assertThat(state.error).isNull()
+
+    }
+
 
     @Test
     fun `When process login with empty username Then return login failed`() = testScope.runTest {
@@ -121,7 +157,9 @@ class LoginTest {
 
         val newUsername = "newuser@example.com"
         val password = "password123"
-        // Arrange
+
+
+        // Given
         val errorMessage = "Login failed due to invalid credentials"
         `when`(mockLoginShared.getString("usuario")).thenReturn("")
 
@@ -131,14 +169,14 @@ class LoginTest {
             .thenThrow(RuntimeException(errorMessage))
 
 
-        // Act
+        // When
         viewModel.onUsernameChange(newUsername)
         viewModel.onPasswordChange(password)
 
         assertThat(viewModel.login()).isFalse()
 
 
-        // Assert
+        // Then
         assertThat(viewModel.state.first().error).isEqualTo(errorMessage)
         assertThat(viewModel.state.value.isSuccess).isFalse()
 
