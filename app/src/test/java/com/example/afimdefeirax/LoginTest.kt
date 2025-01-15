@@ -26,7 +26,6 @@ import org.junit.runner.RunWith
 
 import org.mockito.Mock
 import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
@@ -45,15 +44,6 @@ class LoginTest {
 
     @Mock
     private lateinit var mockAuth: FirebaseAuth
-
-    @Mock
-    private lateinit var mockTask: Task<AuthResult>
-
-    @Mock
-    private lateinit var mockAuthResult: AuthResult
-
-    @Mock
-    private lateinit var mockFirebaseUser: FirebaseUser
 
     @Mock
     private lateinit var mockLoginShared: ILoginShared
