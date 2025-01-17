@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.afimdefeirax.SharedPreferences.LoginShared
+import com.example.afimdefeirax.SharedPreferences.LoginSharedImpl
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -14,13 +14,13 @@ class SplashActivity : AppCompatActivity() {
         private const val ID ="id"
     }
 
-    private lateinit var mSharedLogin: LoginShared
+    private lateinit var mSharedLogin: LoginSharedImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
-        mSharedLogin = LoginShared(application.applicationContext)
+        mSharedLogin = LoginSharedImpl(application.applicationContext)
         verifyAcess()
     }
 
@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
         if (!mSharedLogin.getString(ID).isNullOrEmpty()) {
             startActivity(Intent(this, MainActivity::class.java))
         } else {
-            startActivity(Intent(this, LoginActivity::class.java))
+//            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 

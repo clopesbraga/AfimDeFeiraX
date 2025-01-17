@@ -14,10 +14,4 @@ class LoginModel {
     @ColumnInfo(name="usuario")
     var usuario: String=""
 
-    @ColumnInfo(name="nome")
-    var nome: String=""
-
-    @ColumnInfo(name="senha")
-    var senha: String=""
-
 }

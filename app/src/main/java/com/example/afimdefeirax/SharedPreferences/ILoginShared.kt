@@ -1,6 +1,6 @@
 package com.example.afimdefeirax.SharedPreferences
 
-interface ISharedPreferences {
+interface ILoginShared {
 
 
     fun storeString(key: String, str: String){

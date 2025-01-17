@@ -9,12 +9,12 @@ plugins {
 
 android {
 
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.example.afimdefeirax"
         minSdk 24
-        targetSdk 33
+        targetSdk 35
         versionCode 1
         versionName "1.1.0"
 
@@ -42,32 +42,37 @@ android {
     namespace 'com.example.afimdefeirax'
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.13"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.15.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.6'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.8.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.7'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.8.5'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.navigation:navigation-compose:2.8.5"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.8.5"
+
+
+
 
     //Compose
-    def composeBom = platform("androidx.compose:compose-bom:2024.09.02")
+    def composeBom = platform("androidx.compose:compose-bom:2025.01.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
     //Integration with activities
-    implementation 'androidx.activity:activity-compose:1.9.2'
+    implementation 'androidx.activity:activity-compose:1.10.0'
 
     //Integration with ViewModels
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7'
 
     //Integration with LiveData
     implementation 'androidx.compose.runtime:runtime-livedata'
@@ -91,12 +96,14 @@ dependencies {
 
     //Room database
     implementation 'androidx.room:room-runtime:2.6.1'
-    implementation 'androidx.annotation:annotation:1.9.0'
+    implementation 'androidx.annotation:annotation:1.9.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt 'androidx.room:room-compiler:2.6.1'
 
     // Koin for Android
-    implementation ("io.insert-koin:koin-android:3.5.0")
+    implementation ("io.insert-koin:koin-android:3.5.3")
+    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
+
 
     //MAPS
     implementation 'com.google.android.gms:play-services-location:21.3.0'
@@ -104,9 +111,10 @@ dependencies {
     implementation("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
 
     //Firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
 
     //Graficos
     implementation ("io.github.ehsannarmani:compose-charts:0.0.14")
@@ -117,12 +125,33 @@ dependencies {
 
 
     //Unit Test
+
+    //Junit 4
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.assertj:assertj-core:2.0.0"
-    testImplementation "androidx.arch.core:core-testing:2.2.0"
-    testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation("com.google.truth:truth:1.1.3")
+
+
+    //Mockito
     testImplementation "org.mockito:mockito-core:5.8.0"
-    testImplementation "io.mockk:mockk:1.12.0"
+    testImplementation("org.mockito:mockito-inline:4.8.0")
+    testImplementation ("io.mockk:mockk:1.12.0")
+
+
+    //Roboletric
+    testImplementation 'org.robolectric:robolectric:4.9'
+
+    //Coroutines Test
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
+
+
+    // AndroidX Test
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("androidx.test:core-ktx:1.6.1")
+    testImplementation("androidx.test.ext:junit-ktx:1.2.1")
+    testImplementation("androidx.test:runner:1.6.2")
+    testImplementation("androidx.test:rules:1.6.1")
+
 
 
     //Instrumented Test
@@ -134,9 +163,12 @@ dependencies {
    //Desconsiderando stdlib-jdk7:1.8.0 e stdlib-jdk8:1.8.0
     dependencies {
 
+        testImplementation 'androidx.test:runner:1.6.2'
+        testImplementation 'androidx.test.ext:junit:1.2.1'
+
 
 //        implementation 'androidx.compose.ui:ui-desktop:1.7.0'
-        implementation 'androidx.activity:activity:1.9.3'
+        implementation 'androidx.activity:activity-ktx:1.10.0'
         implementation 'androidx.test.ext:junit-ktx:1.2.1'
         constraints {
             implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
