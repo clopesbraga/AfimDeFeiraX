@@ -1,41 +1,46 @@
 package com.example.afimdefeirax.ViewModel
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.ViewModel
 import com.example.afimdefeirax.Model.LoginModel
-import com.example.afimdefeirax.SharedPreferences.LoginShared
+import com.example.afimdefeirax.SharedPreferences.ILoginShared
+import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.ViewModel.State.LoginUiState
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
-import com.google.firebase.auth.auth
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
+import org.koin.java.KoinJavaComponent.inject
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class LoginViewModel(
+    private val loginShared: ILoginShared,
+    private val authservice: FirebaseAuthServiceImpl,
+    private var skipInit: Boolean = false
+) : ViewModel() {
 
 
-    private val auth = Firebase.auth
     private val firebase: FirebaseAnalytics = Firebase.analytics
-    private val _state = MutableStateFlow(LoginUiState())
-    val state = _state.asStateFlow()
+    private val _state: MutableStateFlow<LoginUiState> = MutableStateFlow(LoginUiState())
+    val state: StateFlow<LoginUiState> = _state
 
-    private val msharedlogin = LoginShared(application.applicationContext)
 
+    private val _loginResult = MutableSharedFlow<Boolean>()
 
     init {
-        _state.update { currrentState ->
 
-            currrentState.copy(
-                username = auth.currentUser?.email ?: "",
-                auth = auth
-            )
+        if (!skipInit) {
+
+            _state.update { currrentState ->
+
+                currrentState.copy(
+                    username = authservice.getCurrentUserEmail() ?: ""
+                )
+
+            }
+
 
         }
     }
@@ -52,50 +57,42 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun login():Boolean {
-        var response =false
+    suspend fun login(): Boolean {
 
-        viewModelScope.launch {
-
-            if (_state.value.username.isNotEmpty()) {
-
-                _state.update { it.copy(isLoading = true, error = null) }
-
-                try {
-
-                    if (_state.value.username == localSave()) {
-
-                        val login = auth.signInWithEmailAndPassword(
-                            _state.value.username,
-                            _state.value.password
-                        ).await()
-                        _state.update { it.copy(isLoading = false, isSuccess = true) }
-                        response = true
-                        firebase.logEvent(Monitoring.Login.LOGIN_SUCCESS,null)
-                    } else {
-
-                        val create = auth.createUserWithEmailAndPassword(
-                            _state.value.username,
-                            _state.value.password
-                        ).await()
-                        localSave()
-                        response = true
-                        firebase.logEvent(Monitoring.Login.LOGIN_SUCCESS,null)
-                    }
-
-                } catch (e: Exception) {
-
-                    _state.update { it.copy(isLoading = false, error = e.message) }
-                    firebase.logEvent(Monitoring.Login.LOGIN_ERROR,null)
-                    Log.e(Monitoring.Login.LOGIN_ERROR+": ", "${e.message}")
-
-                }
-            } else {
-                firebase.logEvent(Monitoring.Login.LOGIN_FAILED,null)
-                Log.d(Monitoring.Login.LOGIN_FAILED, "username is empty")            }
+        if (_state.value.username.isEmpty()) {
+            _state.update { it.copy(isLoading = false, error = "Invalid credentials") }
+            return false
         }
 
-        return response
+        _state.update { it.copy(isLoading = true, error = null) }
+
+        return try {
+            val userSaved = loginShared.getString("usuario")
+            val success = if (_state.value.username == userSaved) {
+                authservice.signInWithEmailAndPassword(
+                    _state.value.username,
+                    _state.value.password
+                )
+                true
+            } else {
+                authservice.createUserWithEmailAndPassword(
+                    _state.value.username,
+                    _state.value.password
+                )
+                localSave()
+                true
+            }
+
+            _state.update { it.copy(isLoading = false, isSuccess = true) }
+            firebase.logEvent(Monitoring.Login.LOGIN_SUCCESS, null)
+            _loginResult.emit(success)
+            true
+        } catch (_: Exception) {
+            _state.update { it.copy(isLoading = false, error = "Login failed due to invalid credentials") }
+            firebase.logEvent(Monitoring.Login.LOGIN_FAILED, null)
+            _loginResult.emit(false)
+            false
+        }
     }
 
 
@@ -105,11 +102,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             this.id = id
             this.usuario = _state.value.username
         }
-        msharedlogin.storeString("id", modelousuario.id.toString())
-        msharedlogin.storeString("usuario", modelousuario.usuario)
+        loginShared.storeString("id", modelousuario.id.toString())
+        loginShared.storeString("usuario", modelousuario.usuario)
 
         return modelousuario.usuario
     }
-
-
 }
+
+
