@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,7 +41,8 @@ import com.example.afimdefeirax.ViewModel.LoginViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
-import org.koin.androidx.compose.koinViewModel
+import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 import androidx.compose.ui.text.input.PasswordVisualTransformation as PasswordVisualTransformation1
 
 
@@ -54,15 +56,16 @@ fun LoginScreenPreview() {
 }
 
 @Composable
-fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit ){
+fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit) {
 
     val firebase: FirebaseAnalytics = Firebase.analytics
 
     showBottomBar(false)
-    val viewModel = koinViewModel<LoginViewModel>()
+    val viewModel: LoginViewModel = koinInject()
     val state by viewModel.state.collectAsState()
+    val coroutineScope = rememberCoroutineScope()
 
-    firebase.logEvent(Monitoring.Login.LOGIN_SCREEN,null)
+    firebase.logEvent(Monitoring.Login.LOGIN_SCREEN, null)
 
     Column(
         modifier = Modifier
@@ -74,7 +77,7 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit
         ) {
 
 
-        Box{
+        Box {
 
             Image(
                 painter = painterResource(id = R.mipmap.ic_logo_app_foreground),
@@ -90,7 +93,7 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit
         Box {
             OutlinedTextField(
                 value = state.username,
-                onValueChange = {  viewModel.onUsernameChange(it) },
+                onValueChange = { viewModel.onUsernameChange(it) },
                 label = { Text(text = stringResource(R.string.input_user), color = Color.White) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 singleLine = true,
@@ -109,12 +112,12 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit
         Box {
             OutlinedTextField(
                 value = state.password,
-                onValueChange = { viewModel.onPasswordChange(it)},
+                onValueChange = { viewModel.onPasswordChange(it) },
                 label = { Text(stringResource(R.string.input_password), color = Color.White) },
                 visualTransformation = PasswordVisualTransformation1(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                colors=OutlinedTextFieldDefaults.colors(
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color.White,
                     unfocusedBorderColor = Color.White,
                     disabledBorderColor = Color.White,
@@ -125,7 +128,7 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit
         }
         Spacer(modifier = Modifier.height(16.dp))
 
-        Box{
+        Box {
             OutlinedButton(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
@@ -133,15 +136,21 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit
                     disabledContentColor = Color.White,
                 ),
                 border = ButtonDefaults.outlinedButtonBorder(),
-                enabled= !state.isLoading, onClick = {
-                if(viewModel.login())
-                    navController.navigate("map") },
+                enabled = !state.isLoading,
+                onClick = {
+                    coroutineScope.launch {
+
+                        if (viewModel.login())
+                            navController.navigate("map")
+
+                    }
+                },
             ) {
                 if (state.isLoading) {
                     CircularProgressIndicator()
                     navController.navigate("map")
                 } else {
-                    firebase.logEvent(Monitoring.Login.LOGIN_BUTTON_CLICKED,null)
+                    firebase.logEvent(Monitoring.Login.LOGIN_BUTTON_CLICKED, null)
                     Text(stringResource(R.string.confirm_login))
                 }
             }

@@ -3,7 +3,10 @@ package com.example.afimdefeirax.Modules
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
 import com.example.afimdefeirax.Repository.HistoricoRepository
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
+import com.example.afimdefeirax.SharedPreferences.ILoginShared
 import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
+import com.example.afimdefeirax.SharedPreferences.LoginSharedImpl
+import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.LocationImpl
 import com.example.afimdefeirax.ViewModel.HistoricoViewModel
@@ -11,9 +14,9 @@ import com.example.afimdefeirax.ViewModel.LoginViewModel
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val appModule = module{
@@ -24,6 +27,10 @@ val appModule = module{
      single {LocationServices.getFusedLocationProviderClient(androidContext()) }
      single {LocationImpl(get())}
      single {FocusCamera()}
+     single { LoginSharedImpl(androidContext()) }
+     single { FirebaseAuth.getInstance() }
+     factory { FirebaseAuthServiceImpl (get())}
+     single <ILoginShared> { LoginSharedImpl(androidContext()) }
      single { ListProdutosShared(androidContext()) }
      single { HistoricoShared(androidContext()) }
  }
@@ -32,7 +39,7 @@ val viewModelModule = module {
      viewModel{ MapaFeirasViewModel(get()) }
      viewModel{ ProdutosViewModel(get()) }
      viewModel{ HistoricoViewModel(get()) }
-     viewModelOf(::LoginViewModel)
+     factory{ LoginViewModel(get(),get(),false) }
 }
 
 

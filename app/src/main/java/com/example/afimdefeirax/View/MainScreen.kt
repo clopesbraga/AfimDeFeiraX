@@ -25,7 +25,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.example.afimdefeirax.SharedPreferences.LoginShared
+import com.example.afimdefeirax.SharedPreferences.LoginSharedImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.MenuBar
 import com.example.afimdefeirax.View.Screens.LoginScreen
@@ -42,7 +42,7 @@ private val menuOptionsBar = listOf(
 )
 
 private var startScreen:String=""
-private lateinit var mSharedLogin :LoginShared
+private lateinit var mSharedLogin :LoginSharedImpl
 private const val ID ="id"
 
 
@@ -55,7 +55,7 @@ class MainScreen : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             val showBottomBar = remember { mutableStateOf(true) }
-            mSharedLogin = LoginShared(application.applicationContext)
+            mSharedLogin = LoginSharedImpl(application.applicationContext)
             val firebase: FirebaseAnalytics = Firebase.analytics
 
             firebase.logEvent(Monitoring.Main.MAIN_SCREEN,null)
@@ -130,6 +130,6 @@ fun MenuBottomBar(navController: NavHostController) {
     }
 }
 
-private fun verifyAcess(mSharedLogin: LoginShared):Boolean{
+private fun verifyAcess(mSharedLogin: LoginSharedImpl):Boolean{
     return mSharedLogin.getString(ID).isNotEmpty()
 }
