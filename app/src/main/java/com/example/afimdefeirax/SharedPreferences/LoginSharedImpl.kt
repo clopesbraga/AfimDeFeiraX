@@ -3,7 +3,7 @@ package com.example.afimdefeirax.SharedPreferences
 import android.content.Context
 import android.content.SharedPreferences
 
-class LoginShared(context:Context):ISharedPreferences {
+class LoginSharedImpl(context:Context):ILoginShared {
     val sharedlogin:SharedPreferences=
         context.getSharedPreferences("Login",Context.MODE_PRIVATE)
 
