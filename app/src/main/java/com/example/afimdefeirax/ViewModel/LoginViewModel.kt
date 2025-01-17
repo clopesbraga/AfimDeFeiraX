@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import org.koin.java.KoinJavaComponent.inject
 
 class LoginViewModel(
     private val loginShared: ILoginShared,
