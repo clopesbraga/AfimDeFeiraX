@@ -37,10 +37,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.R
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.ViewModel.LoginViewModel
 import com.google.firebase.Firebase
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.analytics
+//import com.google.firebase.analytics.FirebaseAnalytics
+//import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import androidx.compose.ui.text.input.PasswordVisualTransformation as PasswordVisualTransformation1
@@ -58,14 +59,14 @@ fun LoginScreenPreview() {
 @Composable
 fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit) {
 
-    val firebase: FirebaseAnalytics = Firebase.analytics
-
     showBottomBar(false)
+
+    val analytics: FirebaseAnalyticsImpl =koinInject()
     val viewModel: LoginViewModel = koinInject()
     val state by viewModel.state.collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
-    firebase.logEvent(Monitoring.Login.LOGIN_SCREEN, null)
+    analytics.firebaselogEvent(Monitoring.Login.LOGIN_SCREEN)
 
     Column(
         modifier = Modifier
@@ -150,7 +151,7 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
                     CircularProgressIndicator()
                     navController.navigate("map")
                 } else {
-                    firebase.logEvent(Monitoring.Login.LOGIN_BUTTON_CLICKED, null)
+                    analytics.firebaselogEvent(Monitoring.Login.LOGIN_BUTTON_CLICKED)
                     Text(stringResource(R.string.confirm_login))
                 }
             }
