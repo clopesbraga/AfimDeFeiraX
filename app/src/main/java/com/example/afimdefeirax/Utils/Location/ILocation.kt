@@ -1,4 +1,4 @@
-package com.example.afimdefeirax.Utils
+package com.example.afimdefeirax.Utils.Location
 
 import com.google.android.gms.maps.model.LatLng
 

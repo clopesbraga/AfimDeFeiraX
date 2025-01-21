@@ -1,7 +1,6 @@
-package com.example.afimdefeirax.Utils
+package com.example.afimdefeirax.Utils.Location
 
 
-import android.app.Application
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.model.LatLng
 
