@@ -3,6 +3,7 @@ package com.example.afimdefeirax
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.afimdefeirax.SharedPreferences.ILoginShared
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.ViewModel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +39,8 @@ class LoginTest {
     private val testDispatcher = StandardTestDispatcher()
     private val testScope = TestScope(testDispatcher)
 
+    @Mock
+    private lateinit var mockAnalytics: FirebaseAnalyticsImpl
 
     @Mock
     private lateinit var mockAuth: FirebaseAuth
@@ -62,6 +65,7 @@ class LoginTest {
         viewModel = LoginViewModel(
             authservice = mockAuthService,
             loginShared = mockLoginShared,
+            analyticservice = mockAnalytics,
             skipInit = true
         )
 
