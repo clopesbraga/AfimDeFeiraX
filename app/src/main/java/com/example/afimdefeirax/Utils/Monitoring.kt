@@ -11,6 +11,7 @@ object Monitoring{
         const val LOGIN_BUTTON_CLICKED= "login_button_clicked"
         const val LOGIN_FAILED = "login_failed"
         const val LOGIN_ERROR = "login_error"
+        const val  LOGIN_PROCESS="login process"
    }
 
     object Main{
