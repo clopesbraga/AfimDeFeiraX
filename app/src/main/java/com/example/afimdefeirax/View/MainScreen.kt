@@ -79,7 +79,7 @@ class MainScreen : ComponentActivity() {
                 )
                 {
                     composable(route = "login") { LoginScreen(navController, showBottomBar = ({ showBottomBar.value = it })) }
-                    composable(route = "map") { MapFeirasScreen(navController) }
+                    composable(route = "map") { MapFeirasScreen(navController,showBottomBar = ({ showBottomBar.value = it })) }
 //                    composable(route = "hist") { HistoricoScreen(navController, showBottomBar) }
                 }
 
