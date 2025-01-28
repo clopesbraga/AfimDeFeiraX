@@ -39,9 +39,6 @@ import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.ViewModel.LoginViewModel
-import com.google.firebase.Firebase
-//import com.google.firebase.analytics.FirebaseAnalytics
-//import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import androidx.compose.ui.text.input.PasswordVisualTransformation as PasswordVisualTransformation1
