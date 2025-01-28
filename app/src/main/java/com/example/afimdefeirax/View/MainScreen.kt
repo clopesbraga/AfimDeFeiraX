@@ -13,12 +13,15 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -41,9 +44,9 @@ private val menuOptionsBar = listOf(
     MenuBar(name = "Historico", icons = Icons.Filled.DateRange),
 )
 
-private var startScreen:String=""
-private lateinit var mSharedLogin :LoginSharedImpl
-private const val ID ="id"
+private var startScreen: String = ""
+private lateinit var mSharedLogin: LoginSharedImpl
+private const val ID = "id"
 
 
 class MainScreen : ComponentActivity() {
@@ -58,17 +61,17 @@ class MainScreen : ComponentActivity() {
             mSharedLogin = LoginSharedImpl(application.applicationContext)
             val firebase: FirebaseAnalytics = Firebase.analytics
 
-            firebase.logEvent(Monitoring.Main.MAIN_SCREEN,null)
+            firebase.logEvent(Monitoring.Main.MAIN_SCREEN, null)
 
             Scaffold(
                 bottomBar = {
                     if (showBottomBar.value) {
                         MenuBottomBar(navController)
                     }
-                })
-            { innerpading ->
+                }
+            ) { innerpading ->
 
-                if(verifyAcess(mSharedLogin)) startScreen ="map" else startScreen = "login"
+                if (verifyAcess(mSharedLogin)) startScreen = "map" else startScreen = "login"
 
                 NavHost(
                     modifier = Modifier
@@ -78,8 +81,18 @@ class MainScreen : ComponentActivity() {
                     startDestination = startScreen
                 )
                 {
-                    composable(route = "login") { LoginScreen(navController, showBottomBar = ({ showBottomBar.value = it })) }
-                    composable(route = "map") { MapFeirasScreen(navController,showBottomBar = ({ showBottomBar.value = it })) }
+                    composable(route = "login") {
+                        LoginScreen(
+                            navController,
+                            showBottomBar = ({ showBottomBar.value = it })
+                        )
+                    }
+                    composable(route = "map") {
+                        MapFeirasScreen(
+                            navController,
+                            showBottomBar = ({ showBottomBar.value = it })
+                        )
+                    }
 //                    composable(route = "hist") { HistoricoScreen(navController, showBottomBar) }
                 }
 
@@ -96,12 +109,16 @@ class MainScreen : ComponentActivity() {
 fun MenuBottomBar(navController: NavHostController) {
     var selectedItem = menuOptionsBar.first()
 
-    BottomAppBar {
+    BottomAppBar(
+        containerColor = Color(0xFF009688),
+    ) {
+
         val actions = @Composable {
             menuOptionsBar.forEach { item ->
                 val text = item.name
                 val icon = item.icons
                 NavigationBarItem(
+                    colors = NavigationBarItemDefaults.colors(Color(0xFF009688)),
                     alwaysShowLabel = false,
                     selected = selectedItem == item,
                     onClick = {
@@ -120,8 +137,9 @@ fun MenuBottomBar(navController: NavHostController) {
                         })
                     },
                     icon = { Icon(imageVector = icon, contentDescription = null) },
-                    label = { Text(text = text) },
-                )
+                    label = { Text(text = text, color = Color.White) },
+
+                    )
 
             }
 
@@ -130,6 +148,6 @@ fun MenuBottomBar(navController: NavHostController) {
     }
 }
 
-private fun verifyAcess(mSharedLogin: LoginSharedImpl):Boolean{
+private fun verifyAcess(mSharedLogin: LoginSharedImpl): Boolean {
     return mSharedLogin.getString(ID).isNotEmpty()
 }
