@@ -109,9 +109,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.3.0'
     implementation("com.google.android.gms:play-services-maps:19.0.0")
     implementation("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
+    implementation("com.google.accompanist:accompanist-permissions:0.31.2-alpha")
 
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.maps.android:maps-compose:6.0.0")
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
