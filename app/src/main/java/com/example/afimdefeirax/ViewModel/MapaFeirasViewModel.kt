@@ -14,7 +14,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
 import com.example.afimdefeirax.Utils.FocusCamera
-import com.example.afimdefeirax.Utils.LocationImpl
+import com.example.afimdefeirax.Utils.Location.LocationImpl
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -26,9 +26,9 @@ import java.io.IOException
 import java.util.Objects
 
 
-class MapaFeirasViewModel(application: Application) : ViewModel() {
+class MapaFeirasViewModel(private val application: Application) : ViewModel() {
 
-    private val application: Application = application
+
     private lateinit var userLocation: LatLng
     private val camera : FocusCamera by inject(FocusCamera::class.java)
     private val locationProvider : LocationImpl by inject(LocationImpl::class.java)
