@@ -104,7 +104,6 @@ class MainScreen : ComponentActivity() {
 
 }
 
-
 @Composable
 fun MenuBottomBar(navController: NavHostController) {
     var selectedItem = menuOptionsBar.first()

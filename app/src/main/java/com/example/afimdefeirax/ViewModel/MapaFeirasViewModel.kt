@@ -33,6 +33,7 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
     private val camera : FocusCamera by inject(FocusCamera::class.java)
     private val locationProvider : LocationImpl by inject(LocationImpl::class.java)
     private val feirasRepository : FeirasRepositoryImpl by inject(FeirasRepositoryImpl::class.java)
+    private var googleMap: GoogleMap? = null
 
 
 
@@ -98,7 +99,12 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
         camera.focusCamera(userLocation,map)
     }
 
-     fun geoLocalization(cidade: String, bairro: String, map: GoogleMap) {
+    fun googleMap(map: GoogleMap){
+
+        googleMap =map
+    }
+
+     fun geoLocalization(cidade: String, bairro: String) {
 
         val local = "$cidade,$bairro"
         val gc = Geocoder(application.applicationContext)
@@ -110,7 +116,7 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
         }
         val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]
 
-        map.animateCamera(
+         googleMap?.animateCamera(
             CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
         )
     }
