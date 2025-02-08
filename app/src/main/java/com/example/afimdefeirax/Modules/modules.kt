@@ -6,6 +6,7 @@ import com.example.afimdefeirax.SharedPreferences.HistoricoShared
 import com.example.afimdefeirax.SharedPreferences.ILoginShared
 import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
 import com.example.afimdefeirax.SharedPreferences.LoginSharedImpl
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.Location.LocationImpl
@@ -31,6 +32,7 @@ val appModule = module{
      single { LoginSharedImpl(androidContext()) }
      single { FirebaseAuth.getInstance() }
      factory { FirebaseAuthServiceImpl (get())}
+     factory{FirebaseAnalyticsImpl(get())}
      single{ FirebaseAnalytics.getInstance(get())}
      factory{ FirebaseAuthServiceImpl(get()) }
      single <ILoginShared> { LoginSharedImpl(androidContext()) }
