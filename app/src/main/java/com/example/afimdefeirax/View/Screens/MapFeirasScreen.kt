@@ -48,7 +48,6 @@ import com.google.maps.android.compose.MapsComposeExperimentalApi
 import org.koin.compose.koinInject
 import com.google.maps.android.compose.MapEffect
 import com.example.afimdefeirax.R
-import com.example.afimdefeirax.R.mipmap
 import com.example.afimdefeirax.R.mipmap.*
 import com.example.afimdefeirax.Utils.CarouselItem
 import com.example.afimdefeirax.View.Components.ListOfNeighborHood
