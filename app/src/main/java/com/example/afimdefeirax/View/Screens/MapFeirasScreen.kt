@@ -1,6 +1,7 @@
 package com.example.afimdefeirax.View.Screens
 
 
+import android.Manifest
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,7 +38,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
@@ -49,16 +49,16 @@ import org.koin.compose.koinInject
 import com.google.maps.android.compose.MapEffect
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.R.mipmap.*
-import com.example.afimdefeirax.Utils.CarouselItem
-import com.example.afimdefeirax.View.Components.ListOfNeighborHood
-import kotlin.text.contains
+import com.example.afimdefeirax.State.MapFeirasUIState
+import com.example.afimdefeirax.Utils.Flags
+import com.example.afimdefeirax.View.Components.SearchNeighborHoodComponent
 
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun RequestLocationPermission() {
     val locationPermissionState =
-        rememberPermissionState(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
 
 
 
@@ -71,46 +71,26 @@ fun RequestLocationPermission() {
 
 @OptIn(MapsComposeExperimentalApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun MapFeirasScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit) {
+fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
+
 
     showBottomBar(true)
-
-    val mapProperties = MapProperties(isMyLocationEnabled = true)
-    val uiSettings = MapUiSettings(zoomControlsEnabled = false)
-
     val viewModel: MapaFeirasViewModel = koinInject()
-
-    var showBottomSheet = remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
     val listState = rememberLazyListState()
 
-    val spNeighborhoods = stringArrayResource(id = R.array.sp_bairros)
-    val guaruNeighborhoods = stringArrayResource(id = R.array.guaru_bairros)
-    val suzanoNeighborhoods = stringArrayResource(id = R.array.suza_bairros)
-    val osNeighborhoods = stringArrayResource(id = R.array.osasco_bairros)
-    val mauaNeighborhoods = stringArrayResource(id = R.array.maua_bairros)
-    val andreNeighborhoods = stringArrayResource(id = R.array.andre_bairros)
-    val bernardoNeighborhoods = stringArrayResource(id = R.array.bernado_bairros)
-    val catetanoNeighborhoods = stringArrayResource(id = R.array.caetano_bairros)
-    var cityImages by remember { mutableStateOf(ic_bandeira_saopaulo) }
 
-    val cityFlags = mapOf(
-        "SAO PAULO" to ic_bandeira_saopaulo,
-        "GUARULHOS" to ic_bandeira_guarulhos,
-        "SUZANO" to ic_bandeira_suzano,
-        "OSASCO" to ic_bandeira_osasco,
-        "MAUA" to ic_bandeira_maua,
-        "SANTO ANDRE" to ic_bandeira_st_andre,
-        "SAO BERNADO" to ic_bandeira_st_bernado,
-        "SAO CAETANO" to ic_bandeira_st_caetano
-    )
-
+    val mapProperties = MapProperties(isMyLocationEnabled = true)
+    val uiSettings = MapUiSettings(zoomControlsEnabled = false)
+    var showBottomSheet = remember { mutableStateOf(false) }
 
     var selectedCity by remember { mutableStateOf<String?>("SAO PAULO") }
-    var neighborhoodsToShow by remember { mutableStateOf<List<String>>(spNeighborhoods.toList()) }
     val cities = stringArrayResource(id = R.array.cidades)
-
     var searchQuery by remember { mutableStateOf("") }
+    var cityImages by remember { mutableStateOf(ic_bandeira_saopaulo) }
+
+    val spNeighborhoods = stringArrayResource(id = R.array.sp_bairros)
+    var neighborhoodsToShow by remember { mutableStateOf<List<String>>(spNeighborhoods.toList()) }
 
 
     RequestLocationPermission()
@@ -125,7 +105,7 @@ fun MapFeirasScreen(navController: NavHostController, showBottomBar: (Boolean) -
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { showBottomSheet.value = true },
+                onClick = {showBottomSheet.value = true },
                 containerColor = Color(0xFF009688),
                 shape = CircleShape,
                 modifier = Modifier
@@ -170,7 +150,7 @@ fun MapFeirasScreen(navController: NavHostController, showBottomBar: (Boolean) -
         }
         if (showBottomSheet.value) {
             ModalBottomSheet(
-                onDismissRequest = { showBottomSheet.value = false },
+                onDismissRequest = { showBottomSheet.value= false },
                 sheetState = sheetState,
                 containerColor = Color(0xFF009688),
             ) {
@@ -201,58 +181,32 @@ fun MapFeirasScreen(navController: NavHostController, showBottomBar: (Boolean) -
                                             if (isSelected) Color.White else Color.Transparent,
                                             shape = MaterialTheme.shapes.medium
                                         )
-
-
                                         .clickable {
                                             selectedCity = cities[index]
-                                            neighborhoodsToShow = when (selectedCity) {
-                                                "SAO PAULO" -> spNeighborhoods.toList()
-                                                "GUARULHOS" -> guaruNeighborhoods.toList()
-                                                "SUZANO" -> suzanoNeighborhoods.toList()
-                                                "OSASCO" -> osNeighborhoods.toList()
-                                                "MAUA" -> mauaNeighborhoods.toList()
-                                                "SAO BERNADO" -> bernardoNeighborhoods.toList()
-                                                "SAO CAETANO" -> catetanoNeighborhoods.toList()
-                                                "SANTO ANDRE" -> andreNeighborhoods.toList()
-                                                else -> spNeighborhoods.toList()
-                                            }
+                                            neighborhoodsToShow =
+                                                viewModel.neighborhoodsMap[selectedCity]?.toList()
+                                                    ?: emptyList()
                                             cityImages =
-                                                cityFlags[selectedCity] ?: ic_bandeira_saopaulo
+                                                Flags[selectedCity] ?: ic_bandeira_saopaulo
                                         }
                                         .padding(horizontal = 16.dp, vertical = 0.dp)
 
                                 )
                             }
                         }
-
                         TextField(
                             value = searchQuery,
-                            onValueChange = { searchQuery = it },
+                            onValueChange = {searchQuery = it },
                             label = { Text("Pesquisar bairros") },
                             modifier = Modifier.fillMaxWidth()
                         )
-                        val filteredCarouselItems = neighborhoodsToShow.filter {
-                            it.contains(searchQuery, ignoreCase = true)
-                        }.map { bairro ->
-                            CarouselItem(
-                                bairros = bairro,
-                                imageResId = cityImages,
-                                contentDescriptionResId = R.string.app_name
-                            )
-                        }
-                        if (filteredCarouselItems.isEmpty()) {
-                            Text(
-                                text = "Nenhum bairro encontrado",
-                                color = Color.White,
-                                modifier = Modifier.padding(16.dp)
-                            )
-                        } else {
-                            ListOfNeighborHood(
-                                filteredCarouselItems,
-                                selectedCity,
-                                viewModel
-                            )
-                        }
+                        SearchNeighborHoodComponent(
+                            searchQuery,
+                            neighborhoodsToShow,
+                            cityImages,
+                            selectedCity,
+                            viewModel
+                        )
                     }
                 }
 
@@ -267,5 +221,7 @@ fun MapFeirasScreen(navController: NavHostController, showBottomBar: (Boolean) -
 
 
 }
+
+
 
 

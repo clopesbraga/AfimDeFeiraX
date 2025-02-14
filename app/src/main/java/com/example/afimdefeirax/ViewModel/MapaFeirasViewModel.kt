@@ -30,11 +30,23 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
 
 
     private lateinit var userLocation: LatLng
-    private val camera : FocusCamera by inject(FocusCamera::class.java)
-    private val locationProvider : LocationImpl by inject(LocationImpl::class.java)
-    private val feirasRepository : FeirasRepositoryImpl by inject(FeirasRepositoryImpl::class.java)
+    private val camera: FocusCamera by inject(FocusCamera::class.java)
+    private val locationProvider: LocationImpl by inject(LocationImpl::class.java)
+    private val feirasRepository: FeirasRepositoryImpl by inject(FeirasRepositoryImpl::class.java)
     private var googleMap: GoogleMap? = null
 
+    val neighborhoodsMap: Map<String, List<String>> by lazy {
+        mapOf(
+            "SAO PAULO" to application.resources.getStringArray(R.array.sp_bairros).toList(),
+            "GUARULHOS" to application.resources.getStringArray(R.array.guaru_bairros).toList(),
+            "SUZANO" to application.resources.getStringArray(R.array.suza_bairros).toList(),
+            "OSASCO" to application.resources.getStringArray(R.array.osasco_bairros).toList(),
+            "MAUA" to application.resources.getStringArray(R.array.maua_bairros).toList(),
+            "SANTO ANDRE" to application.resources.getStringArray(R.array.andre_bairros).toList(),
+            "SAO BERNADO" to application.resources.getStringArray(R.array.bernado_bairros).toList(),
+            "SAO CAETANO" to application.resources.getStringArray(R.array.caetano_bairros).toList()
+        )
+    }
 
 
     fun showMyLocalizationIn(map: GoogleMap) {
@@ -80,7 +92,7 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
         }
     }
 
-     fun showFeirasLocalizationIn(map: GoogleMap) {
+    fun showFeirasLocalizationIn(map: GoogleMap) {
         feirasRepository.getFeirasLocations { feiras ->
             feiras.forEach { feira ->
                 val latLng = LatLng(feira.Latitude.toDouble(), feira.Longitude.toDouble())
@@ -95,16 +107,16 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
         }
     }
 
-    fun focusUserCamera(map: GoogleMap){
-        camera.focusCamera(userLocation,map)
+    fun focusUserCamera(map: GoogleMap) {
+        camera.focusCamera(userLocation, map)
     }
 
-    fun googleMap(map: GoogleMap){
+    fun googleMap(map: GoogleMap) {
 
-        googleMap =map
+        googleMap = map
     }
 
-     fun geoLocalization(cidade: String, bairro: String) {
+    fun geoLocalization(cidade: String, bairro: String) {
 
         val local = "$cidade,$bairro"
         val gc = Geocoder(application.applicationContext)
@@ -116,9 +128,11 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
         }
         val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]
 
-         googleMap?.animateCamera(
+        googleMap?.animateCamera(
             CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
         )
     }
+
+
 
 }

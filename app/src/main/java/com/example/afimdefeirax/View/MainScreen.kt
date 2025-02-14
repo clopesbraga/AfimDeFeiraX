@@ -88,7 +88,6 @@ class MainScreen : ComponentActivity() {
                     }
                     composable(route = "map") {
                         MapFeirasScreen(
-                            navController,
                             showBottomBar = ({ showBottomBar.value = it })
                         )
                     }
