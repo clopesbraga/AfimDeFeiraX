@@ -6,7 +6,7 @@ import com.example.afimdefeirax.SharedPreferences.ILoginShared
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.Utils.Monitoring
-import com.example.afimdefeirax.ViewModel.State.LoginUiState
+import com.example.afimdefeirax.State.LoginUiState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

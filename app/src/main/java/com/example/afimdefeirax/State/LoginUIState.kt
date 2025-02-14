@@ -1,4 +1,4 @@
-package com.example.afimdefeirax.ViewModel.State
+package com.example.afimdefeirax.State
 
 data class LoginUiState(
     val username: String="",
