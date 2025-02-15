@@ -2,8 +2,6 @@ package com.example.afimdefeirax.View.Screens
 
 
 import android.Manifest
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +16,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,15 +25,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.unit.dp
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -48,9 +42,7 @@ import com.google.maps.android.compose.MapsComposeExperimentalApi
 import org.koin.compose.koinInject
 import com.google.maps.android.compose.MapEffect
 import com.example.afimdefeirax.R
-import com.example.afimdefeirax.R.mipmap.*
-import com.example.afimdefeirax.State.MapFeirasUIState
-import com.example.afimdefeirax.Utils.Flags
+import com.example.afimdefeirax.View.Components.CitiesMenuComponent
 import com.example.afimdefeirax.View.Components.SearchNeighborHoodComponent
 
 
@@ -59,8 +51,6 @@ import com.example.afimdefeirax.View.Components.SearchNeighborHoodComponent
 fun RequestLocationPermission() {
     val locationPermissionState =
         rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
-
-
 
     LaunchedEffect(Unit) {
         if (!locationPermissionState.equals(true)) {
@@ -73,29 +63,18 @@ fun RequestLocationPermission() {
 @Composable
 fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
-
     showBottomBar(true)
     val viewModel: MapaFeirasViewModel = koinInject()
+    val state by viewModel.state.collectAsState()
+
     val sheetState = rememberModalBottomSheetState()
     val listState = rememberLazyListState()
 
-
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
-    var showBottomSheet = remember { mutableStateOf(false) }
-
-    var selectedCity by remember { mutableStateOf<String?>("SAO PAULO") }
-    val cities = stringArrayResource(id = R.array.cidades)
-    var searchQuery by remember { mutableStateOf("") }
-    var cityImages by remember { mutableStateOf(ic_bandeira_saopaulo) }
-
-    val spNeighborhoods = stringArrayResource(id = R.array.sp_bairros)
-    var neighborhoodsToShow by remember { mutableStateOf<List<String>>(spNeighborhoods.toList()) }
-
 
     RequestLocationPermission()
     Scaffold(
-
         Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
@@ -105,12 +84,11 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {showBottomSheet.value = true },
+                onClick = { viewModel.toggleBottomSheet() },
                 containerColor = Color(0xFF009688),
                 shape = CircleShape,
                 modifier = Modifier
                     .padding(16.dp)
-
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_lupa_pesquisa),
@@ -141,16 +119,12 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                         viewModel.googleMap(it)
 
                     }
-
-
                 }
-
             }
-
         }
-        if (showBottomSheet.value) {
+        if (state.showBottomSheet) {
             ModalBottomSheet(
-                onDismissRequest = { showBottomSheet.value= false },
+                onDismissRequest = { viewModel.toggleBottomSheet() },
                 sheetState = sheetState,
                 containerColor = Color(0xFF009688),
             ) {
@@ -167,59 +141,36 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                             modifier = Modifier
                                 .height(80.dp)
                         ) {
-                            items(cities.size) { index ->
-                                val isSelected = cities[index] == selectedCity
+                            items(viewModel.cities.size) { index ->
+                                val isSelected = viewModel.cities[index] == state.selectedCity
 
-                                Text(
-                                    text = cities[index],
-                                    color = if (isSelected) Color(0xFF009688) else Color.White,
-
-                                    fontSize = MaterialTheme.typography.titleMedium.fontSize,
-                                    modifier = Modifier
-                                        .height(40.dp)
-                                        .background(
-                                            if (isSelected) Color.White else Color.Transparent,
-                                            shape = MaterialTheme.shapes.medium
-                                        )
-                                        .clickable {
-                                            selectedCity = cities[index]
-                                            neighborhoodsToShow =
-                                                viewModel.neighborhoodsMap[selectedCity]?.toList()
-                                                    ?: emptyList()
-                                            cityImages =
-                                                Flags[selectedCity] ?: ic_bandeira_saopaulo
-                                        }
-                                        .padding(horizontal = 16.dp, vertical = 0.dp)
-
+                                CitiesMenuComponent(
+                                    viewModel.cities,
+                                    index,
+                                    isSelected,
+                                    viewModel,
+                                    state
                                 )
                             }
                         }
                         TextField(
-                            value = searchQuery,
-                            onValueChange = {searchQuery = it },
+                            value = state.searchQuery,
+                            onValueChange = { viewModel.onSearchQueryChange(it) },
                             label = { Text("Pesquisar bairros") },
                             modifier = Modifier.fillMaxWidth()
                         )
                         SearchNeighborHoodComponent(
-                            searchQuery,
-                            neighborhoodsToShow,
-                            cityImages,
-                            selectedCity,
+                            state.searchQuery,
+                            state.neighborhoodsToShow,
+                            state.cityImages,
+                            state.selectedCity,
                             viewModel
                         )
                     }
                 }
-
-
             }
-
-
         }
-
-
     }
-
-
 }
 
 

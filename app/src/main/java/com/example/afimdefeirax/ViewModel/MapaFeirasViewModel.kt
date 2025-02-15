@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
+import com.example.afimdefeirax.State.MapFeirasUIState
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.Location.LocationImpl
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,6 +21,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.inject
 import java.io.IOException
@@ -35,6 +38,24 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
     private val feirasRepository: FeirasRepositoryImpl by inject(FeirasRepositoryImpl::class.java)
     private var googleMap: GoogleMap? = null
 
+    private val _state: MutableStateFlow<MapFeirasUIState> = MutableStateFlow(MapFeirasUIState())
+    val state: MutableStateFlow<MapFeirasUIState> = _state
+
+    init {
+        _state.update{currentState->
+            currentState.copy(
+                selectedCity = "SAOPAULO",
+                cityImages = R.mipmap.ic_bandeira_saopaulo,
+                searchQuery = "",
+                showBottomSheet = false,
+                neighborhoodsToShow = application.resources.getStringArray(R.array.sp_bairros).toList()
+
+            )
+        }
+    }
+
+    val cities = application.resources.getStringArray(R.array.cidades)
+
     val neighborhoodsMap: Map<String, List<String>> by lazy {
         mapOf(
             "SAO PAULO" to application.resources.getStringArray(R.array.sp_bairros).toList(),
@@ -48,6 +69,39 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
         )
     }
 
+
+    fun onCityChange(newCity: String) {
+        _state.update { currentState ->
+            currentState.copy(selectedCity = newCity)
+        }
+
+    }
+    fun onCityImageChange(newImage: Int) {
+        _state.update { currentState ->
+            currentState.copy(cityImages = newImage)
+        }
+    }
+
+    fun onSearchQueryChange(newQuery: String) {
+        _state.update { currentState ->
+            currentState.copy(searchQuery = newQuery)
+        }
+
+    }
+
+    fun toggleBottomSheet() {
+        _state.update { currentState ->
+            currentState.copy(showBottomSheet = !currentState.showBottomSheet)
+        }
+    }
+
+    fun onNeighborhoodSelected(neighborhood: List<String>) {
+
+        _state.update { currentState ->
+            currentState.copy(neighborhoodsToShow = neighborhood)
+        }
+
+    }
 
     fun showMyLocalizationIn(map: GoogleMap) {
 
