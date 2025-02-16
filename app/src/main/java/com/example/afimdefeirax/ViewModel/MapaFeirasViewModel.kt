@@ -147,16 +147,19 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
     }
 
     fun showFeirasLocalizationIn(map: GoogleMap) {
-        feirasRepository.getFeirasLocations { feiras ->
-            feiras.forEach { feira ->
-                val latLng = LatLng(feira.Latitude.toDouble(), feira.Longitude.toDouble())
-                map.addMarker(
-                    MarkerOptions()
-                        .position(latLng)
-                        .title(feira.Feira)
-                        .snippet("${feira.endereco},${feira.bairro}")
-                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
-                )
+        viewModelScope.launch{
+
+            feirasRepository.getFeirasLocations { feiras ->
+                feiras.forEach { feira ->
+                    val latLng = LatLng(feira.Latitude.toDouble(), feira.Longitude.toDouble())
+                    map.addMarker(
+                        MarkerOptions()
+                            .position(latLng)
+                            .title(feira.Feira)
+                            .snippet("${feira.endereco},${feira.bairro}")
+                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
+                    )
+                }
             }
         }
     }
