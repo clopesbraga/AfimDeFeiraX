@@ -44,7 +44,7 @@ class MapaFeirasViewModel(private val application: Application) : ViewModel() {
     init {
         _state.update{currentState->
             currentState.copy(
-                selectedCity = "SAOPAULO",
+                selectedCity ="SAO PAULO",
                 cityImages = R.mipmap.ic_bandeira_saopaulo,
                 searchQuery = "",
                 showBottomSheet = false,

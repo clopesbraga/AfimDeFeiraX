@@ -3,7 +3,7 @@ import com.example.afimdefeirax.R.mipmap.ic_bandeira_saopaulo
 
 
 data class MapFeirasUIState(
-    var selectedCity: String = "SAOPAULO",
+    var selectedCity: String ="SAO PAULO",
     var searchQuery: String = "",
     var cityImages: Int = ic_bandeira_saopaulo,
     var showBottomSheet: Boolean = false,

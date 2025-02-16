@@ -150,7 +150,6 @@ fun SearchNeighborHoodComponent(
     index: Int,
     isSelected: Boolean,
     viewModel: MapaFeirasViewModel,
-    state: MapFeirasUIState,
 ) {
     Text(
         text = cities[index],
@@ -166,12 +165,9 @@ fun SearchNeighborHoodComponent(
             .clickable {
                 viewModel.onCityChange(cities[index])
                 viewModel.onNeighborhoodSelected(
-                    viewModel.neighborhoodsMap[state.selectedCity]?.toList()
-                        ?: emptyList()
+                    viewModel.neighborhoodsMap[cities[index]]?.toList() ?: emptyList()
                 )
-                viewModel.onCityImageChange(
-                    Flags[state.selectedCity] ?: ic_bandeira_saopaulo
-                )
+                viewModel.onCityImageChange(Flags[cities[index]] ?:ic_bandeira_saopaulo)
             }
             .padding(horizontal = 16.dp, vertical = 0.dp)
     )

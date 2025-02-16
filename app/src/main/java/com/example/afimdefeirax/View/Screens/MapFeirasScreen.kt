@@ -2,6 +2,7 @@ package com.example.afimdefeirax.View.Screens
 
 
 import android.Manifest
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -101,14 +102,15 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
         Column(
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(innerpadding)
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Box {
 
                 GoogleMap(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xFF009688)),
                     properties = mapProperties,
                     uiSettings = uiSettings,
                 ) {
@@ -149,7 +151,6 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                                     index,
                                     isSelected,
                                     viewModel,
-                                    state
                                 )
                             }
                         }
