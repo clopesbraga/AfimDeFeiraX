@@ -29,14 +29,14 @@ import java.io.IOException
 import java.util.Objects
 
 
-class MapaFeirasViewModel(private val application: Application) : ViewModel() {
-
-
-    private lateinit var userLocation: LatLng
-    private val camera: FocusCamera by inject(FocusCamera::class.java)
-    private val locationProvider: LocationImpl by inject(LocationImpl::class.java)
-    private val feirasRepository: FeirasRepositoryImpl by inject(FeirasRepositoryImpl::class.java)
-    private var googleMap: GoogleMap? = null
+class MapaFeirasViewModel(
+    private val application: Application,
+    private var locationProvider: LocationImpl,
+    private var camera: FocusCamera,
+    private var userLocation: LatLng,
+    private var feirasRepository: FeirasRepositoryImpl,
+    private var googleMap: GoogleMap
+) : ViewModel() {
 
     private val _state: MutableStateFlow<MapFeirasUIState> = MutableStateFlow(MapFeirasUIState())
     val state: MutableStateFlow<MapFeirasUIState> = _state
