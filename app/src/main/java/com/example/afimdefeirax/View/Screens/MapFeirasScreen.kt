@@ -116,7 +116,8 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                 GoogleMap(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color(0xFF009688)),
+                        .background(Color(0xFF009688))
+                        .padding(innerpadding),
                     properties = mapProperties,
                     uiSettings = uiSettings,
                 ) {
