@@ -43,6 +43,8 @@ import com.google.maps.android.compose.MapsComposeExperimentalApi
 import org.koin.compose.koinInject
 import com.google.maps.android.compose.MapEffect
 import com.example.afimdefeirax.R
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
+import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.CitiesMenuComponent
 import com.example.afimdefeirax.View.Components.SearchNeighborHoodComponent
 
@@ -64,6 +66,7 @@ fun RequestLocationPermission() {
 @Composable
 fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
+    val analytics: FirebaseAnalyticsImpl =koinInject()
     showBottomBar(true)
     val viewModel: MapaFeirasViewModel = koinInject()
     val state by viewModel.state.collectAsState()
@@ -73,6 +76,8 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
+
+    analytics.firebaselogEvent(Monitoring.Map.MAP_SCREEN)
 
     RequestLocationPermission()
     Scaffold(
@@ -91,6 +96,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                 modifier = Modifier
                     .padding(16.dp)
             ) {
+                analytics.firebaselogEvent(Monitoring.Map.FLOATING_BUTTON_PRESSED)
                 Icon(
                     painter = painterResource(id = R.drawable.ic_lupa_pesquisa),
                     contentDescription = "Lupa de Pesquisa Icon",
@@ -130,7 +136,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                 sheetState = sheetState,
                 containerColor = Color(0xFF009688),
             ) {
-
+                analytics.firebaselogEvent(Monitoring.Map.SHOW_MENU_NEIGHBORS)
                 Box(
                     modifier = Modifier
                         .fillMaxHeight(0.5f)

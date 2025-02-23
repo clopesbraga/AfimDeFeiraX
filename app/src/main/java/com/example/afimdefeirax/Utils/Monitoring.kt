@@ -18,6 +18,19 @@ object Monitoring{
 
         const val MAIN_SCREEN = "main"
 
+
+    }
+
+    object Map{
+
+        const val MAP_SCREEN="map"
+        const val MAP_MARKER_LOCALIZATION = "map/starts-user-marker"
+        const val MAP_MARKER_FEIRAS ="map/starts-feiras-marker"
+
+        const val FLOATING_BUTTON_PRESSED = "map/pressionado-button-localizacao"
+        const val SHOW_MENU_NEIGHBORS ="map/mostra menu"
+
+
     }
 
 

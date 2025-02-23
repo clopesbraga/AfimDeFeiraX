@@ -6,6 +6,7 @@ import android.location.LocationProvider
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
 import com.example.afimdefeirax.Repository.FeiraRepository.IFeiraRepository
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.Location.LocationImpl
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
@@ -69,6 +70,9 @@ class MapFeirasTest {
     @Mock
     private lateinit var mockResources: Resources
 
+    @Mock
+    private lateinit var mockAnalytics: FirebaseAnalyticsImpl
+
 
     @Before
     fun setup(){
@@ -86,9 +90,8 @@ class MapFeirasTest {
         viewModel = MapaFeirasViewModel(
             application = mockApplication,
             locationProvider = mockLocationProvider,
-            userLocation = mockUserLocation,
             feirasRepository = mockFeirasRepository,
-            googleMap = mockGooglemap,
+            analyticservice = mockAnalytics,
             camera = mockCamera
         )
     }

@@ -14,8 +14,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
 import com.example.afimdefeirax.State.MapFeirasUIState
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.Location.LocationImpl
+import com.example.afimdefeirax.Utils.Monitoring
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -24,7 +26,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.koin.java.KoinJavaComponent.inject
 import java.io.IOException
 import java.util.Objects
 
@@ -33,22 +34,27 @@ class MapaFeirasViewModel(
     private val application: Application,
     private var locationProvider: LocationImpl,
     private var camera: FocusCamera,
-    private var userLocation: LatLng,
     private var feirasRepository: FeirasRepositoryImpl,
-    private var googleMap: GoogleMap
+    private val analyticservice: FirebaseAnalyticsImpl
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<MapFeirasUIState> = MutableStateFlow(MapFeirasUIState())
     val state: MutableStateFlow<MapFeirasUIState> = _state
 
+    private lateinit var googleMap: GoogleMap
+    private lateinit var userLocation: LatLng
+
+
+
     init {
-        _state.update{currentState->
+        _state.update { currentState ->
             currentState.copy(
-                selectedCity ="SAO PAULO",
+                selectedCity = "SAO PAULO",
                 cityImages = R.mipmap.ic_bandeira_saopaulo,
                 searchQuery = "",
                 showBottomSheet = false,
-                neighborhoodsToShow = application.resources.getStringArray(R.array.sp_bairros).toList()
+                neighborhoodsToShow = application.resources.getStringArray(R.array.sp_bairros)
+                    .toList()
 
             )
         }
@@ -76,6 +82,7 @@ class MapaFeirasViewModel(
         }
 
     }
+
     fun onCityImageChange(newImage: Int) {
         _state.update { currentState ->
             currentState.copy(cityImages = newImage)
@@ -104,7 +111,7 @@ class MapaFeirasViewModel(
     }
 
     fun showMyLocalizationIn(map: GoogleMap) {
-
+        analyticservice.firebaselogEvent(Monitoring.Map.MAP_MARKER_LOCALIZATION)
         viewModelScope.launch {
 
             when {
@@ -124,7 +131,6 @@ class MapaFeirasViewModel(
                 }
 
                 else -> {
-                    // Obter o contexto da Activity
                     val activityContext = when (application) {
                         is Activity -> application
                         is ContextWrapper -> application.baseContext as? Activity
@@ -146,8 +152,10 @@ class MapaFeirasViewModel(
         }
     }
 
+
     fun showFeirasLocalizationIn(map: GoogleMap) {
-        viewModelScope.launch{
+        analyticservice.firebaselogEvent(Monitoring.Map.MAP_MARKER_FEIRAS)
+        viewModelScope.launch {
 
             feirasRepository.getFeirasLocations { feiras ->
                 feiras.forEach { feira ->
@@ -173,6 +181,7 @@ class MapaFeirasViewModel(
         googleMap = map
     }
 
+
     fun geoLocalization(cidade: String, bairro: String) {
 
         val local = "$cidade,$bairro"
@@ -189,7 +198,6 @@ class MapaFeirasViewModel(
             CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
         )
     }
-
 
 
 }
