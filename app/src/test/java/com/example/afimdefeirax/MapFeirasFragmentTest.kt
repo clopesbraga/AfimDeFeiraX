@@ -1,7 +1,7 @@
 package com.example.afimdefeirax
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.afimdefeirax.Utils.LocationImpl
+import com.example.afimdefeirax.Utils.Location.LocationImpl
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.model.LatLng
 import io.mockk.MockKAnnotations

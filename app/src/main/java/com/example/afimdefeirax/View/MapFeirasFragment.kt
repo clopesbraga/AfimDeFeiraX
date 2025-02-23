@@ -166,7 +166,6 @@ class MapFeirasFragment : Fragment(), OnMapReadyCallback {
             viewModel.geoLocalization(
                 spinnerselecaodacidade.getSelectedItem().toString(),
                 spinnerselecaodobairro.getSelectedItem().toString(),
-                map
             )
         }
         mensagem.setNegativeButton("Voltar") { dialog, which -> }

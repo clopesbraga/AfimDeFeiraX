@@ -3,12 +3,10 @@ package com.example.afimdefeirax.ViewModel
 import androidx.lifecycle.ViewModel
 import com.example.afimdefeirax.Model.LoginModel
 import com.example.afimdefeirax.SharedPreferences.ILoginShared
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.Utils.Monitoring
-import com.example.afimdefeirax.ViewModel.State.LoginUiState
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.analytics
+import com.example.afimdefeirax.State.LoginUiState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,11 +15,11 @@ import kotlinx.coroutines.flow.update
 class LoginViewModel(
     private val loginShared: ILoginShared,
     private val authservice: FirebaseAuthServiceImpl,
+    private val analyticservice: FirebaseAnalyticsImpl,
     private var skipInit: Boolean = false
 ) : ViewModel() {
 
 
-    private val firebase: FirebaseAnalytics = Firebase.analytics
     private val _state: MutableStateFlow<LoginUiState> = MutableStateFlow(LoginUiState())
     val state: StateFlow<LoginUiState> = _state
 
@@ -66,6 +64,7 @@ class LoginViewModel(
         _state.update { it.copy(isLoading = true, error = null) }
 
         return try {
+            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_PROCESS)
             val userSaved = loginShared.getString("usuario")
             val success = if (_state.value.username == userSaved) {
                 authservice.signInWithEmailAndPassword(
@@ -83,12 +82,12 @@ class LoginViewModel(
             }
 
             _state.update { it.copy(isLoading = false, isSuccess = true) }
-            firebase.logEvent(Monitoring.Login.LOGIN_SUCCESS, null)
+            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_SUCCESS)
             _loginResult.emit(success)
             true
         } catch (_: Exception) {
-            _state.update { it.copy(isLoading = false, error = "Login failed due to invalid credentials") }
-            firebase.logEvent(Monitoring.Login.LOGIN_FAILED, null)
+            _state.update { it.copy(isLoading = false, error = Monitoring.Login.LOGIN_FAILED) }
+            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
             _loginResult.emit(false)
             false
         }
