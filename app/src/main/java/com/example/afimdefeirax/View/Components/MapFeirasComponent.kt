@@ -35,7 +35,9 @@ package com.example.afimdefeirax.View.Components
  import com.example.afimdefeirax.R
  import com.example.afimdefeirax.R.mipmap.ic_bandeira_saopaulo
  import com.example.afimdefeirax.Utils.CarouselItem
+ import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
  import com.example.afimdefeirax.Utils.Flags
+ import com.example.afimdefeirax.Utils.Monitoring
  import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
 
 @Composable
@@ -43,9 +45,9 @@ package com.example.afimdefeirax.View.Components
 fun ListOfNeighborHoodComponent(
     filteredCarouselItems: List<CarouselItem>,
     selectedCity: String?,
-    viewModel: MapaFeirasViewModel
+    viewModel: MapaFeirasViewModel,
+    analytics: FirebaseAnalyticsImpl
 ) {
-
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsDraggedAsState()
 
@@ -80,6 +82,7 @@ fun ListOfNeighborHoodComponent(
                         interactionSource = interactionSource,
                         indication =null,
                     ) {
+                        analytics.firebaselogEvent(Monitoring.Map.NEIGHBOR_SELECTED)
                         selectedItem = item
                         selectedCity?.let { city ->
                             viewModel.geoLocalization(city,item.bairros)
@@ -117,7 +120,8 @@ fun SearchNeighborHoodComponent(
     neighborhoodsToShow: List<String>,
     cityImages: Int,
     selectedCity: String?,
-    viewModel: MapaFeirasViewModel
+    viewModel: MapaFeirasViewModel,
+    analytics: FirebaseAnalyticsImpl
 ) {
     val filteredCarouselItems = neighborhoodsToShow.filter {
         it.contains(searchQuery, ignoreCase = true)
@@ -138,7 +142,8 @@ fun SearchNeighborHoodComponent(
         ListOfNeighborHoodComponent(
             filteredCarouselItems,
             selectedCity,
-            viewModel
+            viewModel,
+            analytics
         )
     }
 }
@@ -149,6 +154,7 @@ fun SearchNeighborHoodComponent(
     index: Int,
     isSelected: Boolean,
     viewModel: MapaFeirasViewModel,
+    analytics:FirebaseAnalyticsImpl
 ) {
     Text(
         text = cities[index],
@@ -162,6 +168,7 @@ fun SearchNeighborHoodComponent(
                 shape = MaterialTheme.shapes.medium
             )
             .clickable {
+                analytics.firebaselogEvent(Monitoring.Map.CITY_SELECTED)
                 viewModel.onCityChange(cities[index])
                 viewModel.onNeighborhoodSelected(
                     viewModel.neighborhoodsMap[cities[index]]?.toList() ?: emptyList()

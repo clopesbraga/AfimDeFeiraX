@@ -158,6 +158,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                                     index,
                                     isSelected,
                                     viewModel,
+                                    analytics
                                 )
                             }
                         }
@@ -172,7 +173,8 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                             state.neighborhoodsToShow,
                             state.cityImages,
                             state.selectedCity,
-                            viewModel
+                            viewModel,
+                            analytics
                         )
                     }
                 }
