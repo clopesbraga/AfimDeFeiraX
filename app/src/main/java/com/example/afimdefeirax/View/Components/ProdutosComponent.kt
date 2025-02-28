@@ -115,3 +115,24 @@ fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
     }
     onValueChange(currentValue)
 }
+
+
+@Composable
+fun ButtonMeasureComponent(
+    unidade: String,
+    selectedMeasure: String,
+    onSelected: (String) -> Unit = {}
+) {
+    val selecionadoBota = unidade == selectedMeasure
+    OutlinedButton(
+        shape = RoundedCornerShape(8.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (selecionadoBota) Color.Green else Color.Transparent
+        ),
+        onClick = {
+            onSelected(unidade)
+        }
+    ) {
+        Text(unidade, color = Color.Black)
+    }
+}

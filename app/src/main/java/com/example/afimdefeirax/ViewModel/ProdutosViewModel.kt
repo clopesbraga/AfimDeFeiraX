@@ -2,20 +2,29 @@ package com.example.afimdefeirax.ViewModel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.Model.Historico
 import com.example.afimdefeirax.Model.Produtos
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
 import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
-import org.koin.java.KoinJavaComponent.inject
+import com.example.afimdefeirax.State.ProdutosUiState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class ProdutosViewModel(application: Application) : ViewModel() {
+class ProdutosViewModel(
+    private val application: Application,
+    private val produtosshared: ListProdutosShared,
+    private val historicoshared: HistoricoShared,
+) : ViewModel() {
 
-    val produtosshared: ListProdutosShared by inject(ListProdutosShared::class.java)
-    val historicoshared: HistoricoShared by inject(HistoricoShared::class.java)
+    private val _state: MutableStateFlow<ProdutosUiState> = MutableStateFlow(ProdutosUiState())
+    val state = _state
+
     var listprodutos = mutableListOf<Produtos>()
     var historico = mutableListOf<Historico>()
 
-    private val application: Application = application
+
 
     fun takeProduts(productimage: Int, productname: String) {
 
@@ -33,7 +42,17 @@ class ProdutosViewModel(application: Application) : ViewModel() {
     }
 
     fun loadProducts(): List<Produtos> {
-        return produtosshared.loadItems(application.applicationContext)
+        var listprodutos =listOf<Produtos>()
+        viewModelScope.launch{
+            try{
+
+                listprodutos=produtosshared.loadItems(application.applicationContext)
+
+            }catch (e: Exception){
+
+            }
+        }
+        return listprodutos
     }
 
     fun removeProduct(productItem: Produtos) {

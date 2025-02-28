@@ -1,9 +1,6 @@
 package com.example.afimdefeirax.View.Screens
 
-import android.R
-import android.os.Bundle
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
@@ -21,7 +18,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -30,7 +26,6 @@ import androidx.compose.material3.CheckboxDefaults.colors
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -49,40 +44,34 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.afimdefeirax.View.Components.ButtonMeasureComponent
 import com.example.afimdefeirax.View.Components.SeletorPesoComponent
 import com.example.afimdefeirax.View.Components.SeletorPrecoComponent
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
-import com.example.afimdefeirax.databinding.ActivityProdutoListBinding
-import org.koin.android.ext.android.inject
 import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-    fun ProdutosListScreen(navController: NavHostController,showBottomBar: (Boolean)->Unit) {
+fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit) {
 
-        showBottomBar(false)
-        val viewModel: ProdutosViewModel =koinInject()
-        var selectedNumber by remember { mutableStateOf(1) }
+    showBottomBar(false)
+    val viewModel: ProdutosViewModel = koinInject()
+    var selectedNumber by remember { mutableStateOf(1) }
 
-        var respostaPreco = remember {
-            mutableStateListOf(*List(viewModel.loadProducts().size) { "" }.toTypedArray()) }
+    var respostaPreco = remember {
+        mutableStateListOf(*List(viewModel.loadProducts().size) { "" }.toTypedArray())
+    }
 
-
-        var respostaPeso by  remember { mutableStateOf("") }
-        val visibleStates = remember {
-            mutableStateListOf(
-                *List(viewModel.loadProducts().size) { true }.toTypedArray()
-            )
-        }
-
-
-
-        val loadedItems = viewModel.loadProducts()
-
-
+    var respostaPeso by remember { mutableStateOf("") }
+    val visibleStates = remember {
+        mutableStateListOf(
+            *List(viewModel.loadProducts().size) { true }.toTypedArray()
+        )
+    }
+    val loadedItems = viewModel.loadProducts()
     Scaffold(
 
-        topBar ={
+        topBar = {
             TopAppBar(
                 title = {
                     Row(
@@ -95,10 +84,10 @@ import org.koin.compose.koinInject
                 navigationIcon = {
                     IconButton(
 
-                        onClick ={
-                        navController.navigate("comp")
-                    } ) {
-                        Icon(Icons.Filled.ArrowBackIosNew,"Back", tint = Color.White)
+                        onClick = {
+                            navController.navigate("comp")
+                        }) {
+                        Icon(Icons.Filled.ArrowBackIosNew, "Back", tint = Color.White)
                     }
                     colors(Color.White)
                 },
@@ -106,19 +95,17 @@ import org.koin.compose.koinInject
                     containerColor = Color(0xFF009688)
                 ),
 
-            )
+                )
         }
 
-    ) {innerpading ->
+    ) { innerpading ->
 
         LazyColumn(contentPadding = innerpading) {
-            items(loadedItems){item ->
+            items(loadedItems) { item ->
 
                 var currentResposta by remember { mutableStateOf("") }
-                var selecionadoBotaoKG by remember { mutableStateOf(false) }
-                var selecionadoBotaoLT by remember { mutableStateOf(false) }
-                var selecionadoBotaoPC by remember { mutableStateOf(false) }
-                var selecionadoBotaoUN by remember { mutableStateOf(false) }
+                var selectedButton by remember { mutableStateOf("") }
+
                 AnimatedVisibility(
                     visible = visibleStates[loadedItems.indexOf(item)],
                     exit = fadeOut(animationSpec = tween(durationMillis = 500))
@@ -161,69 +148,30 @@ import org.koin.compose.koinInject
                                     Row(horizontalArrangement = Arrangement.End) {
                                         Column {
 
-                                            OutlinedButton(
-                                                shape = RoundedCornerShape(8.dp),
-                                                colors = ButtonDefaults.buttonColors(
-                                                    containerColor = if (selecionadoBotaoKG) Color.Green else Color.Transparent
-                                                ),
-                                                onClick = {
-                                                    selecionadoBotaoKG = !selecionadoBotaoKG
-                                                    selecionadoBotaoLT = false
-                                                    selecionadoBotaoPC = false
-                                                    selecionadoBotaoUN = false
-                                                }
-                                            ) {
-                                                Text("KG", color = Color.Black)
-                                            }
-
-                                            OutlinedButton(
-                                                shape = RoundedCornerShape(8.dp),
-                                                colors = ButtonDefaults.buttonColors(
-                                                    containerColor = if (selecionadoBotaoLT) Color.Green else Color.Transparent
-                                                ),
-                                                onClick = {
-                                                    selecionadoBotaoLT = !selecionadoBotaoLT
-                                                    selecionadoBotaoKG = false
-                                                    selecionadoBotaoPC = false
-                                                    selecionadoBotaoUN = false
-                                                }
-                                            ) {
-                                                Text("LT", color = Color.Black)
-                                            }
+                                            ButtonMeasureComponent(
+                                                unidade = "KG",
+                                                selectedMeasure = selectedButton,
+                                                onSelected = {selectedButton=it}
+                                            )
+                                            ButtonMeasureComponent(
+                                                unidade = "LT",
+                                                selectedMeasure = selectedButton,
+                                                onSelected = {selectedButton=it}
+                                            )
                                         }
 
                                         Column {
 
-                                            OutlinedButton(
-                                                shape = RoundedCornerShape(8.dp),
-                                                colors = ButtonDefaults.buttonColors(
-                                                    containerColor = if (selecionadoBotaoPC) Color.Green else Color.Transparent
-                                                ),
-                                                onClick = {
-                                                    selecionadoBotaoPC = !selecionadoBotaoPC
-                                                    selecionadoBotaoLT = false
-                                                    selecionadoBotaoKG = false
-                                                    selecionadoBotaoUN = false
-                                                }
-                                            ) {
-                                                Text("PC", color = Color.Black)
-                                            }
-
-                                            OutlinedButton(
-                                                shape = RoundedCornerShape(8.dp),
-                                                colors = ButtonDefaults.buttonColors(
-                                                    containerColor = if (selecionadoBotaoUN) Color.Green else Color.Transparent
-                                                ),
-                                                onClick = {
-                                                    selecionadoBotaoUN = !selecionadoBotaoUN
-                                                    selecionadoBotaoKG = false
-                                                    selecionadoBotaoPC = false
-                                                    selecionadoBotaoLT = false
-                                                }
-                                            ) {
-                                                Text("UN", color = Color.Black)
-                                            }
-
+                                            ButtonMeasureComponent(
+                                                unidade = "PC",
+                                                selectedMeasure = selectedButton,
+                                                onSelected = {selectedButton=it}
+                                            )
+                                            ButtonMeasureComponent(
+                                                unidade = "UN",
+                                                selectedMeasure = selectedButton,
+                                                onSelected = {selectedButton=it}
+                                            )
                                         }
 
                                     }
@@ -237,7 +185,7 @@ import org.koin.compose.koinInject
                                 .fillMaxSize(),
                             horizontalAlignment = Alignment.Start
                         ) {
-                            Row{
+                            Row {
 
                                 Button(
                                     colors = ButtonDefaults.buttonColors(
@@ -245,7 +193,7 @@ import org.koin.compose.koinInject
                                     ),
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
-                                        respostaPreco[loadedItems.indexOf(item)]=currentResposta
+                                        respostaPreco[loadedItems.indexOf(item)] = currentResposta
                                         viewModel.requestOfHistorico(
                                             item.itemName,
                                             currentResposta,
@@ -264,7 +212,8 @@ import org.koin.compose.koinInject
                                     onValueChange = { novoValor ->
                                         selectedNumber = novoValor
                                         currentResposta = novoValor.toString()
-                                        respostaPreco[loadedItems.indexOf(item)] = novoValor.toString()
+                                        respostaPreco[loadedItems.indexOf(item)] =
+                                            novoValor.toString()
                                     }
                                 )
 
@@ -274,13 +223,10 @@ import org.koin.compose.koinInject
                     }
                 }
             }
-
-
         }
 
     }
+}
 
-
-    }
 
 

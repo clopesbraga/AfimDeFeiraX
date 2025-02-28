@@ -42,7 +42,7 @@ val appModule = module{
 
 val viewModelModule = module {
      viewModel{ MapaFeirasViewModel(get(),get(),get(),get(),get())}
-     viewModel{ ProdutosViewModel(get()) }
+     viewModel{ ProdutosViewModel(get(),get(),get()) }
      viewModel{ HistoricoViewModel(get()) }
      factory{ LoginViewModel(get(),get(),get(),false) }
 }
