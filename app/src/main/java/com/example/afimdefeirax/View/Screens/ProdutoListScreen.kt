@@ -129,7 +129,8 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                             )
                             Column(
                                 modifier = Modifier
-                                    .padding(8.dp),
+                                    .padding(8.dp)
+                                    .fillMaxWidth(),
                                 horizontalAlignment = Alignment.Start,
                                 verticalArrangement = Arrangement.Center
                             ) {
@@ -145,35 +146,43 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                         }
                                     )
                                     Spacer(modifier = Modifier.size(8.dp))
-                                    Row(horizontalArrangement = Arrangement.End) {
-                                        Column {
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceEvenly
+                                    ) {
+                                        Column{
 
                                             ButtonMeasureComponent(
                                                 unidade = "KG",
                                                 selectedMeasure = selectedButton,
-                                                onSelected = {selectedButton=it}
-                                            )
+                                                onSelected = { selectedButton = it },
+                                                modifier = Modifier.fillMaxWidth()
+
+                                                )
                                             ButtonMeasureComponent(
                                                 unidade = "LT",
                                                 selectedMeasure = selectedButton,
-                                                onSelected = {selectedButton=it}
-                                            )
-                                        }
+                                                onSelected = { selectedButton = it },
+                                                modifier = Modifier.fillMaxWidth()
 
-                                        Column {
+                                                )
 
                                             ButtonMeasureComponent(
                                                 unidade = "PC",
                                                 selectedMeasure = selectedButton,
-                                                onSelected = {selectedButton=it}
-                                            )
+                                                onSelected = { selectedButton = it },
+                                                modifier = Modifier.fillMaxWidth()
+
+                                                )
                                             ButtonMeasureComponent(
                                                 unidade = "UN",
                                                 selectedMeasure = selectedButton,
-                                                onSelected = {selectedButton=it}
-                                            )
-                                        }
+                                                onSelected = { selectedButton = it },
+                                                modifier = Modifier.fillMaxWidth()
 
+                                                )
+
+                                        }
                                     }
                                 }
                             }

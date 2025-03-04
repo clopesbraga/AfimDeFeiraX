@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -29,8 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.coerceAtLeast
-import androidx.compose.ui.unit.coerceAtMost
 import com.example.afimdefeirax.View.Components.preco.PRECO_INICIAL
 import com.example.afimdefeirax.View.Components.preco.PRECO_MAXIMO
 import com.example.afimdefeirax.View.Components.preco.PRECO_MINIMO
@@ -121,10 +120,12 @@ fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
 fun ButtonMeasureComponent(
     unidade: String,
     selectedMeasure: String,
-    onSelected: (String) -> Unit = {}
+    onSelected: (String) -> Unit = {},
+    modifier: Modifier = Modifier
 ) {
     val selecionadoBota = unidade == selectedMeasure
     OutlinedButton(
+        modifier = modifier,
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = if (selecionadoBota) Color.Green else Color.Transparent
