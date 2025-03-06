@@ -69,7 +69,7 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean)->U
             )
         },
 
-        floatingActionButton ={
+        floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate("list") },
                 containerColor = Color(0xFF009688),
