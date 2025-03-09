@@ -1,6 +1,7 @@
 package com.example.afimdefeirax.View.Screens
 
 
+import android.R.attr.onClick
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
@@ -45,6 +46,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.afimdefeirax.View.Components.ButtonMeasureComponent
+import com.example.afimdefeirax.View.Components.MessageNoPrice
 import com.example.afimdefeirax.View.Components.SeletorPesoComponent
 import com.example.afimdefeirax.View.Components.SeletorPrecoComponent
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
@@ -68,6 +70,8 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
             *List(viewModel.loadProducts().size) { true }.toTypedArray()
         )
     }
+    var showDialog by remember { mutableStateOf(false) }
+
     val loadedItems = viewModel.loadProducts()
     Scaffold(
 
@@ -150,8 +154,8 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceEvenly
                                     ) {
-                                        Column{
-                                            listOf("KG","LT","PC","UN").forEach { unity ->
+                                        Column {
+                                            listOf("KG", "LT", "PC", "UN").forEach { unity ->
                                                 ButtonMeasureComponent(
                                                     unidade = unity,
                                                     selectedMeasure = selectedButton,
@@ -180,6 +184,10 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                     ),
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
+                                        if (currentResposta.equals("0")) {
+                                            showDialog = true
+                                            return@Button
+                                        }
                                         respostaPreco[loadedItems.indexOf(item)] = currentResposta
                                         viewModel.requestOfHistorico(
                                             item.itemName,
@@ -191,7 +199,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
 
                                     }
                                 ) {
-                                    Text("Comprar")
+                                    Text("Efetivar")
                                 }
 
                                 Spacer(modifier = Modifier.size(32.dp))
@@ -199,8 +207,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                     onValueChange = { novoValor ->
                                         selectedNumber = novoValor
                                         currentResposta = novoValor.toString()
-                                        respostaPreco[loadedItems.indexOf(item)] =
-                                            novoValor.toString()
+                                        respostaPreco[loadedItems.indexOf(item)] = novoValor.toString()
                                     }
                                 )
 
@@ -213,6 +220,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
         }
 
     }
+    MessageNoPrice(showDialog){showDialog =false}
 }
 
 

@@ -63,7 +63,7 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean)->U
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "Compras", color = Color.White)
+                        Text(text = "Lista de Produtos", color = Color.White)
                     }
                 },
             )
