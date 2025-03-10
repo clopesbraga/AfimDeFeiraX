@@ -38,6 +38,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.example.afimdefeirax.R
 import com.example.afimdefeirax.View.Components.preco.PRECO_INICIAL
 import com.example.afimdefeirax.View.Components.preco.PRECO_MAXIMO
 import com.example.afimdefeirax.View.Components.preco.PRECO_MINIMO
@@ -162,7 +164,7 @@ fun MessageNoPrice(showDialog: Boolean,onDismiss:() ->Unit) {
                 tonalElevation = AlertDialogDefaults.TonalElevation
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Text(text = "Precisar colocar o valor para incluir na lista")
+                    Text(text = stringResource(R.string.warnning_price_message))
                     Spacer(modifier = Modifier.height(24.dp))
                     TextButton(
                         onClick = onDismiss,
