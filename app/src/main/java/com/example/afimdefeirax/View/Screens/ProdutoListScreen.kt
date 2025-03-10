@@ -33,6 +33,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,8 +44,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.afimdefeirax.R
 import com.example.afimdefeirax.View.Components.ButtonMeasureComponent
 import com.example.afimdefeirax.View.Components.MessageNoPrice
 import com.example.afimdefeirax.View.Components.SeletorPesoComponent
@@ -58,7 +61,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
 
     showBottomBar(false)
     val viewModel: ProdutosViewModel = koinInject()
-    var selectedNumber by remember { mutableStateOf(1) }
+    var selectedNumber by remember { mutableIntStateOf(1) }
 
     var respostaPreco = remember {
         mutableStateListOf(*List(viewModel.loadProducts().size) { "" }.toTypedArray())
@@ -82,7 +85,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "Efetivar Compras", color = Color.White)
+                        Text(text = stringResource(R.string.my_list_products), color = Color.White)
                     }
                 },
                 navigationIcon = {
@@ -199,7 +202,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
 
                                     }
                                 ) {
-                                    Text("Efetivar")
+                                    Text(stringResource(R.string.confirm_item_in_list))
                                 }
 
                                 Spacer(modifier = Modifier.size(32.dp))

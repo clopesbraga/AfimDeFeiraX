@@ -16,17 +16,6 @@
     <string name="menu_historico">Histórico</string>
 
 
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-
-
     //TELA LOGIN
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="input_password">Inclua uma senha</string>
@@ -34,7 +23,9 @@
     <string name="confirm_login">Logar/Cadastrar</string>
 
 
-    //PRODUTOS
+
+
+    //TELA PRODUTOS
     <string-array name="produtos">
         <item>VERDURAS</item>
         <item>FRUTAS</item>
@@ -43,6 +34,15 @@
         <item>SALGADOS</item>
         <item>UTENSILIOS</item>
     </string-array>
+
+    <string name="list_of_products">Lista de Produtos</string>
+    <string name="describe_button_list">efetivar as compras</string>
+    <string name="my_list_products">Minha Lista de Compras</string>
+    <string name="confirm_item_in_list">Efetivar</string>
+
+
+
+    //TELA MAPA FEIRAS
 
     //CIDADES
     <string-array name="cidades">
@@ -862,7 +862,6 @@
 
     //MENSAGENS DE ERRO
     <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
-
 
 
 </resources>

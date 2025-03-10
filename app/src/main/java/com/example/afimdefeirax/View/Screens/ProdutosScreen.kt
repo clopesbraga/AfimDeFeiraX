@@ -35,6 +35,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -63,7 +64,7 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean)->U
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "Lista de Produtos", color = Color.White)
+                        Text(text = stringResource(R.string.list_of_products), color = Color.White)
                     }
                 },
             )
@@ -79,7 +80,7 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean)->U
             ){
                 Icon(
                     painter = painterResource(id = R.drawable.ic_nav_btn_produtos),
-                    contentDescription = "efetivar as compras",
+                    contentDescription = stringResource(R.string.describe_button_list),
                     tint = Color.White
                 )
             }
