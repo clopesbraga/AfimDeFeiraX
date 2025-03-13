@@ -37,6 +37,14 @@ object Monitoring{
         const val NEIGHBOR_SELECTED       = MAP_SCREEN+"neighbor"+Actions.SELECTED
     }
 
+    object Product{
+        const val PRODUCT_SCREEN = "product"
+        const val PRODUCT_LOADING_LIST_ERROR =  PRODUCT_SCREEN+"/loading_list_error"
+        const val  PRODUCT_REQUEST_ERROR =      PRODUCT_SCREEN+"/request_error"
+        const val  PRODUCT_SAVE_ERROR =         PRODUCT_SCREEN+"/save_error"
+        const val  PRODUCT_CREATE_LIST_ERROR =  PRODUCT_SCREEN+"/take_prodcutcs_error"
+        const val PRODUCT_REMOVE_ERROR =        PRODUCT_SCREEN+"/remove_products_error"
+    }
 
 
 

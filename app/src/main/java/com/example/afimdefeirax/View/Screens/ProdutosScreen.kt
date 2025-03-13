@@ -1,11 +1,6 @@
-package com.example.afimdefeirax.View
+package com.example.afimdefeirax.View.Screens
 
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,6 +19,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -38,60 +35,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.Fragment
+import androidx.navigation.NavHostController
 import com.example.afimdefeirax.Model.produtosList
+import com.example.afimdefeirax.R
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
-import com.example.afimdefeirax.databinding.FragmentComprasBinding
-import org.koin.android.ext.android.inject
-
-
-class ProdutosFragment : Fragment() {
-
-    private var _binding: FragmentComprasBinding? = null
-    val binding get() = _binding!!
-
-    private val viewModel: ProdutosViewModel by inject()
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentComprasBinding.inflate(inflater, container, false)
-
-
-        binding.composeViewCompras.setContent {
-
-            Column {
-
-                ListProdutos(viewModel)
-                binding.fabCompras
-
-            }
-        }
-
-        binding.fabCompras.setOnClickListener {
-            val intent = Intent(requireContext(), ProdutoListActivity::class.java)
-            startActivity(intent)
-        }
-
-        return binding.root
-    }
-
-
-}
-
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListProdutos(viewModel: ProdutosViewModel) {
+fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit) {
 
+
+   val viewModel : ProdutosViewModel =koinInject()
+    showBottomBar(true)
     Scaffold(
         topBar = {
             TopAppBar(
@@ -103,11 +64,28 @@ fun ListProdutos(viewModel: ProdutosViewModel) {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "Compras", color = Color.White)
+                        Text(text = stringResource(R.string.list_of_products), color = Color.White)
                     }
                 },
             )
+        },
+
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { navController.navigate("list") },
+                containerColor = Color(0xFF009688),
+                shape = CircleShape,
+                modifier = Modifier
+                    .padding(16.dp)
+            ){
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_nav_btn_produtos),
+                    contentDescription = stringResource(R.string.describe_button_list),
+                    tint = Color.White
+                )
+            }
         }
+
     ) { innerpadding ->
 
         LazyColumn(
