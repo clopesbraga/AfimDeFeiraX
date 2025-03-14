@@ -3,6 +3,7 @@ package com.example.afimdefeirax
 import android.app.Application
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.afimdefeirax.Model.Historico
 import com.example.afimdefeirax.Model.Produtos
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
 import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
@@ -32,6 +33,8 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.eq
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -127,6 +130,60 @@ class ProdutoTest {
         verify(mockProdutosShared, times(2)).saveItems(mockContext, productList)
     }
 
+
+    @Test
+    fun removeProducts_should_remove_produtcs()=runTest{
+
+        //Given
+        val product = Produtos(321,"Produto1")
+
+        //When
+        viewModel.removeProduct(product)
+
+        //Then
+        verify(mockProdutosShared).removeItem(mockContext,product)
+
+    }
+
+    @Test
+    fun loadProducts_should_brings_list_of_products() =runTest{
+
+        //Given
+        val productList = listOf(Produtos(1, "Produto 1"), Produtos(2, "Produto 2"))
+        `when`(mockProdutosShared.loadItems(mockContext)).thenReturn(productList)
+
+        //When
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        //Then
+        verify(mockProdutosShared,times(1)).loadItems(mockContext)
+
+    }
+
+    @Test
+    fun requestOfHistoric_should_send_items_for_HistoricoScreen()=runTest{
+
+        // Given
+        val  feira = "Feira do Teste"
+        val price = "5.00"
+        val image = 171
+
+       //When
+        viewModel.requestOfHistorico(feira, price, image)
+        testDispatcher.scheduler.advanceUntilIdle()
+
+
+        //Then
+        val captor = argumentCaptor<List<Historico>>()
+        verify(mockHistoricoShared, times(1)).saveItems(eq(mockContext), captor.capture())
+        val historicoSalvo = captor.firstValue
+
+        assert(historicoSalvo.any {
+            it.nome == feira && it.preco == price && it.imagem == image
+        })
+
+    }
+
     @Test
     fun `takeProduts should log error when exception occurs`() = runTest {
         // Arrange
@@ -138,13 +195,16 @@ class ProdutoTest {
         )
 
         //When
-        `when`(mockProdutosShared.saveItems(mockContext, mockListProdutos)).thenThrow(exception)
+        `when`(mockProdutosShared.saveItems(any(), mockListProdutos)).thenThrow(exception)
         viewModel.takeProduts(productimage, productname)
         testDispatcher.scheduler.advanceUntilIdle()
 
         //Then
         verify(mockAnalytics, times(1)).firebaselogEvent(Monitoring.Product.PRODUCT_SAVE_ERROR)
     }
+
+
+
 
 }
 
