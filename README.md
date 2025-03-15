@@ -24,19 +24,22 @@
 ## Features
 
 - [x] Mapa com as feiras da Região Metropolitana de São Paulo
-- [ ] Lista de compras
-- [ ] Historico dos produtos com média de preço
+- [x] Lista de compras
+- [x] Historico dos produtos com média de preço
 
 ## Demonstração da aplicação
 
 
-|  |  | |
-|--- |--- |--- |
-| | | |
-| | ![Screenshot_20191008-160703](https://github.com/clopesbraga/AfimDeFeiraX/assets/58059669/157ca558-34c4-472b-8a53-e9dc6485b2b4) | ![WhatsApp Image 2019-10-30 at 21 25 49](https://github.com/clopesbraga/AfimDeFeiraX/assets/58059669/7808ac6c-95bb-4f18-b348-e2af0f457508) | row 2 column 3 |
+|  |  | |  |  |
+|--- |--- |--- |---|---|
+|![Screenshot_20250315_002118](https://github.com/user-attachments/assets/0ef61a5d-c8bb-4d47-a99c-7aea9a1cbe8d)|![Screenshot_20250315_002546](https://github.com/user-attachments/assets/323ca696-7219-4f3d-906c-41dacd69c9e7) |![Screenshot_20250315_003532](https://github.com/user-attachments/assets/64ac0bf7-749f-46b1-89ba-3c7db7ca8199)|![Screenshot_20250310_165003](https://github.com/user-attachments/assets/2ea876c4-9a97-4ca0-aaef-5b296f74c617)|![Screenshot_20250315_001802](https://github.com/user-attachments/assets/81f79da4-db25-47e6-a511-499ac6ff4157)|
+
 
 ## Status do Projeto
 🚧  Projeto   Em construção...  🚧
+
+
+
 
 
 
