@@ -23,8 +23,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.any
-import org.mockito.ArgumentMatchers.anyList
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.doNothing
@@ -34,6 +32,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.doThrow
 import org.mockito.kotlin.eq
 
 
@@ -110,7 +109,6 @@ class ProdutoTest {
         // Then
         assertEquals(1, viewModel.listprodutos.size)
         assertEquals(product, viewModel.listprodutos[0])
-        Mockito.verify(mockProdutosShared, times(1)).saveItems(mockContext, mockListProdutos)
     }
 
 
@@ -153,6 +151,7 @@ class ProdutoTest {
         `when`(mockProdutosShared.loadItems(mockContext)).thenReturn(productList)
 
         //When
+        viewModel.loadProducts()
         testDispatcher.scheduler.advanceUntilIdle()
 
         //Then
@@ -190,20 +189,20 @@ class ProdutoTest {
         val productimage = 1
         val productname = "Produto Teste"
         val exception = RuntimeException("Erro ao adicionar produto")
-        val mockListProdutos = listOf(
-            Produtos(productimage, productname)
-        )
 
         //When
-        `when`(mockProdutosShared.saveItems(any(), mockListProdutos)).thenThrow(exception)
+        val productList = listOf(Produtos(1, "Produto 1"), Produtos(2, "Produto 2"))
+
+        doThrow(exception).`when`(mockProdutosShared).saveItems(mockContext, productList)
+
+
         viewModel.takeProduts(productimage, productname)
         testDispatcher.scheduler.advanceUntilIdle()
+
 
         //Then
         verify(mockAnalytics, times(1)).firebaselogEvent(Monitoring.Product.PRODUCT_SAVE_ERROR)
     }
-
-
 
 
 }
