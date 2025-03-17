@@ -46,6 +46,19 @@ object Monitoring{
         const val PRODUCT_REMOVE_ERROR =        PRODUCT_SCREEN+"/remove_products_error"
     }
 
+    object Historic{
+
+        const val HISTORIC_SCREEN = "hist"
+        const val  STARTS_HISTORIC_LOAD  = HISTORIC_SCREEN+"/loading_historic_list"
+        const val  SAVE_HISTORIC    = HISTORIC_SCREEN+"/save_historic_list"
+        const val  UPDATE_HISTORIC  = HISTORIC_SCREEN+"/update_historic_list"
+
+        const val  ERROR_SAVE_HISTORIC  = HISTORIC_SCREEN+"/error_save_historic_list"
+        const val  ERROR_UPDATE_HISTORIC  = HISTORIC_SCREEN+"/error_update_historic_list"
+
+
+    }
+
 
 
 }
