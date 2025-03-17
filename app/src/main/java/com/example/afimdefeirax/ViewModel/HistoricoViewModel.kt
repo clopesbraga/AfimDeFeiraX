@@ -37,11 +37,6 @@ class HistoricoViewModel(
         return msavehistorico.getAll()
     }
 
-    fun saveHistorico() {
-        val item = historicoShared.loadItems(application)
-        save(item)
-    }
-
     private fun save(item: List<Historico>) {
 
         viewModelScope.launch{
