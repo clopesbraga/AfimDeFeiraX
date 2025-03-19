@@ -8,12 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.AddCard
 import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.BarChart
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
@@ -117,8 +113,6 @@ class MainScreen : ComponentActivity() {
                         )
                     }
                 }
-
-
             }
         }
     }
@@ -128,7 +122,7 @@ class MainScreen : ComponentActivity() {
 
 @Composable
 fun MenuBottomBar(navController: NavHostController) {
-//    var selectedItem = menuOptionsBar
+
     var selectedItem by remember { mutableStateOf(menuOptionsBar[0]) }
 
     BottomAppBar(
