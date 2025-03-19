@@ -19,7 +19,7 @@ class LoginViewModel(
     private val loginShared: ILoginShared,
     private val authservice: FirebaseAuthServiceImpl,
     private val analyticservice: FirebaseAnalyticsImpl,
-    private var skipInit: Boolean = false
+    skipInit: Boolean = false
 ) : ViewModel() {
 
 

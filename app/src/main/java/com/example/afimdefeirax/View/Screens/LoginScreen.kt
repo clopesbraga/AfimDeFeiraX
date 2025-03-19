@@ -40,7 +40,6 @@ import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.ViewModel.LoginViewModel
-import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import androidx.compose.ui.text.input.PasswordVisualTransformation as PasswordVisualTransformation1
 
@@ -62,7 +61,6 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
     val analytics: FirebaseAnalyticsImpl =koinInject()
     val viewModel: LoginViewModel = koinInject()
     val state by viewModel.state.collectAsState()
-    val coroutineScope = rememberCoroutineScope()
 
     analytics.firebaselogEvent(Monitoring.Login.LOGIN_SCREEN)
 
