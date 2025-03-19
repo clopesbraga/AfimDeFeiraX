@@ -1,6 +1,7 @@
 package com.example.afimdefeirax.View.Screens
 
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -133,19 +134,14 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
                     contentColor = Color.White,
                     disabledContentColor = Color.White,
                 ),
-                border = ButtonDefaults.outlinedButtonBorder(),
+                border = BorderStroke(1.dp,Color.White),
                 enabled = !state.isLoading,
-                onClick = {
-                    coroutineScope.launch {
-
-                        if (viewModel.login())
-                            navController.navigate("map")
-
-                    }
-                },
+                onClick = {if (viewModel.login()) navController.navigate("map") },
             ) {
                 if (state.isLoading) {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(
+                        color= Color.White
+                    )
                     navController.navigate("map")
                 } else {
                     analytics.firebaselogEvent(Monitoring.Login.LOGIN_BUTTON_CLICKED)
