@@ -1,6 +1,8 @@
 package com.example.afimdefeirax.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.Model.LoginModel
 import com.example.afimdefeirax.SharedPreferences.ILoginShared
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
@@ -11,6 +13,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginShared: ILoginShared,
@@ -54,43 +57,49 @@ class LoginViewModel(
         }
     }
 
-    suspend fun login(): Boolean {
+    fun login(): Boolean {
+        var result = false
+        viewModelScope.launch {
 
-        if (_state.value.username.isEmpty()) {
-            _state.update { it.copy(isLoading = false, error = "Invalid credentials") }
-            return false
-        }
+            if (_state.value.username.isEmpty()) {
+                _state.update { it.copy(isLoading = false, error = "Invalid credentials") }
 
-        _state.update { it.copy(isLoading = true, error = null) }
-
-        return try {
-            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_PROCESS)
-            val userSaved = loginShared.getString("usuario")
-            val success = if (_state.value.username == userSaved) {
-                authservice.signInWithEmailAndPassword(
-                    _state.value.username,
-                    _state.value.password
-                )
-                true
-            } else {
-                authservice.createUserWithEmailAndPassword(
-                    _state.value.username,
-                    _state.value.password
-                )
-                localSave()
-                true
             }
 
-            _state.update { it.copy(isLoading = false, isSuccess = true) }
-            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_SUCCESS)
-            _loginResult.emit(success)
-            true
-        } catch (_: Exception) {
-            _state.update { it.copy(isLoading = false, error = Monitoring.Login.LOGIN_FAILED) }
-            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
-            _loginResult.emit(false)
-            false
+            _state.update { it.copy(isLoading = true, error = null) }
+
+            try {
+                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_PROCESS)
+                val userSaved = loginShared.getString("usuario")
+                val success = if (_state.value.username == userSaved) {
+                    authservice.signInWithEmailAndPassword(
+                        _state.value.username,
+                        _state.value.password
+                    )
+                    result = true
+                    true
+                } else {
+                    authservice.createUserWithEmailAndPassword(
+                        _state.value.username,
+                        _state.value.password
+                    )
+                    localSave()
+                    result = true
+                    true
+                }
+                _state.update { it.copy(isLoading = false, isSuccess = true) }
+                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_SUCCESS)
+                _loginResult.emit(success)
+                result = true
+            } catch (error: Exception) {
+                _state.update { it.copy(isLoading = false, error = Monitoring.Login.LOGIN_FAILED) }
+                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
+                Log.e(Monitoring.Login.LOGIN_FAILED, error.message.toString())
+                _loginResult.emit(false)
+                result = false
+            }
         }
+        return result
     }
 
 
