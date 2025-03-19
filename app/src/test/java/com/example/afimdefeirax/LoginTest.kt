@@ -88,6 +88,7 @@ class LoginTest {
 
         // When
         val result = viewModel.login()
+        testDispatcher.scheduler.advanceUntilIdle()
 
 
         // Then
