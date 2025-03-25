@@ -22,10 +22,8 @@ class LoginViewModel(
     skipInit: Boolean = false
 ) : ViewModel() {
 
-
     private val _state: MutableStateFlow<LoginUiState> = MutableStateFlow(LoginUiState())
     val state: StateFlow<LoginUiState> = _state
-
 
     private val _loginResult = MutableSharedFlow<Boolean>()
 
@@ -38,10 +36,7 @@ class LoginViewModel(
                 currrentState.copy(
                     username = authservice.getCurrentUserEmail() ?: ""
                 )
-
             }
-
-
         }
     }
 
@@ -101,7 +96,6 @@ class LoginViewModel(
         }
         return result
     }
-
 
     private fun localSave(): String {
 

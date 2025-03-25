@@ -9,12 +9,31 @@ data class ItemsModel(
 )
 
 val frutasList = listOf(
-    ItemsModel("Frutas", "Goiaba", R.mipmap.ic_fruta_goiaba_item),
-    ItemsModel("Frutas", "Manga", R.mipmap.ic_fruta_manga_item),
-    ItemsModel("Frutas", "Abacaxi", R.mipmap.ic_abacaxi),
-    ItemsModel("Frutas", "Uva", R.mipmap.ic_uva),
-    ItemsModel("Frutas", "Laranja", R.mipmap.ic_laranja),
-    ItemsModel("Frutas", "Jaca", R.mipmap.ic_jaca),
+
+    ItemsModel("Frutas", "Abacaxi", R.mipmap.ic_fruta_abacaxi_foreground),
+    ItemsModel("Frutas", "Banana", R.mipmap.ic_fruta_banana_foreground),
+    ItemsModel("Frutas", "Caqui", R.mipmap.ic_fruta_caqui_foreground),
+    ItemsModel("Frutas", "Carambola", R.mipmap.ic_fruta_carambola_foreground),
+    ItemsModel("Frutas", "Coco", R.mipmap.ic_fruta_coco_foreground),
+    ItemsModel("Frutas", "Figo", R.mipmap.ic_figo),
+    ItemsModel("Frutas", "Goiaba", R.mipmap.ic_fruta_goiaba_foreground),
+    ItemsModel("Frutas", "Jaboticaba", R.mipmap.ic_fruta_jaboticaba_foreground),
+    ItemsModel("Frutas", "Jaca", R.mipmap.ic_fruta_jaca_foreground),
+    ItemsModel("Frutas", "Kiwi", R.mipmap.ic_fruta_kiwi_foreground),
+    ItemsModel("Frutas", "Laranja", R.mipmap.ic_fruta_laranja_foreground),
+    ItemsModel("Frutas", "Limao", R.mipmap.ic_fruta_limao_foreground),
+    ItemsModel("Frutas", "Lixia", R.mipmap.ic_fruta_lixia_foreground),
+    ItemsModel("Frutas", "Manga", R.mipmap.ic_fruta_manga_foreground),
+    ItemsModel("Frutas", "Mamão", R.mipmap.ic_fruta_mamao_foreground),
+    ItemsModel("Frutas", "Maça", R.mipmap.ic_fruta_maca_foreground),
+    ItemsModel("Frutas", "Maracuja", R.mipmap.ic_fruta_maracuja_foreground),
+    ItemsModel("Frutas", "Melancia", R.mipmap.ic_fruta_melancia_foreground),
+    ItemsModel("Frutas", "Mexirica", R.mipmap.ic_fruta_mexirica_foreground),
+    ItemsModel("Frutas", "Melão", R.mipmap.ic_fruta_melao_foreground),
+    ItemsModel("Frutas", "Morango", R.mipmap.ic_fruta_morango_foreground),
+    ItemsModel("Frutas", "Pera", R.mipmap.ic_fruta_pera_foreground),
+    ItemsModel("Frutas", "Uva", R.mipmap.ic_fruta_uva_foreground),
+
 )
 
 val CarnesList = listOf(
@@ -71,16 +90,16 @@ val LegumesList = listOf(
 
 val verdurasList = listOf(
     ItemsModel("Verduras", "Alface", R.mipmap.ic_alface),
-    ItemsModel("Verduras", "Brocolis", R.mipmap.ic_brocolis),
-    ItemsModel("Verduras", "Broto", R.mipmap.ic_broto),
-    ItemsModel("Verduras", "Couve", R.mipmap.ic_couve),
-    ItemsModel("Verduras", "Chicoria", R.mipmap.ic_chicoria),
+    ItemsModel("Verduras", "Alecrin", R.mipmap.ic_alecrin_foreground),
+    ItemsModel("Verduras", "Acelga", R.mipmap.ic_acelga_foreground),
+    ItemsModel("Verduras", "Brocolis", R.mipmap.ic_brocolis_foreground),
+    ItemsModel("Verduras", "Couve", R.mipmap.ic_couve_foreground),
+    ItemsModel("Verduras", "Chicoria", R.mipmap.ic_chicoria_foreground),
     ItemsModel("Verduras", "Coentro", R.mipmap.ic_coentro),
-    ItemsModel("Verduras", "Couve-flor", R.mipmap.ic_couveflor),
+    ItemsModel("Verduras", "Couve-flor", R.mipmap.ic_couve_flor_foreground),
     ItemsModel("Verduras", "Espinafre", R.mipmap.ic_espinafre),
-    ItemsModel("Verduras", "Hortelaa", R.mipmap.ic_hortelaa),
-    ItemsModel("Verduras", "Louros", R.mipmap.ic_louros),
-    ItemsModel("Verduras", "Manjericao", R.mipmap.ic_manjericao),
+    ItemsModel("Verduras", "Hortelã", R.mipmap.ic_hortela_foreground),
+    ItemsModel("Verduras", "Manjericao", R.mipmap.ic_manjericao_foreground),
     ItemsModel("Verduras", "Maxixe", R.mipmap.ic_maxixe),
     ItemsModel("Verduras", "Pepino", R.mipmap.ic_pepino),
     ItemsModel("Verduras", "Rucula", R.mipmap.ic_rucula),
@@ -97,7 +116,7 @@ val utensilhosList = listOf(
     ItemsModel("Utensilhos", "Pano-de-Prato", R.mipmap.ic_pano_prato),
     ItemsModel("Utensilhos", "Roda-Carrinho", R.mipmap.ic_roda_carrinho),
     ItemsModel("Utensilhos", "Vassoura", R.mipmap.ic_vassoura),
-    ItemsModel("Utensilhos", "Utensilios", R.mipmap.ic_utensilios),
+    ItemsModel("Utensilhos", "Panela", R.mipmap.ic_panelas_foreground),
 
     )
 
@@ -107,12 +126,13 @@ val lanchesList = listOf(
     ItemsModel("Lanches", "Espetos", R.mipmap.ic_espetos),
     ItemsModel("Lanches", "Kibe", R.mipmap.ic_kibe),
     ItemsModel("Lanches", "Refrigerante", R.mipmap.ic_refri),
+    ItemsModel("Lanches", "Pastelzinho", R.mipmap.ic_pastelzinho),
     ItemsModel("Lanches", "Pastel", R.mipmap.ic_pastel),
 )
 
 
 val temperosList = listOf(
-    ItemsModel("Temperos", "Acafrao", R.mipmap.ic_acafrao),
+    ItemsModel("Temperos", "Acafrão", R.mipmap.ic_acafrao),
     ItemsModel("Temperos", "Canela", R.mipmap.ic_canela),
     ItemsModel("Temperos", "Colorau", R.mipmap.ic_colorau),
     ItemsModel("Temperos", "Louros", R.mipmap.ic_louros),
