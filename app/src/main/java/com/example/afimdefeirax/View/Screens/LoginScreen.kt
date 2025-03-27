@@ -77,7 +77,7 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
         Box {
 
             Image(
-                painter = painterResource(id = R.mipmap.ic_logo_app_foreground),
+                painter = painterResource(id = R.mipmap.ic_app_logo_launcher_foreground),
                 contentDescription = "Logo",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

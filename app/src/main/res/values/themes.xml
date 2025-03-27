@@ -21,8 +21,8 @@
 
 
     <style name = "Theme.AfimdeFeiraXTheme" parent = "Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_logo5</item>
+        <item name="windowSplashScreenBackground">@color/green_FF009688</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_app_logo_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.AfimdeFeiraX</item>
 
     </style>
