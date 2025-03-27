@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-21T21:22:57.075804718Z">
+        <DropdownSelection timestamp="2025-03-26T11:28:13.510431276Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=LMX430PZC6CMMRTKMJ" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=/home/cleiton/.android/avd/Pixel_6a_API_29.avd" />
             </handle>
           </Target>
         </DropdownSelection>
