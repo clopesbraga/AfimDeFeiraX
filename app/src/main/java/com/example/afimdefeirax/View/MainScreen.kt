@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddShoppingCart
+import androidx.compose.material.icons.filled.Airplay
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.BottomAppBar
@@ -32,6 +33,7 @@ import androidx.navigation.navOptions
 import com.example.afimdefeirax.SharedPreferences.LoginSharedImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.MenuBar
+import com.example.afimdefeirax.View.Components.MoreOptionsMenu
 import com.example.afimdefeirax.View.Screens.LoginScreen
 import com.example.afimdefeirax.View.Screens.MapFeirasScreen
 import com.example.afimdefeirax.View.Screens.ProdutosListScreen
@@ -42,9 +44,10 @@ import com.google.firebase.analytics.analytics
 
 
 private val menuOptionsBar = listOf(
-    MenuBar(name = "Feiras", icons= Icons.Filled.LocationOn),
+    MenuBar(name = "Feiras", icons = Icons.Filled.LocationOn),
     MenuBar(name = "Compras", icons = Icons.Filled.AddShoppingCart),
     MenuBar(name = "Historico", icons = Icons.Filled.BarChart),
+    MenuBar(name = "Detalhes", icons = Icons.Filled.Airplay)
 )
 
 private var startScreen: String = ""
@@ -97,78 +100,102 @@ class MainScreen : ComponentActivity() {
                         )
                     }
                     composable(route = "comp") {
-                        ProdutosScreen(navController,
-                            showBottomBar =({showBottomBar.value = it})
-                        ) }
+                        ProdutosScreen(
+                            navController,
+                            showBottomBar = ({ showBottomBar.value = it })
+                        )
+                    }
 
                     composable(route = "list") {
-                        ProdutosListScreen(navController,
-                            showBottomBar =({showBottomBar.value = it})
+                        ProdutosListScreen(
+                            navController,
+                            showBottomBar = ({ showBottomBar.value = it })
                         )
                     }
                     composable(route = "hist") {
-                        com.example.afimdefeirax.View.Screens.HistoricoScreen(navController,
-                            showBottomBar =({showBottomBar.value = it})
+                        com.example.afimdefeirax.View.Screens.HistoricoScreen(
+                            navController,
+                            showBottomBar = ({ showBottomBar.value = it })
                         )
+                    }
+                    composable(route = "about") {
+                        com.example.afimdefeirax.View.Screens.AboutAppScreen(
+                            navController,
+                            showBottomBar = ({ showBottomBar.value = it })
+                        )
+                    }
+                    composable(route = "terms") {
+                        com.example.afimdefeirax.View.Screens.TermsOfServiceScreen(navController)
                     }
                 }
             }
         }
     }
 
+    @Composable
+    fun MenuBottomBar(navController: NavHostController) {
 
-}
+        var selectedItem by remember { mutableStateOf(menuOptionsBar[0]) }
+        var expanded by remember { mutableStateOf(false) }
 
-@Composable
-fun MenuBottomBar(navController: NavHostController) {
 
-    var selectedItem by remember { mutableStateOf(menuOptionsBar[0]) }
+        MoreOptionsMenu(
+            expanded,
+            onDismissRequest = { expanded = false },
+            navController
+        )
 
-    BottomAppBar(
-        containerColor = Color(0xFF009688),
-    ) {
+        BottomAppBar(
+            containerColor = Color(0xFF009688),
+        ) {
 
-        val actions = @Composable {
-            menuOptionsBar.forEach { item ->
-                val text = item.name
-                val icon = item.icons
-                NavigationBarItem(
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color(0xFF009688),
-                        unselectedIconColor = Color.White,
-                        selectedTextColor = Color.White,
-                        unselectedTextColor = Color.White,
-                        indicatorColor = Color.White
-                    ),
-                    alwaysShowLabel = false,
-                    selected = selectedItem==item,
-                    onClick = {
-                        selectedItem = item
-                        val route = when (text) {
-                            "Feiras" -> "map"
-                            "Compras" -> "comp"
-                            "Historico" -> "hist"
-                            else -> {
-                                "map"
+            val actions = @Composable {
+                menuOptionsBar.forEach { item ->
+                    val text = item.name
+                    val icon = item.icons
+                    NavigationBarItem(
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color(0xFF009688),
+                            unselectedIconColor = Color.White,
+                            selectedTextColor = Color.White,
+                            unselectedTextColor = Color.White,
+                            indicatorColor = Color.White
+                        ),
+                        alwaysShowLabel = false,
+                        selected = selectedItem == item,
+                        onClick = {
+                            selectedItem = item
+                            val route = when (text) {
+                                "Feiras" -> "map"
+                                "Compras" -> "comp"
+                                "Historico" -> "hist"
+                                "Detalhes" -> {
+                                    expanded = !expanded
+                                    return@NavigationBarItem
+                                }
+
+                                else -> {
+                                    "map"
+                                }
                             }
-                        }
-                        navController.navigate(route, navOptions = navOptions {
-                            launchSingleTop = true
-                            popUpTo(navController.graph.startDestinationId)
-                        })
-                    },
-                    icon = { Icon(imageVector = icon, contentDescription = null) },
-                    label = { Text(text = text, color = Color.White) },
-
+                            navController.navigate(route, navOptions = navOptions {
+                                launchSingleTop = true
+                                popUpTo(navController.graph.startDestinationId)
+                            })
+                        },
+                        icon = { Icon(imageVector = icon, contentDescription = null) },
+                        label = { Text(text = text, color = Color.White) },
                     )
 
+                }
+
+
             }
-
+            actions()
         }
-        actions()
     }
-}
 
-private fun verifyAcess(mSharedLogin: LoginSharedImpl): Boolean {
-    return mSharedLogin.getString(ID).isNotEmpty()
+    private fun verifyAcess(mSharedLogin: LoginSharedImpl): Boolean {
+        return mSharedLogin.getString(ID).isNotEmpty()
+    }
 }
