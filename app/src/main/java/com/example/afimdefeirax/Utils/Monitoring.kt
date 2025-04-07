@@ -29,10 +29,10 @@ object Monitoring{
     object Map{
 
         const val MAP_SCREEN="map"
-        const val MAP_MARKER_LOCALIZATION = MAP_SCREEN+"/starts-user-marker"
-        const val MAP_MARKER_FEIRAS       = MAP_SCREEN+"/starts-feiras-marker"
+        const val MAP_MARKER_LOCALIZATION = MAP_SCREEN+"/starts_user_marker"
+        const val MAP_MARKER_FEIRAS       = MAP_SCREEN+"/starts_feiras_marker"
         const val FLOATING_BUTTON_PRESSED = MAP_SCREEN+"/floating_button"+Button.PRESSED
-        const val SHOW_MENU_NEIGHBORS     = MAP_SCREEN+"/mostra menu"
+        const val SHOW_MENU_NEIGHBORS     = MAP_SCREEN+"/mostra_menu"
         const val CITY_SELECTED           = MAP_SCREEN+"city"+Actions.SELECTED
         const val NEIGHBOR_SELECTED       = MAP_SCREEN+"neighbor"+Actions.SELECTED
     }
