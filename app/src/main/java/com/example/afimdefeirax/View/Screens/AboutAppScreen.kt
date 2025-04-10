@@ -1,5 +1,7 @@
 package com.example.afimdefeirax.View.Screens
 
+import android.content.Context
+import android.content.pm.PackageManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -80,7 +83,9 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
 
     ) { innerpading ->
 
-        Column(modifier = Modifier.fillMaxSize().padding(innerpading)) {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .padding(innerpading)) {
 
             BoxWithConstraints(
                 modifier = Modifier
@@ -152,14 +157,11 @@ fun AppDescription() {
         Row { FormatDescription(R.string.text_2) }
 
         Row { FormatTitle(R.string.text_3_title) }
-        Row { FormatDescription(R.string.text_3) }
+        Row { Text(text=getAppVersion(LocalContext.current)) }
 
     }
 
 }
-
-
-
 
 @Composable
 fun FormatDescription(description: Int) {
@@ -191,4 +193,16 @@ fun FormatTitle(subtitle: Int) {
 
     )
 
+}
+
+
+
+fun getAppVersion(context: Context): String {
+    return try {
+        val packageManager = context.packageManager
+        val packageInfo = packageManager.getPackageInfo(context.packageName, 0)
+        packageInfo.versionName
+    } catch (e: PackageManager.NameNotFoundException) {
+        "Versão desconhecida"
+    }.toString()
 }
