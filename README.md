@@ -20,6 +20,7 @@
       * [Coroutines](https://developer.android.com/kotlin/coroutines?hl=pt-br)
       * [Junit](https://developer.android.com/training/testing/local-tests?hl=pt-br)
       * [Mockito](https://developer.android.com/training/testing/local-tests?hl=pt-br](https://site.mockito.org/))
+      * [Jetpack Compose](https://developer.android.com/develop/ui?hl=pt-br)
 <!--te-->
 
 ## Features
