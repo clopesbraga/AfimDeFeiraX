@@ -43,15 +43,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.afimdefeirax.Model.produtosList
 import com.example.afimdefeirax.R
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
+import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit) {
+fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit) {
 
 
-   val viewModel : ProdutosViewModel =koinInject()
+    val viewModel: ProdutosViewModel = koinInject()
+    val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
+
+    firebaseanalytics.firebaselogEvent(Monitoring.Product.PRODUCT_SCREEN_START)
     showBottomBar(true)
     Scaffold(
         topBar = {
@@ -72,12 +77,16 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean)->U
 
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate("list") },
+                onClick = {
+                    firebaseanalytics.
+                    firebaselogEvent(Monitoring.Product.PRODUCT_FLOATING_BUTTON_PRESSED)
+                    navController.navigate("list")
+                },
                 containerColor = Color(0xFF009688),
                 shape = CircleShape,
                 modifier = Modifier
                     .padding(16.dp)
-            ){
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_nav_btn_produtos),
                     contentDescription = stringResource(R.string.describe_button_list),
