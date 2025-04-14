@@ -31,6 +31,7 @@ class ProdutosViewModel(
 
         viewModelScope.launch{
             try {
+                firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_ITEM_SELECTED)
                 listprodutos.add(Produtos(productimage, productname))
                 saveProducts(listprodutos)
 
@@ -45,6 +46,7 @@ class ProdutosViewModel(
     private fun saveProducts(productItem: List<Produtos>) {
         viewModelScope.launch{
             try {
+                firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_SAVE)
                 produtosshared.saveItems(application.applicationContext, productItem)
 
             }catch (error: Exception){
@@ -58,7 +60,7 @@ class ProdutosViewModel(
          viewModelScope.launch{
 
              try {
-
+                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REQUEST)
                  historico.add(Historico(nome,preco,imagem))
                  historicoshared.saveItems(application.applicationContext,historico)
 
@@ -75,7 +77,7 @@ class ProdutosViewModel(
         var listprodutos =listOf<Produtos>()
         viewModelScope.launch{
             try{
-
+                firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_LOADING_LIST)
                 listprodutos=produtosshared.loadItems(application.applicationContext)
 
             }catch (error: Exception){
@@ -89,7 +91,15 @@ class ProdutosViewModel(
     }
 
     fun removeProduct(productItem: Produtos) {
-        produtosshared.removeItem(application.applicationContext, productItem)
+        try {
+            firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REMOVE)
+            produtosshared.removeItem(application.applicationContext, productItem)
+        }catch (error: Exception){
+
+            firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REMOVE_ERROR)
+            Log.e(Monitoring.Product.PRODUCT_REMOVE_ERROR,error.message.toString())
+
+        }
     }
 
 }

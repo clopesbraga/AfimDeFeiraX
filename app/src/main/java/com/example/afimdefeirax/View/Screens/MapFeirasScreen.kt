@@ -26,8 +26,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -66,8 +70,11 @@ fun RequestLocationPermission() {
 @Composable
 fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
-    val analytics: FirebaseAnalyticsImpl =koinInject()
-    showBottomBar(true)
+
+    var shouldShowBottomBar by remember { mutableStateOf(true) }
+    SideEffect { showBottomBar(shouldShowBottomBar) }
+
+    val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
     val viewModel: MapaFeirasViewModel = koinInject()
     val state by viewModel.state.collectAsState()
 
@@ -77,7 +84,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
 
-    analytics.firebaselogEvent(Monitoring.Map.MAP_SCREEN)
+    firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_SCREEN_START)
 
     RequestLocationPermission()
     Scaffold(
@@ -90,13 +97,15 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { viewModel.toggleBottomSheet() },
+                onClick = {
+                    firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_FLOATING_BUTTON_PRESSED)
+                    viewModel.toggleBottomSheet()
+                },
                 containerColor = Color(0xFF009688),
                 shape = CircleShape,
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                analytics.firebaselogEvent(Monitoring.Map.FLOATING_BUTTON_PRESSED)
                 Icon(
                     painter = painterResource(id = R.drawable.ic_lupa_pesquisa),
                     contentDescription = "Lupa de Pesquisa Icon",
@@ -137,7 +146,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                 sheetState = sheetState,
                 containerColor = Color(0xFF009688),
             ) {
-                analytics.firebaselogEvent(Monitoring.Map.SHOW_MENU_NEIGHBORS)
+                firebaseanalytics.firebaselogEvent(Monitoring.Map.SHOW_MENU_NEIGHBORS)
                 Box(
                     modifier = Modifier
                         .fillMaxHeight(0.5f)
@@ -158,7 +167,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                                     index,
                                     isSelected,
                                     viewModel,
-                                    analytics
+                                    firebaseanalytics
                                 )
                             }
                         }
@@ -174,7 +183,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                             state.cityImages,
                             state.selectedCity,
                             viewModel,
-                            analytics
+                            firebaseanalytics
                         )
                     }
                 }
