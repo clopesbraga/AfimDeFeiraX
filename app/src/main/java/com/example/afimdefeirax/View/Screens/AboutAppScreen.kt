@@ -1,5 +1,8 @@
 package com.example.afimdefeirax.View.Screens
 
+import android.content.Context
+import android.content.pm.PackageManager
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,13 +41,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.afimdefeirax.R
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
+import com.example.afimdefeirax.Utils.Monitoring
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit) {
 
-//   showBottomBar(false)
+    val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
 
+    firebaseanalytics.firebaselogEvent(Monitoring.AboutApp.ABOUTAPP_START)
     Scaffold(
 
         topBar = {
@@ -80,7 +88,9 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
 
     ) { innerpading ->
 
-        Column(modifier = Modifier.fillMaxSize().padding(innerpading)) {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .padding(innerpading)) {
 
             BoxWithConstraints(
                 modifier = Modifier
@@ -126,6 +136,7 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     )
+                    firebaseanalytics.firebaselogEvent(Monitoring.AboutApp.SHOW_APP_VERSION)
                     AppDescription()
 
                 }
@@ -152,14 +163,11 @@ fun AppDescription() {
         Row { FormatDescription(R.string.text_2) }
 
         Row { FormatTitle(R.string.text_3_title) }
-        Row { FormatDescription(R.string.text_3) }
+        Row { Text(text=getAppVersion(LocalContext.current)) }
 
     }
 
 }
-
-
-
 
 @Composable
 fun FormatDescription(description: Int) {
@@ -191,4 +199,16 @@ fun FormatTitle(subtitle: Int) {
 
     )
 
+}
+
+
+
+fun getAppVersion(context: Context): String {
+    return try {
+        val packageManager = context.packageManager
+        val packageInfo = packageManager.getPackageInfo(context.packageName, 0)
+        packageInfo.versionName
+    } catch (error: PackageManager.NameNotFoundException) {
+        Log.e(Monitoring.AboutApp.ABOUTAPP_VERSION_ERROR,error.message.toString())
+    }.toString()
 }

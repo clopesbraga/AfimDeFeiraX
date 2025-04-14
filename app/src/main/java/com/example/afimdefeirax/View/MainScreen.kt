@@ -65,9 +65,9 @@ class MainScreen : ComponentActivity() {
             val navController = rememberNavController()
             val showBottomBar = remember { mutableStateOf(true) }
             mSharedLogin = LoginSharedImpl(application.applicationContext)
-            val firebase: FirebaseAnalytics = Firebase.analytics
+            val firebaseanalytics: FirebaseAnalytics = Firebase.analytics
 
-            firebase.logEvent(Monitoring.Main.MAIN_SCREEN, null)
+            firebaseanalytics.logEvent(Monitoring.Main.MAIN_SCREEN_START, null)
 
 
             Scaffold(

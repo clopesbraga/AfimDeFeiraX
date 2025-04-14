@@ -29,16 +29,21 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
 import androidx.navigation.NavHostController
 import com.example.afimdefeirax.R
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
+import com.example.afimdefeirax.Utils.Monitoring
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TermsOfServiceScreen(navController: NavHostController) {
 
-    val scrollState = rememberScrollState()
+    val firebaseAnalytics: FirebaseAnalyticsImpl = koinInject()
 
+    val scrollState = rememberScrollState()
     val descriptionTerms = stringResource(R.string.terms_of_service)
     val termsOfService = remember {
-        HtmlCompat.fromHtml(descriptionTerms, HtmlCompat.FROM_HTML_MODE_LEGACY)}
+        HtmlCompat.fromHtml(descriptionTerms, HtmlCompat.FROM_HTML_MODE_LEGACY)
+    }
 
     Scaffold(
 
@@ -74,6 +79,7 @@ fun TermsOfServiceScreen(navController: NavHostController) {
         }
 
     ) { innerpading ->
+        firebaseAnalytics.firebaselogEvent(Monitoring.TermsApp.TERMS_START)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -81,7 +87,7 @@ fun TermsOfServiceScreen(navController: NavHostController) {
                 .padding(innerpading)
         ) {
             Text(
-                text = buildAnnotatedString { append(termsOfService.toString())},
+                text = buildAnnotatedString { append(termsOfService.toString()) },
                 textAlign = TextAlign.Justify,
                 modifier = Modifier.fillMaxSize()
             )
