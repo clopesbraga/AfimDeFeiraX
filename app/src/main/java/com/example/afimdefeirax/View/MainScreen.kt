@@ -114,9 +114,7 @@ class MainScreen : ComponentActivity() {
                     }
                     composable(route = "hist") {
                         com.example.afimdefeirax.View.Screens.HistoricoScreen(
-                            navController,
-                            showBottomBar = ({ showBottomBar.value = it })
-                        )
+                            showBottomBar = ({ showBottomBar.value = it }))
                     }
                     composable(route = "about") {
                         com.example.afimdefeirax.View.Screens.AboutAppScreen(
