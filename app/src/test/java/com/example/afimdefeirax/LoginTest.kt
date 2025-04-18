@@ -87,12 +87,11 @@ class LoginTest {
 
 
         // When
-        val result = viewModel.login()
+        viewModel.login()
         testDispatcher.scheduler.advanceUntilIdle()
 
 
         // Then
-        assertThat(result).isTrue()
         val state = viewModel.state.value
         assertThat(state.isSuccess).isTrue()
         assertThat(state.error).isNull()
@@ -107,6 +106,7 @@ class LoginTest {
         val password = "password123"
 
         // Given
+        `when`(mockLoginShared.getString("usuario")).thenReturn("")
         `when`(mockAuthService.getCurrentUserEmail()).thenReturn(null)
         `when`(mockAuthService.createUserWithEmailAndPassword(newUsername,password)).thenReturn(true)
 
@@ -115,6 +115,8 @@ class LoginTest {
 
         // When
         viewModel.login()
+        testDispatcher.scheduler.advanceUntilIdle()
+
 
         // Then
         val state = viewModel.state.value
@@ -129,6 +131,7 @@ class LoginTest {
 
         val userName = ""
         val password = ""
+
 
         // Given
         `when`(mockAuthService.signInWithEmailAndPassword(userName, password))

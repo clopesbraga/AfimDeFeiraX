@@ -22,7 +22,7 @@ object Monitoring {
 
         const val LOGIN_SCREEN = "login"
         const val LOGIN_SCREEN_START = LOGIN_SCREEN +STARTS
-        const val LOGIN_CLASS = "LoginViewModel"
+        const val CREATE_USER_SUCESS = LOGIN_SCREEN+"_user_created"
         const val LOGIN_SUCCESS = "login_success"
         const val LOGIN_BUTTON_CLICKED = "login_button_"+Button.CLICKED
         const val LOGIN_FAILED = "login_failed"
