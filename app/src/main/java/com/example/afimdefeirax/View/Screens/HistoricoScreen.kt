@@ -30,6 +30,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
+import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.ColunaDinamica
 import com.example.afimdefeirax.ViewModel.HistoricoViewModel
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
@@ -41,8 +43,11 @@ fun HistoricoScreen(navController: NavHostController, showBottomBar: (Boolean)->
 
 
     showBottomBar(true)
+    val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
     val viewModel : HistoricoViewModel =koinInject()
     val loadedhistorico = viewModel.loadHistorico()
+
+    firebaseanalytics.firebaselogEvent(Monitoring.Historic.HISTORIC_SCREEN_START)
 
     Scaffold(
         topBar = {
@@ -68,8 +73,6 @@ fun HistoricoScreen(navController: NavHostController, showBottomBar: (Boolean)->
                 .padding(innerpading)
                 .fillMaxSize()
         ) {
-
-
 
             items(loadedhistorico) { item ->
 

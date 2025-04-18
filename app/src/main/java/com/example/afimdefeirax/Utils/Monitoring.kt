@@ -1,7 +1,5 @@
 package com.example.afimdefeirax.Utils
 
-import com.example.afimdefeirax.Utils.Monitoring.Product.PRODUCT_SCREEN
-
 
 object Monitoring {
 
@@ -82,8 +80,8 @@ object Monitoring {
     }
 
     object TermsApp{
-        const val  TERMS_OF_ÁPP_SCREEN="terms"
-        const val TERMS_START = TERMS_OF_ÁPP_SCREEN+STARTS
+        const val  TERMS_OF_APP_SCREEN="terms"
+        const val TERMS_START = TERMS_OF_APP_SCREEN+STARTS
     }
 
 }
