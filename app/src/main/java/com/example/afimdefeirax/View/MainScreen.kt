@@ -107,10 +107,7 @@ class MainScreen : ComponentActivity() {
                     }
 
                     composable(route = "list") {
-                        ProdutosListScreen(
-                            navController,
-                            showBottomBar = ({ showBottomBar.value = it })
-                        )
+                        ProdutosListScreen(showBottomBar = ({ showBottomBar.value = it }))
                     }
                     composable(route = "hist") {
                         com.example.afimdefeirax.View.Screens.HistoricoScreen(
