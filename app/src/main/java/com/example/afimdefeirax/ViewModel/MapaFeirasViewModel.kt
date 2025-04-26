@@ -125,7 +125,8 @@ class MapaFeirasViewModel(
 
                             userLocation = LatLng(it.latitude, it.longitude)
                             camera.focusCamera(userLocation, map)
-                            map.addMarker(MarkerOptions().position(userLocation).title("Usuario"))
+                            map.addMarker(MarkerOptions()
+                                .position(userLocation).title("Você esta aqui"))
                         }
                     }
                 }

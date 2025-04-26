@@ -2,7 +2,7 @@
 
     <string name="api_maps_key">AIzaSyCkbRX4AHre6MnmSXCH8wV838HGQnYGm88</string>
 
-    <string name="app_name">AfimdeFeiraX</string>
+    <string name="app_name">AfimDeFeira</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -871,9 +871,8 @@
     <string name="text_1_title">Aplicativo</string>
     <string name="text_2_title">Empresa</string>
     <string name="text_3_title">Versão</string>
-    <string name="text_1">App Afim de Feira criado em 2025 por ClopesBraga Softwares.</string>
-    <string name="text_2">ClopesBraga Softwares</string>
-    <string name="text_3"> 1.2.4</string>
+    <string name="text_1">App Afim de Feira criado em 2025 por Branchh Softwares.</string>
+    <string name="text_2">Branchh Softwares</string>
     <string name="back">Voltar\n</string>
     <string name="info_politicas">Politicas de privacidade </string>
 
