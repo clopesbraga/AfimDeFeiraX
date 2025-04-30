@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="api_maps_key">AIzaSyCkbRX4AHre6MnmSXCH8wV838HGQnYGm88</string>
 
     <string name="app_name">AfimDeFeira</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -23,8 +22,6 @@
     <string name="confirm_login">Logar/Cadastrar</string>
 
 
-
-
     //TELA PRODUTOS
     <string-array name="produtos">
         <item>VERDURAS</item>
@@ -40,7 +37,6 @@
     <string name="my_list_products">Minha Lista de Compras</string>
     <string name="confirm_item_in_list">Efetivar</string>
     <string name="warnning_price_message">Precisar colocar o valor para incluir na lista</string>
-
 
 
     //TELA MAPA FEIRAS
@@ -863,7 +859,6 @@
 
     //MENSAGENS DE ERRO
     <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
-
 
 
     //TELA SOBRE O APP
