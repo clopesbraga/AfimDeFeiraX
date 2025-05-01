@@ -143,6 +143,9 @@ class MapaFeirasViewModel(
             }catch (error : Exception){
                 analyticservice.firebaselogEvent(Monitoring.Map.MAP_ERROR)
                 Log.e(Monitoring.Map.MAP_ERROR, error.message.toString())
+                _state.update{currentState ->
+                    currentState.copy(errorMessage = "Erro ao carregar mapa")
+                }
             }
 
         }
