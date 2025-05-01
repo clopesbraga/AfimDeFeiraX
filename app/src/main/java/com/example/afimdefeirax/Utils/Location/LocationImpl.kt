@@ -1,19 +1,39 @@
 package com.example.afimdefeirax.Utils.Location
 
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.maps.model.LatLng
 
-class LocationImpl(private val fusedLocationClient: FusedLocationProviderClient) : ILocation {
 
-    override fun getLastLocation(callback: (LatLng?) -> Unit) {
+class LocationImpl(
+    private val fusedLocationClient: FusedLocationProviderClient,
+    private val context: Context
+) : ILocation {
 
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            if (location != null) {
-                callback.invoke(LatLng(location.latitude, location.longitude))
-            } else {
-                callback.invoke(null)
-            }
+    @SuppressLint("MissingPermission")
+    override fun getLastLocation(callback: (Location?) -> Unit) {
+
+        val hasPermission = ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (hasPermission) {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
+                    callback.invoke(location)
+                }
+                .addOnFailureListener {
+                    callback(null)
+                }
+
+        } else {
+            callback(null)
         }
     }
 }

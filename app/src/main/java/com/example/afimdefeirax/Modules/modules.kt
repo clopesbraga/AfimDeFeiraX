@@ -27,7 +27,7 @@ val appModule = module{
      single{FeirasRepositoryImpl()}
      single{ HistoricoRepository(androidContext()) }
      single {LocationServices.getFusedLocationProviderClient(androidContext()) }
-     single {LocationImpl(get())}
+     single {LocationImpl(get(),androidContext())}
      single {FocusCamera()}
      single { LoginSharedImpl(androidContext()) }
      single { FirebaseAuth.getInstance() }
