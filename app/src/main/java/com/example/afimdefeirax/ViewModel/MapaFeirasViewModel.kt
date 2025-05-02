@@ -4,11 +4,10 @@ import android.Manifest
 import android.app.Activity
 import android.app.Application
 import android.content.ContextWrapper
-import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.util.Log
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.R
@@ -43,7 +42,6 @@ class MapaFeirasViewModel(
 
     private lateinit var googleMap: GoogleMap
     private lateinit var userLocation: LatLng
-
 
 
     init {
@@ -112,45 +110,46 @@ class MapaFeirasViewModel(
 
     fun showMyLocalizationIn(map: GoogleMap) {
         analyticservice.firebaselogEvent(Monitoring.Map.MAP_MARKER_LOCALIZATION)
+
+        val activityContext = when (application) {
+            is Activity -> application
+            is ContextWrapper -> application.baseContext as? Activity
+            else -> null
+        }
         viewModelScope.launch {
 
-            when {
-                ContextCompat.checkSelfPermission(
-                    application.applicationContext,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED -> {
-
-                    locationProvider.getLastLocation { location ->
-                        location?.let {
-
-                            userLocation = LatLng(it.latitude, it.longitude)
-                            camera.focusCamera(userLocation, map)
-                            map.addMarker(MarkerOptions()
-                                .position(userLocation).title("Você esta aqui"))
-                        }
-                    }
-                }
-
-                else -> {
-                    val activityContext = when (application) {
-                        is Activity -> application
-                        is ContextWrapper -> application.baseContext as? Activity
-                        else -> null
-                    }
-
-                    activityContext?.let {
-                        ActivityCompat.requestPermissions(
-                            it,
-                            arrayOf(
-                                Manifest.permission.ACCESS_FINE_LOCATION,
-                                Manifest.permission.ACCESS_COARSE_LOCATION
-                            ),
-                            200
+            try{
+                locationProvider.getLastLocation { location ->
+                    location?.let {
+                        userLocation = LatLng(it.latitude, it.longitude)
+                        camera.focusCamera(userLocation, map)
+                        map.addMarker(
+                            MarkerOptions()
+                                .position(userLocation)
+                                .title(application.getString(R.string.user_point))
                         )
                     }
                 }
+                activityContext?.let {
+                    ActivityCompat.requestPermissions(
+                        it,
+                        arrayOf(
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                        ),
+                        200
+                    )
+                }
+            }catch (error : Exception){
+                analyticservice.firebaselogEvent(Monitoring.Map.MAP_ERROR)
+                Log.e(Monitoring.Map.MAP_ERROR, error.message.toString())
+                _state.update{currentState ->
+                    currentState.copy(errorMessage = "Erro ao carregar mapa")
+                }
             }
+
         }
+
     }
 
 
@@ -172,11 +171,6 @@ class MapaFeirasViewModel(
             }
         }
     }
-
-    fun focusUserCamera(map: GoogleMap) {
-        camera.focusCamera(userLocation, map)
-    }
-
     fun googleMap(map: GoogleMap) {
 
         googleMap = map
@@ -184,20 +178,23 @@ class MapaFeirasViewModel(
 
 
     fun geoLocalization(cidade: String, bairro: String) {
-
         val local = "$cidade,$bairro"
-        val gc = Geocoder(application.applicationContext)
-        var list: List<Address?>? = null
-        try {
-            list = gc.getFromLocationName(local, 1)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]
+        viewModelScope.launch{
+            try {
+                val gc = Geocoder(application.applicationContext)
+                var list: List<Address?>? = null
+                list = gc.getFromLocationName(local, 1)
 
-        googleMap?.animateCamera(
-            CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
-        )
+                val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]
+
+                googleMap.animateCamera(
+                    CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
+                )
+
+            } catch (error: IOException) {
+                analyticservice.firebaselogEvent(Monitoring.Map.MAP_SHOW_NEIGHBOOR_ERROR_)
+                Log.e(Monitoring.Map.MAP_SHOW_NEIGHBOOR_ERROR_,error.message.toString())            }
+        }
     }
 
 

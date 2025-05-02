@@ -9,7 +9,7 @@ firebaseBomVersion = "33.13.0"
 kotlin = "2.0.21"
 gms ="4.4.2"
 accompanistPermissions = "0.31.2-alpha"
-annotation = "1.9.1"
+
 appcompat = "1.7.0"
 assertjCore = "2.0.0"
 composeCharts = "0.0.14"
@@ -23,7 +23,6 @@ junitKtx = "1.2.1"
 koinAndroid = "3.5.3"
 koinAndroidxCompose = "3.5.0"
 kotlinxCoroutinesTest = "1.8.0"
-legacySupportV4 = "1.0.0"
 lifecycleExtensions = "2.2.0"
 lifecycleViewmodelKtx = "2.8.7"
 mapsCompose = "6.0.0"
@@ -40,7 +39,8 @@ playServicesLocation = "21.3.0"
 playServicesMapsVersion = "19.2.0"
 retrofit = "2.9.0"
 robolectric = "4.9"
-roomRuntimeVersion = "2.7.1"
+roomCompiler = "2.7.1"
+roomRuntime = "2.7.1"
 rules = "1.6.1"
 runner = "1.6.2"
 secretsGradlePlugin = "2.0.1"
@@ -51,7 +51,6 @@ secrets ="2.0.1"
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-activity-compose-v1100 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
 androidx-activity-ktx-v1100 = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
-androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-compose-bom-v20250100 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
@@ -61,7 +60,6 @@ androidx-core-testing = { module = "androidx.arch.core:core-testing", version.re
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitKtx" }
 androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junitKtx" }
-androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelKtx" }
@@ -70,7 +68,9 @@ androidx-navigation-compose-v285 = { module = "androidx.navigation:navigation-co
 androidx-navigation-dynamic-features-fragment = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref = "navigationDynamicFeaturesFragment" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx-v285 = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
-androidx-room-runtime-v261 = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomCompiler" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomCompiler" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertjCore" }
@@ -103,6 +103,8 @@ secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.se
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+
 
 [plugins]
 

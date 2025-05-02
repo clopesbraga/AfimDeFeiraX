@@ -8,4 +8,5 @@ data class MapFeirasUIState(
     var cityImages: Int = ic_bandeira_saopaulo,
     var showBottomSheet: Boolean = false,
     var neighborhoodsToShow: List<String> = emptyList(),
+    val errorMessage: String=""
 )

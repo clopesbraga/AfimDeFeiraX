@@ -41,6 +41,9 @@
 
     //TELA MAPA FEIRAS
 
+    <string name="user_point">Você esta aqui</string>
+
+
     //CIDADES
     <string-array name="cidades">
         <item>SAO PAULO</item>

@@ -43,6 +43,8 @@ object Monitoring {
         const val SHOW_MENU_NEIGHBORS = MAP_SCREEN + "_show_menu"
         const val CITY_SELECTED = MAP_SCREEN + "_city_" + Actions.SELECTED
         const val NEIGHBOR_SELECTED = MAP_SCREEN + "_neighbor_" + Actions.SELECTED
+        const val MAP_ERROR = MAP_SCREEN + "_error_starts_map"
+        const val MAP_SHOW_NEIGHBOOR_ERROR_ = MAP_SCREEN + "_error_show_neighboor"
     }
 
     object Product {
