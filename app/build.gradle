@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.services)
     alias(libs.plugins.kotlin.secrets)
+    id("kotlin-kapt")
 }
 
 android {
@@ -88,13 +89,19 @@ dependencies {
     implementation(libs.converter.gson)
 
     //Room database
-    implementation(libs.androidx.room.runtime.v261)
-    implementation(libs.androidx.annotation)
-    implementation(libs.androidx.legacy.support.v4)
+
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    kapt(libs.androidx.room.compiler)
+
+
 
     // Koin for Android
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+    implementation(libs.androidx.room.ktx)
 
 
     //MAPS
