@@ -178,20 +178,23 @@ class MapaFeirasViewModel(
 
 
     fun geoLocalization(cidade: String, bairro: String) {
-
         val local = "$cidade,$bairro"
-        val gc = Geocoder(application.applicationContext)
-        var list: List<Address?>? = null
-        try {
-            list = gc.getFromLocationName(local, 1)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]
+        viewModelScope.launch{
+            try {
+                val gc = Geocoder(application.applicationContext)
+                var list: List<Address?>? = null
+                list = gc.getFromLocationName(local, 1)
 
-        googleMap.animateCamera(
-            CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
-        )
+                val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]
+
+                googleMap.animateCamera(
+                    CameraUpdateFactory.newCameraPosition(camera.focusCamera(localization))
+                )
+
+            } catch (error: IOException) {
+                analyticservice.firebaselogEvent(Monitoring.Map.MAP_SHOW_NEIGHBOOR_ERROR_)
+                Log.e(Monitoring.Map.MAP_SHOW_NEIGHBOOR_ERROR_,error.message.toString())            }
+        }
     }
 
 
