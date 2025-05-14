@@ -97,7 +97,6 @@ dependencies {
     kapt(libs.androidx.room.compiler)
 
 
-
     // Koin for Android
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
@@ -116,6 +115,9 @@ dependencies {
     implementation(libs.google.firebase.database.ktx)
     implementation(libs.google.firebase.analytics.ktx)
     implementation(libs.google.firebase.auth.ktx)
+
+    //ADS
+    implementation(libs.play.services.ads)
 
     //Graficos
     implementation(libs.compose.charts)
