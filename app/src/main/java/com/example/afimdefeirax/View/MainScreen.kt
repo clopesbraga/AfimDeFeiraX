@@ -171,7 +171,6 @@ class MainScreen : ComponentActivity() {
                                     expanded = !expanded
                                     return@NavigationBarItem
                                 }
-
                                 else -> {
                                     "map"
                                 }
