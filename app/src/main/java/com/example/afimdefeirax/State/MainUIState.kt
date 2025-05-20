@@ -1,7 +1,7 @@
 package com.example.afimdefeirax.State
 
-data class MainUIState (
-    val navigatecount : Int = 0,
-    val frequencycount : Int = 0,
+data class MainUIState(
+    var navigatecount: Int = 0,
+    val frequencycount: Int = 3,
 
     )

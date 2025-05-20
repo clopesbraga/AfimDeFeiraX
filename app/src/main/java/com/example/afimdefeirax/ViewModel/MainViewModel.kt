@@ -3,6 +3,7 @@ package com.example.afimdefeirax.ViewModel
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.afimdefeirax.R
 import com.example.afimdefeirax.State.MainUIState
 import com.example.afimdefeirax.View.MainScreen
 import com.google.android.gms.ads.AdError
@@ -13,6 +14,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import kotlinx.coroutines.flow.update
 
 
 class MainViewModel : ViewModel() {
@@ -23,12 +25,20 @@ class MainViewModel : ViewModel() {
     private val _state: MutableStateFlow<MainUIState> = MutableStateFlow(MainUIState())
     val state: StateFlow<MainUIState> = _state
 
+    fun onNavigationCount(count:Int) {
+        _state.update { currentState ->
+            currentState.copy(navigatecount = count)
+        }
+
+    }
+
     fun loadAds(context: Context) {
         val adRequest = AdRequest.Builder().build()
+        val adUnitId = context.getString(R.string.admob_interstitial_ad_unit_id)
 
         InterstitialAd.load(
             context,
-            "ca-app-pub-3940256099942544/1033173712",
+            adUnitId,
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
