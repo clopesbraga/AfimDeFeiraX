@@ -12,6 +12,7 @@ import com.example.afimdefeirax.Utils.FocusCamera
 import com.example.afimdefeirax.Utils.Location.LocationImpl
 import com.example.afimdefeirax.ViewModel.HistoricoViewModel
 import com.example.afimdefeirax.ViewModel.LoginViewModel
+import com.example.afimdefeirax.ViewModel.MainViewModel
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import com.google.android.gms.location.LocationServices
@@ -45,6 +46,7 @@ val viewModelModule = module {
      viewModel{ ProdutosViewModel(get(),get(),get(),get()) }
      viewModel{ HistoricoViewModel(get(),get(),get(),get()) }
      viewModel{ LoginViewModel(get(),get(),get(),false) }
+     viewModel{ MainViewModel() }
 }
 
 
