@@ -34,7 +34,7 @@ class MainViewModel : ViewModel() {
 
     fun loadAds(context: Context) {
         val adRequest = AdRequest.Builder().build()
-        val adUnitId = context.getString(R.string.admob_interstitial_ad_unit_id)
+        val adUnitId = context.getString(R.string.interstitial_ad_unit_id)
 
         InterstitialAd.load(
             context,

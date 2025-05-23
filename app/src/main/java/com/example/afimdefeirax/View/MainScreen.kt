@@ -207,7 +207,6 @@ class MainScreen : ComponentActivity() {
                             })
                             if ((route.contains("comp")) && state.navigatecount % state.frequencycount==0) {
                                 viewModel.ShowAd(context = context)
-                                tela2NavigationCount=0
                             }
                         },
                         icon = { Icon(imageVector = icon, contentDescription = null) },
