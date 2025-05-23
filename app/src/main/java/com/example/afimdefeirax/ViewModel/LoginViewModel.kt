@@ -9,7 +9,6 @@ import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FirebaseAuth.FirebaseAuthServiceImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.State.LoginUiState
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -24,8 +23,6 @@ class LoginViewModel(
 
     private val _state: MutableStateFlow<LoginUiState> = MutableStateFlow(LoginUiState())
     val state: StateFlow<LoginUiState> = _state
-
-    private val _loginResult = MutableSharedFlow<Boolean>()
 
     init {
 
@@ -54,46 +51,49 @@ class LoginViewModel(
 
     fun login(): Boolean {
         var result = false
-        viewModelScope.launch {
+        viewModelScope.launch { result = onlogin() }
+        return result
+    }
 
-            if (_state.value.username.isEmpty()) {
-                _state.update { it.copy(isLoading = false, error = "Invalid credentials") }
+    private suspend fun onlogin(): Boolean {
+        var result = false
 
-            }
+        if (_state.value.username.isEmpty()) {
+            _state.update { it.copy(isLoading = false, error = "Invalid credentials") }
+            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_ERROR)
+            return false
+        }
 
-            _state.update { it.copy(isLoading = true, error = null) }
+        _state.update { it.copy(isLoading = true, error = null) }
+        analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_PROCESS)
 
-            try {
-                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_PROCESS)
-                val userSaved = loginShared.getString("usuario")
-                val success = if (_state.value.username == userSaved) {
-                    authservice.signInWithEmailAndPassword(
-                        _state.value.username,
-                        _state.value.password
-                    )
+        try {
+            val userSaved = loginShared.getString("usuario")
+
+            when (userSaved.isNotEmpty()) {
+                true -> {
+                    signWithEmail()
+                    analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_SUCCESS)
                     result = true
-                    true
-                } else {
-                    authservice.createUserWithEmailAndPassword(
-                        _state.value.username,
-                        _state.value.password
-                    )
+                }
+                false -> {
+                    createUserWithEmailAndPassword()
+                    analyticservice.firebaselogEvent(Monitoring.Login.CREATE_USER_SUCESS)
                     localSave()
                     result = true
-                    true
                 }
-                _state.update { it.copy(isLoading = false, isSuccess = true) }
-                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_SUCCESS)
-                _loginResult.emit(success)
-                result = true
-            } catch (error: Exception) {
-                _state.update { it.copy(isLoading = false, error = Monitoring.Login.LOGIN_FAILED) }
-                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
-                Log.e(Monitoring.Login.LOGIN_FAILED, error.message.toString())
-                _loginResult.emit(false)
-                result = false
             }
+            _state.update { it.copy(isLoading = false, isSuccess = true) }
+
+        } catch (error: Exception) {
+
+            _state.update { it.copy(isLoading = false, error = Monitoring.Login.LOGIN_FAILED) }
+            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
+            Log.e(Monitoring.Login.LOGIN_FAILED, error.message.toString())
+            result = false
         }
+
+
         return result
     }
 
@@ -107,6 +107,20 @@ class LoginViewModel(
         loginShared.storeString("usuario", modelousuario.usuario)
 
         return modelousuario.usuario
+    }
+
+    private suspend fun signWithEmail() {
+        authservice.signInWithEmailAndPassword(
+            _state.value.username,
+            _state.value.password
+        )
+    }
+
+    private suspend fun createUserWithEmailAndPassword() {
+        authservice.createUserWithEmailAndPassword(
+            _state.value.username,
+            _state.value.password
+        )
     }
 }
 

@@ -15,7 +15,7 @@ import com.example.afimdefeirax.Model.HistoricoModel
 import com.example.afimdefeirax.Model.ListaModel
 import com.example.afimdefeirax.Model.LoginModel
 
-@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class),(ListaModel::class),(HistoricoModel::class)), version = 7)
+@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class),(ListaModel::class),(HistoricoModel::class)), version = 8)
 
 abstract class DbAfimDeFeira : RoomDatabase() {
 
@@ -33,7 +33,7 @@ abstract class DbAfimDeFeira : RoomDatabase() {
                 synchronized(DbAfimDeFeira::class) {
                     DBINSTANCE =
                         Room.databaseBuilder(context, DbAfimDeFeira::class.java, "DbAfimDeFeira")
-                            .addMigrations(MIGRATION_3_4)
+                            .addMigrations(MIGRATION_7_8)
                             .allowMainThreadQueries()
                             .build()
                 }
@@ -41,7 +41,7 @@ abstract class DbAfimDeFeira : RoomDatabase() {
             return DBINSTANCE
         }
 
-        private val MIGRATION_3_4: Migration = object : Migration(6, 7) {
+        private val MIGRATION_7_8: Migration = object : Migration(7, 8) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("DELETE FROM Login")
                 db.execSQL("DELETE FROM Compras")

@@ -134,17 +134,19 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
                 enabled = !state.isLoading,
                 onClick = {
                     firebaseanalytics.firebaselogEvent(Monitoring.Login.LOGIN_BUTTON_CLICKED)
-                    if (viewModel.login()) navController.navigate("map")
+                    if (viewModel.login()) state.isSuccess
                 },
             ) {
-                if (state.isLoading) {
-                    CircularProgressIndicator(
-                        color = Color.White
-                    )
-                    navController.navigate("map")
-                } else {
-                    Text(stringResource(R.string.confirm_login))
-                }
+//                if (state.isLoading) {
+//                    CircularProgressIndicator(
+//                        color = Color.White
+//                    )
+////                    navController.navigate("map")
+//                } else {
+//                    Text(stringResource(R.string.confirm_login))
+//                }
+                if(state.isLoading){ CircularProgressIndicator(color = Color.White) }
+                if(state.isSuccess) navController.navigate("map")
             }
 
         }

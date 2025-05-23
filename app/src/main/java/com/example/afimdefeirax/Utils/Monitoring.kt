@@ -1,7 +1,5 @@
 package com.example.afimdefeirax.Utils
 
-import com.example.afimdefeirax.Utils.Monitoring.Product.PRODUCT_SCREEN
-
 
 object Monitoring {
 
@@ -22,7 +20,7 @@ object Monitoring {
 
         const val LOGIN_SCREEN = "login"
         const val LOGIN_SCREEN_START = LOGIN_SCREEN +STARTS
-        const val LOGIN_CLASS = "LoginViewModel"
+        const val CREATE_USER_SUCESS = LOGIN_SCREEN+"_user_created"
         const val LOGIN_SUCCESS = "login_success"
         const val LOGIN_BUTTON_CLICKED = "login_button_"+Button.CLICKED
         const val LOGIN_FAILED = "login_failed"
@@ -45,6 +43,8 @@ object Monitoring {
         const val SHOW_MENU_NEIGHBORS = MAP_SCREEN + "_show_menu"
         const val CITY_SELECTED = MAP_SCREEN + "_city_" + Actions.SELECTED
         const val NEIGHBOR_SELECTED = MAP_SCREEN + "_neighbor_" + Actions.SELECTED
+        const val MAP_ERROR = MAP_SCREEN + "_error_starts_map"
+        const val MAP_SHOW_NEIGHBOOR_ERROR_ = MAP_SCREEN + "_error_show_neighboor"
     }
 
     object Product {
@@ -82,8 +82,8 @@ object Monitoring {
     }
 
     object TermsApp{
-        const val  TERMS_OF_ÁPP_SCREEN="terms"
-        const val TERMS_START = TERMS_OF_ÁPP_SCREEN+STARTS
+        const val  TERMS_OF_APP_SCREEN="terms"
+        const val TERMS_START = TERMS_OF_APP_SCREEN+STARTS
     }
 
 }
