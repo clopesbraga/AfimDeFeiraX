@@ -1,3 +1,18 @@
+def getLocalProperty(String key, Project project) {
+    Properties properties = new Properties()
+    File localPropertiesFile = project.rootProject.file("local.properties")
+    if (localPropertiesFile.exists() && localPropertiesFile.isFile()) {
+        localPropertiesFile.withInputStream { stream ->
+            properties.load(stream)
+        }
+        def value = properties.getProperty(key)
+        if (value != null && !value.isEmpty()) {
+            return value
+        }
+    }
+    return ""
+}
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,6 +21,7 @@ plugins {
     alias(libs.plugins.kotlin.secrets)
     id("kotlin-kapt")
 }
+
 
 android {
 
@@ -21,17 +37,33 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+
+            def props = new Properties()
+            def localPropsFile = rootProject.file("local.properties")
+            if (localPropsFile.exists()) {
+                props.load(new FileInputStream(localPropsFile))
+            }
+
+            storeFile file(props.getProperty('AFIMDEFEIRA_STORE_FILE',''))
+            storePassword props.getProperty('AFIMDEFEIRA_PASSWORDS','')
+            keyAlias props.getProperty('AFIMDEFEIRA_ALIAS','')
+            keyPassword props.getProperty('AFIMDEFEIRA_PASSWORDS','')
+        }
+    }
+
     buildTypes {
 
-        debug{
-
-            resValue "string", "admob_interstitial_ad_unit_id", "ca-app-pub-3940256099942544/1033173712"
-
+        debug {
+            resValue "string","interstitial_ad_unit_id","ca-app-pub-3940256099942544/1033173712"
         }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
 
+            def interactAdKeyRelease = getLocalProperty("INTERACT_AD_kEY", project)
+            resValue "string","interstitial_ad_unit_id", interactAdKeyRelease
         }
 
     }
