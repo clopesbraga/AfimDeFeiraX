@@ -45,6 +45,7 @@ import com.example.afimdefeirax.Model.produtosList
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.Monitoring
+import com.example.afimdefeirax.View.Components.TutorialShowCaseComponent
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
 import org.koin.compose.koinInject
 
@@ -76,23 +77,34 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
         },
 
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    firebaseanalytics.
-                    firebaselogEvent(Monitoring.Product.PRODUCT_FLOATING_BUTTON_PRESSED)
-                    navController.navigate("list")
-                },
-                containerColor = Color(0xFF009688),
-                shape = CircleShape,
-                modifier = Modifier
-                    .padding(16.dp)
+
+            TutorialShowCaseComponent(
+                targetIndex = 0,
+                showintro = true,
+                title = "Botao para efetivar compras",
+                description = "Leva para tela onde pode informar a quantidade e valor na compra do produto",
+                onTutorialCompleted = true
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_nav_btn_produtos),
-                    contentDescription = stringResource(R.string.describe_button_list),
-                    tint = Color.White
-                )
+                FloatingActionButton(
+                    onClick = {
+                        firebaseanalytics.firebaselogEvent(Monitoring.Product.PRODUCT_FLOATING_BUTTON_PRESSED)
+                        navController.navigate("list")
+                    },
+                    containerColor = Color(0xFF009688),
+                    shape = CircleShape,
+                    modifier = Modifier
+                        .padding(16.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_nav_btn_produtos),
+                        contentDescription = stringResource(R.string.describe_button_list),
+                        tint = Color.White
+                    )
+                }
+
+
             }
+
         }
 
     ) { innerpadding ->

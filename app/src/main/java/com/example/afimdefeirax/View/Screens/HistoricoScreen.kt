@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.ColunaDinamica
+import com.example.afimdefeirax.View.Components.TutorialShowCaseComponent
 import com.example.afimdefeirax.ViewModel.HistoricoViewModel
 import org.koin.compose.koinInject
 
@@ -72,7 +74,9 @@ fun HistoricoScreen(showBottomBar: (Boolean)->Unit) {
                 .fillMaxSize()
         ) {
 
-            items(loadedhistorico) { item ->
+            itemsIndexed (loadedhistorico) { index,item ->
+
+                val isFirstItemAndTutorialActive = if(index == 0)true else false
 
                 Card(modifier = Modifier.padding(8.dp)) {
                     Row(
@@ -80,7 +84,6 @@ fun HistoricoScreen(showBottomBar: (Boolean)->Unit) {
                             .padding(2.dp)
                     )
                     {
-
                         Image(
                             painter = painterResource(id = item.imagem),
                             contentDescription = null,
@@ -97,23 +100,34 @@ fun HistoricoScreen(showBottomBar: (Boolean)->Unit) {
                                 .padding(2.dp)
                                 .fillMaxWidth()
                         ) {
+
                             Text(
                                 text = item.nome,
                                 color = Color.Black,
                                 fontStyle = FontStyle.Italic,
                                 fontSize = 25.sp
                             )
-                            Row {
-                                if (item.preco2 != null && item.preco3 != null) {
-                                    ColunaDinamica(
-                                        preco1 = item.preco1!!.toDouble(),
-                                        preco2 = item.preco2!!.toDouble(),
-                                        preco3 = item.preco3!!.toDouble()
-                                    )
-                                }
+                            TutorialShowCaseComponent(
+                                targetIndex = 0,
+                                showintro = isFirstItemAndTutorialActive,
+                                title = "Historico de Compras",
+                                description = "Aqui mostra o seu das três ultimas compras feitas para poder comparar",
+                                onTutorialCompleted = true
 
+                            ) {
+                                Row {
+                                    if (item.preco2 != null && item.preco3 != null) {
+                                        ColunaDinamica(
+                                            preco1 = item.preco1!!.toDouble(),
+                                            preco2 = item.preco2!!.toDouble(),
+                                            preco3 = item.preco3!!.toDouble()
+                                        )
+                                    }
+
+                                }
                             }
                         }
+
 
                     }
                 }
