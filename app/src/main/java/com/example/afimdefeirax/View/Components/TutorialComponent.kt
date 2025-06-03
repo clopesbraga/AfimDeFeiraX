@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,9 +19,9 @@ import com.canopas.lib.showcase.component.ShowcaseStyle
 fun TutorialShowCaseComponent(
     targetIndex: Int,
     tutorialStyle: ShowcaseStyle = ShowcaseStyle.Default.copy(
-        backgroundColor = Color(0xff4ee44e), // specify color of background
-        backgroundAlpha = 0.98f, // specify transparency of background
-        targetCircleColor = Color.White // specify color of target circle
+        backgroundColor = Color(0xFF009688),
+        backgroundAlpha = 0.98f,
+        targetCircleColor = Color.White
     ),
     title: String,
     description: String,
@@ -37,7 +38,9 @@ fun TutorialShowCaseComponent(
     ) {
 
         Box(
-            modifier = Modifier.introShowCaseTarget(
+            modifier = Modifier
+                .padding(16.dp)
+                .introShowCaseTarget(
                 index = targetIndex,
                 style = tutorialStyle,
                 content = {
