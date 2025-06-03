@@ -27,9 +27,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.ColunaDinamica
@@ -110,8 +112,8 @@ fun HistoricoScreen(showBottomBar: (Boolean)->Unit) {
                             TutorialShowCaseComponent(
                                 targetIndex = 0,
                                 showintro = isFirstItemAndTutorialActive,
-                                title = "Historico de Compras",
-                                description = "Aqui mostra o seu das três ultimas compras feitas para poder comparar",
+                                title = stringResource(R.string.tutorial_title_item_historic),
+                                description = stringResource(R.string.tutorial_description_item_historic),
                                 onTutorialCompleted = true
 
                             ) {

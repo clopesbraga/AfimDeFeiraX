@@ -81,13 +81,16 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
             TutorialShowCaseComponent(
                 targetIndex = 0,
                 showintro = true,
-                title = "Botao para efetivar compras",
-                description = "Leva para tela onde pode informar a quantidade e valor na compra do produto",
+                title = stringResource(R.string.tutorial_description_button_product_list),
+                description = stringResource(R.string.tutorial_descritpiton_button_product_list),
                 onTutorialCompleted = true
             ) {
+
                 FloatingActionButton(
                     onClick = {
-                        firebaseanalytics.firebaselogEvent(Monitoring.Product.PRODUCT_FLOATING_BUTTON_PRESSED)
+                        firebaseanalytics.firebaselogEvent(
+                            Monitoring.Product.PRODUCT_FLOATING_BUTTON_PRESSED
+                        )
                         navController.navigate("list")
                     },
                     containerColor = Color(0xFF009688),

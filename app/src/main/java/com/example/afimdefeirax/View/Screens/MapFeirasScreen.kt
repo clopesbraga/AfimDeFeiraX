@@ -38,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -110,8 +111,8 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
                 TutorialShowCaseComponent(
                     targetIndex = 0,
                     showintro = showAppIntro,
-                    title ="Localizacao Feiras da Cidade",
-                    description = "Mostra as Cidades e bairros onde ocorrem as feiras",
+                    title = stringResource(R.string.tutorial_title_button_search_neigboor),
+                    description = stringResource(R.string.tutorial_description_button_search_neigboor),
                     onTutorialCompleted = true
                 ){
                     FloatingActionButton(
