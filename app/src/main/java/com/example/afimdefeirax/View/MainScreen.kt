@@ -19,6 +19,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +39,7 @@ import com.example.afimdefeirax.State.MainUIState
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.MenuBar
 import com.example.afimdefeirax.View.Components.MoreOptionsMenu
+import com.example.afimdefeirax.View.Screens.HistoricoScreen
 import com.example.afimdefeirax.View.Screens.LoginScreen
 import com.example.afimdefeirax.View.Screens.MapFeirasScreen
 import com.example.afimdefeirax.View.Screens.ProdutosListScreen
@@ -62,6 +64,7 @@ private const val ID = "id"
 
 
 
+
 class MainScreen : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,6 +82,7 @@ class MainScreen : ComponentActivity() {
             val showBottomBar = remember { mutableStateOf(true) }
             mSharedLogin = LoginSharedImpl(application.applicationContext)
             val firebaseanalytics: FirebaseAnalytics = Firebase.analytics
+            var showAppIntro by remember { mutableStateOf(false) }
 
             firebaseanalytics.logEvent(Monitoring.Main.MAIN_SCREEN_START, null)
 
@@ -91,7 +95,13 @@ class MainScreen : ComponentActivity() {
                 }
             ) { innerpading ->
 
-                if (verifyAcess(mSharedLogin)) startScreen = "map" else startScreen = "login"
+                when (verifyAcess(mSharedLogin)){
+                    true ->{ startScreen = "map" }
+                    false -> {
+                        startScreen = "login"
+                        LaunchedEffect(Unit) {showAppIntro = true}
+                    }
+                }
 
                 NavHost(
                     modifier = Modifier
@@ -109,16 +119,18 @@ class MainScreen : ComponentActivity() {
                     }
                     composable(route = "map") {
                         MapFeirasScreen(
-                            showBottomBar = ({ showBottomBar.value = it })
+                            showBottomBar = ({ showBottomBar.value = it }),
+                            showTutorial = showAppIntro
                         )
                     }
                     composable(route = "comp") {
                         ProdutosScreen(
                             navController,
-                            showBottomBar = ({ showBottomBar.value = it })
+                            showBottomBar = ({ showBottomBar.value = it }),
+                            showTutorial = showAppIntro
+
                         )
                     }
-
                     composable(route = "list") {
                         ProdutosListScreen(
                             navController,
@@ -126,8 +138,9 @@ class MainScreen : ComponentActivity() {
                         )
                     }
                     composable(route = "hist") {
-                        com.example.afimdefeirax.View.Screens.HistoricoScreen(
-                            showBottomBar = ({ showBottomBar.value = it })
+                        HistoricoScreen(
+                            showBottomBar = ({ showBottomBar.value = it }),
+                            showTutorial = showAppIntro
                         )
                     }
                     composable(route = "about") {
@@ -221,7 +234,9 @@ class MainScreen : ComponentActivity() {
         }
     }
 
+
     private fun verifyAcess(mSharedLogin: LoginSharedImpl): Boolean {
         return mSharedLogin.getString(ID).isNotEmpty()
     }
+
 }
