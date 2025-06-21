@@ -26,8 +26,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -51,14 +56,21 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit) {
+fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
 
 
     val viewModel: ProdutosViewModel = koinInject()
     val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
+    val state by viewModel.state.collectAsState()
 
     firebaseanalytics.firebaselogEvent(Monitoring.Product.PRODUCT_SCREEN_START)
     showBottomBar(true)
+
+
+    LaunchedEffect(Unit) {
+        viewModel.onShowTutorial()
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -80,10 +92,10 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
 
             TutorialShowCaseComponent(
                 targetIndex = 0,
-                showintro = true,
+                showintro = state.showTutorial,
                 title = stringResource(R.string.tutorial_description_button_product_list),
                 description = stringResource(R.string.tutorial_descritpiton_button_product_list),
-                onTutorialCompleted = true
+                onTutorialCompleted = {viewModel.onTutorialCompleted()}
             ) {
 
                 FloatingActionButton(
