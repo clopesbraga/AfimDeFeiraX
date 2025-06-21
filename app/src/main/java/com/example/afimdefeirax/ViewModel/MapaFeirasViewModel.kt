@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
+import com.example.afimdefeirax.SharedPreferences.MapTutorialSharedImpl
 import com.example.afimdefeirax.State.MapFeirasUIState
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.FocusCamera
@@ -34,7 +35,8 @@ class MapaFeirasViewModel(
     private var locationProvider: LocationImpl,
     private var camera: FocusCamera,
     private var feirasRepository: FeirasRepositoryImpl,
-    private val analyticservice: FirebaseAnalyticsImpl
+    private val analyticservice: FirebaseAnalyticsImpl,
+    private val tutorialPreferences : MapTutorialSharedImpl
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<MapFeirasUIState> = MutableStateFlow(MapFeirasUIState())
@@ -42,18 +44,19 @@ class MapaFeirasViewModel(
 
     private lateinit var googleMap: GoogleMap
     private lateinit var userLocation: LatLng
+    private var tutorialShow = false
 
 
     init {
+        val tutorialAlreadyCompleted = tutorialPreferences.hasMapTutorialBeenCompleted()
         _state.update { currentState ->
             currentState.copy(
                 selectedCity = "SAO PAULO",
                 cityImages = R.mipmap.ic_bandeira_saopaulo,
                 searchQuery = "",
                 showBottomSheet = false,
-                neighborhoodsToShow = application.resources.getStringArray(R.array.sp_bairros)
-                    .toList()
-
+                neighborhoodsToShow = application.resources.getStringArray(R.array.sp_bairros).toList(),
+                showTutorial = !tutorialAlreadyCompleted
             )
         }
     }
@@ -73,6 +76,16 @@ class MapaFeirasViewModel(
         )
     }
 
+    fun onShowTutorial(){
+        if(!tutorialPreferences.hasMapTutorialBeenCompleted()){
+            _state.update { it.copy(showTutorial = true) }
+        }
+    }
+
+    fun onTutorialCompleted() {
+        _state.update { it.copy(showTutorial = false) }
+        tutorialPreferences.setMapTutorialCompleted(true)
+    }
 
     fun onCityChange(newCity: String) {
         _state.update { currentState ->

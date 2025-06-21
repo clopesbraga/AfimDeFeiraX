@@ -6,7 +6,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,13 +14,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.LocalAutofillHighlightColor
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -33,18 +32,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.canopas.lib.showcase.IntroShowcase
-import com.canopas.lib.showcase.component.ShowcaseStyle
-import com.canopas.lib.showcase.component.rememberIntroShowcaseState
 import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
@@ -77,7 +72,7 @@ fun RequestLocationPermission() {
 
 @OptIn(MapsComposeExperimentalApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
+fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
 
 
     var shouldShowBottomBar by remember { mutableStateOf(true) }
@@ -92,12 +87,15 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
-    var showAppIntro by remember { mutableStateOf(true) }
+
 
     firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_SCREEN_START)
 
     RequestLocationPermission()
 
+    LaunchedEffect(Unit) {
+            viewModel.onShowTutorial()
+    }
         Scaffold(
             Modifier.fillMaxSize(),
             topBar = {
@@ -110,10 +108,10 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
                 TutorialShowCaseComponent(
                     targetIndex = 0,
-                    showintro = showAppIntro,
+                    showintro = state.showTutorial,
                     title = stringResource(R.string.tutorial_title_button_search_neigboor),
                     description = stringResource(R.string.tutorial_description_button_search_neigboor),
-                    onTutorialCompleted = true
+                    onTutorialCompleted = {viewModel.onTutorialCompleted()}
                 ){
                     FloatingActionButton(
                         onClick = {
