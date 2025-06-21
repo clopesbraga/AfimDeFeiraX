@@ -44,8 +44,6 @@ class MapaFeirasViewModel(
 
     private lateinit var googleMap: GoogleMap
     private lateinit var userLocation: LatLng
-    private var tutorialShow = false
-
 
     init {
         val tutorialAlreadyCompleted = tutorialPreferences.hasMapTutorialBeenCompleted()
