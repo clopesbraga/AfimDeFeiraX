@@ -8,9 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.Model.Historico
 import com.example.afimdefeirax.Model.HistoricoModel
 import com.example.afimdefeirax.Repository.HistoricoRepository
+import com.example.afimdefeirax.SharedPreferences.HistTutorialSharedImpl
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
+import com.example.afimdefeirax.State.HistoricUiState
+import com.example.afimdefeirax.State.ProdutosUiState
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.Monitoring
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.inject
 
@@ -18,8 +23,32 @@ class HistoricoViewModel(
     private val application: Application,
     private val historicoShared: HistoricoShared,
     private val msavehistorico : HistoricoRepository,
-    private val firebaseAnalytics: FirebaseAnalyticsImpl
+    private val firebaseAnalytics: FirebaseAnalyticsImpl,
+    private val tutorialPreferences: HistTutorialSharedImpl
 ) : ViewModel(){
+
+    private val _state: MutableStateFlow<HistoricUiState> = MutableStateFlow(HistoricUiState())
+    val state = _state
+
+    init {
+        val tutorialAlreadyCompleted = tutorialPreferences.hasHistTutorialBeenCompleted()
+        _state.update { currentState ->
+            currentState.copy(
+                showTutorial = !tutorialAlreadyCompleted
+            )
+        }
+    }
+
+    fun onShowTutorial(){
+        if(!tutorialPreferences.hasHistTutorialBeenCompleted()){
+            _state.update { it.copy(showTutorial = true) }
+        }
+    }
+
+    fun onTutorialCompleted() {
+        _state.update { it.copy(showTutorial = false) }
+        tutorialPreferences.setHistTutorialCompleted(true)
+    }
 
     fun loadHistorico(): List<HistoricoModel> {
         firebaseAnalytics.firebaselogEvent(Monitoring.Historic.STARTS_HISTORIC_LOAD)
