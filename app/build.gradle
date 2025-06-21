@@ -158,6 +158,9 @@ dependencies {
     //ADS
     implementation(libs.play.services.ads)
 
+    //Tutorial
+    implementation (libs.introshowcaseview)
+
     //Graficos
     implementation(libs.compose.charts)
 
