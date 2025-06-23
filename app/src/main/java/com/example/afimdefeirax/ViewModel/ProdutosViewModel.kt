@@ -8,17 +8,20 @@ import com.example.afimdefeirax.Model.Historico
 import com.example.afimdefeirax.Model.Produtos
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
 import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
+import com.example.afimdefeirax.SharedPreferences.ProductTutorialSharedImpl
 import com.example.afimdefeirax.State.ProdutosUiState
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ProdutosViewModel(
     private val application: Application,
     private val produtosshared: ListProdutosShared,
     private val historicoshared: HistoricoShared,
-    private val firebaseAnalytics: FirebaseAnalyticsImpl
+    private val firebaseAnalytics: FirebaseAnalyticsImpl,
+    private val tutorialPreferences: ProductTutorialSharedImpl
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<ProdutosUiState> = MutableStateFlow(ProdutosUiState())
@@ -26,6 +29,28 @@ class ProdutosViewModel(
 
     var listprodutos = mutableListOf<Produtos>()
     var historico = mutableListOf<Historico>()
+
+    init {
+        val tutorialAlreadyCompleted = tutorialPreferences.hasProducTutorialBeenCompleted()
+        _state.update { currentState ->
+            currentState.copy(
+                showTutorial = !tutorialAlreadyCompleted
+            )
+        }
+    }
+
+
+    fun onShowTutorial(){
+        if(!tutorialPreferences.hasProducTutorialBeenCompleted()){
+            _state.update { it.copy(showTutorial = true) }
+        }
+    }
+
+    fun onTutorialCompleted() {
+        _state.update { it.copy(showTutorial = false) }
+        tutorialPreferences.setProductTutorialCompleted(true)
+    }
+
 
     fun takeProduts(productimage: Int, productname: String) {
 
