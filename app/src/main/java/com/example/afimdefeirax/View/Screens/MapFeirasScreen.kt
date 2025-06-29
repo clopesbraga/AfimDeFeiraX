@@ -1,7 +1,6 @@
 package com.example.afimdefeirax.View.Screens
 
 
-import android.Manifest
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.text.LocalAutofillHighlightColor
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -32,7 +30,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,35 +37,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberPermissionState
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.MapProperties
-import com.google.maps.android.compose.MapUiSettings
-import com.google.maps.android.compose.MapsComposeExperimentalApi
-import org.koin.compose.koinInject
-import com.google.maps.android.compose.MapEffect
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.View.Components.CitiesMenuComponent
 import com.example.afimdefeirax.View.Components.SearchNeighborHoodComponent
 import com.example.afimdefeirax.View.Components.TutorialShowCaseComponent
+import com.example.afimdefeirax.ViewModel.MapaFeirasViewModel
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapEffect
+import com.google.maps.android.compose.MapProperties
+import com.google.maps.android.compose.MapUiSettings
+import com.google.maps.android.compose.MapsComposeExperimentalApi
+import org.koin.compose.koinInject
 
-
-@OptIn(ExperimentalPermissionsApi::class)
-@Composable
-fun RequestLocationPermission() {
-    val locationPermissionState =
-        rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
-
-    LaunchedEffect(Unit) {
-        if (!locationPermissionState.equals(true)) {
-            locationPermissionState.launchPermissionRequest()
-        }
-    }
-}
 
 @OptIn(MapsComposeExperimentalApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -91,7 +73,6 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
 
     firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_SCREEN_START)
 
-    RequestLocationPermission()
 
     LaunchedEffect(Unit) {
             viewModel.onShowTutorial()

@@ -17,9 +17,9 @@
 
     //TELA LOGIN
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="input_password">Inclua uma senha</string>
-    <string name="input_user">Inclua seu e-mail</string>
-    <string name="confirm_login">Logar/Cadastrar</string>
+    <string name="input_password">Registre sua senha</string>
+    <string name="input_user">Registre seu e-mail</string>
+    <string name="confirm_login">Cadastrar</string>
 
 
     //TELA PRODUTOS
