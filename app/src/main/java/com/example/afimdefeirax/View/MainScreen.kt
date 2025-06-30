@@ -1,5 +1,6 @@
 package com.example.afimdefeirax.View
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -45,6 +46,8 @@ import com.example.afimdefeirax.View.Screens.MapFeirasScreen
 import com.example.afimdefeirax.View.Screens.ProdutosListScreen
 import com.example.afimdefeirax.View.Screens.ProdutosScreen
 import com.example.afimdefeirax.ViewModel.MainViewModel
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberPermissionState
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
@@ -62,7 +65,18 @@ private var startScreen: String = ""
 private lateinit var mSharedLogin: LoginSharedImpl
 private const val ID = "id"
 
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun RequestLocationPermission() {
+    val locationPermissionState =
+        rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
 
+    LaunchedEffect(Unit) {
+        if (!locationPermissionState.equals(true)) {
+            locationPermissionState.launchPermissionRequest()
+        }
+    }
+}
 
 
 class MainScreen : ComponentActivity() {
@@ -86,6 +100,7 @@ class MainScreen : ComponentActivity() {
 
             firebaseanalytics.logEvent(Monitoring.Main.MAIN_SCREEN_START, null)
 
+            RequestLocationPermission()
 
             Scaffold(
                 bottomBar = {
