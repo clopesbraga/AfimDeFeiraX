@@ -137,8 +137,9 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
                     if (viewModel.login()) state.isSuccess
                 },
             ) {
-                Text(stringResource(R.string.confirm_login))
-                if(state.isLoading){ CircularProgressIndicator(color = Color.White) }
+                if(state.isLoading){
+                    CircularProgressIndicator(color = Color.White)
+                } else Text(stringResource(R.string.confirm_login))
                 if(state.isSuccess) navController.navigate("map")
             }
 
