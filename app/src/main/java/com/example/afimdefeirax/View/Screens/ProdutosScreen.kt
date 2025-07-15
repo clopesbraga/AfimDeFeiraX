@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -38,6 +39,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -144,20 +147,29 @@ fun ProdutosScreen(
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        textDecoration = TextDecoration.Underline
+                        textDecoration = TextDecoration.Underline,
+                        modifier = Modifier.padding(12.dp)
                     )
-                    LazyRow {
+                    LazyRow(Modifier.padding(8.dp)) {
                         items(produtosList[produtos].size) { items ->
-
-                            val isCurrentlyFocused = focusedStates[items]
 
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                Text(produtosList[produtos][items].name)
+                                Spacer(Modifier.size(12.dp))
+                                Text(
+                                    text=produtosList[produtos][items].name,
+                                    color = Color.Yellow,
+                                    fontStyle = FontStyle.Italic,
+                                    fontFamily = FontFamily.SansSerif,
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.ExtraBold
+
+                                )
+                                Spacer(Modifier.size(8.dp))
                                 Card(
                                     modifier = Modifier
-                                        .padding(8.dp)
+                                        .padding(8.dp,8.dp,8.dp,24.dp)
                                         .size(100.dp)
                                         .clickable {
 
@@ -201,7 +213,7 @@ fun ProdutosScreen(
 
                                 }
                             }
-
+                            Spacer(Modifier.size(8.dp))
                         }
 
                     }
