@@ -58,7 +58,10 @@ object Monitoring {
         const val PRODUCT_SAVE = PRODUCT_SCREEN + "_save"
         const val PRODUCT_SAVE_ERROR = PRODUCT_SCREEN + "_save_error"
         const val PRODUCT_ITEM_SELECTED = PRODUCT_SCREEN+ITEM+Button.PRESSED
+        const val PRODUCT_ITEM_UNSELECTED = PRODUCT_SCREEN+ITEM+Button.PRESSED
         const val PRODUCT_CREATE_LIST_ERROR = PRODUCT_SCREEN + "_take_error"
+        const val PRODUCT_UPDATE = PRODUCT_SCREEN+"update"
+        const val PRODUCT_UPDATE_ERROR = PRODUCT_SCREEN + "_update_error"
         const val PRODUCT_REMOVE = PRODUCT_SCREEN+"_remove"
         const val PRODUCT_REMOVE_ERROR = PRODUCT_SCREEN + "_remove_error"
     }

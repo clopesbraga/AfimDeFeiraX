@@ -34,4 +34,10 @@ class ListProdutosShared(context: Context):ISharedListProdutos {
         saveItems(context, items)
     }
 
+    override fun updateItem(context: Context, updatedItem: Produtos) {
+        val items = loadItems(context).toMutableList()
+        items.add(updatedItem)
+        saveItems(context, items)
+    }
+
 }

@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,9 +29,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -56,7 +53,11 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
+fun ProdutosScreen(
+    navController: NavHostController,
+    showBottomBar: (Boolean) -> Unit,
+    showTutorial: Boolean
+) {
 
 
     val viewModel: ProdutosViewModel = koinInject()
@@ -95,7 +96,7 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
                 showintro = state.showTutorial,
                 title = stringResource(R.string.tutorial_description_button_product_list),
                 description = stringResource(R.string.tutorial_descritpiton_button_product_list),
-                onTutorialCompleted = {viewModel.onTutorialCompleted()}
+                onTutorialCompleted = { viewModel.onTutorialCompleted() }
             ) {
 
                 FloatingActionButton(
@@ -147,6 +148,9 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
                     )
                     LazyRow {
                         items(produtosList[produtos].size) { items ->
+
+                            val isCurrentlyFocused = focusedStates[items]
+
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
@@ -155,17 +159,28 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
                                     modifier = Modifier
                                         .padding(8.dp)
                                         .size(100.dp)
-                                        .clickable(enabled = focusedStates[items]) {
+                                        .clickable {
 
-                                            viewModel.takeProduts(
-                                                produtosList[produtos][items].imageResId,
-                                                produtosList[produtos][items].name
-                                            )
-                                            focusedStates[items] = false
+                                            when (focusedStates[items]) {
 
+                                                true -> {
+                                                    viewModel.takeItems(
+                                                        produtosList[produtos][items].imageResId,
+                                                        produtosList[produtos][items].name
+                                                    )
+                                                    focusedStates[items] = !focusedStates[items]
+                                                }
+
+                                                false -> {
+                                                    viewModel.removeItems(
+                                                        produtosList[produtos][items].imageResId,
+                                                        produtosList[produtos][items].name
+                                                    )
+                                                    focusedStates[items] = !focusedStates[items]
+                                                }
+                                            }
 
                                         }
-                                        .focusable(enabled = true)
                                         .border(
                                             width = if (!focusedStates[items]) 5.dp else 0.dp,
                                             color = if (!focusedStates[items]) Color.Green else Color.Transparent,
