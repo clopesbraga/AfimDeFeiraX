@@ -59,7 +59,6 @@ import org.koin.compose.koinInject
 fun ProdutosScreen(
     navController: NavHostController,
     showBottomBar: (Boolean) -> Unit,
-    showTutorial: Boolean
 ) {
 
 
