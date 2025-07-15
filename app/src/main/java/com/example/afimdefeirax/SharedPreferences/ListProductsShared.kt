@@ -5,20 +5,21 @@ import android.content.SharedPreferences
 import com.example.afimdefeirax.Model.Produtos
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import androidx.core.content.edit
 
 
-class ListProdutosShared(context: Context):ISharedListProdutos {
+class ListProductsShared(context: Context):ISharedListProdutos {
 
 
     private val sharedProdutosList: SharedPreferences =
         context.getSharedPreferences("Produtos", Context.MODE_PRIVATE)
 
     override fun saveItems(context: Context, items: List<Produtos>) {
-        val editor = sharedProdutosList.edit()
-        val gson = Gson()
-        val json = gson.toJson(items)
-        editor.putString("Produtos", json)
-        editor.apply()
+        sharedProdutosList.edit() {
+            val gson = Gson()
+            val json = gson.toJson(items)
+            putString("Produtos", json)
+        }
     }
 
     override fun loadItems(context: Context): List<Produtos> {

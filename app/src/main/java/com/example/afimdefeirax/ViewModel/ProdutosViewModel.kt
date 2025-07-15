@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.Model.Historico
 import com.example.afimdefeirax.Model.Produtos
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
-import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
+import com.example.afimdefeirax.SharedPreferences.ListProductsShared
 import com.example.afimdefeirax.SharedPreferences.ProductTutorialSharedImpl
 import com.example.afimdefeirax.State.ProdutosUiState
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class ProdutosViewModel(
     private val application: Application,
-    private val produtosshared: ListProdutosShared,
+    private val produtosshared: ListProductsShared,
     private val historicoshared: HistoricoShared,
     private val firebaseAnalytics: FirebaseAnalyticsImpl,
     private val tutorialPreferences: ProductTutorialSharedImpl
