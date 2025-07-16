@@ -141,8 +141,7 @@ class MainScreen : ComponentActivity() {
                     composable(route = "comp") {
                         ProdutosScreen(
                             navController,
-                            showBottomBar = ({ showBottomBar.value = it }),
-                            showTutorial = showAppIntro
+                            showBottomBar = ({ showBottomBar.value = it })
 
                         )
                     }

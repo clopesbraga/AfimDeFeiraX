@@ -5,10 +5,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,9 +30,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -41,6 +39,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -56,7 +56,10 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
+fun ProdutosScreen(
+    navController: NavHostController,
+    showBottomBar: (Boolean) -> Unit,
+) {
 
 
     val viewModel: ProdutosViewModel = koinInject()
@@ -95,7 +98,7 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
                 showintro = state.showTutorial,
                 title = stringResource(R.string.tutorial_description_button_product_list),
                 description = stringResource(R.string.tutorial_descritpiton_button_product_list),
-                onTutorialCompleted = {viewModel.onTutorialCompleted()}
+                onTutorialCompleted = { viewModel.onTutorialCompleted() }
             ) {
 
                 FloatingActionButton(
@@ -143,29 +146,52 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        textDecoration = TextDecoration.Underline
+                        textDecoration = TextDecoration.Underline,
+                        modifier = Modifier.padding(12.dp)
                     )
-                    LazyRow {
+                    LazyRow(Modifier.padding(8.dp)) {
                         items(produtosList[produtos].size) { items ->
+
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                Text(produtosList[produtos][items].name)
+                                Spacer(Modifier.size(12.dp))
+                                Text(
+                                    text=produtosList[produtos][items].name,
+                                    color = Color.Yellow,
+                                    fontStyle = FontStyle.Italic,
+                                    fontFamily = FontFamily.SansSerif,
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.ExtraBold
+
+                                )
+                                Spacer(Modifier.size(8.dp))
                                 Card(
                                     modifier = Modifier
-                                        .padding(8.dp)
+                                        .padding(8.dp,8.dp,8.dp,24.dp)
                                         .size(100.dp)
-                                        .clickable(enabled = focusedStates[items]) {
+                                        .clickable {
 
-                                            viewModel.takeProduts(
-                                                produtosList[produtos][items].imageResId,
-                                                produtosList[produtos][items].name
-                                            )
-                                            focusedStates[items] = false
+                                            when (focusedStates[items]) {
 
+                                                true -> {
+                                                    viewModel.takeItems(
+                                                        produtosList[produtos][items].imageResId,
+                                                        produtosList[produtos][items].name
+                                                    )
+                                                    focusedStates[items] = !focusedStates[items]
+                                                }
+
+                                                false -> {
+                                                    viewModel.removeItems(
+                                                        produtosList[produtos][items].imageResId,
+                                                        produtosList[produtos][items].name
+                                                    )
+                                                    focusedStates[items] = !focusedStates[items]
+                                                }
+                                            }
 
                                         }
-                                        .focusable(enabled = true)
                                         .border(
                                             width = if (!focusedStates[items]) 5.dp else 0.dp,
                                             color = if (!focusedStates[items]) Color.Green else Color.Transparent,
@@ -186,7 +212,7 @@ fun ProdutosScreen(navController: NavHostController, showBottomBar: (Boolean) ->
 
                                 }
                             }
-
+                            Spacer(Modifier.size(8.dp))
                         }
 
                     }

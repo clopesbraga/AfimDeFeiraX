@@ -5,7 +5,7 @@ import com.example.afimdefeirax.Repository.HistoricoRepository
 import com.example.afimdefeirax.SharedPreferences.HistTutorialSharedImpl
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
 import com.example.afimdefeirax.SharedPreferences.ILoginShared
-import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
+import com.example.afimdefeirax.SharedPreferences.ListProductsShared
 import com.example.afimdefeirax.SharedPreferences.LoginSharedImpl
 import com.example.afimdefeirax.SharedPreferences.MapTutorialSharedImpl
 import com.example.afimdefeirax.SharedPreferences.ProductTutorialSharedImpl
@@ -40,7 +40,7 @@ val appModule = module{
      single{ FirebaseAnalytics.getInstance(get())}
      factory{ FirebaseAuthServiceImpl(get()) }
      single <ILoginShared> { LoginSharedImpl(androidContext()) }
-     single { ListProdutosShared(androidContext()) }
+     single { ListProductsShared(androidContext()) }
      single { HistoricoShared(androidContext()) }
      single{ MapTutorialSharedImpl(androidContext()) }
      single{ProductTutorialSharedImpl(androidContext())}
