@@ -89,9 +89,11 @@ val LegumesList = listOf(
 )
 
 val verdurasList = listOf(
+
+    ItemsModel("Verduras", "Acelga", R.mipmap.ic_acelga_foreground),
     ItemsModel("Verduras", "Alface", R.mipmap.ic_alface),
     ItemsModel("Verduras", "Alecrin", R.mipmap.ic_alecrin_foreground),
-    ItemsModel("Verduras", "Acelga", R.mipmap.ic_acelga_foreground),
+    ItemsModel("Verduras","Almeirão",R.mipmap.ic_almeirao),
     ItemsModel("Verduras", "Brocolis", R.mipmap.ic_brocolis_foreground),
     ItemsModel("Verduras", "Couve", R.mipmap.ic_couve_foreground),
     ItemsModel("Verduras", "Chicoria", R.mipmap.ic_chicoria_foreground),
@@ -121,6 +123,7 @@ val utensilhosList = listOf(
     )
 
 val lanchesList = listOf(
+    ItemsModel("Lanches", "Agua-Coco", R.mipmap.ic_agua_coco),
     ItemsModel("Lanches", "Caldo-Cana", R.mipmap.ic_caldo_cana),
     ItemsModel("Lanches", "Coxinha", R.mipmap.ic_coxinha),
     ItemsModel("Lanches", "Espetos", R.mipmap.ic_espetos),
