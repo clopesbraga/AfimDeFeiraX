@@ -11,4 +11,6 @@ interface ISharedListProdutos {
     fun loadItems(context: Context): List<Produtos>
 
     fun removeItem(context: Context, itemToRemove: Produtos)
+
+    fun updateItem(context: Context, updatedItem: Produtos)
 }

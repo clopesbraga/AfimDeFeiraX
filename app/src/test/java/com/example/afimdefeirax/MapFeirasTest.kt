@@ -29,6 +29,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
@@ -92,7 +93,8 @@ class MapFeirasTest {
             locationProvider = mockLocationProvider,
             feirasRepository = mockFeirasRepository,
             analyticservice = mockAnalytics,
-            camera = mockCamera
+            camera = mockCamera,
+            tutorialPreferences = mock()
         )
     }
 

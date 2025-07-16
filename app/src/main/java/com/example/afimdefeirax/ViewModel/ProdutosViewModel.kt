@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.afimdefeirax.Model.Historico
 import com.example.afimdefeirax.Model.Produtos
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
-import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
+import com.example.afimdefeirax.SharedPreferences.ListProductsShared
 import com.example.afimdefeirax.SharedPreferences.ProductTutorialSharedImpl
 import com.example.afimdefeirax.State.ProdutosUiState
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class ProdutosViewModel(
     private val application: Application,
-    private val produtosshared: ListProdutosShared,
+    private val produtosshared: ListProductsShared,
     private val historicoshared: HistoricoShared,
     private val firebaseAnalytics: FirebaseAnalyticsImpl,
     private val tutorialPreferences: ProductTutorialSharedImpl
@@ -52,13 +52,47 @@ class ProdutosViewModel(
     }
 
 
-    fun takeProduts(productimage: Int, productname: String) {
+    fun takeItems(productimage: Int, productname: String) {
 
         viewModelScope.launch{
             try {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_ITEM_SELECTED)
-                listprodutos.add(Produtos(productimage, productname))
-                saveProducts(listprodutos)
+                val productItem =Produtos(productimage, productname)
+                listprodutos.add(productItem)
+
+                if(listprodutos.isEmpty()) saveProducts(listprodutos) else updateItem(productimage,productname)
+
+
+            }catch (error: Exception){
+                firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR)
+                Log.e(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR,error.message.toString())
+
+            }
+        }
+    }
+
+    private fun updateItem(productimage: Int, productname: String) {
+        try {
+            firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_UPDATE)
+            val productItem=(Produtos(productimage, productname))
+            produtosshared.updateItem(application.applicationContext, productItem)
+        }catch (error: Exception){
+
+            firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_UPDATE_ERROR)
+            Log.e(Monitoring.Product.PRODUCT_REMOVE_ERROR,error.message.toString())
+
+        }
+    }
+
+
+    fun removeItems(productimage: Int, productname: String) {
+
+        viewModelScope.launch{
+            try {
+                firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_ITEM_UNSELECTED)
+                val productItem=(Produtos(productimage, productname))
+                produtosshared.removeItem(application.applicationContext,productItem)
+
 
             }catch (error: Exception){
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR)
@@ -80,6 +114,7 @@ class ProdutosViewModel(
             }
         }
     }
+
 
      fun requestOfHistorico(nome: String, preco: String, imagem: Int) {
          viewModelScope.launch{
@@ -126,5 +161,7 @@ class ProdutosViewModel(
 
         }
     }
+
+
 
 }

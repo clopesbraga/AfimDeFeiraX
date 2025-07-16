@@ -2,11 +2,14 @@ package com.example.afimdefeirax
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.afimdefeirax.Model.Historico
 import com.example.afimdefeirax.Model.Produtos
 import com.example.afimdefeirax.SharedPreferences.HistoricoShared
-import com.example.afimdefeirax.SharedPreferences.ListProdutosShared
+import com.example.afimdefeirax.SharedPreferences.IMapTutorialShared
+import com.example.afimdefeirax.SharedPreferences.ListProductsShared
+import com.example.afimdefeirax.SharedPreferences.ProductTutorialSharedImpl
 import com.example.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.example.afimdefeirax.Utils.Monitoring
 import com.example.afimdefeirax.ViewModel.ProdutosViewModel
@@ -24,8 +27,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.doNothing
+import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
@@ -50,13 +53,16 @@ class ProdutoTest {
 
 
     @Mock
-    private lateinit var mockProdutosShared: ListProdutosShared
+    private lateinit var mockProdutosShared: ListProductsShared
 
     @Mock
     private lateinit var mockHistoricoShared: HistoricoShared
 
     @Mock
     private lateinit var mockAnalytics: FirebaseAnalyticsImpl
+
+    @Mock
+    private lateinit var mockTutorialProdutos: ProductTutorialSharedImpl
 
     @Mock
     private lateinit var mockApplication: Application
@@ -78,7 +84,8 @@ class ProdutoTest {
             application = mockApplication,
             produtosshared = mockProdutosShared,
             historicoshared = mockHistoricoShared,
-            firebaseAnalytics = mockAnalytics
+            firebaseAnalytics = mockAnalytics,
+            tutorialPreferences = mockTutorialProdutos
         )
 
 
@@ -103,7 +110,7 @@ class ProdutoTest {
         )
 
         // When
-        viewModel.takeProduts(productimage, productname)
+        viewModel.takeItems(productimage, productname)
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
@@ -120,8 +127,8 @@ class ProdutoTest {
         doNothing().`when`(mockProdutosShared).saveItems(mockContext, productList)
 
         //When
-        viewModel.takeProduts(1, "Produto 1")
-        viewModel.takeProduts(2, "Produto 2")
+        viewModel.takeItems(1, "Produto 1")
+        viewModel.takeItems(2, "Produto 2")
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
@@ -196,7 +203,7 @@ class ProdutoTest {
         doThrow(exception).`when`(mockProdutosShared).saveItems(mockContext, productList)
 
 
-        viewModel.takeProduts(productimage, productname)
+        viewModel.takeItems(productimage, productname)
         testDispatcher.scheduler.advanceUntilIdle()
 
 
