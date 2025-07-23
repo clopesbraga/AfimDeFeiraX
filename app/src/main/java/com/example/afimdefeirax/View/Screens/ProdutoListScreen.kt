@@ -46,6 +46,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.afimdefeirax.R
 import com.example.afimdefeirax.View.Components.ButtonMeasureComponent
@@ -141,33 +142,38 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                 horizontalAlignment = Alignment.Start,
                                 verticalArrangement = Arrangement.Center
                             ) {
-                                Text(text = item.itemName)
+//                                Text(text = item.itemName)
                                 Row(
                                     horizontalArrangement = Arrangement.Center,
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    SeletorPesoComponent(
-                                        onValueChange = { novoValor ->
-                                            selectedNumber = novoValor
-                                            respostaPeso = novoValor.toString()
-                                        }
+                                    Text(
+                                        text = item.itemName,
+                                        fontSize = 40.sp,
+                                        modifier =Modifier.padding(16.dp)
                                     )
+//                                    SeletorPesoComponent(
+//                                        onValueChange = { novoValor ->
+//                                            selectedNumber = novoValor
+//                                            respostaPeso = novoValor.toString()
+//                                        }
+//                                    )
                                     Spacer(modifier = Modifier.size(8.dp))
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceEvenly
                                     ) {
-                                        Column {
-                                            listOf("KG", "LT", "PC", "UN").forEach { unity ->
-                                                ButtonMeasureComponent(
-                                                    unidade = unity,
-                                                    selectedMeasure = selectedButton,
-                                                    onSelected = { selectedButton = it },
-                                                    modifier = Modifier.fillMaxWidth()
-                                                )
-
-                                            }
-                                        }
+//                                        Column {
+//                                            listOf("KG", "LT", "PC", "UN").forEach { unity ->
+//                                                ButtonMeasureComponent(
+//                                                    unidade = unity,
+//                                                    selectedMeasure = selectedButton,
+//                                                    onSelected = { selectedButton = it },
+//                                                    modifier = Modifier.fillMaxWidth()
+//                                                )
+//
+//                                            }
+//                                        }
                                     }
                                 }
                             }

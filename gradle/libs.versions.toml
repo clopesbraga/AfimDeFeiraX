@@ -1,7 +1,7 @@
 [versions]
 activityComposeVersion = "1.10.1"
 activityKtx = "1.10.1"
-agp = "8.9.2"
+agp = "8.11.1"
 androidxCoreKtx = "1.16.0"
 composeBomVersion = "2025.04.01"
 constraintlayout = "2.2.1"

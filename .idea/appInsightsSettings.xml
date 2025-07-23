@@ -28,7 +28,7 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.afimdefeirax" />
+                  <option name="appId" value="com.branchh.afimdefeirax" />
                   <option name="mobileSdkAppId" value="1:637478843497:android:ca89ac35745f5712f65ef8" />
                   <option name="projectId" value="afimdefeirax" />
                   <option name="projectNumber" value="637478843497" />
