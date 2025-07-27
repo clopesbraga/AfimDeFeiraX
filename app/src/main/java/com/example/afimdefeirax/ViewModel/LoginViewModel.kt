@@ -21,6 +21,7 @@ class LoginViewModel(
     skipInit: Boolean = false
 ) : ViewModel() {
 
+    private val messageUserAlreadyRegistered ="The email address is already in use by another account."
     private val _state: MutableStateFlow<LoginUiState> = MutableStateFlow(LoginUiState())
     val state: StateFlow<LoginUiState> = _state
 
@@ -87,13 +88,15 @@ class LoginViewModel(
 
         } catch (error: Exception) {
 
-            _state.update { it.copy(isLoading = false, error = Monitoring.Login.LOGIN_FAILED) }
-            analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
-            Log.e(Monitoring.Login.LOGIN_FAILED, error.message.toString())
-            result = false
+            if (error.message.equals(messageUserAlreadyRegistered)){
+                localSave()
+                return onlogin()
+            }
+                _state.update { it.copy(isLoading = false, error = Monitoring.Login.LOGIN_FAILED) }
+                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
+                Log.e(Monitoring.Login.LOGIN_FAILED, error.message.toString())
+                result = false
         }
-
-
         return result
     }
 
