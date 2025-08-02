@@ -32,8 +32,8 @@ android {
         applicationId "com.branchh.afimdefeirax"
         minSdk 24
         targetSdk 35
-        versionCode 4
-        versionName "1.4.6"
+        versionCode 12
+        versionName "1.4.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -58,6 +58,9 @@ android {
 
         debug {
             resValue "string","interstitial_ad_unit_id","ca-app-pub-3940256099942544/1033173712"
+
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled true
@@ -79,7 +82,7 @@ android {
     buildFeatures {
         compose true
     }
-    namespace 'com.example.afimdefeirax'
+    namespace 'com.branchh.afimdefeirax'
 
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.14"
