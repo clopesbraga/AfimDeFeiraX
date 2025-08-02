@@ -1,0 +1,9 @@
+package com.branchh.afimdefeirax.SharedPreferences
+
+interface IMapTutorialShared {
+
+    fun hasMapTutorialBeenCompleted():Boolean
+
+    fun setMapTutorialCompleted(completed: Boolean)
+
+}
