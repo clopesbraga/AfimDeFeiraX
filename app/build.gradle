@@ -59,7 +59,7 @@ android {
         debug {
             resValue "string","interstitial_ad_unit_id","ca-app-pub-3940256099942544/1033173712"
 
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
