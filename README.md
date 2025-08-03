@@ -44,8 +44,6 @@
 
 
 
-## Status do Projeto
-🚧  Projeto   Em construção...  🚧
 
 
 
