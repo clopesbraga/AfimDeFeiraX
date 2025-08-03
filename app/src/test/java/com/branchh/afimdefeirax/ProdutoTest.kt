@@ -2,12 +2,10 @@ package com.branchh.afimdefeirax
 
 import android.app.Application
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.branchh.afimdefeirax.Model.Historico
 import com.branchh.afimdefeirax.Model.Produtos
 import com.branchh.afimdefeirax.SharedPreferences.HistoricoShared
-import com.example.afimdefeirax.SharedPreferences.IMapTutorialShared
 import com.branchh.afimdefeirax.SharedPreferences.ListProductsShared
 import com.branchh.afimdefeirax.SharedPreferences.ProductTutorialSharedImpl
 import com.branchh.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
@@ -28,7 +26,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.doNothing
-import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`

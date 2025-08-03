@@ -5,15 +5,12 @@ import android.content.res.Resources
 import android.location.LocationProvider
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.branchh.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
-import com.example.afimdefeirax.Repository.FeiraRepository.IFeiraRepository
 import com.branchh.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.branchh.afimdefeirax.Utils.FocusCamera
 import com.branchh.afimdefeirax.Utils.Location.LocationImpl
 import com.branchh.afimdefeirax.ViewModel.MapaFeirasViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
-import io.mockk.every
-import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
