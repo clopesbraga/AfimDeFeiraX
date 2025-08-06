@@ -5,13 +5,16 @@
 
 
 
-
 ## Afim De Feira   
 
-- Projeto elaborado para auxiliar pessoas a encontrar as feiras mais próximas da região metropolitana de São Paulo.
+Projeto elaborado para auxiliar pessoas a encontrar as feiras mais próximas da região metropolitana de São Paulo.
+
+Aplicativo já disponível na play store
+
+<img width="220" height="1500" alt="pngwing com" src="https://github.com/user-attachments/assets/413a07ca-8ead-4417-9570-af2867303ac1" />
 
 
-## Tecnoloagias que serão utilizadas
+## Tecnoloagias utilizadas
 <!--ts-->
    * Frameworks
       * [Room Database](https://developer.android.com/codelabs/basic-android-kotlin-training-intro-room-flow?hl=pt-br#0)
