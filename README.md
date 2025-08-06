@@ -2,16 +2,12 @@
 
 
 ![ic-novo_logo](https://github.com/user-attachments/assets/9f155882-cf7a-4c01-8874-7c4c36185bd6)
-
+<img width="220" height="1500" alt="pngwing com" src="https://github.com/user-attachments/assets/413a07ca-8ead-4417-9570-af2867303ac1"/>
 
 
 ## Afim De Feira   
 
 Projeto elaborado para auxiliar pessoas a encontrar as feiras mais próximas da região metropolitana de São Paulo.
-
-Aplicativo já disponível na play store
-
-<img width="220" height="1500" alt="pngwing com" src="https://github.com/user-attachments/assets/413a07ca-8ead-4417-9570-af2867303ac1" />
 
 
 ## Tecnoloagias utilizadas
