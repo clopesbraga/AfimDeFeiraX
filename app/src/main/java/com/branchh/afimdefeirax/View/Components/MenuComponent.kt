@@ -50,34 +50,6 @@ fun MainMenuBar(): List<MenuBar> {
         )
     )
 }
-
-@Composable
-fun getMainMenu(): List<MenuBar> {
-    return listOf(
-        MenuBar(
-            route = 1,
-            name = stringResource(R.string.menu_feiras),
-            icons = Icons.Filled.LocationOn
-        ),
-        MenuBar(
-            route = 2,
-            name = stringResource(R.string.menu_produtos),
-            icons = Icons.Filled.AddShoppingCart
-        ),
-        MenuBar(
-            route = 3,
-            name = stringResource(R.string.menu_historico),
-            icons = Icons.Filled.BarChart
-        ),
-        MenuBar(
-            route = 4,
-            name = stringResource(R.string.menu_details),
-            icons = Icons.Filled.Airplay
-        )
-    )
-}
-
-
 @Composable
 fun MoreOptionsMenu(
     expanded: Boolean,
