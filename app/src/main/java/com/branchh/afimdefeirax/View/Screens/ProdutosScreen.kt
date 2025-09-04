@@ -46,7 +46,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.branchh.afimdefeirax.Model.produtosList
+import com.branchh.afimdefeirax.View.Components.getAllProductsList
 import com.branchh.afimdefeirax.R
 import com.branchh.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.branchh.afimdefeirax.Utils.Monitoring
@@ -65,6 +65,7 @@ fun ProdutosScreen(
     val viewModel: ProdutosViewModel = koinInject()
     val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
     val state by viewModel.state.collectAsState()
+    val produtosList = getAllProductsList()
 
     firebaseanalytics.firebaselogEvent(Monitoring.Product.PRODUCT_SCREEN_START)
     showBottomBar(true)
@@ -97,7 +98,7 @@ fun ProdutosScreen(
                 targetIndex = 0,
                 showintro = state.showTutorial,
                 title = stringResource(R.string.tutorial_description_button_product_list),
-                description = stringResource(R.string.tutorial_descritpiton_button_product_list),
+                description = stringResource(R.string.tutorial_descritpiton_product_list),
                 onTutorialCompleted = { viewModel.onTutorialCompleted() }
             ) {
 
