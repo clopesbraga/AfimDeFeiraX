@@ -8,11 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddShoppingCart
-import androidx.compose.material.icons.filled.Airplay
-import androidx.compose.material.icons.filled.BarChart
-import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -38,8 +33,8 @@ import androidx.navigation.navOptions
 import com.branchh.afimdefeirax.SharedPreferences.LoginSharedImpl
 import com.branchh.afimdefeirax.State.MainUIState
 import com.branchh.afimdefeirax.Utils.Monitoring
-import com.branchh.afimdefeirax.View.Components.MenuBar
 import com.branchh.afimdefeirax.View.Components.MoreOptionsMenu
+import com.branchh.afimdefeirax.View.Components.MainMenuBar
 import com.branchh.afimdefeirax.View.Screens.HistoricoScreen
 import com.branchh.afimdefeirax.View.Screens.LoginScreen
 import com.branchh.afimdefeirax.View.Screens.MapFeirasScreen
@@ -53,13 +48,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 import org.koin.compose.koinInject
 
-
-private val menuOptionsBar = listOf(
-    MenuBar(name = "Feiras", icons = Icons.Filled.LocationOn),
-    MenuBar(name = "Compras", icons = Icons.Filled.AddShoppingCart),
-    MenuBar(name = "Historico", icons = Icons.Filled.BarChart),
-    MenuBar(name = "Detalhes", icons = Icons.Filled.Airplay)
-)
 
 private var startScreen: String = ""
 private lateinit var mSharedLogin: LoginSharedImpl
@@ -179,6 +167,7 @@ class MainScreen : ComponentActivity() {
         context: Context
     ) {
 
+        val menuOptionsBar = MainMenuBar()
         var selectedItem by remember { mutableStateOf(menuOptionsBar[0]) }
         var expanded by remember { mutableStateOf(false) }
         var tela2NavigationCount by remember { mutableStateOf(0) }
@@ -195,6 +184,7 @@ class MainScreen : ComponentActivity() {
 
             val actions = @Composable {
                 menuOptionsBar.forEach { item ->
+                    val key =item.route
                     val text = item.name
                     val icon = item.icons
                     NavigationBarItem(
@@ -209,17 +199,17 @@ class MainScreen : ComponentActivity() {
                         selected = selectedItem == item,
                         onClick = {
                             selectedItem = item
-                            val route = when (text) {
-                                "Feiras" -> "map"
-                                "Compras" -> {
+                            val route = when (key) {
+                                1 -> "map"
+                                2 -> {
                                     viewModel.onNavigationCount(tela2NavigationCount++)
                                     if(state.navigatecount % state.frequencycount ==0){
                                         viewModel.loadAds(context)
                                     }
                                     "comp"
                                 }
-                                "Historico" -> "hist"
-                                "Detalhes" -> {
+                                3 -> "hist"
+                                4 -> {
                                     expanded = !expanded
                                     return@NavigationBarItem
                                 }
