@@ -1025,9 +1025,8 @@
     </string-array>
 
 
-
-
-    <string name="terms_of_service"><![CDATA[
+    //TELA TERMOS DO APP
+<string name="terms_of_service"><![CDATA[
 <b> Tipos de datos recopilados</b><br/><br/>
 Entre los tipos de datos personales que esta aplicación recopila, por sí sola o a través de terceros, se encuentran: correo electrónico, nombre, apellido, cookies y datos de uso.<br/><br/>
 Otros datos personales recopilados pueden describirse en otras secciones de esta política de privacidad o mediante un texto explicativo específico presentado en el contexto de la recopilación de datos.<br/><br/>
@@ -1112,6 +1111,5 @@ La herramienta de hardware o software mediante la cual se recopilan los datos pe
 
 <b>Esta política de privacidad se refiere únicamente a esta Aplicación.</b>]]>\n</string>
 
-    //TELA TERMOS DO APP
 
 </resources>
