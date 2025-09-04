@@ -13,6 +13,7 @@
     <string name="menu_feiras">Feiras</string>
     <string name="menu_produtos">Produtos</string>
     <string name="menu_historico">Histórico</string>
+    <string name="menu_details">Mais Opçoes</string>
 
 
     //TELA LOGIN
@@ -22,7 +23,7 @@
     <string name="confirm_login">Cadastrar</string>
 
 
-    //TELA PRODUTOS
+    <!--TELA PRODUTOS-->
     <string-array name="produtos">
         <item>VERDURAS</item>
         <item>FRUTAS</item>
@@ -38,17 +39,180 @@
     <string name="confirm_item_in_list">Comprar</string>
     <string name="warnning_price_message">Precisar colocar o valor para incluir na lista</string>
 
+    <string name="category_fruits">Frutas</string>
+    <string name="category_vegetables">Legumes</string>
+    <string name="category_greens">Verduras</string>
+    <string name="category_meats">Carnes</string>
+    <string name="category_fish">Peixes</string>
+    <string name="category_condiments">Temperos</string>
+    <string name="category_snacks">Lanches</string>
+    <string name="category_utensils">Utensilhos</string>
 
-<!--    TELA MAPA FEIRAS-->
+    <!--    LISTA DE PRODUTOS-->
+
+    <!--    FRUTAS-->
+    <string name="fruit_abacaxi">Abacaxi</string>
+    <string name="fruit_banana">Banana</string>
+    <string name="fruit_caju">Cajú</string>
+    <string name="fruit_caqui">Caqui</string>
+    <string name="fruit_carambola">Carambola</string>
+    <string name="fruit_coco">Coco</string>
+    <string name="fruit_figo">Figo</string>
+    <string name="fruit_goiaba">Goiaba</string>
+    <string name="fruit_jaca">Jaca</string>
+    <string name="fruit_jaboticaba">Jaboticaba</string>
+    <string name="fruit_laranja">Laranja</string>
+    <string name="fruit_limao">Limão</string>
+    <string name="fruit_lixia">Lixia</string>
+    <string name="fruit_mamao">Mamão</string>
+    <string name="fruit_manga">Manga</string>
+    <string name="fruit_maracuja">Maracuja</string>
+    <string name="fruit_melao">Melão</string>
+    <string name="fruit_melancia">Melancia</string>
+    <string name="fruit_mexirica">Mexirica</string>
+    <string name="fruit_morango">Morango</string>
+    <string name="fruit_pera">Pera</string>
+    <string name="fruit_uva">Uva</string>
+    <string name="fruit_kiwi">Kiwi</string>
+
+
+    <!-- LEGUMES -->
+    <string name="vegetables_alho">Alho</string>
+    <string name="vegetables_abobora">Batata</string>
+    <string name="vegetables_abobrinha">Abobrinha</string>
+    <string name="vegetables_batata">Batata</string>
+    <string name="vegetables_batata_doce">Batata-doce</string>
+    <string name="vegetables_berinjela">Berinjela</string>
+    <string name="vegetables_cebola">Cebola</string>
+    <string name="vegetables_cenoura">Cenoura</string>
+    <string name="vegetables_inhame">Inhame</string>
+    <string name="vegetables_jilo">Jilo</string>
+    <string name="vegetables_mandioca">Mandioca</string>
+    <string name="vegetables_mandinhoquinha">Mandinhoquinha</string>
+    <string name="vegetables_pimentao">Pimentao</string>
+    <string name="vegetables_tomate">Tomate</string>
+
+
+    <!-- VERDURAS -->
+    <string name="greens_acelga">Acelga</string>
+    <string name="greens_alface">Alface</string>
+    <string name="greens_alegrin">Alecrin</string>
+    <string name="greens_almeirao">Almeirao</string>
+    <string name="greens_brocolis">Brocolis</string>
+    <string name="greens_couve">Couve</string>
+    <string name="greens_chicoria">Chicoria</string>
+    <string name="greens_coentro">Coentro</string>
+    <string name="greens_couve_flor">Couve-flor</string>
+    <string name="greens_espinafre">Espinafre</string>
+    <string name="greens_hortela">Hortelã</string>
+    <string name="greens_manjericao">Manjericão</string>
+    <string name="greens_maxixe">Maxixe</string>
+    <string name="greens_pepino">Pepino</string>
+    <string name="greens_rucula">Rucula</string>
+    <string name="greens_salsao">Salsa</string>
+    <string name="greens_salsinha">Salsinha</string>
+    <string name="greens_tomilho">Tomilho</string>
+
+    <!-- CARNES -->
+    <string name="meats_acem">Acem</string>
+    <string name="meats_agulha">Agulha</string>
+    <string name="meats_alcatra">Alcatra</string>
+    <string name="meats_bacon">Bacon</string>
+    <string name="meats_bife">Bife</string>
+    <string name="meats_braco">Braço</string>
+    <string name="meats_cochao">Cochão</string>
+    <string name="meats_contra">Contra-File</string>
+    <string name="meats_cupim">Cupim</string>
+    <string name="meats_dianteiro">Dianteiro</string>
+    <string name="meats_lagarto">Lagarto</string>
+    <string name="meats_linguica">Linguica</string>
+    <string name="meats_maminha">Maminha</string>
+    <string name="meats_mignon">Mignon</string>
+    <string name="meats_musculo">Musculo</string>
+    <string name="meats_patinho">Patinho</string>
+    <string name="meats_picanha">Picanha</string>
+
+    <!-- PESCADOS -->
+    <string name="fish_camarao">Camarao</string>
+    <string name="fish_caranguejo">Caranguejo</string>
+    <string name="fish_dourado">Dourado</string>
+    <string name="fish_namorado">Namorado</string>
+    <string name="fish_merlusa">Merlusa</string>
+    <string name="fish_pescada">Pescada</string>
+    <string name="fish_pescada_branca">Pescada-Branca</string>
+    <string name="fish_porquinho">Porquinho</string>
+    <string name="fish_salmao">Salmao</string>
+    <string name="fish_tilapia">Tilapia</string>
+    <string name="fish_truta">Truta</string>
+
+
+    <!-- LANCHES-->
+    <string name="snacks_agua_coco">Agua-Coco</string>
+    <string name="snacks_caldo_cana">Caldo-Cana</string>
+    <string name="snacks_coxinha">Coxinha</string>
+    <string name="snacks_espetos">Espetos</string>
+    <string name="snacks_kibe">Kibe</string>
+    <string name="snacks_refrigerante">Refrigerante</string>
+    <string name="snacks_pastelzinho">Pastelzinho</string>
+    <string name="snacks_pastel">Pastel</string>
+
+
+    <!-- UTILIDADES -->
+    <string name="utensils_brinquedo">Brinquedo</string>
+    <string name="utensils_carrinho">Carrinho</string>
+    <string name="utensils_esponja">Esponja</string>
+    <string name="utensils_pano_prato">Pano-de-Prato</string>
+    <string name="utensils_roda_carrinho">Roda-de-Carrinho</string>
+    <string name="utensils_vassoura">Vassoura</string>
+    <string name="utensils_panela">Panela</string>
+
+
+    <!--TEMPEROS-->
+    <string name="condiments_acafrao">Acafrao</string>
+    <string name="condiments_canela">Canela</string>
+    <string name="condiments_colorau">Colorau</string>
+    <string name="condiments_louros">Louros</string>
+    <string name="condiments_noz_moscada">Noz-moscada</string>
+    <string name="condiments_oregano">Oregano</string>
+    <string name="condiments_pimenta_reino">Pimenta-do-reino</string>
+    <string name="condiments_paprika">Paprika</string>
+
+
+
+    <!--TELA MAPA FEIRAS-->
 
     <string name="user_point">Você esta aqui</string>
     <string name="fairs_of_City">Feiras da cidade</string>
     <string name="search_neighborhoods">Pesquisar bairros</string>
 
+    <!-- TELA LISTA DE PRODUTOS -->
+
 
     <!--    TELA HISTORICO-->
     <string name="title_historic">Historico</string>
 
+
+    //MENSAGENS DE ERRO
+    <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
+
+
+    //TELA SOBRE O APP
+    <string name="sobre_o_app">Sobre o aplicativo</string>
+    <string name="text_1_title">Aplicativo</string>
+    <string name="text_2_title">Empresa</string>
+    <string name="text_3_title">Versão</string>
+    <string name="text_1">App Afim de Feira criado em 2025 por Branchh Softwares.</string>
+    <string name="text_2">Branchh Softwares</string>
+    <string name="back">"Voltar "</string>
+    <string name="info_politicas">Politicas de privacidade </string>
+
+    // TUTORIAL SHOW CASE
+    <string name="tutorial_descritpiton_product_list">Após selecionar os items clique neste botão para acessar lista de compras</string>
+    <string name="tutorial_description_button_product_list">Botao para efetivar compras</string>
+    <string name="tutorial_title_button_search_neigboor">Localizacao Feiras da Cidade</string>
+    <string name="tutorial_description_button_search_neigboor">Além de ver as feiras próximas  diretamente no mapa você pode pesquisar os bairros das cidades clicando neste botão.</string>
+    <string name="tutorial_title_item_historic">Historico de Compras</string>
+    <string name="tutorial_description_item_historic">Aqui mostra as suas três ultimas compras feitas para comparação</string>
 
 
     //CIDADES
@@ -867,27 +1031,7 @@
 
     </string-array>
 
-    //MENSAGENS DE ERRO
-    <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
 
-
-    //TELA SOBRE O APP
-    <string name="sobre_o_app">Sobre o aplicativo</string>
-    <string name="text_1_title">Aplicativo</string>
-    <string name="text_2_title">Empresa</string>
-    <string name="text_3_title">Versão</string>
-    <string name="text_1">App Afim de Feira criado em 2025 por Branchh Softwares.</string>
-    <string name="text_2">Branchh Softwares</string>
-    <string name="back">"Voltar "</string>
-    <string name="info_politicas">Politicas de privacidade </string>
-
-    // TUTORIAL SHOW CASE
-    <string name="tutorial_descritpiton_button_product_list">Após selecionar os items clique neste botão para acessar lista de compras</string>
-    <string name="tutorial_description_button_product_list">Botao para efetivar compras</string>
-    <string name="tutorial_title_button_search_neigboor">Localizacao Feiras da Cidade</string>
-    <string name="tutorial_description_button_search_neigboor">Além de ver as feiras próximas  diretamente no mapa você pode pesquisar os bairros das cidades clicando neste botão.</string>
-    <string name="tutorial_title_item_historic">Historico de Compras</string>
-    <string name="tutorial_description_item_historic">Aqui mostra as suas três ultimas compras feitas para comparação</string>
 
 
     //TELA TERMOS DO APP

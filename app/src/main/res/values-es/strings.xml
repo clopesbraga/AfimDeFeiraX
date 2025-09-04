@@ -13,6 +13,7 @@
     <string name="menu_feiras">Ferias</string>
     <string name="menu_produtos">Productos</string>
     <string name="menu_historico">Historial</string>
+    <string name="menu_details">More Options</string>
 
 
     //TELA LOGIN
@@ -38,6 +39,142 @@
     <string name="confirm_item_in_list">Comprar</string>
     <string name="warnning_price_message">Debe ingresar el valor para incluir en la lista</string>
 
+    <string name="category_fruits">Frutas</string>
+    <string name="category_vegetables">Legumes</string>
+    <string name="category_greens">Verduras</string>
+    <string name="category_meats">Carnes</string>
+    <string name="category_fish">Peixes</string>
+    <string name="category_condiments">Temperos</string>
+    <string name="category_snacks">Lanches</string>
+    <string name="category_utensils">Utensilhos</string>
+
+    <!-- FRUTAS-->
+    <string name="fruit_abacaxi">Piña</string>
+    <string name="fruit_banana">Plátano</string>
+    <string name="fruit_caju">Anacardo</string>
+    <string name="fruit_caqui">Caqui</string>
+    <string name="fruit_carambola">Carambola</string>
+    <string name="fruit_coco">Coco</string>
+    <string name="fruit_figo">Higo</string>
+    <string name="fruit_goiaba">Guayaba</string>
+    <string name="fruit_jaca">Jaca</string>
+    <string name="fruit_jaboticaba">Jaboticaba</string>
+    <string name="fruit_laranja">Naranja</string>
+    <string name="fruit_limao">Limón</string>
+    <string name="fruit_lixia">Lixia</string>
+    <string name="fruit_mamao">Papaya</string>
+    <string name="fruit_manga">Mango</string>
+    <string name="fruit_maracuja">Maracuyá</string>
+    <string name="fruit_melao">Melón</string>
+    <string name="fruit_melancia">Sandía</string>
+    <string name="fruit_mexirica">Mexirica</string>
+    <string name="fruit_morango">Fresa</string>
+    <string name="fruit_pera">Pera</string>
+    <string name="fruit_uva">Uva</string>
+    <string name="fruit_kiwi">Kiwi</string>
+
+    <!-- LEGUMES -->
+    <string name="vegetables_alho">Ajo</string>
+    <string name="vegetables_abobora">Calabaza</string>
+    <string name="vegetables_abobrinha">Calabacín</string>
+    <string name="vegetables_batata">Patata</string>
+    <string name="vegetables_batata_doce">Boniato</string>
+    <string name="vegetables_berinjela">Berenjena</string>
+    <string name="vegetables_cebola">Cebolla</string>
+    <string name="vegetables_cenoura">Zanahoria</string>
+    <string name="vegetables_inhame">Ñame</string>
+    <string name="vegetables_jilo">Jilo</string>
+    <string name="vegetables_mandioca">Yuca</string>
+    <string name="vegetables_mandinhoquinha">Mandinhoquinha</string>
+    <string name="vegetables_pimentao">Pimiento</string>
+    <string name="vegetables_tomate">Tomate</string>
+
+
+    <!-- VERDURAS -->
+    <string name="greens_acelga">Acelga</string>
+    <string name="greens_alface">Lechuga</string>
+    <string name="greens_alegrin">Alecrín</string>
+    <string name="greens_almeirao">Almeirão</string>
+    <string name="greens_brocolis">Brócoli</string>
+    <string name="greens_couve">Couve</string>
+    <string name="greens_chicoria">Achicoria</string>
+    <string name="greens_coentro">Cilantro</string>
+    <string name="greens_couve_flor">Coliflor</string>
+    <string name="greens_espinafre">Espinaca</string>
+    <string name="greens_hortela">Menta</string>
+    <string name="greens_manjericao">Albahaca</string>
+    <string name="greens_maxixe">Maxixe</string>
+    <string name="greens_pepino">Pepino</string>
+    <string name="greens_rucula">Rúcula</string>
+    <string name="greens_salsao">Perejil</string>
+    <string name="greens_salsinha">Perejil</string>
+    <string name="greens_tomilho">Tomillo</string>
+
+    <!-- CARNES -->
+    <string name="meats_acem">Acem</string>
+    <string name="meats_agulha">Aguja</string>
+    <string name="meats_alcatra">Alcatra</string>
+    <string name="meats_bacon">Tocino</string>
+    <string name="meats_bife">Filete</string>
+    <string name="meats_braco">Brazo</string>
+    <string name="meats_cochao">Cochão</string>
+    <string name="meats_contra">Contra-File</string>
+    <string name="meats_cupim">Termita</string>
+    <string name="meats_dianteiro">Delantero</string>
+    <string name="meats_lagarto">Lagarto</string>
+    <string name="meats_linguica">Linguica</string>
+    <string name="meats_maminha">Maminha</string>
+    <string name="meats_mignon">Mignon</string>
+    <string name="meats_musculo">Músculo</string>
+    <string name="meats_patinho">Patinho</string>
+    <string name="meats_picanha">Picanha</string>
+
+    <!-- PESCADOS -->
+    <string name="fish_camarao">Camarones</string>
+    <string name="fish_caranguejo">Cangrejo</string>
+    <string name="fish_dourado">Dourado</string>
+    <string name="fish_namorado">Namorado</string>
+    <string name="fish_merlusa">Merlusa</string>
+    <string name="fish_pescada">Pecada</string>
+    <string name="fish_pescada_branca">Pecada blanca</string>
+    <string name="fish_porquinho">Porquinho</string>
+    <string name="fish_salmao">Salmaño</string>
+    <string name="fish_tilapia">Tilapia</string>
+    <string name="fish_truta">Trucha</string>
+
+
+    <!-- LANCHES-->
+    <string name="snacks_agua_coco">Agua-Coco</string>
+    <string name="snacks_caldo_cana">Caldo-Cana</string>
+    <string name="snacks_coxinha">Coxinha</string>
+    <string name="snacks_espetos">Brochetas</string>
+    <string name="snacks_kibe">Kibe</string>
+    <string name="snacks_refrigerante">Refresco</string>
+    <string name="snacks_pastelzinho">Pastelzinho</string>
+    <string name="snacks_pastel">Pastel</string>
+
+
+    <!-- UTILIDADES -->
+    <string name="utensils_brinquedo">Juguete</string>
+    <string name="utensils_carrinho">Carrito</string>
+    <string name="utensils_esponja">Esponja</string>
+    <string name="utensils_pano_prato">Paño de cocina</string>
+    <string name="utensils_roda_carrinho">Rueda de carrito</string>
+    <string name="utensils_vassoura">Escoba</string>
+    <string name="utensils_panela">Olla</string>
+
+
+    <!--TEMPEROS-->
+    <string name="condiments_acafrao">Acafrao</string>
+    <string name="condiments_canela">Canela</string>
+    <string name="condiments_colorau">Colorau</string>
+    <string name="condiments_louros">Louros</string>
+    <string name="condiments_noz_moscada">Nuez moscada</string>
+    <string name="condiments_oregano">Orégano</string>
+    <string name="condiments_pimenta_reino">Pimienta negra</string>
+    <string name="condiments_paprika">Pimentón</string>
+
+
 
     //TELA MAPA FEIRAS
 
@@ -47,6 +184,28 @@
 
     <!--TELA HISTORICO-->
     <string name="title_historic">Historia</string>
+
+    //MENSAGENS DE ERRO
+    <string name="feira_not_found">No se encontraron ferias abiertas hoy</string>
+
+
+    //TELA SOBRE O APP
+    <string name="sobre_o_app">Acerca de la aplicación</string>
+    <string name="text_1_title">Solicitud</string>
+    <string name="text_2_title">Empresa</string>
+    <string name="text_3_title">Versión</string>
+    <string name="text_1">Aplicación justa creada en 2025 por Branchh Softwares.</string>
+    <string name="text_2">Branchh Softwares</string>
+    <string name="back">Volver</string>
+    <string name="info_politicas">Políticas de privacidad</string>
+
+    // TUTORIAL SHOW CASE
+    <string name="tutorial_descritpiton_product_list">Luego seleccione los artículos y haga clic en este botón para acceder a la lista de compras.</string>
+    <string name="tutorial_description_button_product_list">Botón para realizar compras</string>
+    <string name="tutorial_title_button_search_neigboor">Ubicación de vacaciones en la ciudad</string>
+    <string name="tutorial_description_button_search_neigboor">Además de ver las ferias cercanas directamente en el mapa, puedes buscar barrios de la ciudad haciendo clic en este botón.</string>
+    <string name="tutorial_title_item_historic">Historial de compras</string>
+    <string name="tutorial_description_item_historic">Aquí se muestran tus últimas tres compras realizadas para comparar</string>
 
 
     //CIDADES
@@ -865,27 +1024,9 @@
 
     </string-array>
 
-    //MENSAGENS DE ERRO
-    <string name="feira_not_found">No se encontraron ferias abiertas hoy</string>
 
 
-    //TELA SOBRE O APP
-    <string name="sobre_o_app">Acerca de la aplicación</string>
-    <string name="text_1_title">Solicitud</string>
-    <string name="text_2_title">Empresa</string>
-    <string name="text_3_title">Versión</string>
-    <string name="text_1">Aplicación justa creada en 2025 por Branchh Softwares.</string>
-    <string name="text_2">Branchh Softwares</string>
-    <string name="back">Volver</string>
-    <string name="info_politicas">Políticas de privacidad</string>
 
-    // TUTORIAL SHOW CASE
-    <string name="tutorial_descritpiton_button_product_list">Luego seleccione los artículos y haga clic en este botón para acceder a la lista de compras.</string>
-    <string name="tutorial_description_button_product_list">Botón para realizar compras</string>
-    <string name="tutorial_title_button_search_neigboor">Ubicación de vacaciones en la ciudad</string>
-    <string name="tutorial_description_button_search_neigboor">Además de ver las ferias cercanas directamente en el mapa, puedes buscar barrios de la ciudad haciendo clic en este botón.</string>
-    <string name="tutorial_title_item_historic">Historial de compras</string>
-    <string name="tutorial_description_item_historic">Aquí se muestran tus últimas tres compras realizadas para comparar</string>
     <string name="terms_of_service"><![CDATA[
 <b> Tipos de datos recopilados</b><br/><br/>
 Entre los tipos de datos personales que esta aplicación recopila, por sí sola o a través de terceros, se encuentran: correo electrónico, nombre, apellido, cookies y datos de uso.<br/><br/>
