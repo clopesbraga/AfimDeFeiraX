@@ -2,6 +2,10 @@ package com.branchh.afimdefeirax.View.Components
 
 import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddShoppingCart
+import androidx.compose.material.icons.filled.Airplay
+import androidx.compose.material.icons.filled.BarChart
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.outlined.AddModerator
 import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material3.DropdownMenu
@@ -18,9 +22,34 @@ import androidx.navigation.NavHostController
 import com.branchh.afimdefeirax.R
 
 
-data class MenuBar(val name: String, val icons: ImageVector)
+data class MenuBar(val route:Int,val name: String, val icons: ImageVector)
 
+@Composable
+fun MainMenuBar(): List<MenuBar> {
 
+    return listOf(
+        MenuBar(
+            route = 1,
+            name = stringResource(R.string.menu_feiras),
+            icons = Icons.Filled.LocationOn
+        ),
+        MenuBar(
+            route = 2,
+            name = stringResource(R.string.menu_produtos),
+            icons = Icons.Filled.AddShoppingCart
+        ),
+        MenuBar(
+            route = 3,
+            name = stringResource(R.string.menu_historico),
+            icons = Icons.Filled.BarChart
+        ),
+        MenuBar(
+            route = 4,
+            name = stringResource(R.string.menu_details),
+            icons = Icons.Filled.Airplay
+        )
+    )
+}
 @Composable
 fun MoreOptionsMenu(
     expanded: Boolean,
