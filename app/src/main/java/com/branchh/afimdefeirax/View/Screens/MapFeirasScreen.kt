@@ -81,7 +81,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
             Modifier.fillMaxSize(),
             topBar = {
                 TopAppBar(
-                    title = { Text("Feiras da cidade", color = Color.White) },
+                    title = { Text(stringResource(R.string.fairs_of_City), color = Color.White) },
                     colors = TopAppBarDefaults.topAppBarColors(Color(0xFF009688))
                 )
             },
@@ -174,7 +174,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
                             TextField(
                                 value = state.searchQuery,
                                 onValueChange = { viewModel.onSearchQueryChange(it) },
-                                label = { Text("Pesquisar bairros") },
+                                label = { Text(stringResource(R.string.search_neighborhoods)) },
                                 modifier = Modifier.fillMaxWidth()
                             )
                             SearchNeighborHoodComponent(

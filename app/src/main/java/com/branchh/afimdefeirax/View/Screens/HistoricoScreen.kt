@@ -65,7 +65,7 @@ fun HistoricoScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "Historico", color = Color.White)
+                        Text(text = stringResource(R.string.title_historic), color = Color.White)
                     }
                 },
             )
@@ -140,15 +140,12 @@ fun HistoricoScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
                             }
                         }
 
-
                     }
                 }
 
             }
         }
 
-
     }
-
 
 }
