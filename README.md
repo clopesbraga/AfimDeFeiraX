@@ -1,17 +1,17 @@
 ![GitHub tag checks state](https://img.shields.io/github/checks-status/clopesbraga/AfimDeFeiraX/master)  | ![GitHub language count](https://img.shields.io/github/languages/count/clopesbraga/AfimDeFeiraX) |  ![GitHub repo size](https://img.shields.io/github/repo-size/clopesbraga/AfimDeFeiraX) |  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/clopesbraga/AfimDeFeiraX/develop)
 
 
-![ic-novo_logo](https://github.com/user-attachments/assets/9f155882-cf7a-4c01-8874-7c4c36185bd6)
-
-
-
+ ![ic-novo_logo](https://github.com/user-attachments/assets/9f155882-cf7a-4c01-8874-7c4c36185bd6)
+<a href="https://play.google.com/store/apps/details?id=com.branchh.afimdefeirax" target="_blank"> 
+  <img width="220" height="1500" alt="pngwing com" src="https://github.com/user-attachments/assets/413a07ca-8ead-4417-9570-af2867303ac1"/>
+</a>
 
 ## Afim De Feira   
 
-- Projeto elaborado para auxiliar pessoas a encontrar as feiras mais próximas da região metropolitana de São Paulo.
+Projeto elaborado para auxiliar pessoas a encontrar as feiras mais próximas da região metropolitana de São Paulo.
 
 
-## Tecnoloagias que serão utilizadas
+## Tecnoloagias utilizadas
 <!--ts-->
    * Frameworks
       * [Room Database](https://developer.android.com/codelabs/basic-android-kotlin-training-intro-room-flow?hl=pt-br#0)
@@ -44,8 +44,6 @@
 
 
 
-## Status do Projeto
-🚧  Projeto   Em construção...  🚧
 
 
 
