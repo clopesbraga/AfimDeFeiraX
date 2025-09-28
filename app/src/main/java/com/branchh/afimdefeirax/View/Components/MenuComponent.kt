@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Airplay
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.outlined.Abc
 import androidx.compose.material.icons.outlined.AddModerator
 import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material3.DropdownMenu
@@ -22,7 +23,7 @@ import androidx.navigation.NavHostController
 import com.branchh.afimdefeirax.R
 
 
-data class MenuBar(val route:Int,val name: String, val icons: ImageVector)
+data class MenuBar(val route: Int, val name: String, val icons: ImageVector)
 
 @Composable
 fun MainMenuBar(): List<MenuBar> {
@@ -50,6 +51,7 @@ fun MainMenuBar(): List<MenuBar> {
         )
     )
 }
+
 @Composable
 fun MoreOptionsMenu(
     expanded: Boolean,

@@ -78,9 +78,7 @@ fun ProdutosScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                colors = topAppBarColors(
-                    containerColor = Color(0xFF009688)
-                ),
+                colors = topAppBarColors(containerColor = Color(0xFF009688)),
                 title = {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
