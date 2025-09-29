@@ -6,7 +6,6 @@ import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Airplay
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.outlined.Abc
 import androidx.compose.material.icons.outlined.AddModerator
 import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material3.DropdownMenu
