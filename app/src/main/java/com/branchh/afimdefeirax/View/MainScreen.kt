@@ -73,6 +73,7 @@ class MainScreen : ComponentActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
+
         setContent {
 
             val viewModel: MainViewModel = koinInject()
@@ -237,6 +238,7 @@ class MainScreen : ComponentActivity() {
             actions()
         }
     }
+
 
 
     private fun verifyAcess(mSharedLogin: LoginSharedImpl): Boolean {

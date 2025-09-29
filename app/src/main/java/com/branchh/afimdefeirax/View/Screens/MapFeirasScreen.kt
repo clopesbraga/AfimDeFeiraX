@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -54,7 +55,7 @@ import org.koin.compose.koinInject
 
 @OptIn(MapsComposeExperimentalApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
+fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
 
 
     var shouldShowBottomBar by remember { mutableStateOf(true) }
@@ -75,121 +76,134 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit,showTutorial:Boolean) {
 
 
     LaunchedEffect(Unit) {
-            viewModel.onShowTutorial()
+        viewModel.onShowTutorial()
     }
-        Scaffold(
-            Modifier.fillMaxSize(),
-            topBar = {
-                TopAppBar(
-                    title = { Text(stringResource(R.string.fairs_of_City), color = Color.White) },
-                    colors = TopAppBarDefaults.topAppBarColors(Color(0xFF009688))
-                )
-            },
-            floatingActionButton = {
+    Scaffold(
+        Modifier.fillMaxSize(),
+        topBar = {
 
-                TutorialShowCaseComponent(
-                    targetIndex = 0,
-                    showintro = state.showTutorial,
-                    title = stringResource(R.string.tutorial_title_button_search_neigboor),
-                    description = stringResource(R.string.tutorial_description_button_search_neigboor),
-                    onTutorialCompleted = {viewModel.onTutorialCompleted()}
-                ){
-                    FloatingActionButton(
-                        onClick = {
-                            firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_FLOATING_BUTTON_PRESSED)
-                            viewModel.toggleBottomSheet()
-                        },
-                        containerColor = Color(0xFF009688),
-                        shape = CircleShape,
-                        modifier = Modifier
-                            .padding(16.dp)
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_lupa_pesquisa),
-                            contentDescription = "Lupa de Pesquisa Icon",
-                            tint = Color.White
-                        )
+
+            TopAppBar(
+                title = {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    )
+                    {
+
+                        Text(stringResource(R.string.fairs_of_City), color = Color.White)
                     }
-                }
-            }
-        ) { innerpadding ->
+                },
+                colors = TopAppBarDefaults.topAppBarColors(Color(0xFF009688)),
+            )
 
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+
+        },
+        floatingActionButton = {
+
+            TutorialShowCaseComponent(
+                targetIndex = 0,
+                showintro = state.showTutorial,
+                title = stringResource(R.string.tutorial_title_button_search_neigboor),
+                description = stringResource(R.string.tutorial_description_button_search_neigboor),
+                onTutorialCompleted = { viewModel.onTutorialCompleted() }
             ) {
-
-                Box {
-
-                    GoogleMap(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color(0xFF009688))
-                            .padding(innerpadding),
-                        properties = mapProperties,
-                        uiSettings = uiSettings,
-                    ) {
-
-                        MapEffect {
-                            viewModel.showMyLocalizationIn(it)
-                            viewModel.showFeirasLocalizationIn(it)
-                            viewModel.googleMap(it)
-
-                        }
-                    }
+                FloatingActionButton(
+                    onClick = {
+                        firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_FLOATING_BUTTON_PRESSED)
+                        viewModel.toggleBottomSheet()
+                    },
+                    containerColor = Color(0xFF009688),
+                    shape = CircleShape,
+                    modifier = Modifier
+                        .padding(16.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_lupa_pesquisa),
+                        contentDescription = "Lupa de Pesquisa Icon",
+                        tint = Color.White
+                    )
                 }
             }
+        }
+    ) { innerpadding ->
 
-            if (state.showBottomSheet) {
-                ModalBottomSheet(
-                    onDismissRequest = { viewModel.toggleBottomSheet() },
-                    sheetState = sheetState,
-                    containerColor = Color(0xFF009688),
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Box {
+
+                GoogleMap(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xFF009688))
+                        .padding(innerpadding),
+                    properties = mapProperties,
+                    uiSettings = uiSettings,
                 ) {
-                    firebaseanalytics.firebaselogEvent(Monitoring.Map.SHOW_MENU_NEIGHBORS)
-                    Box(
-                        modifier = Modifier
-                            .fillMaxHeight(0.5f)
-                            .padding(2.dp)
-                            .align(Alignment.CenterHorizontally)
-                    ) {
-                        Column {
-                            LazyRow(
-                                state = listState,
-                                modifier = Modifier
-                                    .height(80.dp)
-                            ) {
-                                items(viewModel.cities.size) { index ->
-                                    val isSelected = viewModel.cities[index] == state.selectedCity
 
-                                    CitiesMenuComponent(
-                                        viewModel.cities,
-                                        index,
-                                        isSelected,
-                                        viewModel,
-                                        firebaseanalytics
-                                    )
-                                }
-                            }
-                            TextField(
-                                value = state.searchQuery,
-                                onValueChange = { viewModel.onSearchQueryChange(it) },
-                                label = { Text(stringResource(R.string.search_neighborhoods)) },
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                            SearchNeighborHoodComponent(
-                                state.searchQuery,
-                                state.neighborhoodsToShow,
-                                state.cityImages,
-                                state.selectedCity,
-                                viewModel,
-                                firebaseanalytics
-                            )
-                        }
+                    MapEffect {
+                        viewModel.showMyLocalizationIn(it)
+                        viewModel.showFeirasLocalizationIn(it)
+                        viewModel.googleMap(it)
+
                     }
                 }
             }
         }
+
+        if (state.showBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = { viewModel.toggleBottomSheet() },
+                sheetState = sheetState,
+                containerColor = Color(0xFF009688),
+            ) {
+                firebaseanalytics.firebaselogEvent(Monitoring.Map.SHOW_MENU_NEIGHBORS)
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight(0.5f)
+                        .padding(2.dp)
+                        .align(Alignment.CenterHorizontally)
+                ) {
+                    Column {
+                        LazyRow(
+                            state = listState,
+                            modifier = Modifier
+                                .height(80.dp)
+                        ) {
+                            items(viewModel.cities.size) { index ->
+                                val isSelected = viewModel.cities[index] == state.selectedCity
+
+                                CitiesMenuComponent(
+                                    viewModel.cities,
+                                    index,
+                                    isSelected,
+                                    viewModel,
+                                    firebaseanalytics
+                                )
+                            }
+                        }
+                        TextField(
+                            value = state.searchQuery,
+                            onValueChange = { viewModel.onSearchQueryChange(it) },
+                            label = { Text(stringResource(R.string.search_neighborhoods)) },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        SearchNeighborHoodComponent(
+                            state.searchQuery,
+                            state.neighborhoodsToShow,
+                            state.cityImages,
+                            state.selectedCity,
+                            viewModel,
+                            firebaseanalytics
+                        )
+                    }
+                }
+            }
+        }
+    }
 
 }
 

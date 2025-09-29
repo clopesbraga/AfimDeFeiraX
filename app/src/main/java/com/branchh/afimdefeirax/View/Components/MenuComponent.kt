@@ -22,7 +22,7 @@ import androidx.navigation.NavHostController
 import com.branchh.afimdefeirax.R
 
 
-data class MenuBar(val route:Int,val name: String, val icons: ImageVector)
+data class MenuBar(val route: Int, val name: String, val icons: ImageVector)
 
 @Composable
 fun MainMenuBar(): List<MenuBar> {
@@ -50,6 +50,7 @@ fun MainMenuBar(): List<MenuBar> {
         )
     )
 }
+
 @Composable
 fun MoreOptionsMenu(
     expanded: Boolean,
