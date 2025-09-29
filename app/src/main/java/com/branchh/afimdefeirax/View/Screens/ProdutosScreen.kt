@@ -134,7 +134,7 @@ fun ProdutosScreen(
 
         ) {
             items(produtosList.size) { produtos ->
-                var focusedStates = remember {
+                val focusedStates = remember {
                     mutableStateListOf(*List(produtosList[produtos].size) {
                         true
                     }.toTypedArray())
