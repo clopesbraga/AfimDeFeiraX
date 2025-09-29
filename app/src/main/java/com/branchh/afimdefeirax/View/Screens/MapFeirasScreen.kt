@@ -55,7 +55,7 @@ import org.koin.compose.koinInject
 
 @OptIn(MapsComposeExperimentalApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
+fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
 
 
     var shouldShowBottomBar by remember { mutableStateOf(true) }
