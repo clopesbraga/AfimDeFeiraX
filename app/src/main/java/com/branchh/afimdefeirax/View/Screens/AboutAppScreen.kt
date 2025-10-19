@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -139,8 +140,14 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
                     firebaseanalytics.firebaselogEvent(Monitoring.AboutApp.SHOW_APP_VERSION)
                     AppDescription()
 
-                }
+                    Spacer(modifier = Modifier.height(40.dp))
 
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+
+                    )
+                }
 
             }
 
@@ -150,6 +157,7 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
     }
 
 }
+
 @Composable
 fun AppDescription() {
 
@@ -202,13 +210,12 @@ fun FormatTitle(subtitle: Int) {
 }
 
 
-
 fun getAppVersion(context: Context): String {
     return try {
         val packageManager = context.packageManager
         val packageInfo = packageManager.getPackageInfo(context.packageName, 0)
         packageInfo.versionName
     } catch (error: PackageManager.NameNotFoundException) {
-        Log.e(Monitoring.AboutApp.ABOUTAPP_VERSION_ERROR,error.message.toString())
+        Log.e(Monitoring.AboutApp.ABOUTAPP_VERSION_ERROR, error.message.toString())
     }.toString()
 }
