@@ -3,6 +3,7 @@ package com.branchh.afimdefeirax.ViewModel
 import android.Manifest
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.content.ContextWrapper
 import android.location.Address
 import android.location.Geocoder
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.play.core.review.ReviewManagerFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -118,7 +120,18 @@ class MapaFeirasViewModel(
         }
 
     }
-
+    fun onReview(activity: Activity?, context: Context) {
+        activity?.let{
+            val reviewManager = ReviewManagerFactory.create(context)
+            val request = reviewManager.requestReviewFlow()
+            request.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val reviewInfo = task.result
+                    reviewManager.launchReviewFlow(it, reviewInfo)
+                }
+            }
+        }
+    }
     fun showMyLocalizationIn(map: GoogleMap) {
         analyticservice.firebaselogEvent(Monitoring.Map.MAP_MARKER_LOCALIZATION)
 
@@ -210,6 +223,4 @@ class MapaFeirasViewModel(
                 Log.e(Monitoring.Map.MAP_SHOW_NEIGHBOOR_ERROR_,error.message.toString())            }
         }
     }
-
-
 }
