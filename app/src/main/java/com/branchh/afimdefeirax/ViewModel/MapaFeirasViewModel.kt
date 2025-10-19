@@ -8,7 +8,6 @@ import android.content.ContextWrapper
 import android.location.Address
 import android.location.Geocoder
 import android.util.Log
-import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
