@@ -1,7 +1,7 @@
 [versions]
 activityComposeVersion = "1.10.1"
 activityKtx = "1.10.1"
-agp = "8.11.1"
+agp = "8.12.0"
 androidxCoreKtx = "1.16.0"
 composeBomVersion = "2025.04.01"
 constraintlayout = "2.2.1"
@@ -38,6 +38,8 @@ navigationUiKtxVersion = "2.8.9"
 playServicesLocation = "21.3.0"
 playServicesMapsVersion = "19.2.0"
 retrofit = "2.9.0"
+review = "2.0.2"
+reviewKtx = "2.0.2"
 robolectric = "4.9"
 roomCompiler = "2.7.1"
 roomRuntime = "2.7.1"
@@ -103,6 +105,8 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps-v1900 = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+review = { module = "com.google.android.play:review", version.ref = "review" }
+review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
