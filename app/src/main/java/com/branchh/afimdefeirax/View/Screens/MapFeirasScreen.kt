@@ -1,6 +1,8 @@
 package com.branchh.afimdefeirax.View.Screens
 
 
+import android.app.Activity
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,6 +37,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -70,6 +73,8 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
 
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
+    val activity = (LocalActivity?.current as? Activity)
+    val context = LocalContext.current
 
 
     firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_SCREEN_START)
@@ -77,6 +82,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
 
     LaunchedEffect(Unit) {
         viewModel.onShowTutorial()
+        viewModel.onReview(activity,context)
     }
     Scaffold(
         Modifier.fillMaxSize(),
