@@ -42,6 +42,7 @@ object Monitoring {
         const val MAP_FLOATING_BUTTON_PRESSED = MAP_SCREEN +FLOATING_BUTTON+ Button.PRESSED
         const val SHOW_MENU_NEIGHBORS = MAP_SCREEN + "_show_menu"
         const val CITY_SELECTED = MAP_SCREEN + "_city_" + Actions.SELECTED
+        const val DAY_OF_WEEK_SELECTED = MAP_SCREEN + "_day_of_week_" + Actions.SELECTED
         const val NEIGHBOR_SELECTED = MAP_SCREEN + "_neighbor_" + Actions.SELECTED
         const val MAP_ERROR = MAP_SCREEN + "_error_starts_map"
         const val MAP_SHOW_NEIGHBOOR_ERROR_ = MAP_SCREEN + "_error_show_neighboor"

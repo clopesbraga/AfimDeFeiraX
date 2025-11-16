@@ -24,7 +24,6 @@ class FeirasRepositoryImpl: IFeiraRepository {
                 for (feirasnapshot in snapshot.children) {
                     val locFeiras = feirasnapshot.getValue(FeirasModel::class.java)
                     locFeiras?.let {
-                        if (diasemana.trazSemana() == it.dia?.trim()) {
                             feirasLocations.add(
                                 FeirasModel(
                                     "Feira: ${it.Feira}",
@@ -37,7 +36,6 @@ class FeirasRepositoryImpl: IFeiraRepository {
                                     it.endereco
                                 )
                             )
-                        }
                     }
                 }
                 callback.invoke(feirasLocations)

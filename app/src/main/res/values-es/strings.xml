@@ -220,6 +220,16 @@
         <item>SAO CAETANO</item>
     </string-array>
 
+    <!-- DIAS DA SEMANA-->
+    <string-array name="dias_semana">'
+        <item>MAR</item>
+        <item>MIE</item>
+        <item>JUE</item>
+        <item>VIE</item>
+        <item>SAB</item>
+        <item>DOM</item>
+    </string-array>
+
     <string-array name="sp_bairros">
 
         <item>	ACLIMACAO	</item>

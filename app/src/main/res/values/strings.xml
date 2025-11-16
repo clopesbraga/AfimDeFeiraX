@@ -227,6 +227,16 @@
         <item>SAO CAETANO</item>
     </string-array>
 
+    <!-- DIAS DA SEMANA-->
+    <string-array name="dias_semana">'
+        <item>TER</item>
+        <item>QUA</item>
+        <item>QUI</item>
+        <item>SEX</item>
+        <item>SAB</item>
+        <item>DOM</item>
+    </string-array>
+
     <string-array name="sp_bairros">
 
         <item>	ACLIMACAO	</item>

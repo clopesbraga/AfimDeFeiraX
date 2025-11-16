@@ -178,3 +178,30 @@ fun SearchNeighborHoodComponent(
             .padding(horizontal = 16.dp, vertical = 0.dp)
     )
 }
+
+@Composable
+fun DaysOfWeekMenuComponent(
+    daysOfWeek: Array<String>,
+    index: Int,
+    isSelected: Boolean,
+    viewModel: MapaFeirasViewModel,
+    analytics:FirebaseAnalyticsImpl
+) {
+    Text(
+        text = daysOfWeek[index],
+        color = if (isSelected) Color(0xFF009688) else Color.White,
+
+        fontSize = MaterialTheme.typography.titleMedium.fontSize,
+        modifier = Modifier
+            .height(20.dp)
+            .background(
+                if (isSelected) Color.White else Color.Transparent,
+                shape = MaterialTheme.shapes.medium
+            )
+            .clickable {
+                analytics.firebaselogEvent(Monitoring.Map.DAY_OF_WEEK_SELECTED)
+                viewModel.onDayOfWeekSelected(daysOfWeek.get(index))
+            }
+            .padding(horizontal = 16.dp, vertical = 0.dp)
+    )
+}
