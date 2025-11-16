@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-11-15T23:28:42.879712801Z">
+        <DropdownSelection timestamp="2025-10-15T03:07:44.741265484Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/home/cleiton/.var/app/com.google.AndroidStudio/config/.android/avd/Resizable_Experimental_2.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=R9XY40B9WQJ" />
             </handle>
           </Target>
         </DropdownSelection>
