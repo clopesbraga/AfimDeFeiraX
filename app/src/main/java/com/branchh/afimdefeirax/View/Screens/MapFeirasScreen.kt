@@ -66,7 +66,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
     Content(showBottomBar,firebaseanalytics,viewModel)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, MapsComposeExperimentalApi::class)
 @Composable
 fun Content(showBottomBar: (Boolean) -> Unit,
             firebaseanalytics: FirebaseAnalyticsImpl,
@@ -85,7 +85,7 @@ fun Content(showBottomBar: (Boolean) -> Unit,
 
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
-    val activity = (LocalActivity?.current as? Activity)
+    val activity = LocalActivity.current
     val context = LocalContext.current
 
 

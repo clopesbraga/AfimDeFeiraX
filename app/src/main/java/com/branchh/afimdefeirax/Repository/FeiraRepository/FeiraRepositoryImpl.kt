@@ -15,7 +15,6 @@ class FeirasRepositoryImpl: IFeiraRepository {
     private val database: DatabaseReference =
                     Firebase.database.reference.child("Pesquisa").child("Feiras")
 
-    private val diasemana=DeviceCurrentTime()
     override fun getFeirasLocations(callback: (List<FeirasModel>) -> Unit) {
         val feirasLocations = mutableListOf<FeirasModel>()
 

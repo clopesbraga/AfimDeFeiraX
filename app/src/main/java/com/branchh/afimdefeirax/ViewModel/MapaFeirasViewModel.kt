@@ -173,8 +173,7 @@ class MapaFeirasViewModel(
 
         val activityContext = when (application) {
             is Activity -> application
-            is ContextWrapper -> application.baseContext as? Activity
-            else -> null
+            else -> application.baseContext as? Activity
         }
         viewModelScope.launch {
 
@@ -248,7 +247,7 @@ class MapaFeirasViewModel(
         viewModelScope.launch{
             try {
                 val gc = Geocoder(application.applicationContext)
-                var list: List<Address?>? = null
+                var list: List<Address?>?
                 list = gc.getFromLocationName(local, 1)
 
                 val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]
