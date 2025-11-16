@@ -1,0 +1,1124 @@
+<resources>
+
+
+    <string name="app_name">AfimDeFeira</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_header_title">Android Studio</string>
+
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- MENU DE OPCOES-->
+    <string name="menu_feiras">Fairs</string>
+    <string name="menu_produtos">Products</string>
+    <string name="menu_historico">Purchase History</string>
+    <string name="menu_details">More Options</string>
+
+
+    <!-- TELA LOGIN
+ -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    -->
+    <string name="input_password">Enter your password</string>
+    -->
+    <string name="input_user">Enter your email</string>
+    -->
+    <string name="confirm_login">Register</string>
+
+
+    <!-- TELA PRODUTOS-->
+    <string-array name="produtos">
+        <item>VEGETABLES</item>
+        <item>FRUITS</item>
+        <item>LEGUMES</item>
+        <item>MEATS</item>
+        <item>SAVORIES</item>
+        <item>UTENSILS</item>
+    </string-array>
+
+
+    <string name="list_of_products">List of Products</string>
+    <string name="describe_button_list">Make purchases</string>
+    <string name="my_list_products">My Shopping List</string>
+    <string name="confirm_item_in_list">Buy</string>
+    <string name="warnning_price_message">You must enter a value to add to the list</string>
+
+    <string name="category_fruits">Fruits</string>
+    <string name="category_vegetables">Vegetables</string>
+    <string name="category_greens">Greens</string>
+    <string name="category_meats">Meats</string>
+    <string name="category_fish">Fish</string>
+    <string name="category_condiments">Seasonings</string>
+    <string name="category_snacks">Snacks</string>
+    <string name="category_utensils">Utensils</string>
+
+
+    <!-- FRUTAS-->
+    <string name="fruit_abacaxi">Pineapple</string>
+    <string name="fruit_banana">Banana</string>
+    <string name="fruit_caju">Cashew</string>
+    <string name="fruit_caqui">Persimmon</string>
+    <string name="fruit_carambola">Carambola</string>
+    <string name="fruit_coco">Coconut</string>
+    <string name="fruit_figo">Fig</string>
+    <string name="fruit_goiaba">Guava</string>
+    <string name="fruit_jaca">Jackfruit</string>
+    <string name="fruit_jaboticaba">Jaboticaba</string>
+    <string name="fruit_laranja">Orange</string>
+    <string name="fruit_limao">Lemon</string>
+    <string name="fruit_lixia">Lixia</string>
+    <string name="fruit_mamao">Papaya</string>
+    <string name="fruit_manga">Mango</string>
+    <string name="fruit_maracuja">Passion Fruit</string>
+    <string name="fruit_melao">Melon</string>
+    <string name="fruit_melancia">Watermelon</string>
+    <string name="fruit_mexirica">Mexirica</string>
+    <string name="fruit_morango">Strawberry</string>
+    <string name="fruit_pera">Pear</string>
+    <string name="fruit_uva">Grape</string>
+    <string name="fruit_kiwi">Kiwi</string>
+
+
+    <!-- LEGUMES -->
+    <string name="vegetables_alho">Garlic</string>
+    <string name="vegetables_abobora">Pumpkin</string>
+    <string name="vegetables_abobrinha">Zucchini</string>
+    <string name="vegetables_batata">Potato</string>
+    <string name="vegetables_batata_doce">Sweet potato</string>
+    <string name="vegetables_berinjela">Eggplant</string>
+    <string name="vegetables_cebola">Onion</string>
+    <string name="vegetables_cenoura">Carrot</string>
+    <string name="vegetables_inhame">Yam</string>
+    <string name="vegetables_jilo">Jilo</string>
+    <string name="vegetables_mandioca">Mandioca</string>
+    <string name="vegetables_mandinhoquinha">Mandinhoquinha</string>
+    <string name="vegetables_pimentao">Pepper</string>
+    <string name="vegetables_tomate">Tomato</string>
+
+
+    <!-- VERDURAS -->
+    <string name="greens_acelga">Chard</string>
+    <string name="greens_alface">Lettuce</string>
+    <string name="greens_alegrin">Alecrin</string>
+    <string name="greens_almeirao">Almeirao</string>
+    <string name="greens_brocolis">Broccoli</string>
+    <string name="greens_couve">Couve</string>
+    <string name="greens_chicoria">Chicory</string>
+    <string name="greens_coentro">Coriander</string>
+    <string name="greens_couve_flor">Cauliflower</string>
+    <string name="greens_espinafre">Spinach</string>
+    <string name="greens_hortela">Mint</string>
+    <string name="greens_manjericao">Basil</string>
+    <string name="greens_maxixe">Maxixe</string>
+    <string name="greens_pepino">Cucumber</string>
+    <string name="greens_rucula">Arugula</string>
+    <string name="greens_salsao">Parsley</string>
+    <string name="greens_salsinha">Parsley</string>
+    <string name="greens_tomilho">Thyme</string>
+
+    <!-- CARNES -->
+    <string name="meats_acem">Acem</string>
+    <string name="meats_agulha">Needle</string>
+    <string name="meats_alcatra">Alcatra</string>
+    <string name="meats_bacon">Bacon</string>
+    <string name="meats_bife">Steak</string>
+    <string name="meats_braco">Arm</string>
+    <string name="meats_cochao">Cochão</string>
+    <string name="meats_contra">Contra-File</string>
+    <string name="meats_cupim">Termite</string>
+    <string name="meats_dianteiro">Front</string>
+    <string name="meats_lagarto">Lizard</string>
+    <string name="meats_linguica">Linguica</string>
+    <string name="meats_maminha">Maminha</string>
+    <string name="meats_mignon">Mignon</string>
+    <string name="meats_musculo">Musculo</string>
+    <string name="meats_patinho">Patinho</string>
+    <string name="meats_picanha">Picanha</string>
+
+    <!-- PESCADOS -->
+    <string name="fish_camarao">Shrimp</string>
+    <string name="fish_caranguejo">Crab</string>
+    <string name="fish_dourado">Dourado</string>
+    <string name="fish_namorado">Namorado</string>
+    <string name="fish_merlusa">Merlusa</string>
+    <string name="fish_pescada">Pecada</string>
+    <string name="fish_pescada_branca">White Pecada</string>
+    <string name="fish_porquinho">Porquinho</string>
+    <string name="fish_salmao">Salmao</string>
+    <string name="fish_tilapia">Tilapia</string>
+    <string name="fish_truta">Trout</string>
+
+
+    <!-- LANCHES-->
+    <string name="snacks_agua_coco">Agua-Coco</string>
+    <string name="snacks_caldo_cana">Caldo-Cana</string>
+    <string name="snacks_coxinha">Coxinha</string>
+    <string name="snacks_espetos">Skewers</string>
+    <string name="snacks_kibe">Kibe</string>
+    <string name="snacks_refrigerante">Soda</string>
+    <string name="snacks_pastelzinho">Pastelzinho</string>
+    <string name="snacks_pastel">Pastel</string>
+
+
+    <!-- UTILIDADES -->
+    <string name="utensils_brinquedo">Toy</string>
+    <string name="utensils_carrinho">Cart</string>
+    <string name="utensils_esponja">Sponge</string>
+    <string name="utensils_pano_prato">Dishcloth</string>
+    <string name="utensils_roda_carrinho">Cart Wheel</string>
+    <string name="utensils_vassoura">Broom</string>
+    <string name="utensils_panela">Pot</string>
+
+
+    <!--TEMPEROS-->
+    <string name="condiments_acafrao">Acafrao</string>
+    <string name="condiments_canela">Cinnamon</string>
+    <string name="condiments_colorau">Colorau</string>
+    <string name="condiments_louros">Louros</string>
+    <string name="condiments_noz_moscada">Nutmeg</string>
+    <string name="condiments_oregano">Oregano</string>
+    <string name="condiments_pimenta_reino">Black Pepper</string>
+    <string name="condiments_paprika">Paprika</string>
+
+    <!--TELA MAPA FEIRAS-->
+    <string name="user_point">You are here</string>
+    <string name="fairs_of_City">Fairs of City</string>
+    <string name="search_neighborhoods">Search Neigborhods</string>
+
+    <!--TELA HISTORICO-->
+    <string name="title_historic">Historic</string>
+
+
+    //MENSAGENS DE ERRO
+    <string name="feira_not_found">Fairs not found today</string>
+
+
+    //TELA SOBRE O APP
+    <string name="sobre_o_app">About the app</string>
+    <string name="text_1_title">Application</string>
+    <string name="text_2_title">Company</string>
+    <string name="text_3_title">Version</string>
+    <string name="text_1">Afim de Feira app created in 2025 by Branchh Softwares.</string>
+    <string name="text_2">Branchh Softwares</string>
+    <string name="back">"Back "</string>
+    <string name="info_politicas">Privacy Policies</string>
+
+    // TUTORIAL SHOW CASE
+    <string name="tutorial_descritpiton_product_list">After selecting the items, click this button to access the shopping list</string>
+    <string name="tutorial_description_button_product_list">Button to make purchases</string>
+    <string name="tutorial_title_button_search_neigboor">Location of City Markets</string>
+    <string name="tutorial_description_button_search_neigboor">In addition to seeing nearby markets directly on the map, you can search for city neighborhoods by clicking this button.</string>
+    <string name="tutorial_title_item_historic">Purchase History</string>
+    <string name="tutorial_description_item_historic">This shows your last three purchases for comparison.</string>
+
+    <!-- CIDADES-->
+    <string-array name="cidades">
+        <item>SAO PAULO</item>
+        <item>GUARULHOS</item>
+        <item>SUZANO</item>
+        <item>OSASCO</item>
+        <item>MAUA</item>
+        <item>SANTO ANDRE</item>
+        <item>SAO BERNADO</item>
+        <item>SAO CAETANO</item>
+    </string-array>
+
+
+    <!-- DIAS DA SEMANA-->
+    <string-array name="dias_semana">'
+        <item>TUE</item>
+        <item>WED</item>
+        <item>THU</item>
+        <item>FRI</item>
+        <item>SAT</item>
+        <item>SUN</item>
+    </string-array>
+
+
+    <string-array name="sp_bairros">
+
+        <item>	ACLIMACAO	</item>
+        <item>	AGUA BRANCA	</item>
+        <item>	AGUA FRIA	</item>
+        <item>	AGUA FUNDA	</item>
+        <item>	AGUA RASA	</item>
+        <item>	ALTO DA LAPA	</item>
+        <item>	ALTO DA MOOCA	</item>
+        <item>	ALTO DO IPIRANGA	</item>
+        <item>	AMERICANOPOLIS	</item>
+        <item>	ARICANDUVA	</item>
+        <item>	ARTUR ALVIM	</item>
+        <item>	BARRA FUNDA	</item>
+        <item>	BARREIRA GRANDE	</item>
+        <item>	BARUEL	</item>
+        <item>	BELA VISTA	</item>
+        <item>	BELEM	</item>
+        <item>	BELENZINHO	</item>
+        <item>	BOM RETIRO	</item>
+        <item>	BOSQUE DA SAUDE	</item>
+        <item>	BRAS	</item>
+        <item>	BRESSER	</item>
+        <item>	BROOKLIN PAULISTA	</item>
+        <item>	BURGO PAULISTA	</item>
+        <item>	BUTANTA	</item>
+        <item>	CACHOEIRINHA	</item>
+        <item>	CAMBUCI	</item>
+        <item>	CAMPO BELO	</item>
+        <item>	CAMPO LIMPO	</item>
+        <item>	CANGAIBA	</item>
+        <item>	CANINDE	</item>
+        <item>	CAPAO REDONDO	</item>
+        <item>	CAPELA DO SOCORRO	</item>
+        <item>	CARANDIRU	</item>
+        <item>	CASA VERDE	</item>
+        <item>	CASA VERDE ALTA	</item>
+        <item>	CAXINGUI	</item>
+        <item>	CDHU CAMARGO VELHO	</item>
+        <item>	CENTRO	</item>
+        <item>	CERQUEIRA CESAR	</item>
+        <item>	CHACARA BELENZINHO	</item>
+        <item>	CHACARA INGLESA	</item>
+        <item>	CHACARA SANTO ANTONIO	</item>
+        <item>	CHACARA TRES MENINAS	</item>
+        <item>	CHORA MENINO	</item>
+        <item>	CIDADE  AE CARVALHO	</item>
+        <item>	CIDADE  IPAVA	</item>
+        <item>	CIDADE ADEMAR	</item>
+        <item>	CIDADE D ABRIL	</item>
+        <item>	CIDADE DUTRA	</item>
+        <item>	CIDADE LIDER	</item>
+        <item>	CIDADE MONCOES	</item>
+        <item>	CIDADE NOVA S MIGUEL	</item>
+        <item>	CIDADE PATRIARCA	</item>
+        <item>	CIDADE PEDRO JOSE NUNES	</item>
+        <item>	CIDADE SAO MATEUS	</item>
+        <item>	CIDADE TIRADENTES	</item>
+        <item>	CIDADE TIRADENTES COHAB	</item>
+        <item>	CIDADE VARGAS	</item>
+        <item>	COCAIA	</item>
+        <item>	COHAB II	</item>
+        <item>	CONGONHAS	</item>
+        <item>	CONJUNTO HAB FAZENDA DO CARMO	</item>
+        <item>	CONSOLACAO	</item>
+        <item>	CRUZ DAS ALMAS	</item>
+        <item>	EDUCANDARIO COHAB	</item>
+        <item>	ENGENHEIRO GOULART	</item>
+        <item>	ERMELINO MATARAZZO	</item>
+        <item>	ESTADIO DO MORUMBI	</item>
+        <item>	FAZENDA JUTA	</item>
+        <item>	FREGUESIA DO O	</item>
+        <item>	GRAJAU	</item>
+        <item>	GUAIANAZES	</item>
+        <item>	GUAIANAZES COHAB	</item>
+        <item>	HELIOPOLIS	</item>
+        <item>	IBIRAPUERA	</item>
+        <item>	IMIRIM	</item>
+        <item>	INDIANOPOLIS	</item>
+        <item>	IPIRANGA	</item>
+        <item>	ITAIM BIBI	</item>
+        <item>	ITAIM PAULISANTA	</item>
+        <item>	ITAQUERA	</item>
+        <item>	ITAQUERA COHAB I	</item>
+        <item>	ITAQUERA COHAB II	</item>
+        <item>	JABAQUARA	</item>
+        <item>	JACANA	</item>
+        <item>	JAGUARE	</item>
+        <item>	JARDIM AEROPORTO	</item>
+        <item>	JARDIM ALMEIDA PRADO	</item>
+        <item>	JARDIM AMERICA	</item>
+        <item>	JARDIM ANA MARIA	</item>
+        <item>	JARDIM ANGELA	</item>
+        <item>	JARDIM ANTONIA	</item>
+        <item>	JARDIM ARICANDUVA	</item>
+        <item>	JARDIM ARIZI	</item>
+        <item>	JARDIM ARPOADOR	</item>
+        <item>	JARDIM AUGUSTO	</item>
+        <item>	JARDIM BOA ESPERANCA	</item>
+        <item>	JARDIM BOA VISANTA	</item>
+        <item>	JARDIM BONFIGLIOLI	</item>
+        <item>	JARDIM BRASIL	</item>
+        <item>	JARDIM BRASILIA	</item>
+        <item>	JARDIM BRASILIA	</item>
+        <item>	JARDIM BRITANIA	</item>
+        <item>	JARDIM CAMARGO	</item>
+        <item>	JARDIM CAMARGO NOVO	</item>
+        <item>	JARDIM CAMARGO VELHO	</item>
+        <item>	JARDIM CAMPOS	</item>
+        <item>	JARDIM CASA PINTADA	</item>
+        <item>	JARDIM CATANDUVA	</item>
+        <item>	JARDIM CELESTE	</item>
+        <item>	JARDIM CELIA	</item>
+        <item>	JARDIM CIDADEALIA	</item>
+        <item>	JARDIM CITY JARAGUA	</item>
+        <item>	JARDIM CLIMAX	</item>
+        <item>	JARDIM COIMBRA	</item>
+        <item>	JARDIM COLONIAL	</item>
+        <item>	JARDIM COLORADO	</item>
+        <item>	JARDIM CONSORCIO	</item>
+        <item>	JARDIM D ABRIL	</item>
+        <item>	JARDIM DA FELICIDADEADE	</item>
+        <item>	JARDIM DA GLORIA	</item>
+        <item>	JARDIM DA SAUDE	</item>
+        <item>	JARDIM DANFER	</item>
+        <item>	JARDIM DAS BANDEIRAS	</item>
+        <item>	JARDIM DAS CAMELIAS	</item>
+        <item>	JARDIM DAS LARANJEIRAS	</item>
+        <item>	JARDIM DAS OLIVEIRAS	</item>
+        <item>	JARDIM DAS ROSAS	</item>
+        <item>	JARDIM DO RECANTO	</item>
+        <item>	JARDIM DO RUSSO	</item>
+        <item>	JARDIM DOS ALAMOS	</item>
+        <item>	JARDIM DOS IPES	</item>
+        <item>	JARDIM ELBA	</item>
+        <item>	JARDIM ELIANE	</item>
+        <item>	JARDIM ELISEO	</item>
+        <item>	JARDIM ESTER	</item>
+        <item>	JARDIM FONTALIS	</item>
+        <item>	JARDIM GIANETTI	</item>
+        <item>	JARDIM GRIMALDI	</item>
+        <item>	JARDIM GUAIRACA	</item>
+        <item>	JARDIM GUARANI	</item>
+        <item>	JARDIM GUARAU	</item>
+        <item>	JARDIM HELENA	</item>
+        <item>	JARDIM HELIAN	</item>
+        <item>	JARDIM IBIRAPUERA	</item>
+        <item>	JARDIM IGUATEMI	</item>
+        <item>	JARDIM IGUATEMI	</item>
+        <item>	JARDIM IMBE	</item>
+        <item>	JARDIM IMBUIAS	</item>
+        <item>	JARDIM INDEPENDENCIA	</item>
+        <item>	JARDIM IPANEMA	</item>
+        <item>	JARDIM IPE	</item>
+        <item>	JARDIM IRACEMA	</item>
+        <item>	JARDIM IRENE	</item>
+        <item>	JARDIM ITAPEMIRIM	</item>
+        <item>	JARDIM ITAPEMIRIM	</item>
+        <item>	JARDIM IVA	</item>
+        <item>	JARDIM JANGADEIRO	</item>
+        <item>	JARDIM JAPAO	</item>
+        <item>	JARDIM JARAGUA	</item>
+        <item>	JARDIM JOAMAR	</item>
+        <item>	JARDIM JOAO XXIII	</item>
+        <item>	JARDIM JOSE MARIA	</item>
+        <item>	JARDIM JURUBATUBA	</item>
+        <item>	JARDIM LEAR	</item>
+        <item>	JARDIM LISBOA	</item>
+        <item>	JARDIM MACEDONIA	</item>
+        <item>	JARDIM MAGGI	</item>
+        <item>	JARDIM MAIA	</item>
+        <item>	JARDIM MARAJOARA	</item>
+        <item>	JARDIM MARIA BORBA	</item>
+        <item>	JARDIM MARIA ESTELA	</item>
+        <item>	JARDIM MARIA ESTELA	</item>
+        <item>	JARDIM MARIA SAMPAIO	</item>
+        <item>	JARDIM MARILU	</item>
+        <item>	JARDIM MARINGA	</item>
+        <item>	JARDIM MARISA	</item>
+        <item>	JARDIM MILIUNAS	</item>
+        <item>	JARDIM MIRIAM	</item>
+        <item>	JARDIM MONJOLO	</item>
+        <item>	JARDIM NAZARE	</item>
+        <item>	JARDIM NELIA	</item>
+        <item>	JARDIM NITEROI	</item>
+        <item>	JARDIM NOEMIA	</item>
+        <item>	JARDIM NORDESTE	</item>
+        <item>	JARDIM NOSSA SENHORA DO CARMO	</item>
+        <item>	JARDIM NOVA CURUCA	</item>
+        <item>	JARDIM NOVA SAPOPEMBA	</item>
+        <item>	JARDIM NOVE DE JULHO	</item>
+        <item>	JARDIM NOVO HORIZONTE	</item>
+        <item>	JARDIM OLINDA	</item>
+        <item>	JARDIM PARAGUASSU	</item>
+        <item>	JARDIM PATENTE	</item>
+        <item>	JARDIM PAULISANTA	</item>
+        <item>	JARDIM PAULISANTANA	</item>
+        <item>	JARDIM PERI ALTO	</item>
+        <item>	JARDIM PIRATININGA	</item>
+        <item>	JARDIM PIRITUBA	</item>
+        <item>	JARDIM PLANALTO	</item>
+        <item>	JARDIM POPULAR	</item>
+        <item>	JARDIM PRESIDENTE	</item>
+        <item>	JARDIM PRIMAVERA	</item>
+        <item>	JARDIM PRINCESA	</item>
+        <item>	JARDIM PRUDENCIA	</item>
+        <item>	JARDIM RANIERI	</item>
+        <item>	JARDIM RAPOSO TAVARES	</item>
+        <item>	JARDIM REGINA	</item>
+        <item>	JARDIM RINCAO	</item>
+        <item>	JARDIM ROBRU	</item>
+        <item>	JARDIM ROMANO	</item>
+        <item>	JARDIM ROSANA	</item>
+        <item>	JARDIM ROSELI	</item>
+        <item>	JARDIM SANTA ADELIA	</item>
+        <item>	JARDIM SANTA ADELIA	</item>
+        <item>	JARDIM SANTA BARBARA	</item>
+        <item>	JARDIM SANTA CRUZ	</item>
+        <item>	JARDIM SANTA FRANCISCA	</item>
+        <item>	JARDIM SANTA GERTRUDES	</item>
+        <item>	JARDIM SANTA HELENA	</item>
+        <item>	JARDIM SANTA MONICA	</item>
+        <item>	JARDIM SANTA TEREZINHA	</item>
+        <item>	JARDIM SANTANA	</item>
+        <item>	JARDIM SANTO ANDRE	</item>
+        <item>	JARDIM SANTO ANDRE	</item>
+        <item>	JARDIM SAO BENTO	</item>
+        <item>	JARDIM SAO BERNARDO	</item>
+        <item>	JARDIM SAO CARLOS	</item>
+        <item>	JARDIM SAO FRANCISCO	</item>
+        <item>	JARDIM SAO JORGE	</item>
+        <item>	JARDIM SAO JOSE	</item>
+        <item>	JARDIM SAO LUIZ	</item>
+        <item>	JARDIM SAO LUIZ	</item>
+        <item>	JARDIM SAO MARTINHO	</item>
+        <item>	JARDIM SAO PAULO	</item>
+        <item>	JARDIM SAO PAULO	</item>
+        <item>	JARDIM SAO VICENTE	</item>
+        <item>	JARDIM SAPOPEMBA	</item>
+        <item>	JARDIM SATELITE	</item>
+        <item>	JARDIM SOARES	</item>
+        <item>	JARDIM TIALHA	</item>
+        <item>	JARDIM TIETE	</item>
+        <item>	JARDIM TREMEMBE	</item>
+        <item>	JARDIM TRES CORACOES	</item>
+        <item>	JARDIM TRIANA	</item>
+        <item>	JARDIM TROPICAL	</item>
+        <item>	JARDIM UBIRAJARA	</item>
+        <item>	JARDIM UMARIZAL	</item>
+        <item>	JARDIM UMUARAMA	</item>
+        <item>	JARDIM VARGINHA	</item>
+        <item>	JARDIM VAZ DE LIMA	</item>
+        <item>	JARDIM VERA CRUZ	</item>
+        <item>	JARDIM VERA LUCIA	</item>
+        <item>	JARDIM VERGUEIRO	</item>
+        <item>	JARDIM VERONIA	</item>
+        <item>	JARDIM VILA CARRAO	</item>
+        <item>	JARDIM VILA FORMOSA	</item>
+        <item>	JARDIM VILA MARIANA	</item>
+        <item>	JARDIM VILA NOVA CARRAO	</item>
+        <item>	JARDIM VILAS BOAS	</item>
+        <item>	JARDIM VISANTA ALEGRE	</item>
+        <item>	JARDIM VITORIA	</item>
+        <item>	JARDINS	</item>
+        <item>	JOSE BONIFACIO	</item>
+        <item>	LAJEADO	</item>
+        <item>	LAPA	</item>
+        <item>	LAPA DE BAIXO	</item>
+        <item>	LAUZANE PAULISANTA	</item>
+        <item>	LIBERDADE	</item>
+        <item>	LIMAO	</item>
+        <item>	LIMOEIRO	</item>
+        <item>	MANDAQUI	</item>
+        <item>	MEDEIROS	</item>
+        <item>	MOEMA	</item>
+        <item>	MOINHO VELHO	</item>
+        <item>	MOOCA	</item>
+        <item>	MORUMBI	</item>
+        <item>	NOSSA SENHORA DO O	</item>
+        <item>	PACAEMBU	</item>
+        <item>	PALMAS DO TREMEMBE	</item>
+        <item>	PARADA DE TAIPAS	</item>
+        <item>	PARADA XV NOVEMBRO	</item>
+        <item>	PARAISÓPOLIS	</item>
+        <item>	PARELHEIROS	</item>
+        <item>	PARI	</item>
+        <item>	PARQUE AMERICA	</item>
+        <item>	PARQUE ARTUR ALVIM	</item>
+        <item>	PARQUE BELEM	</item>
+        <item>	PARQUE BRASIL	</item>
+        <item>	PARQUE BRISTOL	</item>
+        <item>	PARQUE BRISTOL	</item>
+        <item>	PARQUE COCAIA	</item>
+        <item>	PARQUE CRUZEIRO DO SUL	</item>
+        <item>	PARQUE DA MOOCA	</item>
+        <item>	PARQUE DO CARMO	</item>
+        <item>	PARQUE FERNANDA	</item>
+        <item>	PARQUE FERNANDA	</item>
+        <item>	PARQUE FIG GRANDE	</item>
+        <item>	PARQUE GRAJAU	</item>
+        <item>	PARQUE GUARANI	</item>
+        <item>	PARQUE GUARANI	</item>
+        <item>	PARQUE JABAQUARA	</item>
+        <item>	PARQUE MARIA LUIZA	</item>
+        <item>	PARQUE NACOES UNIDAS	</item>
+        <item>	PARQUE NOVO MUNDO	</item>
+        <item>	PARQUE NOVO SANTO AMARO	</item>
+        <item>	PARQUE PAN AMERICANO	</item>
+        <item>	PARQUE PAULISANTANO	</item>
+        <item>	PARQUE PERUCHE	</item>
+        <item>	PARQUE REGINA	</item>
+        <item>	PARQUE RESIDENCIAL	</item>
+        <item>	PARQUE SANTA MADALENA	</item>
+        <item>	PARQUE SANTA RITA	</item>
+        <item>	PARQUE SANTO ANTONIO	</item>
+        <item>	PARQUE SAO DOMINGUES	</item>
+        <item>	PARQUE SAO LUCAS	</item>
+        <item>	PARQUE SAO PAULO	</item>
+        <item>	PARQUE SAO RAFAEL	</item>
+        <item>	PARQUE SAVOY CITY	</item>
+        <item>	PARQUE SOUZA ARANHA	</item>
+        <item>	PARQUE TIETE	</item>
+        <item>	PARQUE VITORIA	</item>
+        <item>	PEDREIRA	</item>
+        <item>	PENHA	</item>
+        <item>	PERDIZES	</item>
+        <item>	PERUS	</item>
+        <item>	PINHEIROS	</item>
+        <item>	PIQUERI	</item>
+        <item>	PIRAPORINHA	</item>
+        <item>	PIRAQUARA	</item>
+        <item>	PIRITUBA	</item>
+        <item>	PLANALTO PAULISANTA	</item>
+        <item>	PONTE PEQUENA	</item>
+        <item>	PONTE RAZA	</item>
+        <item>	QUARTA PARADA	</item>
+        <item>	REAL PARQUE MORUMBI	</item>
+        <item>	RECANTO DOS HUMILDES	</item>
+        <item>	RIO PEQUENO	</item>
+        <item>	RODRIGUES ALVES	</item>
+        <item>	SACOMA	</item>
+        <item>	SANTA CATARINA	</item>
+        <item>	SANTA CECILIA	</item>
+        <item>	SANTA CRUZ	</item>
+        <item>	SANTA EDWIGES	</item>
+        <item>	SANTA EFIGENIA	</item>
+        <item>	SANTA ETELVINA	</item>
+        <item>	SANTA ETELVINA COHAB	</item>
+        <item>	SANTA INES	</item>
+        <item>	SANTA TEREZINHA	</item>
+        <item>	SANTANA	</item>
+        <item>	SANTO AMARO	</item>
+        <item>	SANTO AMARO	</item>
+        <item>	SAO FRANCISCO	</item>
+        <item>	SAO JOAO CLIMACO	</item>
+        <item>	SAO JUDAS	</item>
+        <item>	SAO LUIS	</item>
+        <item>	SAO MATEUS	</item>
+        <item>	SAO MIGUEL	</item>
+        <item>	SAPOPEMBA	</item>
+        <item>	SAUDE	</item>
+        <item>	SOCORRO	</item>
+        <item>	SUMARE	</item>
+        <item>	SUMAREZINHO	</item>
+        <item>	TATUAPE	</item>
+        <item>	TIRADENTES COHAB	</item>
+        <item>	TREMEMBE	</item>
+        <item>	TRES MARIA	</item>
+        <item>	TUCURUVI	</item>
+        <item>	VARZEA DE BAIXO	</item>
+        <item>	VELEIROS	</item>
+        <item>	VILA ALBERTINA	</item>
+        <item>	VILA ALPINA	</item>
+        <item>	VILA ANA CLARA	</item>
+        <item>	VILA ANASANTACIO	</item>
+        <item>	VILA ANDRADE	</item>
+        <item>	VILA ANTONIETA	</item>
+        <item>	VILA ANTONIETA	</item>
+        <item>	VILA ARAPUA	</item>
+        <item>	VILA ARICANDUVA	</item>
+        <item>	VILA ARRIETE	</item>
+        <item>	VILA AURORA	</item>
+        <item>	VILA AURORA	</item>
+        <item>	VILA BANCARIA	</item>
+        <item>	VILA BARBOSA	</item>
+        <item>	VILA BEATRIZ	</item>
+        <item>	VILA BELA	</item>
+        <item>	VILA BELA VISTA	</item>
+        <item>	VILA BONILHA	</item>
+        <item>	VILA BORGES	</item>
+        <item>	VILA BRASIL	</item>
+        <item>	VILA BRASILANDIA	</item>
+        <item>	VILA BUENOS AIRES	</item>
+        <item>	VILA CAIUBA	</item>
+        <item>	VILA CALIFORNIA	</item>
+        <item>	VILA CAMPANELA	</item>
+        <item>	VILA CAMPESTRE	</item>
+        <item>	VILA CANERO	</item>
+        <item>	VILA CARIOCA	</item>
+        <item>	VILA CARMOSINA	</item>
+        <item>	VILA CARMOSINA	</item>
+        <item>	VILA CAROLINA	</item>
+        <item>	VILA CARRAO	</item>
+        <item>	VILA CELESTE	</item>
+        <item>	VILA CISPER	</item>
+        <item>	VILA CLEMENTINO	</item>
+        <item>	VILA CONDE DO PINHAL	</item>
+        <item>	VILA CONSANTANCIA	</item>
+        <item>	VILA CONTINENTAL	</item>
+        <item>	VILA CRISANTALIA	</item>
+        <item>	VILA CRUZEIRO	</item>
+        <item>	VILA CURUCA NOVA	</item>
+        <item>	VILA CURUCA VELHA	</item>
+        <item>	VILA DA SAUDE	</item>
+        <item>	VILA DALILA	</item>
+        <item>	VILA DALVA	</item>
+        <item>	VILA DAS BELEZAS	</item>
+        <item>	VILA DAS MERCES	</item>
+        <item>	VILA DIVA	</item>
+        <item>	VILA DIVINA PASTORA	</item>
+        <item>	VILA EDE	</item>
+        <item>	VILA ELISA	</item>
+        <item>	VILA EMA	</item>
+        <item>	VILA ESPERANCA	</item>
+        <item>	VILA FACCHINI	</item>
+        <item>	VILA FANTON	</item>
+        <item>	VILA FONTON	</item>
+        <item>	VILA FORMOSA	</item>
+        <item>	VILA FRIBURGO	</item>
+        <item>	VILA GOMES	</item>
+        <item>	VILA GOMES CARDIM	</item>
+        <item>	VILA GONCALVES	</item>
+        <item>	VILA GUARANI	</item>
+        <item>	VILA GUILHERME	</item>
+        <item>	VILA GUILHERMINA	</item>
+        <item>	VILA GUMERCINDO	</item>
+        <item>	VILA GUSANTAVO	</item>
+        <item>	VILA GUSANTAVO	</item>
+        <item>	VILA HAMBURGUESA	</item>
+        <item>	VILA HELENA	</item>
+        <item>	VILA IDA	</item>
+        <item>	VILA INDEPENDENCIA	</item>
+        <item>	VILA INDIANA	</item>
+        <item>	VILA INVERNADA	</item>
+        <item>	VILA IPOJUCA	</item>
+        <item>	VILA ISA	</item>
+        <item>	VILA ITAIM	</item>
+        <item>	VILA IV CENTENARIO	</item>
+        <item>	VILA JACUI	</item>
+        <item>	VILA JAGUARA	</item>
+        <item>	VILA JARAGUA	</item>
+        <item>	VILA JOANISA	</item>
+        <item>	VILA LEOPOLDINA	</item>
+        <item>	VILA LESTE	</item>
+        <item>	VILA MADALENA	</item>
+        <item>	VILA MALVINA	</item>
+        <item>	VILA MANCHESTER	</item>
+        <item>	VILA MANGALOT	</item>
+        <item>	VILA MARIA	</item>
+        <item>	VILA MARIA	</item>
+        <item>	VILA MARIA BAIXA	</item>
+        <item>	VILA MARIA LUIZA	</item>
+        <item>	VILA MARIANA	</item>
+        <item>	VILA MARIANA	</item>
+        <item>	VILA MARIETA	</item>
+        <item>	VILA MASTROCOLA	</item>
+        <item>	VILA MATILDE	</item>
+        <item>	VILA MAZZEI	</item>
+        <item>	VILA MEDEIROS	</item>
+        <item>	VILA MIRANTE	</item>
+        <item>	VILA MIRIAN	</item>
+        <item>	VILA MISSIONARIA	</item>
+        <item>	VILA MONTE SANTO	</item>
+        <item>	VILA MONUMENTO	</item>
+        <item>	VILA MORAES	</item>
+        <item>	VILA MUTINGA	</item>
+        <item>	VILA NAIR	</item>
+        <item>	VILA NATAL	</item>
+        <item>	VILA NHOCUNE	</item>
+        <item>	VILA NIGRI	</item>
+        <item>	VILA NILO	</item>
+        <item>	VILA NORMA	</item>
+        <item>	VILA NOVA CACHOEIRINHA	</item>
+        <item>	VILA NOVA CONCEICAO	</item>
+        <item>	VILA NOVA CURACA	</item>
+        <item>	VILA NOVA ESPERANCA	</item>
+        <item>	VILA NOVA GALVAO	</item>
+        <item>	VILA NOVA GRANADA	</item>
+        <item>	VILA NOVA MAZZEI	</item>
+        <item>	VILA NOVA YORK	</item>
+        <item>	VILA OLIMPIA	</item>
+        <item>	VILA OLIVIERI	</item>
+        <item>	VILA ORATORIO	</item>
+        <item>	VILA PALMEIRAS	</item>
+        <item>	VILA PAULICEIA	</item>
+        <item>	VILA PAULISANTANIA	</item>
+        <item>	VILA PAULO SILAS	</item>
+        <item>	VILA PERUS	</item>
+        <item>	VILA PIAUI	</item>
+        <item>	VILA POMPEIA	</item>
+        <item>	VILA PONTE RASA	</item>
+        <item>	VILA PRELL	</item>
+        <item>	VILA PRINCESA ISABEL	</item>
+        <item>	VILA PRINCESA ISABEL	</item>
+        <item>	VILA PROGRESSO	</item>
+        <item>	VILA PRUDENTE	</item>
+        <item>	VILA RAMOS	</item>
+        <item>	VILA RE	</item>
+        <item>	VILA REGENTE FEIJO	</item>
+        <item>	VILA REGINA	</item>
+        <item>	VILA REMO	</item>
+        <item>	VILA REUNIDAS	</item>
+        <item>	VILA RICA	</item>
+        <item>	VILA RIO BRANCO	</item>
+        <item>	VILA ROMANA	</item>
+        <item>	VILA RUI BARBOSA	</item>
+        <item>	VILA RUI BARBOSA	</item>
+        <item>	VILA SABRINA	</item>
+        <item>	VILA SANTA CATARINA	</item>
+        <item>	VILA SANTA EULALIA	</item>
+        <item>	VILA SANTA IZABEL	</item>
+        <item>	VILA SANTA LUCIA	</item>
+        <item>	VILA SANTA MARIA	</item>
+        <item>	VILA SANTA TEREZINHA	</item>
+        <item>	VILA SANTANA	</item>
+        <item>	VILA SAO CARLOS	</item>
+        <item>	VILA SAO GERALDO	</item>
+        <item>	VILA SAO JOSE	</item>
+        <item>	VILA SAO PEDRO	</item>
+        <item>	VILA SAO SILVESTRE	</item>
+        <item>	VILA SILVIA	</item>
+        <item>	VILA SILVIA	</item>
+        <item>	VILA SINHA	</item>
+        <item>	VILA SIQUEIRA	</item>
+        <item>	VILA SOFIA	</item>
+        <item>	VILA SONIA	</item>
+        <item>	VILA SUICA	</item>
+        <item>	VILA TALARICO	</item>
+        <item>	VILA TIRADENTES	</item>
+        <item>	VILA TOLSTOI	</item>
+        <item>	VILA UNIAO	</item>
+        <item>	VILA VARGEM GRANDE	</item>
+        <item>	VILA VERA	</item>
+        <item>	VILA VERDE	</item>
+        <item>	VILA VIDAL	</item>
+        <item>	VILA YOLANDA II	</item>
+        <item>	VILA ZATT	</item>
+        <item>	VILA ZELINA	</item>
+        <item>	VILA ZILDA	</item>
+
+    </string-array>
+    <!--bairros de Guarulhos-->
+    -->
+    <string-array name="guaru_bairros">
+
+        <item>BOM CLIMA	</item>
+        <item>CECAP	</item>
+        <item>CENTRO	</item>
+        <item> CENTRO	</item>
+        <item> CIDADE SOINCO </item>
+        <item> CONJUNTO HAROLDO VELOSO	</item>
+        <item> CONJUNTO MARCOS FREIRE	</item>
+        <item> CUMBICA	</item>
+        <item> GOPOÚVA	</item>
+        <item> INOCOOP	</item>
+        <item> ITAPEGICA	</item>
+        <item> JARDIM  TRANQUILIDADE	</item>
+        <item> JARDIM ADRIANA	</item>
+        <item> JARDIM ALMEIDA PRADO	</item>
+        <item> JARDIM ANGÉLICA	</item>
+        <item> JARDIM ARACÍLIA	</item>
+        <item> JARDIM CUMBICA	</item>
+        <item> JARDIM JOVAIA	</item>
+        <item> JARDIM MONTE CARMELO	</item>
+        <item> JARDIM MOREIRA	</item>
+        <item> JARDIM MUNHOZ	</item>
+        <item> JARDIM PALMIRA	</item>
+        <item> JARDIM PRESIDENTE DUTRA	</item>
+        <item>	JARDIM ROSA DE FRANÇA	</item>
+        <item>	JARDIM SANTA CECÍLIA	</item>
+        <item>	JARDIM SANTA EMÍLIA	</item>
+        <item>	JARDIM SÃO DOMINGOS	</item>
+        <item>	JARDIM SÃO JOÃO	</item>
+        <item>	PARQUE ALVORADA	</item>
+        <item>	PARQUE CECAP I	</item>
+        <item>	PARQUE JUREMA	</item>
+        <item>	PARQUE SÃO LUIZ	</item>
+        <item>	PARQUE UIRAPURU	</item>
+        <item>	PICANÇO</item>
+        <item>	PIMENTAS	</item>
+        <item>	PONTE GRANDE	</item>
+        <item>	TABOÃO	</item>
+        <item>	VILA CARMELA	</item>
+        <item>	VILA FÁTIMA 	</item>
+        <item>	VILA GALVÃO	</item>
+        <item>	VILA SOROCABANA	</item>
+        <item>	VILA MOREIRA	</item>
+
+    </string-array>
+
+
+    <string-array name="suza_bairros">
+
+        <item> 	JARDIM DONA BENTA	</item>
+        <item> 	CENTRO	</item>
+        <item> 	JARDIM CASA BRANCA	</item>
+        <item> 	JARDIM COLORADO	</item>
+        <item> 	JARDIM CRUZEIRO DO SUL	</item>
+        <item> 	JARDIM IMPERADOR	</item>
+        <item> 	JARDIM MONTE CRISTO	</item>
+        <item> 	JARDIM NATAL	</item>
+        <item> 	JARDIM NOVO COLORADO	</item>
+        <item> 	JARDIM REVISTA	</item>
+        <item> 	JARDIM SÃO JOSÉ	</item>
+        <item> 	MIGUEL BADRA ALTO	</item>
+        <item> 	PALMEIRAS	</item>
+        <item> 	PARQUE MARIA HELENA	</item>
+        <item> 	PRACA JOAO PESSOA	</item>
+        <item> 	RAFFO	</item>
+        <item> 	VILA AMORIM	</item>
+        <item> 	VILA FIGUEIRA	</item>
+        <item> 	VILA HELENA	</item>
+
+    </string-array>
+    <!--bairros de Santo André-->
+    <string-array name="andre_bairros">
+
+        <item>	AVENIDA BRASIL	</item>
+        <item>	AVENIDA FIRESTONE	</item>
+        <item>	AVENIDA HIGIENÓPOLIS	</item>
+        <item>	AVENIDA PEDRO AMÉRICO	</item>
+        <item>	AVENIDA QUEIROZ FILHO	</item>
+        <item>	AVENIDA UTINGA	</item>
+        <item>	RUA AFRÂNIO PEIXOTO	</item>
+        <item>	RUA ALEXANDRETA	</item>
+        <item>	RUA DAS FIGUEIRAS	</item>
+        <item>	RUA DO AROUCHE	</item>
+        <item>	RUA DUQUE DE CAXIAS	</item>
+        <item>	RUA LUXEMBURGO	</item>
+        <item>	RUA MAMEDE ROCHA	</item>
+        <item>	RUA OSWALDO CRUZ	</item>
+        <item>	RUA PADRE MANOEL DE PAIVA	</item>
+        <item>	RUA ROLÂNDIA	</item>
+
+
+    </string-array>
+    <!--bairros de São Caetano-->
+    <string-array name="caetano_bairros">
+
+        <item>	 BARCELONA	</item>
+        <item>	 BOA VISTA	</item>
+        <item>	 CENTRO	</item>
+        <item>	 CERÂMICA	</item>
+        <item>	 MAUÁ	</item>
+        <item>	 NOVA GERTI</item>
+        <item>	 OLÍMPICO	</item>
+        <item>	 OSWALDO CRUZ	</item>
+        <item>	 PROSPERIDADE	</item>
+        <item>	 SANTA MARIA	</item>
+        <item>	 SÃO JOSÉ	</item>
+        <item>	 FUNDAÇÃO	</item>
+        <item>	 SANTA PAULA	</item>
+
+
+    </string-array>
+    <!--bairros de São Bernado-->
+    <string-array name="bernado_bairros">
+
+        <item>	BAETA NEVES	</item>
+        <item>	BAIRRO ASSUNÇÃO	</item>
+        <item>	BAIRRO DEMARCHI	</item>
+        <item>	CENTRO	</item>
+        <item>	JARDIM BEATRIZ	</item>
+        <item>	JARDIM BORBOREMA	</item>
+        <item>	JARDIM DA REPRESA	</item>
+        <item>	JARDIM DAS ORQUÍDEAS	</item>
+        <item>	JARDIM DO LAGO	</item>
+        <item>	JARDIM HOLLYWOOD	</item>
+        <item>	JARDIM IPÊ	</item>
+        <item>	JARDIM IRAJÁ	</item>
+        <item>	JARDIM LAURA	</item>
+        <item>	JARDIM LAVÍNIA	</item>
+        <item>	JARDIM NAZERETH	</item>
+        <item>	JARDIM PEDREIRA	</item>
+        <item>	JARDIM SANTO INÁCIO	</item>
+        <item>	JARDIM SÃO SILVÉRIO	</item>
+        <item>	JARDIM SILVINA	</item>
+        <item>	JARDIM TRÊS MARIAS	</item>
+        <item>	JARDIM TRIESTE	</item>
+        <item>	JARDIM VERA CRUZ	</item>
+        <item>	JARDIM. THELMA	</item>
+        <item>	JORDANÓPOLIS	</item>
+        <item>	NOVA PETRÓPOLIS	</item>
+        <item>	PARQUE SÃO DIOGO	</item>
+        <item>	PARQUE SELECTA	</item>
+        <item>	PAULICÉIA	</item>
+        <item>	RIACHO GRANDE	</item>
+        <item>	RUDGE RAMOS	</item>
+        <item>	SHOPPING METRÓPOLE	</item>
+        <item>	TABOÃO	</item>
+        <item>	TERRA NOVA II	</item>
+        <item>	VILA ALVES DIAS	</item>
+        <item>	VILA ALVINÓPOLIS	</item>
+        <item>	VILA BAETA NEVES	</item>
+        <item>	VILA DO SOL	</item>
+        <item>	VILA EUCLIDES	</item>
+        <item>	VILA FERRAZÓPOLIS	</item>
+        <item>	VILA GONÇALVES	</item>
+        <item>	VILA MARLENE	</item>
+        <item>	VILA MUSSOLINI	</item>
+        <item>	VILA PAULICÉIA	</item>
+        <item>	VILA PLANALTO	</item>
+        <item>	VILA ROSA	</item>
+        <item>	VILA VIVALDI	</item>
+        <item>	VILAS UNIDAS	</item>
+
+    </string-array>
+    <!--bairros de Osasco-->
+    -->
+    <string-array name="osasco_bairros">
+
+        <item>	1 DE MAIO	</item>
+        <item>	CAPELINHA	</item>
+        <item>	CENTRO	</item>
+        <item>	CIDADE DAS FLORES	</item>
+        <item>	CIDADE DAS FLORES	</item>
+        <item>	CONJ METALÚRGICOS	</item>
+        <item>	HELENA MARIA	</item>
+        <item>	I.A.P.I.	</item>
+        <item>	JAGUARIBE	</item>
+        <item>	JARDIM BARONESA	</item>
+        <item>	JARDIM BARONESA	</item>
+        <item>	JARDIM BELA VISTA	</item>
+        <item>	JARDIM BELA VISTA	</item>
+        <item>	JARDIM BONANÇA	</item>
+        <item>	JARDIM CALIFÓRNIA	</item>
+        <item>	JARDIM CONCEIÇÃO	</item>
+        <item>	JARDIM D ABRIL	</item>
+        <item>	JARDIM D ÁVILA	</item>
+        <item>	JARDIM DAS FLORES	</item>
+        <item>	JARDIM DAS FLORES	</item>
+        <item>	JARDIM IMPERIAL	</item>
+        <item>	JARDIM MUNHOZ JR	</item>
+        <item>	JARDIM MUTINGA	</item>
+        <item>	JARDIM NOVO OSASCO	</item>
+        <item>	JARDIM PADROEIRA	</item>
+        <item>	JARDIM PADROEIRA II	</item>
+        <item>	JARDIM PIRATININGA	</item>
+        <item>	JARDIM ROBERTO	</item>
+        <item>	JARDIM ROCHDALE	</item>
+        <item>	JARDIM ROCHDALE	</item>
+        <item>	JARDIM SANTA MARIA	</item>
+        <item>	JARDIM SANTO ANTÔNIO	</item>
+        <item>	JARDIM SAO VICTOR	</item>
+        <item>	JARDIM VELOSO	</item>
+        <item>	JARDIM VELOSO	</item>
+        <item>	JARDIM MUNHOZ JR	</item>
+        <item>	KM 18	</item>
+        <item>	OLARIA DO NINO	</item>
+        <item>	PORTAL D OESTE I	</item>
+        <item>	PRESIDENTE ALTINO	</item>
+        <item>	QUITAÚNA	</item>
+        <item>	RECANTO DAS ROSAS	</item>
+        <item>	VILA ANALICE	</item>
+        <item>	VILA AYROSA	</item>
+        <item>	VILA DOS REMÉDIOS	</item>
+        <item>	VILA ISABEL	</item>
+        <item>	VILA MENCK	</item>
+        <item>	VILA QUITAÚNA	</item>
+        <item>	VILA SÃO JOSÉ	</item>
+        <item>	VILA YARA	</item>
+        <item>	VILA YOLANDA	</item>
+
+    </string-array>
+    <!--bairros de Maua-->
+    -->
+    <string-array name="maua_bairros">
+
+        <item>	CENTRO	</item>
+        <item>	D.SONIA MARIA	</item>
+        <item>	FEITAL	</item>
+        <item>	JARDIM ALTO BOA VISTA	</item>
+        <item>	JARDIM ANCHIETA	</item>
+        <item>	JARDIM BOM RECANTO	</item>
+        <item>	JARDIM CAMILA	</item>
+        <item>	JARDIM ESPERANÇA	</item>
+        <item>	JARDIM ITAPARK	</item>
+        <item>	JARDIM ITAPEVA	</item>
+        <item>	JARDIM MARINGA	</item>
+        <item>	JARDIM MAUÁ	</item>
+        <item>	JARDIM MIRANDA ÁVIZ	</item>
+        <item>	JARDIM NOVA MAUÁ	</item>
+        <item>	JARDIM ORATÓRIO	</item>
+        <item>	JARDIM ORATÓRIO	</item>
+        <item>	JARDIM SANTA LÍDIA	</item>
+        <item>	JARDIM SÃO SEBASTIÃO	</item>
+        <item>	JARDIM SILVIA MARIA	</item>
+        <item>	JARDIM ZAÍRA	</item>
+        <item>	PARQUE DAS AMÉRICAS	</item>
+        <item>	PARQUE SAO VICENTE	</item>
+        <item>	SANTA ROSA	</item>
+        <item>	VILA GUARANI	</item>
+        <item>	VILA MAGINI	</item>
+        <item>	VILA MERCEDES	</item>
+        <item>	VILA VITÓRIA	</item>
+
+    </string-array>
+
+    <string name="terms_of_service">
+    <![CDATA[
+
+    <b>Types of Data Collected</b><br/><br/>
+        Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Email address, first name, last name, Cookies, and Usage Data.<br/><br/>
+        Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection.<br/><br/>
+        The Personal Data may be freely provided by the User, or collected automatically when using this Application.<br/><br/>
+        Any use of Cookies – or of other tracking tools – by this Application or by the owners of third-party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User.<br/><br/>
+        Failure to provide certain Personal Data may make it impossible for this Application to provide its services.<br/><br/>
+        The User assumes responsibility for the Personal Data of third parties published or shared through this Service (this Application) and declares to have the third party s consent to provide the Data to the Owner.<br/><br/>
+
+    <b>Mode and Place of Processing the Data</b><br/><br/>
+        <b>Method of Processing</b><br/><br/>
+            The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data.<br/><br/>
+            The Data processing is carried out using computers and/or IT-enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third-party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time.<br/><br/>
+        <b>Place</b><br/><br/>
+            The Data is processed at the Data Controller s operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller.<br/><br/>
+        <b>Retention Time</b><br/><br/>
+            The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data.<br/><br/>
+
+    <b>The Use of the Collected Data</b><br/><br/>
+        The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes: Contacting the User, Content commenting, and Interaction with external social networks and platforms.<br/><br/>
+        The Personal Data used for each purpose is outlined in the specific sections of this document.<br/><br/>
+
+    <b>Detailed Information on the Processing of Personal Data</b><br/><br/>
+        Personal Data is collected for the following purposes and using the following services:<br/><br/>
+        <b>Content Commenting</b><br/><br/>
+            Content commenting services allow Users to make and publish their comments on the contents of this Service (this Application). Depending on the settings chosen by the Owner, Users may also leave anonymous comments. If there is an email address among the Personal Data provided by the User, it may be used to send notifications of comments on the same content. Users are responsible for the content of their own comments. If a content commenting service provided by third parties is installed, it may still collect web traffic data for the pages where the comment service is installed, even when Users do not use the content commenting service.<br/><br/>
+        <b>Directly Managed Commenting System (this Application)</b><br/><br/>
+            This Application has its own internal content commenting system. Personal Data collected: Email address, first name, and last name.<br/><br/>
+        <b>Contact Form (this Application)</b><br/><br/>
+            By filling in the contact form with their Data, the User authorizes this Application to use these details to reply to requests for information, quotes, or any other kind of request as indicated by the form’s header.<br/><br/>
+            Personal Data collected: Email address, first name, and last name.<br/><br/>
+
+    <b>Additional Information About Data Collection and Processing</b><br/><br/>
+        <b>Legal Action</b><br/><br/>
+            The Users Personal Data may be used for legal purposes by the Data Controller, in Court or in the stages leading to possible legal action arising from improper use of this Service (this Application) or the related services.<br/><br/>
+            The User declares to be aware that the Data Controller may be required to reveal personal data upon request of public authorities.<br/><br/>
+        <b>Additional Information About User s Personal Data</b><br/><br/>
+            In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular services or the collection and processing of Personal Data upon request.<br/><br/>
+        <b>System Logs and Maintenance</b><br/><br/>
+            For operation and maintenance purposes, this Application and any third-party services may collect files that record interaction with this Application (System logs) or use for this purpose other Personal Data (such as the IP Address).<br/><br/>
+        <b>Information Not Contained in this Policy</b><br/><br/>
+            More details concerning the collection or processing of Personal Data may be requested from the Data Controller at any time. Please see the contact information at the beginning of this document.<br/><br/>
+
+    <b>The Rights of Users</b><br/><br/>
+        Users have the right, at any time, to know whether their Personal Data has been stored and can consult the Data Controller to learn about their contents and origin, to verify their accuracy or to ask for them to be supplemented, cancelled, updated or corrected, or for their transformation into anonymous format or to block any data held in violation of the law, as well as to oppose their treatment for any and all legitimate reasons. Requests should be sent to the Data Controller using the contact information set out above.<br/><br/>
+        This Application does not support “Do Not Track” requests.<br/><br/>
+        To determine whether any of the third-party services it uses honor the “Do Not Track” requests, please read their privacy policies.<br/><br/>
+
+    <b>Changes to This Privacy Policy</b><br/><br/>
+        The Data Controller reserves the right to make changes to this privacy policy at any time by giving notice to its Users on this page. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. If a User objects to any of the changes to the Policy, the User must cease using this Service (this Application) and can request that the Data Controller remove the Personal Data. Unless stated otherwise, the then-current privacy policy applies to all Personal Data the Data Controller has about Users.<br/><br/>
+
+    <b>Definitions and Legal References</b><br/><br/>
+        <b>Personal Data (or Data)</b><br/><br/>
+            Any information regarding a natural person, a legal person, an institution, or an association, which is, or can be, identified, even indirectly, by reference to any other information, including a personal identification number.<br/><br/>
+        <b>Usage Data</b><br/><br/>
+            Information collected automatically from this Service (or third-party services employed in this Service (this Application), which can include: the IP addresses or domain names of the computers utilized by the Users who use this Application, the URI addresses (Uniform Resource Identifier), the time of the request, the method utilized to submit the request to the server, the size of the file received in response, the numerical code indicating the status of the server s answer (successful outcome, error, etc.), the country of origin, the features of the browser and the operating system utilized by the User, the various time details per visit (e.g., the time spent on each page within the Application) and the details about the path followed within the Application with special reference to the sequence of pages visited, and other parameters about the device operating system and/or the User s IT environment.<br/><br/>
+        <b>User</b><br/><br/>
+            The individual using this Application, which must coincide with or be authorized by the Data Subject, to whom the Personal Data refers.<br/><br/>
+        <b>Data Subject</b><br/><br/>
+            The legal or natural person to whom the Personal Data refers.<br/><br/>
+        <b>Data Processor (or Data Supervisor)</b><br/><br/>
+            The natural person, legal person, public administration, or any other body, association, or organization authorized by the Data Controller to process the Personal Data in compliance with this privacy policy.<br/><br/>
+        <b>Data Controller (or Owner)</b><br/><br/>
+            The natural person, legal person, public administration, or any other body, association, or organization with the right, also jointly with another Data Controller, to make decisions regarding the purposes, and the methods of processing of Personal Data and the means used, including the security measures concerning the operation and use of this Service. The Data Controller, unless otherwise specified, is the Owner of this Service (this Application).<br/><br/>
+        <b>This Application</b><br/><br/>
+            The hardware or software tool by which the Personal Data of the User is collected.<br/><br/>
+        <b>This privacy policy relates solely to this Application.</b>]]>
+</string>
+
+</resources>
