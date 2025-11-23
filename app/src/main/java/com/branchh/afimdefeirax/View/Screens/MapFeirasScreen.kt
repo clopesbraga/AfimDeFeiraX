@@ -45,6 +45,7 @@ import com.branchh.afimdefeirax.R
 import com.branchh.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.branchh.afimdefeirax.Utils.Monitoring
 import com.branchh.afimdefeirax.View.Components.CitiesMenuComponent
+import com.branchh.afimdefeirax.View.Components.DaysOfWeekMenuComponent
 import com.branchh.afimdefeirax.View.Components.SearchNeighborHoodComponent
 import com.branchh.afimdefeirax.View.Components.TutorialShowCaseComponent
 import com.branchh.afimdefeirax.ViewModel.MapaFeirasViewModel
@@ -56,24 +57,35 @@ import com.google.maps.android.compose.MapsComposeExperimentalApi
 import org.koin.compose.koinInject
 
 
-@OptIn(MapsComposeExperimentalApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
+fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
+    val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
+    val viewModel: MapaFeirasViewModel = koinInject()
+
+    Content(showBottomBar,firebaseanalytics,viewModel)
+}
+
+@OptIn(ExperimentalMaterial3Api::class, MapsComposeExperimentalApi::class)
+@Composable
+fun Content(showBottomBar: (Boolean) -> Unit,
+            firebaseanalytics: FirebaseAnalyticsImpl,
+            viewModel: MapaFeirasViewModel) {
 
     var shouldShowBottomBar by remember { mutableStateOf(true) }
     SideEffect { showBottomBar(shouldShowBottomBar) }
 
-    val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
-    val viewModel: MapaFeirasViewModel = koinInject()
+
     val state by viewModel.state.collectAsState()
 
     val sheetState = rememberModalBottomSheetState()
-    val listState = rememberLazyListState()
+    val citiesListState = rememberLazyListState()
+    val daysListState = rememberLazyListState()
+
 
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
-    val activity = (LocalActivity?.current as? Activity)
+    val activity = LocalActivity.current
     val context = LocalContext.current
 
 
@@ -81,29 +93,48 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
 
 
     LaunchedEffect(Unit) {
+        viewModel.days_of_week.indexOf(state.selecteDayOfWeek)
         viewModel.onShowTutorial()
-        viewModel.onReview(activity,context)
+        viewModel.onReview(activity, context)
     }
     Scaffold(
         Modifier.fillMaxSize(),
         topBar = {
 
+            Column() {
 
-            TopAppBar(
-                title = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    )
-                    {
+                TopAppBar(
+                    title = {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
+                        )
+                        {
+                            Text(stringResource(R.string.fairs_of_City), color = Color.White)
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(Color(0xFF009688)),
+                )
 
-                        Text(stringResource(R.string.fairs_of_City), color = Color.White)
+                LazyRow(
+                    state = daysListState,
+                    modifier = Modifier
+                        .height(40.dp)
+                ) {
+                    items(viewModel.daysOfWeek.size) { index ->
+                        val isSelected = viewModel.days_of_week[index] == state.selecteDayOfWeek
+
+                        DaysOfWeekMenuComponent(
+                            viewModel.days_of_week,
+                            index,
+                            isSelected,
+                            viewModel,
+                            firebaseanalytics
+                        )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(Color(0xFF009688)),
-            )
+                }
 
-
+            }
         },
         floatingActionButton = {
 
@@ -138,7 +169,6 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             Box {
 
                 GoogleMap(
@@ -175,7 +205,7 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
                 ) {
                     Column {
                         LazyRow(
-                            state = listState,
+                            state = citiesListState,
                             modifier = Modifier
                                 .height(80.dp)
                         ) {
@@ -210,7 +240,6 @@ fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
             }
         }
     }
-
 }
 
 
