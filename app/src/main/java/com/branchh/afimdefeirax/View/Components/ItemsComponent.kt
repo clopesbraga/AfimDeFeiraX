@@ -165,7 +165,7 @@ fun getVegetablesList(): List<ItemsModel> {
         ItemsModel(
             stringResource(R.string.category_vegetables),
             stringResource(R.string.vegetables_batata),
-            R.mipmap.ic_acelga_foreground
+            R.mipmap.ic_batata
         ),
         ItemsModel(
             stringResource(R.string.category_vegetables),

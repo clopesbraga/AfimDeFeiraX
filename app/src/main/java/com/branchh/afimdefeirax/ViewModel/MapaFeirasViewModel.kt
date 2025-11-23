@@ -52,6 +52,7 @@ class MapaFeirasViewModel(
         _state.update { currentState ->
             currentState.copy(
                 selectedCity = "SAO PAULO",
+                selecteDayOfWeek ="TER",
                 cityImages = R.mipmap.ic_bandeira_saopaulo,
                 searchQuery = "",
                 showBottomSheet = false,
@@ -62,6 +63,9 @@ class MapaFeirasViewModel(
     }
 
     val cities = application.resources.getStringArray(R.array.cidades)
+    val days_of_week = application.resources.getStringArray(R.array.dias_semana)
+
+
 
     val neighborhoodsMap: Map<String, List<String>> by lazy {
         mapOf(
@@ -73,6 +77,17 @@ class MapaFeirasViewModel(
             "SANTO ANDRE" to application.resources.getStringArray(R.array.andre_bairros).toList(),
             "SAO BERNADO" to application.resources.getStringArray(R.array.bernado_bairros).toList(),
             "SAO CAETANO" to application.resources.getStringArray(R.array.caetano_bairros).toList()
+        )
+    }
+
+    val daysOfWeek: List<String> by lazy {
+        listOf(
+            "TER",
+            "QUA" ,
+            "QUI" ,
+            "SEX",
+            "SAB",
+            "DOM",
         )
     }
 
@@ -120,6 +135,27 @@ class MapaFeirasViewModel(
         }
 
     }
+
+    fun onDayOfWeekSelected(dayOf: String){
+
+        googleMap.clear()
+
+        if (this::userLocation.isInitialized) {
+            googleMap.addMarker(
+                MarkerOptions()
+                    .position(userLocation)
+                    .title(application.getString(R.string.user_point))
+            )
+
+        }
+
+        _state.update { day ->
+            day.copy(selecteDayOfWeek = dayOf)
+        }
+
+        showFeirasLocalizationIn(googleMap)
+    }
+
     fun onReview(activity: Activity?, context: Context) {
         activity?.let{
             val reviewManager = ReviewManagerFactory.create(context)
@@ -137,8 +173,7 @@ class MapaFeirasViewModel(
 
         val activityContext = when (application) {
             is Activity -> application
-            is ContextWrapper -> application.baseContext as? Activity
-            else -> null
+            else -> application.baseContext as? Activity
         }
         viewModelScope.launch {
 
@@ -187,13 +222,16 @@ class MapaFeirasViewModel(
                         localizacao.Latitude.toDouble(),
                         localizacao.Longitude.toDouble()
                     )
-                    map.addMarker(
-                        MarkerOptions()
-                            .position(latLng)
-                            .title(localizacao.Feira)
-                            .snippet("${localizacao.endereco},${localizacao.bairro}")
-                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
-                    )
+                    if(localizacao.dia ==_state.value.selecteDayOfWeek){
+
+                        map.addMarker(
+                            MarkerOptions()
+                                .position(latLng)
+                                .title(localizacao.Feira)
+                                .snippet("${localizacao.endereco},${localizacao.bairro}")
+                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
+                        )
+                    }
                 }
             }
         }
@@ -209,7 +247,7 @@ class MapaFeirasViewModel(
         viewModelScope.launch{
             try {
                 val gc = Geocoder(application.applicationContext)
-                var list: List<Address?>? = null
+                var list: List<Address?>?
                 list = gc.getFromLocationName(local, 1)
 
                 val localization = Objects.requireNonNull<List<Address>>(list as List<Address>?)[0]

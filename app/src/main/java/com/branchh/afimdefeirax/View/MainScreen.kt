@@ -124,7 +124,6 @@ class MainScreen : ComponentActivity() {
                     composable(route = "map") {
                         MapFeirasScreen(
                             showBottomBar = ({ showBottomBar.value = it }),
-                            showTutorial = showAppIntro
                         )
                     }
                     composable(route = "comp") {
