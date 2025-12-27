@@ -36,6 +36,7 @@
     <string name="list_of_products">Product List</string>
     <string name="describe_button_list">Finalize purchases</string>
     <string name="my_list_products">My Shopping List</string>
+    <string name="my_value_total">spent</string>
     <string name="confirm_item_in_list">Buy</string>
     <string name="warnning_price_message">You must enter a price to add to the list</string>
 

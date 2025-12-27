@@ -2,6 +2,9 @@ package com.branchh.afimdefeirax.ViewModel
 
 import android.app.Application
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.branchh.afimdefeirax.Model.Historico
@@ -26,6 +29,7 @@ class ProdutosViewModel(
 
     private val _state: MutableStateFlow<ProdutosUiState> = MutableStateFlow(ProdutosUiState())
     val state = _state
+    var totalSum: Int by mutableIntStateOf(0)
 
     var listprodutos = mutableListOf<Produtos>()
     var historico = mutableListOf<Historico>()
@@ -163,5 +167,8 @@ class ProdutosViewModel(
     }
 
 
+fun sumOfTotal(value: Int){
+    totalSum += value
+}
 
 }

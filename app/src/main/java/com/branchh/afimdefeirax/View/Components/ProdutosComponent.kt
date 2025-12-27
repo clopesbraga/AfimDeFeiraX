@@ -100,6 +100,10 @@ fun SeletorPesoComponent(onValueChange: (Int) -> Unit) {
 fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
     var currentValue by remember { mutableIntStateOf(PRECO_INICIAL) }
 
+    LaunchedEffect(key1 = currentValue) {
+        onValueChange(currentValue)
+    }
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
