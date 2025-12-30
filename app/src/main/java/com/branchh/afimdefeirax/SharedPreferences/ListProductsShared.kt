@@ -41,4 +41,20 @@ class ListProductsShared(context: Context):ISharedListProdutos {
         saveItems(context, items)
     }
 
+    override fun saveTotalSum(total: Int) {
+        sharedProdutosList.edit {
+            putInt("TOTAL_SUM_KEY", total)
+        }
+    }
+
+    override fun loadTotalConfirmed(): Int {
+        return sharedProdutosList.getInt("TOTAL_SUM_KEY", 0)
+    }
+
+    override fun resetTotalSum() {
+        sharedProdutosList.edit {
+            putInt("TOTAL_SUM_KEY", 0)
+        }
+    }
+
 }

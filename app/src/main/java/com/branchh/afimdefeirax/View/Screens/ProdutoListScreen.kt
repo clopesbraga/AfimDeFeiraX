@@ -31,6 +31,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
@@ -51,7 +54,7 @@ import com.branchh.afimdefeirax.View.Components.MessageNoPrice
 import com.branchh.afimdefeirax.View.Components.SeletorPrecoComponent
 import com.branchh.afimdefeirax.ViewModel.ProdutosViewModel
 import org.koin.compose.koinInject
-import kotlin.collections.forEach
+import kotlin.collections.set
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,21 +62,22 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
 
     showBottomBar(false)
     val viewModel: ProdutosViewModel = koinInject()
+    val state by viewModel.state.collectAsState()
+
     val loadedItems = viewModel.loadProducts()
-    val respostaPreco = remember { mutableStateMapOf<String, String>() }
-    val visibleStates = remember{mutableStateMapOf<Int,Boolean>()}
     var showDialog by remember { mutableStateOf(false) }
 
-    if (respostaPreco.isEmpty()) {
-        loadedItems.forEach { item ->
-            respostaPreco[item.itemName] = "0"
-            visibleStates[item.imageName] = true
+    val valorTotal by remember {
+        derivedStateOf {
+            state.totalSum + loadedItems
+                .sumOf { item -> viewModel.respostaPreco[item.itemName]?.toIntOrNull() ?: 0 }
         }
     }
 
-    val valorTotal = viewModel.totalSum + loadedItems
-        .filter { item -> visibleStates[item.imageName] == true }
-        .sumOf { item -> respostaPreco[item.itemName]?.toIntOrNull() ?: 0 }
+    LaunchedEffect(Unit) {
+        viewModel.resetTotalSum()
+    }
+
     Scaffold(
 
         topBar = {
@@ -85,13 +89,19 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center
                         ) {
-                            Text(text = stringResource(R.string.my_list_products), color = Color.White)
+                            Text(
+                                text = stringResource(R.string.my_list_products),
+                                color = Color.White
+                            )
                         }
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center
-                        ){
-                            Text(text = stringResource(R.string.my_value_total), color = Color.White)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.my_value_total),
+                                color = Color.White
+                            )
                             val totalFormatado = "%.2f".format(valorTotal / 100.0).replace('.', ',')
                             Text(text = ": R$ $totalFormatado", color = Color.White)
                         }
@@ -118,12 +128,12 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
     ) { innerpading ->
 
         LazyColumn(contentPadding = innerpading) {
-            items(loadedItems,key = {item -> item.imageName}) { item ->
+            items(loadedItems, key = { item -> item.itemName }) { item ->
 
                 var currentResposta by remember { mutableStateOf("0") }
 
                 AnimatedVisibility(
-                    visible = visibleStates[item.imageName] ?:true,
+                    visible = viewModel.visibleStates[item.itemName] ?: true,
                     exit = fadeOut(animationSpec = tween(durationMillis = 500))
                 ) {
 
@@ -157,7 +167,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                     Text(
                                         text = item.itemName,
                                         fontSize = 40.sp,
-                                        modifier =Modifier.padding(16.dp)
+                                        modifier = Modifier.padding(16.dp)
                                     )
                                     Spacer(modifier = Modifier.size(8.dp))
                                     Row(
@@ -184,7 +194,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
                                         val itemValueConfirmed = currentResposta.toIntOrNull() ?: 0
-                                        if (currentResposta=="0") {
+                                        if (currentResposta == "0") {
                                             showDialog = true
                                             return@Button
                                         }
@@ -196,8 +206,8 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                         )
 
                                         viewModel.sumOfTotal(itemValueConfirmed)
+                                        viewModel.visibleStates[item.itemName] = false
                                         viewModel.removeProduct(item)
-                                        visibleStates[item.imageName] = false
 
                                     }
                                 ) {
@@ -208,7 +218,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                 SeletorPrecoComponent(
                                     onValueChange = { novoValor ->
                                         currentResposta = novoValor.toString()
-                                        respostaPreco[item.itemName] = novoValor.toString()
+                                        viewModel.respostaPreco[item.itemName] = novoValor.toString()
                                     }
                                 )
 
@@ -221,7 +231,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
         }
 
     }
-    MessageNoPrice(showDialog){showDialog =false}
+    MessageNoPrice(showDialog) { showDialog = false }
 }
 
 

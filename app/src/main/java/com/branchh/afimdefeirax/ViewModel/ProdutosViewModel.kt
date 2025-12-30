@@ -4,6 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,6 +20,7 @@ import com.branchh.afimdefeirax.Utils.Monitoring
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.collections.set
 
 class ProdutosViewModel(
     private val application: Application,
@@ -28,8 +31,11 @@ class ProdutosViewModel(
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<ProdutosUiState> = MutableStateFlow(ProdutosUiState())
+    private var totalSum: Int by mutableIntStateOf(0)
+
     val state = _state
-    var totalSum: Int by mutableIntStateOf(0)
+    val respostaPreco =  mutableStateMapOf<String, String>()
+    val visibleStates = mutableStateMapOf<String,Boolean>()
 
     var listprodutos = mutableListOf<Produtos>()
     var historico = mutableListOf<Historico>()
@@ -38,14 +44,12 @@ class ProdutosViewModel(
         val tutorialAlreadyCompleted = tutorialPreferences.hasProducTutorialBeenCompleted()
         _state.update { currentState ->
             currentState.copy(
-                showTutorial = !tutorialAlreadyCompleted
+                showTutorial = !tutorialAlreadyCompleted,
             )
         }
     }
-
-
-    fun onShowTutorial(){
-        if(!tutorialPreferences.hasProducTutorialBeenCompleted()){
+    fun onShowTutorial() {
+        if (!tutorialPreferences.hasProducTutorialBeenCompleted()) {
             _state.update { it.copy(showTutorial = true) }
         }
     }
@@ -54,22 +58,22 @@ class ProdutosViewModel(
         _state.update { it.copy(showTutorial = false) }
         tutorialPreferences.setProductTutorialCompleted(true)
     }
-
-
     fun takeItems(productimage: Int, productname: String) {
 
-        viewModelScope.launch{
+        viewModelScope.launch {
             try {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_ITEM_SELECTED)
-                val productItem =Produtos(productimage, productname)
+                val productItem = Produtos(productimage, productname)
                 listprodutos.add(productItem)
 
-                if(listprodutos.isEmpty()) saveProducts(listprodutos) else updateItem(productimage,productname)
+                if (listprodutos.isEmpty()) saveProducts(listprodutos) else updateItem(
+                    productimage,
+                    productname
+                )
 
-
-            }catch (error: Exception){
+            } catch (error: Exception) {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR)
-                Log.e(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR,error.message.toString())
+                Log.e(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR, error.message.toString())
 
             }
         }
@@ -78,12 +82,12 @@ class ProdutosViewModel(
     private fun updateItem(productimage: Int, productname: String) {
         try {
             firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_UPDATE)
-            val productItem=(Produtos(productimage, productname))
+            val productItem = (Produtos(productimage, productname))
             produtosshared.updateItem(application.applicationContext, productItem)
-        }catch (error: Exception){
+        } catch (error: Exception) {
 
             firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_UPDATE_ERROR)
-            Log.e(Monitoring.Product.PRODUCT_REMOVE_ERROR,error.message.toString())
+            Log.e(Monitoring.Product.PRODUCT_REMOVE_ERROR, error.message.toString())
 
         }
     }
@@ -91,63 +95,65 @@ class ProdutosViewModel(
 
     fun removeItems(productimage: Int, productname: String) {
 
-        viewModelScope.launch{
+        viewModelScope.launch {
             try {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_ITEM_UNSELECTED)
-                val productItem=(Produtos(productimage, productname))
-                produtosshared.removeItem(application.applicationContext,productItem)
+                val productItem = (Produtos(productimage, productname))
+                produtosshared.removeItem(application.applicationContext, productItem)
 
 
-            }catch (error: Exception){
+            } catch (error: Exception) {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR)
-                Log.e(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR,error.message.toString())
+                Log.e(Monitoring.Product.PRODUCT_CREATE_LIST_ERROR, error.message.toString())
 
             }
         }
     }
 
     private fun saveProducts(productItem: List<Produtos>) {
-        viewModelScope.launch{
+        viewModelScope.launch {
             try {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_SAVE)
                 produtosshared.saveItems(application.applicationContext, productItem)
 
-            }catch (error: Exception){
+            } catch (error: Exception) {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_SAVE_ERROR)
-                Log.e(Monitoring.Product.PRODUCT_SAVE_ERROR,error.message.toString())
+                Log.e(Monitoring.Product.PRODUCT_SAVE_ERROR, error.message.toString())
             }
         }
     }
 
 
-     fun requestOfHistorico(nome: String, preco: String, imagem: Int) {
-         viewModelScope.launch{
+    fun requestOfHistorico(nome: String, preco: String, imagem: Int) {
+        viewModelScope.launch {
 
-             try {
-                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REQUEST)
-                 historico.add(Historico(nome,preco,imagem))
-                 historicoshared.saveItems(application.applicationContext,historico)
+            try {
+                firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REQUEST)
+                historico.add(Historico(nome, preco, imagem))
+                historicoshared.saveItems(application.applicationContext, historico)
 
-             }catch (error: Exception){
-                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REQUEST_ERROR)
-                 Log.e(Monitoring.Product.PRODUCT_REQUEST_ERROR,error.message.toString())
+            } catch (error: Exception) {
+                firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REQUEST_ERROR)
+                Log.e(Monitoring.Product.PRODUCT_REQUEST_ERROR, error.message.toString())
 
-             }
+            }
 
-         }
+        }
     }
 
     fun loadProducts(): List<Produtos> {
-        var listprodutos =listOf<Produtos>()
-        viewModelScope.launch{
-            try{
+        var listprodutos = listOf<Produtos>()
+        viewModelScope.launch {
+            try {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_LOADING_LIST)
-                listprodutos=produtosshared.loadItems(application.applicationContext)
+                listprodutos = produtosshared.loadItems(application.applicationContext)
 
-            }catch (error: Exception){
+                totalSum = produtosshared.loadTotalConfirmed()
+                _state.update { it.copy(totalSum = totalSum) }
 
+            } catch (error: Exception) {
                 firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_LOADING_LIST_ERROR)
-                Log.e(Monitoring.Product.PRODUCT_LOADING_LIST_ERROR,error.message.toString())
+                Log.e(Monitoring.Product.PRODUCT_LOADING_LIST_ERROR, error.message.toString())
 
             }
         }
@@ -158,17 +164,22 @@ class ProdutosViewModel(
         try {
             firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REMOVE)
             produtosshared.removeItem(application.applicationContext, productItem)
-        }catch (error: Exception){
+        } catch (error: Exception) {
 
             firebaseAnalytics.firebaselogEvent(Monitoring.Product.PRODUCT_REMOVE_ERROR)
-            Log.e(Monitoring.Product.PRODUCT_REMOVE_ERROR,error.message.toString())
+            Log.e(Monitoring.Product.PRODUCT_REMOVE_ERROR, error.message.toString())
 
         }
     }
 
+    fun sumOfTotal(value: Int) {
+        totalSum += value
+        _state.update { it.copy(totalSum = totalSum) }
 
-fun sumOfTotal(value: Int){
-    totalSum += value
-}
+        produtosshared.saveTotalSum(totalSum)
+    }
 
+    fun resetTotalSum(){
+        produtosshared.resetTotalSum()
+    }
 }
