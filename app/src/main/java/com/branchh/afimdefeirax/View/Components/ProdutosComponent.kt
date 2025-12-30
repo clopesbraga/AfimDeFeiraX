@@ -12,9 +12,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
@@ -39,6 +42,8 @@ import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import com.branchh.afimdefeirax.R
 import com.branchh.afimdefeirax.View.Components.preco.PRECO_INICIAL
 import com.branchh.afimdefeirax.View.Components.preco.PRECO_MAXIMO
@@ -97,40 +102,6 @@ fun SeletorPesoComponent(onValueChange: (Int) -> Unit) {
 }
 
 @Composable
-fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
-    var currentValue by remember { mutableIntStateOf(PRECO_INICIAL) }
-
-    LaunchedEffect(key1 = currentValue) {
-        onValueChange(currentValue)
-    }
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .border(2.dp, Color.Black, RoundedCornerShape(16.dp))
-            .background(Color.Transparent, RoundedCornerShape(16.dp))
-            .padding(2.dp)
-    ) {
-        IconButton(onClick = { currentValue = (currentValue - 25).coerceAtLeast(PRECO_MINIMO) }) {
-            Icon(imageVector = Icons.Filled.Remove, contentDescription = "diminui")
-        }
-
-        Text(
-            text = "R$ %.2f".format(currentValue / 100.0).replace('.', ','),
-            style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier.align(alignment = Alignment.CenterVertically)
-        )
-
-        IconButton(onClick = { currentValue = (currentValue + 25).coerceAtMost(PRECO_MAXIMO) }) {
-            Icon(imageVector = Icons.Filled.Add, contentDescription = "aumenta")
-        }
-    }
-    onValueChange(currentValue)
-}
-
-
-@Composable
 fun ButtonMeasureComponent(
     unidade: String,
     selectedMeasure: String,
@@ -151,8 +122,71 @@ fun ButtonMeasureComponent(
         Text(unidade, color = Color.Black)
     }
 }
+@Composable
+fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
 
+    var currentValue by remember { mutableIntStateOf(PRECO_INICIAL) }
 
+    fun formatPrice(value: Int): String {
+        return "%.2f".format(value / 100.0).replace('.', ',')
+    }
+
+    var textFieldValue by remember(currentValue) {
+        mutableStateOf(formatPrice(currentValue))
+    }
+
+    LaunchedEffect(currentValue) {
+        onValueChange(currentValue)
+    }
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .border(2.dp, Color.Black, RoundedCornerShape(16.dp))
+            .background(Color.Transparent, RoundedCornerShape(16.dp))
+            .padding(horizontal = 8.dp, vertical = 2.dp)
+    ) {
+        IconButton(onClick = {
+            currentValue = (currentValue - 25).coerceAtLeast(PRECO_MINIMO)
+        }) {
+            Icon(imageVector = Icons.Filled.Remove, contentDescription = "diminui")
+        }
+
+        Text(text = "R$ ", style = MaterialTheme.typography.bodyLarge)
+
+        BasicTextField(
+            value = textFieldValue,
+            onValueChange = { newValue ->
+                val cleanString = newValue.replace(Regex("[^\\d]"), "")
+                if (cleanString.isEmpty()) {
+                    textFieldValue = "0,00"
+                    currentValue = 0
+                } else {
+                    val totalCents = cleanString.toIntOrNull() ?: 0
+                    if (totalCents <= PRECO_MAXIMO) {
+                        currentValue = totalCents
+                        textFieldValue = formatPrice(totalCents)
+                    }
+                }
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            textStyle = MaterialTheme.typography.displaySmall.copy(
+                textAlign = TextAlign.Center,
+                color = Color.Black
+            ),
+            modifier = Modifier
+                .width(120.dp)
+                .padding(vertical = 8.dp),
+            singleLine = true
+        )
+        IconButton(onClick = {
+            currentValue = (currentValue + 25).coerceAtMost(PRECO_MAXIMO)
+        }) {
+            Icon(imageVector = Icons.Filled.Add, contentDescription = "aumenta")
+        }
+    }
+}
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MessageNoPrice(showDialog: Boolean,onDismiss:() ->Unit) {
