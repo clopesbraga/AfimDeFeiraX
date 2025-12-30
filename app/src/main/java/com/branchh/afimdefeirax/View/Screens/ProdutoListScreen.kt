@@ -35,7 +35,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -70,6 +69,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
     val valorTotal by remember {
         derivedStateOf {
             state.totalSum + loadedItems
+                .filter { item -> viewModel.visibleStates[item.itemName] == true }
                 .sumOf { item -> viewModel.respostaPreco[item.itemName]?.toIntOrNull() ?: 0 }
         }
     }
@@ -122,7 +122,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                     containerColor = Color(0xFF009688)
                 ),
 
-                )
+            )
         }
 
     ) { innerpading ->

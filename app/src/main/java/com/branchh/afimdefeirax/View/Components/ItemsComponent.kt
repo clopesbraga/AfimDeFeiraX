@@ -37,7 +37,7 @@ fun getFruitsList(): List<ItemsModel> {
         ItemsModel(
             stringResource(R.string.category_fruits),
             stringResource(R.string.fruit_caju),
-            R.mipmap.ic_fruta_caqui_foreground
+            R.mipmap.ic_caju
         ),
         ItemsModel(
             stringResource(R.string.category_fruits),
