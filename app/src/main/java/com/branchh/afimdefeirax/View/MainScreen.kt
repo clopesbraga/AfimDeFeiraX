@@ -63,6 +63,7 @@ fun RequestLocationPermission() {
         if (!locationPermissionState.equals(true)) {
             locationPermissionState.launchPermissionRequest()
         }
+
     }
 }
 

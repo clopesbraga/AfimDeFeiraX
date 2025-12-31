@@ -36,6 +36,7 @@
     <string name="list_of_products">Lista de Productos</string>
     <string name="describe_button_list">realizar las compras</string>
     <string name="my_list_products">Mi Lista de Compras</string>
+    <string name="my_value_total">gastado</string>
     <string name="confirm_item_in_list">Comprar</string>
     <string name="warnning_price_message">Debe ingresar el valor para incluir en la lista</string>
 

@@ -5,6 +5,7 @@ data class ProdutosUiState(
     val isSuccess: Boolean = false,
     val error: String? = null,
     val showTutorial: Boolean = true,
+    val totalSum: Int = 0
 )
 
 
