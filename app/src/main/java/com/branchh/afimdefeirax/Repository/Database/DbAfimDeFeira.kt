@@ -15,7 +15,14 @@ import com.branchh.afimdefeirax.Model.HistoricoModel
 import com.branchh.afimdefeirax.Model.ListaModel
 import com.branchh.afimdefeirax.Model.LoginModel
 
-@Database(entities = arrayOf((LoginModel::class),(ComprasModel::class),(ListaModel::class),(HistoricoModel::class)), version = 8)
+@Database(
+    entities = arrayOf(
+        (LoginModel::class),
+        (ComprasModel::class),
+        (ListaModel::class),
+        (HistoricoModel::class)
+    ), version = 8
+)
 
 abstract class DbAfimDeFeira : RoomDatabase() {
 
@@ -51,7 +58,5 @@ abstract class DbAfimDeFeira : RoomDatabase() {
 
             }
         }
-
     }
-
 }
