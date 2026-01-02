@@ -208,25 +208,12 @@
     <string name="info_politicas">Privacy Policies</string>
 
     // TUTORIAL SHOW CASE
-    <string name="tutorial_descritpiton_product_list">
-        After selecting the items, click this button to access your shopping list
-    </string>
-
-    <string name="tutorial_description_button_product_list">
-        Button to finalize purchases
-    </string>
-
-    <string name="tutorial_title_button_search_neigboor">
-        City Fair Locations
-    </string>
-
-    <string name="tutorial_description_button_search_neigboor">
-        Besides seeing nearby fairs directly on the map, you can search city neighborhoods by clicking this button.
-    </string>
-
-    <string name="tutorial_title_item_historic">
-        Purchase History
-    </string>
+    <string name="tutorial_title_button_my_list">Create your shopping list.</string>
+    <string name="tutorial_descritpiton_my_list">After selecting the items, click this button to access your shopping list</string>
+    <string name="tutorial_description_button_product_list">Button to finalize purchases</string>
+    <string name="tutorial_title_button_search_neigboor">City Fair Locations</string>
+    <string name="tutorial_description_button_search_neigboor">Besides seeing nearby fairs directly on the map, you can search city neighborhoods by clicking this button.</string>
+    <string name="tutorial_title_item_historic">Purchase History</string>
 
     <string name="tutorial_description_item_historic">
         Here you can see your last three purchases for comparison.

@@ -208,7 +208,8 @@
     <string name="info_politicas">Politicas de privacidade </string>
 
     // TUTORIAL SHOW CASE
-    <string name="tutorial_descritpiton_product_list">Após selecionar os items clique neste botão para acessar lista de compras</string>
+    <string name="tutorial_title_button_my_list">Crie sua lista de compras</string>
+    <string name="tutorial_descritpiton_my_list">Após selecionar os items clique neste botão para acessar lista de compras</string>
     <string name="tutorial_description_button_product_list">Botao para efetivar compras</string>
     <string name="tutorial_title_button_search_neigboor">Localizacao Feiras da Cidade</string>
     <string name="tutorial_description_button_search_neigboor">Além de ver as feiras próximas  diretamente no mapa você pode pesquisar os bairros das cidades clicando neste botão.</string>
