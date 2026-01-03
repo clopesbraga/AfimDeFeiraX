@@ -4,10 +4,13 @@ package com.branchh.afimdefeirax.View.Screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.branchh.afimdefeirax.R
@@ -39,6 +43,9 @@ import com.branchh.afimdefeirax.Utils.Monitoring
 import com.branchh.afimdefeirax.View.Components.ColunaDinamica
 import com.branchh.afimdefeirax.View.Components.TutorialShowCaseComponent
 import com.branchh.afimdefeirax.ViewModel.HistoricoViewModel
+import com.canopas.lib.showcase.IntroShowcase
+import com.canopas.lib.showcase.component.ShowcaseStyle
+import com.canopas.lib.showcase.component.rememberIntroShowcaseState
 import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,82 +58,117 @@ fun HistoricoScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
     val viewModel: HistoricoViewModel = koinInject()
     val loadedhistorico = viewModel.loadHistorico()
     val state by viewModel.state.collectAsState()
+    val introShowcaseState = rememberIntroShowcaseState()
+
 
     firebaseanalytics.firebaselogEvent(Monitoring.Historic.HISTORIC_SCREEN_START)
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                colors = topAppBarColors(
-                    containerColor = Color(0xFF009688)
-                ),
-                title = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Text(text = stringResource(R.string.title_historic), color = Color.White)
-                    }
-                },
-            )
-        }
-    ) { innerpading ->
+    IntroShowcase(
+        showIntroShowCase = state.showTutorial,
+        state = introShowcaseState,
+        onShowCaseCompleted = { viewModel.onTutorialCompleted() }
 
-        LazyColumn(
-            modifier = Modifier
-                .background(Color(0xFF009688))
-                .padding(innerpading)
-                .fillMaxSize()
-        ) {
+    ) {
 
-            itemsIndexed(loadedhistorico) { index, item ->
-
-
-                LaunchedEffect(Unit) {
-                    viewModel.onShowTutorial()
-                }
-
-                val isFirstItemAndTutorialActive = let {
-                    if (index == 0 && state.showTutorial) true else false
-                }
-
-                Card(modifier = Modifier.padding(8.dp)) {
-                    Row(
-                        modifier = Modifier
-                            .padding(2.dp)
-                    )
-                    {
-                        Image(
-                            painter = painterResource(id = item.imagem),
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .padding(2.dp)
-                                .size(80.dp)
-                                .clip(CircleShape)
-                        )
-                        Column(
-                            horizontalAlignment = Alignment.Start,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(2.dp)
-                                .fillMaxWidth()
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    colors = topAppBarColors(
+                        containerColor = Color(0xFF009688)
+                    ),
+                    title = {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
                         ) {
-
                             Text(
-                                text = item.nome,
-                                color = Color.Black,
-                                fontStyle = FontStyle.Italic,
-                                fontSize = 25.sp
+                                text = stringResource(R.string.title_historic),
+                                color = Color.White
                             )
-                            TutorialShowCaseComponent(
-                                targetIndex = 0,
-                                showintro = isFirstItemAndTutorialActive,
-                                title = stringResource(R.string.tutorial_title_item_historic),
-                                description = stringResource(R.string.tutorial_description_item_historic),
-                                onTutorialCompleted = { viewModel.onTutorialCompleted() }
+                        }
+                    },
+                )
+            }
+        ) { innerpading ->
 
+            LazyColumn(
+                modifier = Modifier
+                    .background(Color(0xFF009688))
+                    .padding(innerpading)
+                    .fillMaxSize()
+            ) {
+
+                itemsIndexed(loadedhistorico) { index, item ->
+
+                    LaunchedEffect(Unit) {
+                        viewModel.onShowTutorial()
+                    }
+
+                    val isFirstItemAndTutorialActive = index == 0 && state.showTutorial
+
+                    Card(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .then(
+                                if (isFirstItemAndTutorialActive) {
+                                    Modifier.introShowCaseTarget(
+                                        index = 0,
+                                        style = ShowcaseStyle.Default.copy(
+                                            backgroundColor = Color(0xFF009688),
+                                            backgroundAlpha = 0.98f,
+                                            targetCircleColor = Color.White
+                                        ),
+                                        content = {
+                                            Column {
+                                                Text(
+                                                    text = stringResource(R.string.tutorial_title_item_historic),
+                                                    color = Color.White,
+                                                    fontSize = 24.sp,
+                                                    fontWeight = FontWeight.Bold
+                                                )
+                                                Spacer(modifier = Modifier.height(4.dp))
+                                                Text(
+                                                    text = stringResource(R.string.tutorial_description_item_historic),
+                                                    color = Color.White,
+                                                    fontSize = 16.sp
+                                                )
+                                                Spacer(modifier = Modifier.height(10.dp))
+                                            }
+                                        }
+                                    )
+                                } else Modifier
+                            )
+
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .padding(2.dp)
+                        )
+                        {
+                            Image(
+                                painter = painterResource(id = item.imagem),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .padding(2.dp)
+                                    .size(80.dp)
+                                    .clip(CircleShape)
+                            )
+                            Column(
+                                horizontalAlignment = Alignment.Start,
+                                verticalArrangement = Arrangement.Center,
+                                modifier = Modifier
+                                    .padding(2.dp)
+                                    .fillMaxWidth()
                             ) {
+
+                                Text(
+                                    text = item.nome,
+                                    color = Color.Black,
+                                    fontStyle = FontStyle.Italic,
+                                    fontSize = 25.sp
+                                )
+
                                 Row {
                                     if (item.preco2 != null && item.preco3 != null) {
                                         ColunaDinamica(
@@ -141,11 +183,12 @@ fun HistoricoScreen(showBottomBar: (Boolean) -> Unit, showTutorial: Boolean) {
                         }
 
                     }
+
                 }
 
             }
-        }
 
+        }
     }
 
 }
