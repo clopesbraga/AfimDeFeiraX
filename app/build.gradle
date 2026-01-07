@@ -176,6 +176,10 @@ dependencies {
     implementation(libs.google.firebase.auth.ktx)
     implementation(libs.firebase.crashlytics.ndk)
 
+    //GERENCIADOR DE ATUALIZACOES
+    implementation(libs.app.update)
+    implementation(libs.app.update.ktx)
+
     //ADS
     implementation(libs.play.services.ads)
 

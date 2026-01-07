@@ -3,6 +3,7 @@ activityComposeVersion = "1.10.1"
 activityKtx = "1.10.1"
 agp = "8.12.0"
 androidxCoreKtx = "1.16.0"
+appUpdateKtx = "2.1.0"
 composeBomVersion = "2025.04.01"
 constraintlayout = "2.2.1"
 firebaseBomVersion = "33.13.0"
@@ -80,6 +81,8 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomComp
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomCompiler" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdateKtx" }
+app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdateKtx" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertjCore" }
 compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "composeCharts" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }

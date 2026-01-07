@@ -43,6 +43,10 @@ import com.branchh.afimdefeirax.View.Screens.ProdutosScreen
 import com.branchh.afimdefeirax.ViewModel.MainViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
@@ -52,6 +56,9 @@ import org.koin.compose.koinInject
 private var startScreen: String = ""
 private lateinit var mSharedLogin: LoginSharedImpl
 private const val ID = "id"
+
+private lateinit var appUpdateManager : AppUpdateManager
+private val MY_REQUEST_CODE = 100
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -74,6 +81,9 @@ class MainScreen : ComponentActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
+
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+        checkForUpdate()
 
         setContent {
 
@@ -160,7 +170,22 @@ class MainScreen : ComponentActivity() {
         }
     }
 
-    @Composable
+    override fun onResume() {
+        super.onResume()
+        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    MY_REQUEST_CODE
+                )
+            }
+        }
+    }
+
+
+        @Composable
     fun MenuBottomBar(
         navController: NavHostController,
         state: MainUIState,
@@ -243,6 +268,24 @@ class MainScreen : ComponentActivity() {
 
     private fun verifyAcess(mSharedLogin: LoginSharedImpl): Boolean {
         return mSharedLogin.getString(ID).isNotEmpty()
+    }
+
+    private fun checkForUpdate() {
+        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
+                // Inicia o fluxo de atualização
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    MY_REQUEST_CODE
+                )
+            }
+        }
     }
 
 }
