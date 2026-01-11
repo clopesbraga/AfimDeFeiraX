@@ -32,7 +32,7 @@ android {
         applicationId "com.branchh.afimdefeirax"
         minSdk 24
         targetSdk 35
-        versionCode 17
+        versionCode 21
         versionName "3.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,7 +57,7 @@ flavorDimensions "default"
     productFlavors{
         create("dev"){
             dimension = "default"
-            versionName "1.5.0"
+            versionName "1.5.1"
 
         }
         create("prod"){
@@ -175,6 +175,10 @@ dependencies {
     implementation(libs.google.firebase.analytics.ktx)
     implementation(libs.google.firebase.auth.ktx)
     implementation(libs.firebase.crashlytics.ndk)
+
+    //GERENCIADOR DE ATUALIZACOES
+    implementation(libs.app.update)
+    implementation(libs.app.update.ktx)
 
     //ADS
     implementation(libs.play.services.ads)
