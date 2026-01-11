@@ -1,7 +1,6 @@
 package com.branchh.afimdefeirax.View.Screens
 
 
-import android.R.attr.onClick
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
@@ -32,9 +31,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -53,6 +53,7 @@ import com.branchh.afimdefeirax.View.Components.MessageNoPrice
 import com.branchh.afimdefeirax.View.Components.SeletorPrecoComponent
 import com.branchh.afimdefeirax.ViewModel.ProdutosViewModel
 import org.koin.compose.koinInject
+import kotlin.collections.set
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,32 +61,52 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
 
     showBottomBar(false)
     val viewModel: ProdutosViewModel = koinInject()
-    var selectedNumber by remember { mutableIntStateOf(1) }
-
-    var respostaPreco = remember {
-        mutableStateListOf(*List(viewModel.loadProducts().size) { "" }.toTypedArray())
-    }
-
-    var respostaPeso by remember { mutableStateOf("") }
-    val visibleStates = remember {
-        mutableStateListOf(
-            *List(viewModel.loadProducts().size) { true }.toTypedArray()
-        )
-    }
-    var showDialog by remember { mutableStateOf(false) }
+    val state by viewModel.state.collectAsState()
 
     val loadedItems = viewModel.loadProducts()
+    var showDialog by remember { mutableStateOf(false) }
+
+    val valorTotal by remember {
+        derivedStateOf {
+            state.totalSum + loadedItems
+                .filter { item -> viewModel.visibleStates[item.itemName] == true }
+                .sumOf { item -> viewModel.respostaPreco[item.itemName]?.toIntOrNull() ?: 0 }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.resetTotalSum()
+    }
+
     Scaffold(
 
         topBar = {
             TopAppBar(
                 title = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Text(text = stringResource(R.string.my_list_products), color = Color.White)
+                    Column {
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = stringResource(R.string.my_list_products),
+                                color = Color.White
+                            )
+                        }
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = stringResource(R.string.my_value_total),
+                                color = Color.White
+                            )
+                            val totalFormatado = "%.2f".format(valorTotal / 100.0).replace('.', ',')
+                            Text(text = ": R$ $totalFormatado", color = Color.White)
+                        }
                     }
+
                 },
                 navigationIcon = {
                     IconButton(
@@ -101,19 +122,18 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                     containerColor = Color(0xFF009688)
                 ),
 
-                )
+            )
         }
 
     ) { innerpading ->
 
         LazyColumn(contentPadding = innerpading) {
-            items(loadedItems) { item ->
+            items(loadedItems, key = { item -> item.itemName }) { item ->
 
-                var currentResposta by remember { mutableStateOf("") }
-                var selectedButton by remember { mutableStateOf("") }
+                var currentResposta by remember { mutableStateOf("0") }
 
                 AnimatedVisibility(
-                    visible = visibleStates[loadedItems.indexOf(item)],
+                    visible = viewModel.visibleStates[item.itemName] ?: true,
                     exit = fadeOut(animationSpec = tween(durationMillis = 500))
                 ) {
 
@@ -140,7 +160,6 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                 horizontalAlignment = Alignment.Start,
                                 verticalArrangement = Arrangement.Center
                             ) {
-//                                Text(text = item.itemName)
                                 Row(
                                     horizontalArrangement = Arrangement.Center,
                                     verticalAlignment = Alignment.CenterVertically
@@ -148,30 +167,13 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                     Text(
                                         text = item.itemName,
                                         fontSize = 40.sp,
-                                        modifier =Modifier.padding(16.dp)
+                                        modifier = Modifier.padding(16.dp)
                                     )
-//                                    SeletorPesoComponent(
-//                                        onValueChange = { novoValor ->
-//                                            selectedNumber = novoValor
-//                                            respostaPeso = novoValor.toString()
-//                                        }
-//                                    )
                                     Spacer(modifier = Modifier.size(8.dp))
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceEvenly
                                     ) {
-//                                        Column {
-//                                            listOf("KG", "LT", "PC", "UN").forEach { unity ->
-//                                                ButtonMeasureComponent(
-//                                                    unidade = unity,
-//                                                    selectedMeasure = selectedButton,
-//                                                    onSelected = { selectedButton = it },
-//                                                    modifier = Modifier.fillMaxWidth()
-//                                                )
-//
-//                                            }
-//                                        }
                                     }
                                 }
                             }
@@ -191,18 +193,21 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                     ),
                                     shape = RoundedCornerShape(8.dp),
                                     onClick = {
-                                        if (currentResposta.equals("0")) {
+                                        val itemValueConfirmed = currentResposta.toIntOrNull() ?: 0
+                                        if (currentResposta == "0") {
                                             showDialog = true
                                             return@Button
                                         }
-                                        respostaPreco[loadedItems.indexOf(item)] = currentResposta
+
                                         viewModel.requestOfHistorico(
                                             item.itemName,
                                             currentResposta,
                                             item.imageName
                                         )
-                                        viewModel.removeProduct(loadedItems[loadedItems.indexOf(item)])
-                                        visibleStates[loadedItems.indexOf(item)] = false
+
+                                        viewModel.sumOfTotal(itemValueConfirmed)
+                                        viewModel.visibleStates[item.itemName] = false
+                                        viewModel.removeProduct(item)
 
                                     }
                                 ) {
@@ -212,9 +217,8 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
                                 Spacer(modifier = Modifier.size(32.dp))
                                 SeletorPrecoComponent(
                                     onValueChange = { novoValor ->
-                                        selectedNumber = novoValor
                                         currentResposta = novoValor.toString()
-                                        respostaPreco[loadedItems.indexOf(item)] = novoValor.toString()
+                                        viewModel.respostaPreco[item.itemName] = novoValor.toString()
                                     }
                                 )
 
@@ -227,7 +231,7 @@ fun ProdutosListScreen(navController: NavHostController, showBottomBar: (Boolean
         }
 
     }
-    MessageNoPrice(showDialog){showDialog =false}
+    MessageNoPrice(showDialog) { showDialog = false }
 }
 
 
