@@ -209,6 +209,11 @@ fun getVegetablesList(): List<ItemsModel> {
         ),
         ItemsModel(
             stringResource(R.string.category_vegetables),
+            stringResource(R.string.vegetables_milho),
+            R.mipmap.ic_milho
+        ),
+        ItemsModel(
+            stringResource(R.string.category_vegetables),
             stringResource(R.string.vegetables_pimentao),
             R.mipmap.ic_pimentao
         ),
