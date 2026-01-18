@@ -1,5 +1,6 @@
 package com.branchh.afimdefeirax.View.Screens
 
+import LinkText
 import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
@@ -38,6 +39,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -48,11 +50,28 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->Unit) {
+fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean) -> Unit) {
 
     val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
+    Content(
+        navController,
+        showBottomBar,
+        firebaseanalytics,
+    )
 
-    firebaseanalytics.firebaselogEvent(Monitoring.AboutApp.ABOUTAPP_START)
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun Content(
+    navController: NavHostController,
+    showBottomBar: (Boolean) -> Unit,
+    firebaseanalytics: FirebaseAnalyticsImpl?
+
+) {
+
+
+    firebaseanalytics?.firebaselogEvent(Monitoring.AboutApp.ABOUTAPP_START)
     Scaffold(
 
         topBar = {
@@ -89,9 +108,11 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
 
     ) { innerpading ->
 
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(innerpading)) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerpading)
+        ) {
 
             BoxWithConstraints(
                 modifier = Modifier
@@ -137,7 +158,7 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     )
-                    firebaseanalytics.firebaselogEvent(Monitoring.AboutApp.SHOW_APP_VERSION)
+                    firebaseanalytics?.firebaselogEvent(Monitoring.AboutApp.SHOW_APP_VERSION)
                     AppDescription()
 
                     Spacer(modifier = Modifier.height(40.dp))
@@ -155,7 +176,6 @@ fun AboutAppScreen(navController: NavHostController, showBottomBar: (Boolean)->U
 
 
     }
-
 }
 
 @Composable
@@ -169,9 +189,24 @@ fun AppDescription() {
 
         Row { FormatTitle(R.string.text_2_title) }
         Row { FormatDescription(R.string.text_2) }
-
+        Row {
+            LinkText(
+                stringResource(R.string.url_name),
+                stringResource(R.string.url)
+            )
+        }
         Row { FormatTitle(R.string.text_3_title) }
-        Row { Text(text=getAppVersion(LocalContext.current)) }
+        Row {
+            Text(
+                text = getAppVersion(LocalContext.current),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                textAlign = TextAlign.Justify,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Light
+            )
+        }
 
     }
 
@@ -214,8 +249,22 @@ fun getAppVersion(context: Context): String {
     return try {
         val packageManager = context.packageManager
         val packageInfo = packageManager.getPackageInfo(context.packageName, 0)
-        packageInfo.versionName
+        packageInfo.versionName ?: 0
     } catch (error: PackageManager.NameNotFoundException) {
         Log.e(Monitoring.AboutApp.ABOUTAPP_VERSION_ERROR, error.message.toString())
     }.toString()
+
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun AboutAppPreview() {
+
+    Content(
+        navController = NavHostController(LocalContext.current),
+        showBottomBar = {},
+        firebaseanalytics = null
+    )
+
 }
