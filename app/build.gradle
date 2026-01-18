@@ -26,13 +26,13 @@ plugins {
 
 android {
 
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.branchh.afimdefeirax"
         minSdk 24
         targetSdk 35
-        versionCode 21
+        versionCode 22
         versionName "3.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,7 +57,7 @@ flavorDimensions "default"
     productFlavors{
         create("dev"){
             dimension = "default"
-            versionName "1.5.1"
+            versionName "1.5.2"
 
         }
         create("prod"){

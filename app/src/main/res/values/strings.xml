@@ -205,6 +205,8 @@
     <string name="text_3_title">Versão</string>
     <string name="text_1">App Afim de Feira criado em 2025 por Branchh Softwares.</string>
     <string name="text_2">Branchh Softwares</string>
+    <string name= "url">https://branchhsoftwares.com</string>
+    <string name= "url_name">branchhsoftwares.com</string>
     <string name="back">"Voltar "</string>
     <string name="info_politicas">Politicas de privacidade </string>
 
