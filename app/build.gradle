@@ -57,12 +57,12 @@ flavorDimensions "default"
     productFlavors{
         create("dev"){
             dimension = "default"
-            versionName "1.5.2"
+            versionName "1.5.3"
 
         }
         create("prod"){
             dimension = "default"
-            versionName "3.1.2"
+            versionName "3.1.3"
         }
     }
 
