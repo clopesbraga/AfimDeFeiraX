@@ -131,7 +131,7 @@ private fun Content(
                 this
 
                 Image(
-                    painter = painterResource(id = R.mipmap.ic_app_logo_foreground),
+                    painter = painterResource(id = R.mipmap.ic_new_logo_foreground),
                     contentDescription = stringResource(id = R.string.app_name),
                     modifier = Modifier
                         .size(750.dp)
