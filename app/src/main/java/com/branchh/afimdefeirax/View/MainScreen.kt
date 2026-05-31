@@ -2,10 +2,13 @@ package com.branchh.afimdefeirax.View
 
 import android.Manifest
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
+import androidx.cardview.R
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
@@ -30,11 +33,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.airbnb.lottie.LottieComposition
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.branchh.afimdefeirax.SharedPreferences.LoginSharedImpl
 import com.branchh.afimdefeirax.State.MainUIState
 import com.branchh.afimdefeirax.Utils.Monitoring
 import com.branchh.afimdefeirax.View.Components.MoreOptionsMenu
 import com.branchh.afimdefeirax.View.Components.MainMenuBar
+import com.branchh.afimdefeirax.View.Components.SplashSCreenComponet
 import com.branchh.afimdefeirax.View.Screens.HistoricoScreen
 import com.branchh.afimdefeirax.View.Screens.LoginScreen
 import com.branchh.afimdefeirax.View.Screens.MapFeirasScreen
@@ -109,23 +116,31 @@ class MainScreen : ComponentActivity() {
                     }
                 }
             ) { innerpading ->
-
-                when (verifyAcess(mSharedLogin)){
-                    true ->{ startScreen = "map" }
-                    false -> {
-                        startScreen = "login"
-                        LaunchedEffect(Unit) {showAppIntro = true}
-                    }
-                }
-
                 NavHost(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(innerpading),
                     navController = navController,
-                    startDestination = startScreen
+                    startDestination = "splash"
                 )
                 {
+                    composable(route = "splash") {
+                        SplashSCreenComponet(onAnimationFinished = {
+                            // 3. Quando a animação acaba, verificamos o acesso
+                            val isLogged = verifyAcess(mSharedLogin)
+
+                            if (isLogged) {
+                                navController.navigate("map") {
+                                    popUpTo("splash") { inclusive = true }
+                                }
+                            } else {
+                                showAppIntro = true
+                                navController.navigate("login") {
+                                    popUpTo("splash") { inclusive = true }
+                                }
+                            }
+                        },showBottomBar=({ showBottomBar.value = it }))
+                    }
                     composable(route = "login") {
                         LoginScreen(
                             navController,
