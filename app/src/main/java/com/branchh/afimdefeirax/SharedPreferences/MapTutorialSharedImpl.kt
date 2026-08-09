@@ -10,6 +10,7 @@ class MapTutorialSharedImpl (context: Context):IMapTutorialShared{
 
     companion object {
         const val KEY_MAP_TUTORIAL_COMPLETED = "map_tutorial_completed"
+        const val KEY_APP_USAGE_COUNT = "app_usage_count"
     }
 
 
@@ -20,6 +21,15 @@ class MapTutorialSharedImpl (context: Context):IMapTutorialShared{
 
     override fun setMapTutorialCompleted(completed: Boolean){
         sharedTutorial.edit().putBoolean(KEY_MAP_TUTORIAL_COMPLETED, completed).apply()
+    }
+
+    override fun getAppUsageCount(): Int {
+        return sharedTutorial.getInt(KEY_APP_USAGE_COUNT, 0)
+    }
+
+    override fun incrementAppUsageCount() {
+        val currentCount = getAppUsageCount()
+        sharedTutorial.edit().putInt(KEY_APP_USAGE_COUNT, currentCount + 1).apply()
     }
 
 }

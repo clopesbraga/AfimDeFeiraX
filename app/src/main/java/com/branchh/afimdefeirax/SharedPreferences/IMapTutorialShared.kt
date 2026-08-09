@@ -6,4 +6,8 @@ interface IMapTutorialShared {
 
     fun setMapTutorialCompleted(completed: Boolean)
 
+    fun getAppUsageCount(): Int
+
+    fun incrementAppUsageCount()
+
 }

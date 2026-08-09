@@ -49,6 +49,7 @@ class MapaFeirasViewModel(
     private lateinit var userLocation: LatLng
 
     init {
+        tutorialPreferences.incrementAppUsageCount()
         val tutorialAlreadyCompleted = tutorialPreferences.hasMapTutorialBeenCompleted()
         _state.update { currentState ->
             currentState.copy(
@@ -173,6 +174,8 @@ class MapaFeirasViewModel(
     }
 
     fun onReview(activity: Activity?, context: Context) {
+        if (tutorialPreferences.getAppUsageCount() < 3) return
+
         activity?.let{
             val reviewManager = ReviewManagerFactory.create(context)
             val request = reviewManager.requestReviewFlow()
