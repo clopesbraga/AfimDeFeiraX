@@ -29,6 +29,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.util.Calendar
 import java.util.Objects
 
 
@@ -52,7 +53,7 @@ class MapaFeirasViewModel(
         _state.update { currentState ->
             currentState.copy(
                 selectedCity = "SAO PAULO",
-                selecteDayOfWeek ="TER",
+                selecteDayOfWeek = getCurrentDayOfWeek(),
                 cityImages = R.mipmap.ic_bandeira_saopaulo,
                 searchQuery = "",
                 showBottomSheet = false,
@@ -60,6 +61,21 @@ class MapaFeirasViewModel(
                 showTutorial = !tutorialAlreadyCompleted
             )
         }
+    }
+
+    private fun getCurrentDayOfWeek(): String {
+        val days = application.resources.getStringArray(R.array.dias_semana)
+        val calendar = Calendar.getInstance()
+        val index = when (calendar.get(Calendar.DAY_OF_WEEK)) {
+            Calendar.TUESDAY -> 0
+            Calendar.WEDNESDAY -> 1
+            Calendar.THURSDAY -> 2
+            Calendar.FRIDAY -> 3
+            Calendar.SATURDAY -> 4
+            Calendar.SUNDAY -> 5
+            else -> 0 // Default for Monday
+        }
+        return days[index]
     }
 
     val cities = application.resources.getStringArray(R.array.cidades)
