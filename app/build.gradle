@@ -57,7 +57,7 @@ flavorDimensions "default"
     productFlavors{
         create("dev"){
             dimension = "default"
-            versionName "1.5.3"
+            versionName "1.5.4"
 
         }
         create("prod"){
@@ -76,6 +76,7 @@ flavorDimensions "default"
             resValue "string","interstitial_ad_unit_id", interactAdKeyRelease
         }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
