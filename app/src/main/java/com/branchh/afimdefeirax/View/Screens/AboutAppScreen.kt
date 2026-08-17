@@ -189,7 +189,7 @@ fun AppDescription() {
         Row { FormatDescription(R.string.text_2) }
         Row {
             LinkText(
-                stringResource(R.string.url_name),
+                stringResource(R.string.url),
                 stringResource(R.string.url)
             )
         }

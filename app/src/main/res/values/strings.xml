@@ -198,44 +198,43 @@
     <string name="feira_not_found">Não encontrada feiras abertas hoje</string>
 
 
-    //TELA SOBRE O APP
-    <string name="sobre_o_app">Sobre o aplicativo</string>
-    <string name="text_1_title">Aplicativo</string>
-    <string name="text_2_title">Empresa</string>
-    <string name="text_3_title">Versão</string>
-    <string name="text_1">App Afim de Feira criado em 2025 por Branchh Softwares.</string>
-    <string name="text_2">Branchh Softwares</string>
-    <string name= "url">https://branchhsoftwares.com</string>
-    <string name= "url_name">branchhsoftwares.com</string>
-    <string name="back">"Voltar "</string>
-    <string name="info_politicas">Politicas de privacidade </string>
+    <!--  TELA SOBRE O APP-->
+ <string name="sobre_o_app">Sobre o aplicativo</string>
+ <string name="text_1_title">Aplicativo</string>
+ <string name="text_2_title">Empresa</string>
+ <string name="text_3_title">Versão</string>
+ <string name="text_1">App Afim de Feira criado em 2025 por Branchh Softwares.</string>
+ <string name="text_2">Branchh Softwares</string>
+ <string name= "url">https://branchhsoftwares.com</string>
+ <string name="back">"Voltar "</string>
+ <string name="info_politicas">Politicas de privacidade </string>
 
-    // TUTORIAL SHOW CASE
-    <string name="tutorial_title_button_my_list">Crie sua lista de compras</string>
-    <string name="tutorial_descritpiton_my_list">Após selecionar os items clique neste botão para acessar lista de compras</string>
-    <string name="tutorial_description_button_product_list">Botao para efetivar compras</string>
-    <string name="tutorial_title_button_search_neigboor">Localizacao Feiras da Cidade</string>
-    <string name="tutorial_description_button_search_neigboor">Além de ver as feiras próximas  diretamente no mapa você pode pesquisar os bairros das cidades clicando neste botão.</string>
-    <string name="tutorial_title_item_historic">Historico de Compras</string>
-    <string name="tutorial_description_item_historic">Aqui mostra as suas três ultimas compras feitas para comparação</string>
-    <string name="tutorial_title_days_of_week">Semana das feiras</string>
-    <string name="tutorial_description_days_of_week">Aqui você pode ver os dias da semana em que tem feiras nas cidades</string>
-
+    <!--   TUTORIAL SHOW CASE-->
+ <string name="tutorial_title_button_my_list">Crie sua lista de compras</string>
+ <string name="tutorial_descritpiton_my_list">Após selecionar os items clique neste botão para acessar lista de compras</string>
+ <string name="tutorial_description_button_product_list">Botao para efetivar compras</string>
+ <string name="tutorial_title_button_search_neigboor">Localizacao Feiras da Cidade</string>
+ <string name="tutorial_description_button_search_neigboor">Além de ver as feiras próximas  diretamente no mapa você pode pesquisar os bairros das cidades clicando neste botão.</string>
+ <string name="tutorial_title_item_historic">Historico de Compras</string>
+ <string name="tutorial_description_item_historic">Aqui mostra as suas três ultimas compras feitas para comparação</string>
+ <string name="tutorial_title_days_of_week">Semana das feiras</string>
+ <string name="tutorial_description_days_of_week">Aqui você pode ver os dias da semana em que tem feiras nas cidades</string>
 
 
-    //CIDADES
-    <string-array name="cidades">
-        <item>SAO PAULO</item>
-        <item>GUARULHOS</item>
-        <item>SUZANO</item>
-        <item>OSASCO</item>
-        <item>MAUA</item>
-        <item>SANTO ANDRE</item>
-        <item>SAO BERNADO</item>
-        <item>SAO CAETANO</item>
-    </string-array>
 
-    <!-- DIAS DA SEMANA-->
+    <!--  CIDADES-->
+<string-array name="cidades">
+    <item>SAO PAULO</item>
+    <item>GUARULHOS</item>
+    <item>SUZANO</item>
+    <item>OSASCO</item>
+    <item>MAUA</item>
+    <item>SANTO ANDRE</item>
+    <item>SAO BERNADO</item>
+    <item>SAO CAETANO</item>
+</string-array>
+
+<!-- DIAS DA SEMANA-->
     <string-array name="dias_semana">'
         <item>TER</item>
         <item>QUA</item>
