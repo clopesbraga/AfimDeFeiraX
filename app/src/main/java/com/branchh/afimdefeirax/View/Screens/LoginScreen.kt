@@ -1,6 +1,7 @@
 package com.branchh.afimdefeirax.View.Screens
 
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -41,7 +42,14 @@ import com.branchh.afimdefeirax.R
 import com.branchh.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.branchh.afimdefeirax.State.LoginUiState
 import com.branchh.afimdefeirax.ViewModel.LoginViewModel
+import androidx.credentials.CredentialManager
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.exceptions.GetCredentialException
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.text.input.PasswordVisualTransformation as PasswordVisualTransformation1
 
 
@@ -56,7 +64,8 @@ fun LoginScreenPreview() {
         state = LoginUiState(),
         onUsernameChange = {},
         onPasswordChange = {},
-        onLogin = { false }
+        onLogin = { false },
+        onGoogleLogin = {}
     )
 }
 
@@ -66,6 +75,10 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
     val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
     val viewModel: LoginViewModel = koinInject()
     val state by viewModel.state.collectAsState()
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+    val credentialManager = CredentialManager.create(context)
+    val defaultWebClientId = stringResource(R.string.default_web_client_id)
 
     LoginContent(
         navController = navController,
@@ -74,7 +87,35 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
         state = state,
         onUsernameChange = { viewModel.onUsernameChange(it) },
         onPasswordChange = { viewModel.onPasswordChange(it) },
-        onLogin = { viewModel.login() }
+        onLogin = { viewModel.login() },
+        onGoogleLogin = {
+            coroutineScope.launch {
+                try {
+                    val googleIdOption = GetGoogleIdOption.Builder()
+                        .setFilterByAuthorizedAccounts(false)
+                        .setServerClientId(defaultWebClientId)
+                        .build()
+
+                    val request = GetCredentialRequest.Builder()
+                        .addCredentialOption(googleIdOption)
+                        .build()
+
+                    val result = credentialManager.getCredential(
+                        context = context,
+                        request = request
+                    )
+
+                    val credential = result.credential
+                    if (credential is androidx.credentials.CustomCredential && 
+                        credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+                        val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                        viewModel.signInWithGoogle(googleIdTokenCredential.idToken)
+                    }
+                } catch (e: GetCredentialException) {
+                    Log.e("LoginScreen", "Google Sign In Error: ${e.message}")
+                }
+            }
+        }
     )
 
 }
@@ -89,7 +130,8 @@ private fun LoginContent(
     state: LoginUiState,
     onUsernameChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
-    onLogin: () -> Boolean
+    onLogin: () -> Boolean,
+    onGoogleLogin: (String) -> Unit
 ) {
 
     showBottomBar(false)
@@ -177,6 +219,25 @@ private fun LoginContent(
                 if(state.isSuccess) navController.navigate("map")
             }
 
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Box {
+            OutlinedButton(
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Transparent,
+                    contentColor = Color.White,
+                    disabledContentColor = Color.White,
+                ),
+                border = BorderStroke(1.dp, Color.White),
+                enabled = !state.isLoading,
+                onClick = {
+                    onGoogleLogin("")
+                },
+            ) {
+                Text("Entrar com Google")
+            }
         }
     }
 

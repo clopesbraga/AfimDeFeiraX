@@ -54,6 +54,8 @@ playServicesAds = "24.2.0"
 introshowcaseview = "2.0.2"
 crashlytics = "3.0.4"
 ui = "1.10.6"
+credentials = "1.6.0"
+googleid = "1.2.0"
 
 
 
@@ -123,6 +125,9 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 introshowcaseview = { module = "com.canopas.intro-showcase-view:introshowcaseview", version.ref = "introshowcaseview" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
+androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
+androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 
 
 

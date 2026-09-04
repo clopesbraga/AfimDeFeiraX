@@ -182,8 +182,6 @@ private fun Content(
 fun AppDescription() {
 
     Column {
-
-
         Row { FormatTitle(R.string.text_1_title) }
         Row { FormatDescription(R.string.text_1) }
 
@@ -191,7 +189,7 @@ fun AppDescription() {
         Row { FormatDescription(R.string.text_2) }
         Row {
             LinkText(
-                stringResource(R.string.url_name),
+                stringResource(R.string.url),
                 stringResource(R.string.url)
             )
         }
@@ -201,7 +199,7 @@ fun AppDescription() {
                 text = getAppVersion(LocalContext.current),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .padding(5.dp),
                 textAlign = TextAlign.Justify,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Light
@@ -219,7 +217,7 @@ fun FormatDescription(description: Int) {
         text = stringResource(id = description),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(4.dp),
         textAlign = TextAlign.Justify,
         fontSize = 18.sp,
         fontWeight = FontWeight.Light
