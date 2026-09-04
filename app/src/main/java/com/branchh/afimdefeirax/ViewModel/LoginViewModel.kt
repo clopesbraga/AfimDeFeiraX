@@ -100,11 +100,27 @@ class LoginViewModel(
         return result
     }
 
-    private fun localSave(): String {
+    fun signInWithGoogle(idToken: String) {
+        viewModelScope.launch {
+            _state.update { it.copy(isLoading = true, error = null) }
+            try {
+                authservice.signInWithGoogle(idToken)
+                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_SUCCESS)
+                localSave()
+                _state.update { it.copy(isLoading = false, isSuccess = true) }
+            } catch (error: Exception) {
+                _state.update { it.copy(isLoading = false, error = "Erro ao fazer login com Google") }
+                analyticservice.firebaselogEvent(Monitoring.Login.LOGIN_FAILED)
+                Log.e(Monitoring.Login.LOGIN_FAILED, error.message.toString())
+            }
+        }
+    }
 
+    private fun localSave(): String {
+        val email = authservice.getCurrentUserEmail() ?: _state.value.username
         val modelousuario = LoginModel().apply {
             this.id = id
-            this.usuario = _state.value.username
+            this.usuario = email
         }
         loginShared.storeString("id", modelousuario.id.toString())
         loginShared.storeString("usuario", modelousuario.usuario)

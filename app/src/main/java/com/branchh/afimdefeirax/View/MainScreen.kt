@@ -2,13 +2,10 @@ package com.branchh.afimdefeirax.View
 
 import android.Manifest
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
-import androidx.cardview.R
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
@@ -33,9 +30,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.airbnb.lottie.LottieComposition
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.rememberLottieComposition
 import com.branchh.afimdefeirax.SharedPreferences.LoginSharedImpl
 import com.branchh.afimdefeirax.State.MainUIState
 import com.branchh.afimdefeirax.Utils.Monitoring

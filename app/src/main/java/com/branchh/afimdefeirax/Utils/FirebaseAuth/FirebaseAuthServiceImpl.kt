@@ -15,6 +15,12 @@ class FirebaseAuthServiceImpl(private val auth: FirebaseAuth) :IFirebaseAuthServ
         return true
     }
 
+    override suspend fun signInWithGoogle(idToken: String): Boolean {
+        val credential = com.google.firebase.auth.GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential).await()
+        return true
+    }
+
     override fun getCurrentUserEmail(): String? {
         return auth.currentUser?.email
     }
