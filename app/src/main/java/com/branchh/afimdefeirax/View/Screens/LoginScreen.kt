@@ -78,6 +78,7 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val credentialManager = CredentialManager.create(context)
+    val defaultWebClientId = stringResource(R.string.default_web_client_id)
 
     LoginContent(
         navController = navController,
@@ -92,7 +93,7 @@ fun LoginScreen(navController: NavHostController, showBottomBar: (Boolean) -> Un
                 try {
                     val googleIdOption = GetGoogleIdOption.Builder()
                         .setFilterByAuthorizedAccounts(false)
-                        .setServerClientId(context.getString(R.string.default_web_client_id))
+                        .setServerClientId(defaultWebClientId)
                         .build()
 
                     val request = GetCredentialRequest.Builder()
