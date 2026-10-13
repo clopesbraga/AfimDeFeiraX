@@ -4,13 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.content.ContextWrapper
 import android.location.Address
 import android.location.Geocoder
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.branchh.afimdefeirax.Model.TipoFeiraModel
 import com.branchh.afimdefeirax.R
 import com.branchh.afimdefeirax.Repository.FeiraRepository.FeirasRepositoryImpl
 import com.branchh.afimdefeirax.SharedPreferences.MapTutorialSharedImpl
@@ -235,20 +235,40 @@ class MapaFeirasViewModel(
         analyticservice.firebaselogEvent(Monitoring.Map.MAP_MARKER_FEIRAS)
         viewModelScope.launch {
 
-            feirasRepository.getFeirasLocations { feiras ->
+            val selectedDay = _state.value.selecteDayOfWeek
+
+            feirasRepository.getFeiras(TipoFeiraModel.NORMAL) { feiras ->
                 feiras.forEach { localizacao ->
                     val latLng = LatLng(
                         localizacao.Latitude.toDouble(),
                         localizacao.Longitude.toDouble()
                     )
-                    if(localizacao.dia ==_state.value.selecteDayOfWeek){
-
+                    val diasList = localizacao.dia.split(";").map { it.trim() }
+                    if(diasList.contains(selectedDay)){
                         map.addMarker(
                             MarkerOptions()
                                 .position(latLng)
                                 .title(localizacao.Feira)
                                 .snippet("${localizacao.endereco},${localizacao.bairro}")
                                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
+                        )
+                    }
+                }
+            }
+            feirasRepository.getFeiras(TipoFeiraModel.ORGANICA) { feiras ->
+                feiras.forEach { localizacao ->
+                    val latLng = LatLng(
+                        localizacao.Latitude.toDouble(),
+                        localizacao.Longitude.toDouble()
+                    )
+                    val diasList = localizacao.dia.split(";").map { it.trim() }
+                    if(diasList.contains(selectedDay)){
+                        map.addMarker(
+                            MarkerOptions()
+                                .position(latLng)
+                                .title(localizacao.Feira)
+                                .snippet("${localizacao.endereco},${localizacao.bairro}")
+                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_feira_organica))
                         )
                     }
                 }

@@ -34,7 +34,10 @@ class MainViewModel : ViewModel() {
 
     fun loadAds(context: Context) {
         val adRequest = AdRequest.Builder().build()
-        val adUnitId = context.getString(R.string.interstitial_ad_unit_id)
+        var adUnitId = context.getString(R.string.interstitial_ad_unit_id)
+        if (adUnitId.isBlank()) {
+            adUnitId = "ca-app-pub-3940256099942544/1033173712" // Fallback to test ad unit ID
+        }
 
         InterstitialAd.load(
             context,
@@ -42,7 +45,7 @@ class MainViewModel : ViewModel() {
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d(TAG, adError.toString().toString())
+                    Log.d(TAG, adError.toString())
                     mInterstitialAd = null
                 }
 
