@@ -1,8 +1,9 @@
 package com.branchh.afimdefeirax.Repository.FeiraRepository
 
 import com.branchh.afimdefeirax.Model.FeirasModel
+import com.branchh.afimdefeirax.Model.TipoFeiraModel
 import com.google.android.gms.maps.model.LatLng
 
 interface IFeiraRepository {
-    fun getFeirasLocations(callback: (List<FeirasModel>) -> Unit)
+    fun getFeiras(tipo:TipoFeiraModel, callback: (List<FeirasModel>) -> Unit)
 }
