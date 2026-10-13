@@ -96,6 +96,8 @@ flavorDimensions "default"
     }
     buildFeatures {
         compose true
+        buildConfig = true
+        resValues = true
     }
     namespace 'com.branchh.afimdefeirax'
 
