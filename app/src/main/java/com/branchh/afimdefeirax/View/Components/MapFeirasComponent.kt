@@ -45,8 +45,8 @@ package com.branchh.afimdefeirax.View.Components
 fun ListOfNeighborHoodComponent(
     filteredCarouselItems: List<CarouselItem>,
     selectedCity: String?,
-    viewModel: MapaFeirasViewModel,
-    analytics: FirebaseAnalyticsImpl
+    viewModel: MapaFeirasViewModel?,
+    analytics: FirebaseAnalyticsImpl?
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsDraggedAsState()
@@ -82,10 +82,10 @@ fun ListOfNeighborHoodComponent(
                         interactionSource = interactionSource,
                         indication =null,
                     ) {
-                        analytics.firebaselogEvent(Monitoring.Map.NEIGHBOR_SELECTED)
+                        analytics?.firebaselogEvent(Monitoring.Map.NEIGHBOR_SELECTED)
                         selectedItem = item
                         selectedCity?.let { city ->
-                            viewModel.geoLocalization(city,item.bairros)
+                            viewModel?.geoLocalization(city,item.bairros)
                         }
                     }
                     .padding(8.dp),
@@ -120,8 +120,8 @@ fun SearchNeighborHoodComponent(
     neighborhoodsToShow: List<String>,
     cityImages: Int,
     selectedCity: String?,
-    viewModel: MapaFeirasViewModel,
-    analytics: FirebaseAnalyticsImpl
+    viewModel: MapaFeirasViewModel?,
+    analytics: FirebaseAnalyticsImpl?
 ) {
     val filteredCarouselItems = neighborhoodsToShow.filter {
         it.contains(searchQuery, ignoreCase = true)
@@ -153,8 +153,8 @@ fun SearchNeighborHoodComponent(
     cities: Array<String>,
     index: Int,
     isSelected: Boolean,
-    viewModel: MapaFeirasViewModel,
-    analytics:FirebaseAnalyticsImpl
+    viewModel: MapaFeirasViewModel?,
+    analytics: FirebaseAnalyticsImpl?
 ) {
     Text(
         text = cities[index],
@@ -168,12 +168,12 @@ fun SearchNeighborHoodComponent(
                 shape = MaterialTheme.shapes.medium
             )
             .clickable {
-                analytics.firebaselogEvent(Monitoring.Map.CITY_SELECTED)
-                viewModel.onCityChange(cities[index])
-                viewModel.onNeighborhoodSelected(
+                analytics?.firebaselogEvent(Monitoring.Map.CITY_SELECTED)
+                viewModel?.onCityChange(cities[index])
+                viewModel?.onNeighborhoodSelected(
                     viewModel.neighborhoodsMap[cities[index]]?.toList() ?: emptyList()
                 )
-                viewModel.onCityImageChange(Flags[cities[index]] ?:ic_bandeira_saopaulo)
+                viewModel?.onCityImageChange(Flags[cities[index]] ?:ic_bandeira_saopaulo)
             }
             .padding(horizontal = 16.dp, vertical = 0.dp)
     )
@@ -184,8 +184,8 @@ fun DaysOfWeekMenuComponent(
     daysOfWeek: Array<String>,
     index: Int,
     isSelected: Boolean,
-    viewModel: MapaFeirasViewModel,
-    analytics:FirebaseAnalyticsImpl
+    viewModel: MapaFeirasViewModel?,
+    analytics: FirebaseAnalyticsImpl?
 ) {
     Text(
         text = daysOfWeek[index],
@@ -199,8 +199,8 @@ fun DaysOfWeekMenuComponent(
                 shape = MaterialTheme.shapes.medium
             )
             .clickable {
-                analytics.firebaselogEvent(Monitoring.Map.DAY_OF_WEEK_SELECTED)
-                viewModel.onDayOfWeekSelected(daysOfWeek.get(index))
+                analytics?.firebaselogEvent(Monitoring.Map.DAY_OF_WEEK_SELECTED)
+                viewModel?.onDayOfWeekSelected(daysOfWeek.get(index))
             }
             .padding(horizontal = 16.dp, vertical = 0.dp)
     )

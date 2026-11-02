@@ -46,6 +46,7 @@ class MapaFeirasViewModel(
     val state: MutableStateFlow<MapFeirasUIState> = _state
 
     private lateinit var googleMap: GoogleMap
+    private var isMapInitialized = false
     private lateinit var userLocation: LatLng
 
     init {
@@ -170,7 +171,7 @@ class MapaFeirasViewModel(
             day.copy(selecteDayOfWeek = dayOf)
         }
 
-        showFeirasLocalizationIn(googleMap)
+        showFeirasLocalizationIn(googleMap, _state.value.selectedTipoFeira)
     }
 
     fun onReview(activity: Activity?, context: Context) {
@@ -231,53 +232,58 @@ class MapaFeirasViewModel(
     }
 
 
-    fun showFeirasLocalizationIn(map: GoogleMap) {
+    fun showFeirasLocalizationIn(map: GoogleMap, tipo: TipoFeiraModel? = null) {
         analyticservice.firebaselogEvent(Monitoring.Map.MAP_MARKER_FEIRAS)
         viewModelScope.launch {
-
             val selectedDay = _state.value.selecteDayOfWeek
+            val typesToFetch = if (tipo != null) listOf(tipo) else listOf(TipoFeiraModel.NORMAL, TipoFeiraModel.ORGANICA)
 
-            feirasRepository.getFeiras(TipoFeiraModel.NORMAL) { feiras ->
-                feiras.forEach { localizacao ->
-                    val latLng = LatLng(
-                        localizacao.Latitude.toDouble(),
-                        localizacao.Longitude.toDouble()
-                    )
-                    val diasList = localizacao.dia.split(";").map { it.trim() }
-                    if(diasList.contains(selectedDay)){
-                        map.addMarker(
-                            MarkerOptions()
-                                .position(latLng)
-                                .title(localizacao.Feira)
-                                .snippet("${localizacao.endereco},${localizacao.bairro}")
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_loc))
+            typesToFetch.forEach { tipoFeira ->
+                feirasRepository.getFeiras(tipoFeira) { feiras ->
+                    feiras.forEach { localizacao ->
+                        val latLng = LatLng(
+                            localizacao.Latitude.toDouble(),
+                            localizacao.Longitude.toDouble()
                         )
-                    }
-                }
-            }
-            feirasRepository.getFeiras(TipoFeiraModel.ORGANICA) { feiras ->
-                feiras.forEach { localizacao ->
-                    val latLng = LatLng(
-                        localizacao.Latitude.toDouble(),
-                        localizacao.Longitude.toDouble()
-                    )
-                    val diasList = localizacao.dia.split(";").map { it.trim() }
-                    if(diasList.contains(selectedDay)){
-                        map.addMarker(
-                            MarkerOptions()
-                                .position(latLng)
-                                .title(localizacao.Feira)
-                                .snippet("${localizacao.endereco},${localizacao.bairro}")
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_feira_organica))
-                        )
+                        val diasList = localizacao.dia.split(";").map { it.trim() }
+                        if (diasList.contains(selectedDay)) {
+                            val iconRes = if (tipoFeira == TipoFeiraModel.ORGANICA) {
+                                R.mipmap.ic_feira_organica
+                            } else {
+                                R.mipmap.ic_loc
+                            }
+                            map.addMarker(
+                                MarkerOptions()
+                                    .position(latLng)
+                                    .title(localizacao.Feira)
+                                    .snippet("${localizacao.endereco},${localizacao.bairro}")
+                                    .icon(BitmapDescriptorFactory.fromResource(iconRes))
+                            )
+                        }
                     }
                 }
             }
         }
     }
-    fun googleMap(map: GoogleMap) {
 
+    fun filterFeirasByType(tipo: TipoFeiraModel) {
+        _state.update { it.copy(selectedTipoFeira = tipo) }
+        if (isMapInitialized) {
+            googleMap.clear()
+            if (this::userLocation.isInitialized) {
+                googleMap.addMarker(
+                    MarkerOptions()
+                        .position(userLocation)
+                        .title(application.getString(R.string.user_point))
+                )
+            }
+            showFeirasLocalizationIn(googleMap, tipo)
+        }
+    }
+
+    fun googleMap(map: GoogleMap) {
         googleMap = map
+        isMapInitialized = true
     }
 
 

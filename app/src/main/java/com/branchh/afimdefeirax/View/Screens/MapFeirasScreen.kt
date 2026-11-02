@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -39,12 +41,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.branchh.afimdefeirax.R
+import com.branchh.afimdefeirax.Model.TipoFeiraModel
+import com.branchh.afimdefeirax.State.MapFeirasUIState
 import com.branchh.afimdefeirax.Utils.FirebaseAnalytics.FirebaseAnalyticsImpl
 import com.branchh.afimdefeirax.Utils.Monitoring
 import com.branchh.afimdefeirax.View.Components.CitiesMenuComponent
@@ -63,54 +69,68 @@ import com.google.maps.android.compose.MapsComposeExperimentalApi
 import org.koin.compose.koinInject
 
 
+@Preview(showBackground = true)
+@Composable
+fun MapFeirasPreview(){
+    MapFeirasContent(
+        showBottomBar = { },
+        firebaseanalytics = null,
+        viewModel = null
+    )
+}
+
 @Composable
 fun MapFeirasScreen(showBottomBar: (Boolean) -> Unit) {
 
     val firebaseanalytics: FirebaseAnalyticsImpl = koinInject()
     val viewModel: MapaFeirasViewModel = koinInject()
 
-    Content(showBottomBar,firebaseanalytics,viewModel)
+    MapFeirasContent(showBottomBar,firebaseanalytics,viewModel)
 }
 
 @OptIn(ExperimentalMaterial3Api::class, MapsComposeExperimentalApi::class)
 @Composable
-fun Content(showBottomBar: (Boolean) -> Unit,
-            firebaseanalytics: FirebaseAnalyticsImpl,
-            viewModel: MapaFeirasViewModel)
-{
-
+fun MapFeirasContent(
+    showBottomBar: (Boolean) -> Unit,
+    firebaseanalytics: FirebaseAnalyticsImpl?,
+    viewModel: MapaFeirasViewModel?
+) {
+    val isInPreview = LocalInspectionMode.current
 
     var shouldShowBottomBar by remember { mutableStateOf(true) }
     SideEffect { showBottomBar(shouldShowBottomBar) }
 
+    val state = viewModel?.state?.collectAsState()?.value ?: MapFeirasUIState(
+        neighborhoodsToShow = listOf("Bairro 1", "Bairro 2", "Bairro 3")
+    )
 
-    val state by viewModel.state.collectAsState()
+    val daysOfWeekArray = viewModel?.days_of_week ?: arrayOf("TER", "QUA", "QUI", "SEX", "SAB", "DOM")
+    val citiesArray = viewModel?.cities ?: arrayOf("SAO PAULO", "GUARULHOS", "SUZANO")
 
     val sheetState = rememberModalBottomSheetState()
     val citiesListState = rememberLazyListState()
     val daysListState = rememberLazyListState()
-
 
     val mapProperties = MapProperties(isMyLocationEnabled = true)
     val uiSettings = MapUiSettings(zoomControlsEnabled = false)
     val activity = LocalActivity.current
     val context = LocalContext.current
 
-
-    firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_SCREEN_START)
-
+    firebaseanalytics?.firebaselogEvent(Monitoring.Map.MAP_SCREEN_START)
 
     LaunchedEffect(Unit) {
-        viewModel.days_of_week.indexOf(state.selecteDayOfWeek)
-        viewModel.onShowTutorial()
-        viewModel.onReview(activity, context)
+        if (viewModel != null) {
+            viewModel.days_of_week.indexOf(state.selecteDayOfWeek)
+            viewModel.onShowTutorial()
+            viewModel.onReview(activity, context)
+        }
     }
     val introShowcaseState = rememberIntroShowcaseState()
 
     IntroShowcase(
-        showIntroShowCase = state.showTutorial,
+        showIntroShowCase = if (isInPreview) false else state.showTutorial,
         state = introShowcaseState,
-        onShowCaseCompleted = { viewModel.onTutorialCompleted() }
+        onShowCaseCompleted = { viewModel?.onTutorialCompleted() }
     ) {
 
         Scaffold(
@@ -137,10 +157,10 @@ fun Content(showBottomBar: (Boolean) -> Unit,
                         modifier = Modifier
                             .height(40.dp)
                     ) {
-                        items(viewModel.daysOfWeek.size) { index ->
-                            val isSelected = viewModel.days_of_week[index] == state.selecteDayOfWeek
+                        items(daysOfWeekArray.size) { index ->
+                            val isSelected = daysOfWeekArray[index] == state.selecteDayOfWeek
 
-                            if(index ==0){
+                            if(index == 0 && !isInPreview){
                                 Box(Modifier.introShowCaseTarget(
                                     index = 0,
                                     style = ShowcaseStyle.Default.copy(
@@ -168,15 +188,15 @@ fun Content(showBottomBar: (Boolean) -> Unit,
                                 )){
 
                                     DaysOfWeekMenuComponent(
-                                        viewModel.days_of_week,
+                                        daysOfWeekArray,
                                         index,
                                         isSelected,
                                         viewModel,
                                         firebaseanalytics)
                                 }
-                            }else{
+                            } else {
                                 DaysOfWeekMenuComponent(
-                                    viewModel.days_of_week,
+                                    daysOfWeekArray,
                                     index,
                                     isSelected,
                                     viewModel,
@@ -189,52 +209,100 @@ fun Content(showBottomBar: (Boolean) -> Unit,
                 }
             },
             floatingActionButton = {
-                Box(
-                     modifier = Modifier.introShowCaseTarget(
-                         index = 1,
-                         style = ShowcaseStyle.Default.copy(
-                             backgroundColor = Color(0xFF009688),
-                             backgroundAlpha = 0.98f,
-                             targetCircleColor = Color.White
-                         ),
-                         content = {
-                             Column {
-                                 Text(
-                                     text = stringResource(R.string.tutorial_title_button_search_neigboor),
-                                     color = Color.White,
-                                     fontSize = 24.sp,
-                                     fontWeight = FontWeight.Bold
-                                 )
-                                 Spacer(modifier = Modifier.height(4.dp))
-                                 Text(
-                                     text = stringResource(R.string.tutorial_description_button_search_neigboor),
-                                     color = Color.White,
-                                     fontSize = 16.sp
-                                 )
-                                 Spacer(modifier = Modifier.height(10.dp))
-                             }
-
-                         }
-                     )
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    FloatingActionButton(
-                        onClick = {
-                            firebaseanalytics.firebaselogEvent(Monitoring.Map.MAP_FLOATING_BUTTON_PRESSED)
-                            viewModel.toggleBottomSheet()
-                        },
-                        containerColor = Color(0xFF009688),
-                        shape = CircleShape,
-                        modifier = Modifier
-                            .padding(16.dp)
+                    var showFilterMenu by remember { mutableStateOf(false) }
+
+                    Box {
+                        FloatingActionButton(
+                            onClick = {
+                                showFilterMenu = true
+                                firebaseanalytics?.firebaselogEvent(Monitoring.Map.MAP_MARKER_LOCALIZATION)
+                            },
+                            containerColor = Color(0xFF009688),
+                            shape = CircleShape,
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_nav_btn_map),
+                                contentDescription = "Filtrar Feiras Icon",
+                                tint = Color.White
+                            )
+                        }
+
+                        DropdownMenu(
+                            expanded = showFilterMenu,
+                            onDismissRequest = { showFilterMenu = false }
+                        ) {
+                            DropdownMenuItem(
+                                text = { Text("Feiras Orgânicas") },
+                                onClick = {
+                                    showFilterMenu = false
+                                    firebaseanalytics?.firebaselogEvent(Monitoring.Map.MAP_MARKER_FEIRAS)
+                                    viewModel?.filterFeirasByType(TipoFeiraModel.ORGANICA)
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Feiras Tradicionais") },
+                                onClick = {
+                                    showFilterMenu = false
+                                    firebaseanalytics?.firebaselogEvent(Monitoring.Map.MAP_MARKER_FEIRAS)
+                                    viewModel?.filterFeirasByType(TipoFeiraModel.NORMAL)
+                                }
+                            )
+                        }
+                    }
+
+                    Box(
+                         modifier = if (isInPreview) Modifier else Modifier.introShowCaseTarget(
+                             index = 1,
+                             style = ShowcaseStyle.Default.copy(
+                                 backgroundColor = Color(0xFF009688),
+                                 backgroundAlpha = 0.98f,
+                                 targetCircleColor = Color.White
+                             ),
+                             content = {
+                                 Column {
+                                     Text(
+                                         text = stringResource(R.string.tutorial_title_button_search_neigboor),
+                                         color = Color.White,
+                                         fontSize = 24.sp,
+                                         fontWeight = FontWeight.Bold
+                                     )
+                                     Spacer(modifier = Modifier.height(4.dp))
+                                     Text(
+                                         text = stringResource(R.string.tutorial_description_button_search_neigboor),
+                                         color = Color.White,
+                                         fontSize = 16.sp
+                                     )
+                                     Spacer(modifier = Modifier.height(10.dp))
+                                 }
+
+                             }
+                         )
                     ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_lupa_pesquisa),
-                            contentDescription = "Lupa de Pesquisa Icon",
-                            tint = Color.White
-                        )
+                        FloatingActionButton(
+                            onClick = {
+                                firebaseanalytics?.firebaselogEvent(Monitoring.Map.MAP_FLOATING_BUTTON_PRESSED)
+                                viewModel?.toggleBottomSheet()
+                            },
+                            containerColor = Color(0xFF009688),
+                            shape = CircleShape,
+                            modifier = Modifier
+                                .padding(horizontal = 16.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_lupa_pesquisa),
+                                contentDescription = "Lupa de Pesquisa Icon",
+                                tint = Color.White
+                            )
+                        }
                     }
                 }
             }
+
         ) { innerpadding ->
 
             Column(
@@ -242,20 +310,35 @@ fun Content(showBottomBar: (Boolean) -> Unit,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box {
-                    GoogleMap(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color(0xFF009688))
-                            .padding(innerpadding),
-                        properties = mapProperties,
-                        uiSettings = uiSettings,
-                    ) {
-
-                        MapEffect {
-                            viewModel.showMyLocalizationIn(it)
-                            viewModel.showFeirasLocalizationIn(it)
-                            viewModel.googleMap(it)
-
+                    if (isInPreview) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color(0xFF009688))
+                                .padding(innerpadding),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "Mapa de Feiras (Preview)",
+                                color = Color.White,
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    } else {
+                        GoogleMap(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color(0xFF009688))
+                                .padding(innerpadding),
+                            properties = mapProperties,
+                            uiSettings = uiSettings,
+                        ) {
+                            MapEffect {
+                                viewModel?.showMyLocalizationIn(it)
+                                viewModel?.showFeirasLocalizationIn(it)
+                                viewModel?.googleMap(it)
+                            }
                         }
                     }
                 }
@@ -263,11 +346,11 @@ fun Content(showBottomBar: (Boolean) -> Unit,
 
             if (state.showBottomSheet) {
                 ModalBottomSheet(
-                    onDismissRequest = { viewModel.toggleBottomSheet() },
+                    onDismissRequest = { viewModel?.toggleBottomSheet() },
                     sheetState = sheetState,
                     containerColor = Color(0xFF009688),
                 ) {
-                    firebaseanalytics.firebaselogEvent(Monitoring.Map.SHOW_MENU_NEIGHBORS)
+                    firebaseanalytics?.firebaselogEvent(Monitoring.Map.SHOW_MENU_NEIGHBORS)
                     Box(
                         modifier = Modifier
                             .fillMaxHeight(0.5f)
@@ -280,11 +363,11 @@ fun Content(showBottomBar: (Boolean) -> Unit,
                                 modifier = Modifier
                                     .height(80.dp)
                             ) {
-                                items(viewModel.cities.size) { index ->
-                                    val isSelected = viewModel.cities[index] == state.selectedCity
+                                items(citiesArray.size) { index ->
+                                    val isSelected = citiesArray[index] == state.selectedCity
 
                                     CitiesMenuComponent(
-                                        viewModel.cities,
+                                        citiesArray,
                                         index,
                                         isSelected,
                                         viewModel,
@@ -294,7 +377,7 @@ fun Content(showBottomBar: (Boolean) -> Unit,
                             }
                             TextField(
                                 value = state.searchQuery,
-                                onValueChange = { viewModel.onSearchQueryChange(it) },
+                                onValueChange = { viewModel?.onSearchQueryChange(it) },
                                 label = { Text(stringResource(R.string.search_neighborhoods)) },
                                 modifier = Modifier.fillMaxWidth()
                             )

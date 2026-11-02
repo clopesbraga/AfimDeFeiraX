@@ -1,4 +1,5 @@
 package com.branchh.afimdefeirax.State
+import com.branchh.afimdefeirax.Model.TipoFeiraModel
 import com.branchh.afimdefeirax.R.mipmap.ic_bandeira_saopaulo
 
 
@@ -10,5 +11,6 @@ data class MapFeirasUIState(
     var showBottomSheet: Boolean = false,
     var neighborhoodsToShow: List<String> = emptyList(),
     val errorMessage: String="",
-    val showTutorial: Boolean = true
+    val showTutorial: Boolean = true,
+    var selectedTipoFeira: TipoFeiraModel? = null
 )
