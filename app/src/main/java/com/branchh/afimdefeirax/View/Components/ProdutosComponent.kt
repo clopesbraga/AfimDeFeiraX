@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import com.branchh.afimdefeirax.R
@@ -153,7 +154,7 @@ fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
             Icon(imageVector = Icons.Filled.Remove, contentDescription = "diminui")
         }
 
-        Text(text = "R$ ", style = MaterialTheme.typography.bodyLarge)
+        Text(text ="R$",style = MaterialTheme.typography.displaySmall)
 
         BasicTextField(
             value = textFieldValue,
@@ -176,7 +177,7 @@ fun SeletorPrecoComponent(onValueChange: (Int) -> Unit) {
                 color = Color.Black
             ),
             modifier = Modifier
-                .width(120.dp)
+                .width(80.dp)
                 .padding(vertical = 8.dp),
             singleLine = true
         )
@@ -213,5 +214,29 @@ fun MessageNoPrice(showDialog: Boolean,onDismiss:() ->Unit) {
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SeletorPesoComponentPreview() {
+    Surface(modifier = Modifier.padding(16.dp)) {
+        SeletorPesoComponent(onValueChange = {})
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ButtonMeasureComponentPreview() {
+    Surface(modifier = Modifier.padding(16.dp)) {
+        ButtonMeasureComponent(unidade = "KG", selectedMeasure = "KG", onSelected = {})
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SeletorPrecoComponentPreview() {
+    Surface(modifier = Modifier.padding(16.dp)) {
+        SeletorPrecoComponent(onValueChange = {})
     }
 }
